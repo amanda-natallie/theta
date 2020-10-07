@@ -15,6 +15,8 @@ declare namespace interfaceConstant {
     color?: string;
     weight?: number;
     small?: boolean;
+    size?: string;
+
   }
   interface ImageProps {
     maxWidth?: string;

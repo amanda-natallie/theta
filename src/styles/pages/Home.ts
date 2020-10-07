@@ -135,11 +135,30 @@ export const CTA = styled.section`
 
     & h2 {
       text-align: center;
-      margin-bottom: 20px
+      margin-bottom: 20px;
     }
     & a {
       text-align: center;
       width: 100%;
     }
+  }
+`;
+
+export const PriceBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: ${theme.palette.primary.dark};
+
+
+
+  & span {
+    font-weight: 800;
+  }
+
+  & p {
+    display: inline;
+    font-size: 3.9rem;
+    font-weight: 800;
   }
 `;

@@ -36,7 +36,7 @@ export const Heading06 = styled.h6`
 export const Text = styled.p`
   margin-top: 30px;
   font-size: ${(props: interfaceConstant.TextProps) =>
-    props.small ? "0.875rem" : "1rem"};
+    props.small ? "0.875rem" : props.size ? props.size : "1rem"};
   line-height: 25px;
   font-weight: ${(props: interfaceConstant.TextProps) =>
     props.weight ? props.weight : 400};

@@ -22,7 +22,7 @@ import {
   HomeWrapper,
   SubContainer,
   BenefitsList,
-  CTA
+  CTA, PriceBlock
 } from "../styles/pages/Home";
 import { useScroll } from "../utils/hooks/useScroll";
 
@@ -217,7 +217,22 @@ export default function Home() {
               (tradução do texto publicado na página oficial do THInK, em
               inglês)
             </Text>
-            <BenefitsList>
+            
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item md={6}>
+                <Text color={colors.gray03} size="1.3rem">Consultas a partir de</Text>
+                <PriceBlock>
+                  <span>RS</span>
+                  <p>107,00</p>
+                </PriceBlock>
+                <ThetaButton theme="purple">
+                  Agenda Online
+                </ThetaButton>
+          </Grid>
+          <Grid item md={6} className="text-right">
+          <BenefitsList>
               <li>Agendamento rápido e fácil</li>
               <li>Valor consulta mais acessível</li>
               <li>Informações sobre o mundo da cura ThetaHealing®</li>
