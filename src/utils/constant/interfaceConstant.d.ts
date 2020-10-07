@@ -9,7 +9,18 @@ declare namespace interfaceConstant {
   }
 
   interface MenuProps {
-    color: "dark" | "light";
+    color: "dark" | "light" | string;
+  }
+  interface TextProps {
+    color?: string;
+    weight?: number;
+    small?: boolean;
+  }
+  interface ImageProps {
+    maxWidth?: string;
+  }
+  interface DividerProps {
+    height: string
   }
 }
 

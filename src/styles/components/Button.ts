@@ -34,7 +34,7 @@ export const ThetaButton = styled.a`
   border: 0;
   outline: none;
   text-decoration: none;
-
+  display: inline-block;
   font-family: "Nunito", sans-serif;
   padding: 10px 50px;
   font-size: 15px;
@@ -59,3 +59,14 @@ export const IconButton = styled(ThetaButton)`
   color: ${(props: interfaceConstant.MenuProps) =>
         props.color === "dark" ? theme.palette.primary.dark : "white"};
 `;
+
+export const ColorfulIcon = styled.div`
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  background: linear-gradient(178.36deg, #00A9E0 -4.16%, #8C38B6 82.8%, #EE2737 167.13%);
+  margin-right: 15px;
+`

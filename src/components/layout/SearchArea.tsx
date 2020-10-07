@@ -14,8 +14,7 @@ const SearchArea = ({ color }: interfaceConstant.MenuProps) => {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, setOpen);
-  console.log("porra de tema: ", color);
-  console.log("porra de cor: ", theme.palette.primary.main);
+ 
   useEffect(() => {
     !open && setSearchWord("");
   }, [open]);
@@ -23,7 +22,7 @@ const SearchArea = ({ color }: interfaceConstant.MenuProps) => {
   return (
     <div ref={wrapperRef}>
       <input
-        className={open && "open"}
+        className={open ? "open" : undefined}
         type="text"
         value={searchWord}
         placeholder={open ? "Pesquisar" : ""}

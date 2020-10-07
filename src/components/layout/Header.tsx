@@ -10,7 +10,7 @@ import {
   ActionsArea,
 } from "../../styles/components/Header";
 import Link from "next/link";
-import SearchArea from "../general/SearchArea";
+import SearchArea from "./SearchArea";
 import theme from "../../styles/theme";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
@@ -19,7 +19,7 @@ import interfaceConstant from "../../utils/constant/interfaceConstant";
 const Header = ({ color }: interfaceConstant.MenuProps) => {
   const useStyles = makeStyles({
     root: {
-      background: color === "dark" ? "rgba(255,255,255,0.5)" : "none"
+      background: color === "dark" ? "rgba(255,255,255,0.85)" : "none"
     },
   });
   const classes = useStyles();

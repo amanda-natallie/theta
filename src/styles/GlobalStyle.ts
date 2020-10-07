@@ -5,11 +5,10 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     transition: all 0.2s ease-in;
-    font-family: "Nunito", sans-serif;
+    
   }
 
   body {
-    color: #fff;
     font-size: 16px
   }
 
@@ -26,4 +25,6 @@ export default createGlobalStyle`
     list-style: none;
     padding:0
   }
+
+  
 `;

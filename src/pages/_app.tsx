@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/styles';
 import GlobalStyle from "../styles/GlobalStyle";
 import theme from '../styles/theme';
+import "./_app.css";
 
 class MyApp extends App {
   componentDidMount() {
