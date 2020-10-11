@@ -11,6 +11,7 @@ declare namespace interfaceConstant {
 
   interface MenuProps {
     color: "dark" | "light" | string;
+    elevation?: 0 | 1 | 2 | 3;
   }
   interface TextProps {
     color?: string;
@@ -37,12 +38,15 @@ declare namespace interfaceConstant {
     subtitle: string;
     img: string;
     url: string;
-    
   }
 
   interface boxProps {
     bg?: string
     color?: string
+  }
+  interface ButtonProps {
+    fullWidth?: boolean
+    theme: "rainbow" | "purple" | "purpleOutlined" 
   }
 }
 

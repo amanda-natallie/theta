@@ -28,8 +28,8 @@ class SpotifySvgIcon extends React.PureComponent<
             y2="0.906343"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#00A9E0" />
-            <stop offset="1" stop-color="#8C38B6" />
+            <stop stopColor="#00A9E0" />
+            <stop offset="1" stopColor="#8C38B6" />
           </linearGradient>
         </defs>
       </svg>

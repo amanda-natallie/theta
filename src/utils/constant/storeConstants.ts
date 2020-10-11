@@ -1,0 +1,3 @@
+export const userConstant = {
+  HANDLE_USER_INFORMATION: "HANDLE_USER_INFORMATION",
+}

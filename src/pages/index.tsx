@@ -44,15 +44,15 @@ import { Tag } from "../styles/components/Tag";
 import CalendarV2SvgIcon from "../components/icons/CalendarV2SvgIcon";
 import { podcasts } from "../utils/constant/podcast";
 import PlaySvgIcon from "../components/icons/PlaySvgIcon";
-import MandalaSvgIcon from "../components/icons/MandalaSvgIcon";
+
 import Footer from "../components/layout/Footer";
 
-export default function Home({ deviceType }) {
+export default function HomePage({ deviceType }) {
   const { scrollY } = useScroll();
 
   return (
     <HomeWrapper>
-      <Header color={scrollY <= 200 ? "light" : "dark"} />
+      <Header color={scrollY <= 200 ? "light" : "dark"} elevation={scrollY <= 200 ? 0 : 3} />
       <Intro>
         <div className="uplayer">
           <img src="/media/home/capa-logo.svg" alt="Logo" />
@@ -552,7 +552,7 @@ export default function Home({ deviceType }) {
         <Divider height="60px" />
       </Container>
       <PurpleSection>
-        <MandalaSvgIcon width="133" height="130" />
+        <img src="/media/home/mandala.png" width="133" height="130" />
         <p>
           Somos Curadores Curamos com Luz Luz do nosso amor Toda compaixão virou
           ação de amor Luz para curar Evoco das estrelas Vem da natureza do
@@ -570,7 +570,7 @@ export default function Home({ deviceType }) {
     </HomeWrapper>
   );
 }
-Home.getInitialProps = ({ req }) => {
+HomePage.getInitialProps = ({ req }) => {
   let userAgent;
   if (req) {
     userAgent = req.headers["user-agent"];

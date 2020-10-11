@@ -28,9 +28,9 @@ class YoutubeSvgIcon extends React.PureComponent<
             y2="35.7124"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#00A9E0" />
-            <stop offset="0.507654" stop-color="#8C38B6" />
-            <stop offset="1" stop-color="#EE2737" />
+            <stop stopColor="#00A9E0" />
+            <stop offset="0.507654" stopColor="#8C38B6" />
+            <stop offset="1" stopColor="#EE2737" />
           </linearGradient>
         </defs>
       </svg>

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Container, Grid, makeStyles } from "@material-ui/core";
-import { ThetaButton, IconButton } from "../../styles/components/Button";
+import { ThetaButton, MenuIconButton } from "../../styles/components/Button";
 import {
   MenuBar,
   BrandArea,
@@ -14,12 +14,12 @@ import SearchArea from "./SearchArea";
 import theme from "../../styles/theme";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
+import { FlexBox } from "../../styles/components/FlexBox";
 
-
-const Header = ({ color }: interfaceConstant.MenuProps) => {
+const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
   const useStyles = makeStyles({
     root: {
-      background: color === "dark" ? "rgba(255,255,255,0.85)" : "none"
+      background: color === "dark" ? "rgba(255,255,255,0.85)" : "none",
     },
   });
   const classes = useStyles();
@@ -29,7 +29,7 @@ const Header = ({ color }: interfaceConstant.MenuProps) => {
         root: classes.root,
       }}
       color="inherit"
-      elevation={0}
+      elevation={elevation ? elevation : 0}
     >
       <Container maxWidth="lg">
         <Grid
@@ -38,16 +38,18 @@ const Header = ({ color }: interfaceConstant.MenuProps) => {
           justify="space-between"
           alignItems="center"
         >
-          <BrandArea>
-            <Logo
-              src={
-                color === "dark"
-                  ? "/media/logo-cinza.svg"
-                  : "/media/logo-branco.svg"
-              }
-            />
+          <FlexBox>
+            <BrandArea href="/">
+              <Logo
+                src={
+                  color === "dark"
+                    ? "/media/logo-cinza.svg"
+                    : "/media/logo-branco.svg"
+                }
+              />
+            </BrandArea>
             <ThetaButton theme="rainbow">Conheça</ThetaButton>
-          </BrandArea>
+          </FlexBox>
           <NavArea>
             <Nav color={color}>
               <li>
@@ -66,7 +68,7 @@ const Header = ({ color }: interfaceConstant.MenuProps) => {
             <ActionsArea>
               <SearchArea color={color} />
             </ActionsArea>
-            <IconButton color={color}>
+            <MenuIconButton color={color}  href="/cadastro-usuario">
               <SignInSvgIcon
                 width="19"
                 height="18"
@@ -75,7 +77,7 @@ const Header = ({ color }: interfaceConstant.MenuProps) => {
                 }
               />
               Entrar
-            </IconButton>
+            </MenuIconButton>
           </NavArea>
         </Grid>
       </Container>

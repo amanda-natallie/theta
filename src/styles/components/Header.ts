@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import theme from "../theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
+import Link from "next/link";
 
 export const MenuBar = styled(AppBar)`
   color: ${theme.palette.primary.main};
@@ -10,8 +11,8 @@ export const MenuBar = styled(AppBar)`
 export const Logo = styled.img`
   max-width: 180px;
 `;
-export const BrandArea = styled.div`
-  display: flex;
+export const BrandArea = styled(Link)`
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
 `;

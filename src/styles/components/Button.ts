@@ -36,17 +36,19 @@ export const ThetaButton = styled.a`
   text-decoration: none;
   display: inline-block;
   font-family: "Nunito", sans-serif;
-  padding: 10px 50px;
+  
+  ${(props: interfaceConstant.ButtonProps) =>
+    props.fullWidth ? "width: 100%; text-align: center; padding: 10px 0;" : "padding: 10px 50px;"};
   font-size: 15px;
   cursor: pointer;
   transition: all 0.1s ease-in;
-  ${({ theme }) => handleColorType(theme)};
+  ${( props: interfaceConstant.ButtonProps ) => handleColorType(props.theme)};
   &:hover {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 `;
 
-export const IconButton = styled(ThetaButton)`
+export const MenuIconButton = styled(ThetaButton)`
   padding: 0;
   background: none;
   width: 90px;
@@ -57,24 +59,43 @@ export const IconButton = styled(ThetaButton)`
   justify-content: space-evenly;
   margin-left: 10px;
   color: ${(props: interfaceConstant.MenuProps) =>
-        props.color === "dark" ? theme.palette.primary.dark : "white"};
+    props.color === "dark" ? theme.palette.primary.dark : "white"};
 `;
 
 export const ColorfulIcon = styled.div`
   border-radius: 100%;
   width: 36px;
   height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    178.36deg,
+    #00a9e0 -4.16%,
+    #8c38b6 82.8%,
+    #ee2737 167.13%
+  );
+  margin-right: 15px;
+`;
+
+export const NewsletterButton = styled(ThetaButton)`
+  border-radius: 0 8px 8px 0;
+  margin: 0;
+  background: ${theme.palette.primary.main};
+  color: white;
+`;
+
+export const IconButton = styled.a`
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
   display:inline-flex;
   align-items:center;
   justify-content: center;
-  background: linear-gradient(178.36deg, #00A9E0 -4.16%, #8C38B6 82.8%, #EE2737 167.13%);
+  background: ${(props: interfaceConstant.boxProps) => props.bg};
   margin-right: 15px;
-`
 
-export const NewsletterButton = styled(ThetaButton)`
-border-radius: 0 8px 8px 0;
-margin: 0;
-background: ${theme.palette.primary.main};
-color: white;
-
-`
+  & svg {
+    fill: ${(props: interfaceConstant.boxProps) => props.color};
+  }
+`;

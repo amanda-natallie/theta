@@ -182,7 +182,7 @@ export const PodcastWrapper = styled.a`
 `;
 
 export const PurpleSection = styled.section`
-  background: url("/media/home/bg.png") top center no-repeat;
+  background: url("/media/home/bg.png") center center no-repeat;
   background-size: cover;
   position: relative;
   width: 100%;
@@ -190,7 +190,7 @@ export const PurpleSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  & svg {
+  & img {
     position: absolute;
     top: -65px;
   }
@@ -202,10 +202,11 @@ export const PurpleSection = styled.section`
     line-height: 20px;
     margin: 30px;
 
-    &:nth-child(1) {
+    &:first-of-type {
       text-align: right;
+      
     }
-    &:nth-child(2) {
+    &:last-of-type {
       text-align: left;
     }
   }

@@ -36,9 +36,9 @@ class ThetaIconSvgIcon extends React.PureComponent<
             y2="47.5736"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#00A9E0" />
-            <stop offset="0.3939" stop-color="#6638B6" />
-            <stop offset="0.6816" stop-color="#EE2737" />
+            <stop stopColor="#00A9E0" />
+            <stop offset="0.3939" stopColor="#6638B6" />
+            <stop offset="0.6816" stopColor="#EE2737" />
           </linearGradient>
           <linearGradient
             id="paint1_linear"
@@ -48,9 +48,9 @@ class ThetaIconSvgIcon extends React.PureComponent<
             y2="48.0185"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#00A9E0" />
-            <stop offset="0.3939" stop-color="#6638B6" />
-            <stop offset="0.6816" stop-color="#EE2737" />
+            <stop stopColor="#00A9E0" />
+            <stop offset="0.3939" stopColor="#6638B6" />
+            <stop offset="0.6816" stopColor="#EE2737" />
           </linearGradient>
           <linearGradient
             id="paint2_linear"
@@ -60,9 +60,9 @@ class ThetaIconSvgIcon extends React.PureComponent<
             y2="48.6104"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#00A9E0" />
-            <stop offset="0.3939" stop-color="#6638B6" />
-            <stop offset="0.6816" stop-color="#EE2737" />
+            <stop stopColor="#00A9E0" />
+            <stop offset="0.3939" stopColor="#6638B6" />
+            <stop offset="0.6816" stopColor="#EE2737" />
           </linearGradient>
         </defs>
       </svg>
