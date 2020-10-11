@@ -5,6 +5,7 @@ declare namespace interfaceConstant {
     color?: string;
     title?: string;
     fillColor?: string;
+    bgColor?: string;
     viewBox?: string;
   }
 
@@ -16,13 +17,32 @@ declare namespace interfaceConstant {
     weight?: number;
     small?: boolean;
     size?: string;
-
   }
   interface ImageProps {
     maxWidth?: string;
   }
   interface DividerProps {
-    height: string
+    height: string;
+  }
+
+  interface blogProps {
+    image: string;
+    type: string;
+    description: string;
+    tag: string;
+    data: string;
+  }
+  interface podcastProps {
+    title: string;
+    subtitle: string;
+    img: string;
+    url: string;
+    
+  }
+
+  interface boxProps {
+    bg?: string
+    color?: string
   }
 }
 

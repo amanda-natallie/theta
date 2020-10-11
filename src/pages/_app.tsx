@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import GlobalStyle from "../styles/GlobalStyle";
 import theme from '../styles/theme';
 import "./_app.css";
+import "react-multi-carousel/lib/styles.css";
 
 class MyApp extends App {
   componentDidMount() {

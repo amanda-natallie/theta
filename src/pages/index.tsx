@@ -1,6 +1,12 @@
-import { Container, Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
-import { Box } from "../components/general/Box";
+import { UAParser } from "ua-parser-js";
+import { Container, Grid } from "@material-ui/core";
+import {
+  BigMediaBox,
+  Box,
+  MidiaBox,
+  MidiaBox2,
+} from "../components/general/Box";
 import {
   Quote,
   Title,
@@ -8,6 +14,7 @@ import {
   Subtitle,
   ColoredTitle,
   Heading06,
+  GrayTitle,
 } from "../components/general/Typography";
 import MinusSvgIcon from "../components/icons/MinusSvgIcon";
 import Header from "../components/layout/Header";
@@ -22,11 +29,25 @@ import {
   HomeWrapper,
   SubContainer,
   BenefitsList,
-  CTA, PriceBlock
+  CTA,
+  PriceBlock,
+  PodcastWrapper,
+  PurpleSection,
 } from "../styles/pages/Home";
 import { useScroll } from "../utils/hooks/useScroll";
+import CustomCarousel from "../components/general/CustomCarousel";
+import { blog } from "../utils/constant/blog";
+import interfaceConstant from "../utils/constant/interfaceConstant";
+import theme from "../styles/theme";
+import CalendarSvgIcon from "../components/icons/CalendarSvgIcon";
+import { Tag } from "../styles/components/Tag";
+import CalendarV2SvgIcon from "../components/icons/CalendarV2SvgIcon";
+import { podcasts } from "../utils/constant/podcast";
+import PlaySvgIcon from "../components/icons/PlaySvgIcon";
+import MandalaSvgIcon from "../components/icons/MandalaSvgIcon";
+import Footer from "../components/layout/Footer";
 
-export default function Home() {
+export default function Home({ deviceType }) {
   const { scrollY } = useScroll();
 
   return (
@@ -45,7 +66,7 @@ export default function Home() {
       <CenteredImage alt="Navigation" src="/media/home/1.svg" />
       <Divider height="120px" />
 
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Grid container spacing={10}>
           <Grid item xs={12} sm={12} md={6}>
             <IconTitle>
@@ -150,7 +171,7 @@ export default function Home() {
         </Grid>
       </Container>
       <section className="purple01">
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Grid container spacing={10}>
             <Grid item xs={12} sm={12} md={7}>
               <Title>A meditação Thetahealing®</Title>
@@ -186,7 +207,7 @@ export default function Home() {
           </Grid>
         </Container>
       </section>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Divider height="120px" />
         <Grid container spacing={10}>
           <Grid item xs={12} sm={12} md={5}>
@@ -217,22 +238,21 @@ export default function Home() {
               (tradução do texto publicado na página oficial do THInK, em
               inglês)
             </Text>
-            
           </Grid>
         </Grid>
         <Grid container>
           <Grid item md={6}>
-                <Text color={colors.gray03} size="1.3rem">Consultas a partir de</Text>
-                <PriceBlock>
-                  <span>RS</span>
-                  <p>107,00</p>
-                </PriceBlock>
-                <ThetaButton theme="purple">
-                  Agenda Online
-                </ThetaButton>
+            <Text color={colors.gray03} size="1.3rem">
+              Consultas a partir de
+            </Text>
+            <PriceBlock>
+              <span>RS</span>
+              <p>107,00</p>
+            </PriceBlock>
+            <ThetaButton theme="purple">Agenda Online</ThetaButton>
           </Grid>
           <Grid item md={6} className="text-right">
-          <BenefitsList>
+            <BenefitsList>
               <li>Agendamento rápido e fácil</li>
               <li>Valor consulta mais acessível</li>
               <li>Informações sobre o mundo da cura ThetaHealing®</li>
@@ -244,72 +264,72 @@ export default function Home() {
         <Divider height="60px" />
       </Container>
       <section className="gray01">
-      <Divider height="40px" />
-      <Container maxWidth="md">
-        <Grid container>
-          <Grid item xs={12} className="text-center">
-            <ColoredTitle as="h2" small>
-              Atendimento Online
-            </ColoredTitle>
-            <Divider height="40px" />
-            <CenteredImage src="/media/home/5.svg" alt="" />
-            <Divider height="40px" />
+        <Divider height="40px" />
+        <Container maxWidth="lg">
+          <Grid container>
+            <Grid item xs={12} className="text-center">
+              <ColoredTitle as="h2" small>
+                Atendimento Online
+              </ColoredTitle>
+              <Divider height="40px" />
+              <CenteredImage src="/media/home/5.svg" alt="" />
+              <Divider height="40px" />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Box>
-              <div className="avatar">
-                <CenteredImage src="/media/home/6.svg" alt="" />
-              </div>
-              <Heading06>Escolha seu Terapeuta</Heading06>
-              <Text color={colors.gray03}>
-                Clique no botão abaixo e navegue nos perfis dos profissionais
-                cadastrados.
-              </Text>
-            </Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Box>
+                <div className="avatar">
+                  <CenteredImage src="/media/home/6.svg" alt="" />
+                </div>
+                <Heading06>Escolha seu Terapeuta</Heading06>
+                <Text color={colors.gray03}>
+                  Clique no botão abaixo e navegue nos perfis dos profissionais
+                  cadastrados.
+                </Text>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Box>
+                <div className="avatar">
+                  <CenteredImage src="/media/home/7.svg" alt="" />
+                </div>
+                <Heading06>Agende o horário</Heading06>
+                <Text color={colors.gray03}>
+                  Você pode filtrar por nome, localização, data, hora ou
+                  certificação Thetahealing®.
+                </Text>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Box>
+                <div className="avatar">
+                  <CenteredImage src="/media/home/8.svg" alt="" />
+                </div>
+                <Heading06>Realize o pagamento</Heading06>
+                <Text color={colors.gray03}>
+                  Forma de pagamento descomplicada, rápida e segura. Aceitamos
+                  cartões de crédito e débito
+                </Text>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Box>
+                <div className="avatar">
+                  <CenteredImage src="/media/home/9.svg" alt="" />
+                </div>
+                <Heading06>Acesse sua sala</Heading06>
+                <Text color={colors.gray03}>
+                  Faça o login ou clique no link recebido pelo email para
+                  iniciar sua consulta.
+                </Text>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Box>
-              <div className="avatar">
-                <CenteredImage src="/media/home/7.svg" alt="" />
-              </div>
-              <Heading06>Agende o horário</Heading06>
-              <Text color={colors.gray03}>
-                Você pode filtrar por nome, localização, data, hora ou
-                certificação Thetahealing®.
-              </Text>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Box>
-              <div className="avatar">
-                <CenteredImage src="/media/home/8.svg" alt="" />
-              </div>
-              <Heading06>Realize o pagamento</Heading06>
-              <Text color={colors.gray03}>
-                Forma de pagamento descomplicada, rápida e segura. Aceitamos
-                cartões de crédito e débito
-              </Text>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Box>
-              <div className="avatar">
-                <CenteredImage src="/media/home/9.svg" alt="" />
-              </div>
-              <Heading06>Acesse sua sala</Heading06>
-              <Text color={colors.gray03}>
-                Faça o login ou clique no link recebido pelo email para iniciar
-                sua consulta.
-              </Text>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-      <Divider height="90px" />
+        </Container>
+        <Divider height="90px" />
       </section>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Divider height="90px" />
 
         <Grid container spacing={10}>
@@ -340,11 +360,225 @@ export default function Home() {
       <CTA>
         <div className="inner">
           <Title>Você é um ThetaHealer?</Title>
-          <ThetaButton theme="purple">
-            Cadastre-se
-          </ThetaButton>
+          <ThetaButton theme="purple">Cadastre-se</ThetaButton>
         </div>
       </CTA>
+      <Container maxWidth="lg">
+        <GrayTitle>
+          Theta<strong>Voice</strong>
+        </GrayTitle>
+        <Divider height="30px" />
+        <CustomCarousel
+          deviceType={deviceType}
+          responsive={{
+            desktop: {
+              breakpoint: { max: 3000, min: 1024 },
+              items: 3,
+              partialVisibilityGutter: 60,
+            },
+            tablet: {
+              breakpoint: { max: 1024, min: 464 },
+              items: 2,
+              partialVisibilityGutter: 50,
+            },
+            mobile: {
+              breakpoint: { max: 464, min: 0 },
+              items: 1,
+              partialVisibilityGutter: 30,
+            },
+          }}
+        >
+          {blog.map((item: interfaceConstant.blogProps, index: number) => (
+            <MidiaBox key={index}>
+              <img src={item.image} alt={item.description} />
+              <div className="content">
+                <span>{item.type}</span>
+                <p>{item.description}</p>
+                <footer>
+                  <Tag color="white" bg={theme.palette.primary.main}>
+                    {item.tag}
+                  </Tag>
+                  <span>
+                    <CalendarSvgIcon
+                      width="15"
+                      height="15"
+                      fillColor={theme.palette.primary.main}
+                    />
+                    {item.data}
+                  </span>
+                </footer>
+              </div>
+            </MidiaBox>
+          ))}
+        </CustomCarousel>
+        <Divider height="50px" />
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <BigMediaBox bg="/media/home/bg-01.jpg">
+              <h3>
+                Perder tempo em aprender coisas que não interessam, priva-nos de
+                descobrir coisas interessantes.
+              </h3>
+              <footer>
+                <Tag bg="white" color={theme.palette.primary.main}>
+                  Tag#1
+                </Tag>
+                <span>
+                  <CalendarV2SvgIcon fillColor="white" width="15" height="14" />{" "}
+                  25 de Agosto de 2020
+                </span>
+              </footer>
+            </BigMediaBox>
+          </Grid>
+        </Grid>
+        <Divider height="50px" />
+      </Container>
+      <Container maxWidth="lg">
+        <Grid container>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <MidiaBox2>
+              <img src="/media/home/Image.jpg" alt="ok" />
+              <div className="content">
+                <span className="darkDate">Outubro, 10, 2020</span>
+                <p>
+                  #Until recently, the prevailing view assumed lorem ipsum was
+                  born as a nonsense text. “It's not Latin, though it looks like
+                  it, and it actually says nothing,” Before & After magazine
+                  answered a curious reader, “Its ‘words’ loosely approximate
+                  the frequency with which letters occur in English, which is
+                  why at a glance it looks pretty real.”
+                </p>
+                <footer>
+                  <img src="/media/home/facebook.png" alt="facebook" />
+                </footer>
+              </div>
+            </MidiaBox2>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <MidiaBox2>
+              <img src="/media/home/Image.jpg" alt="ok" />
+              <div className="content">
+                <span>
+                  thetabrasil <small>em agosto 10, 2020</small>
+                </span>
+                <p>
+                  #Until recently, the prevailing view assumed lorem ipsum was
+                  born as a nonsense text. “It's not Latin, though it looks like
+                  it, and it actually says nothing,” Before & After magazine
+                  answered a curious reader, “Its ‘words’ loosely approximate
+                  the frequency with which letters occur in English, which is
+                  why at a glance it looks pretty real.”
+                </p>
+                <footer>
+                  <img src="/media/home/facebook.png" alt="facebook" />
+                </footer>
+              </div>
+            </MidiaBox2>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <MidiaBox2>
+              <img src="/media/home/Image.jpg" alt="ok" />
+              <div className="content">
+                <span>
+                  thetabrasil <small>em agosto 10, 2020</small>
+                </span>
+                <p>
+                  #Until recently, the prevailing view assumed lorem ipsum was
+                  born as a nonsense text. “It's not Latin, though it looks like
+                  it, and it actually says nothing,” Before & After magazine
+                  answered a curious reader, “Its ‘words’ loosely approximate
+                  the frequency with which letters occur in English, which is
+                  why at a glance it looks pretty real.”
+                </p>
+                <footer>
+                  <img src="/media/home/facebook.png" alt="facebook" />
+                </footer>
+              </div>
+            </MidiaBox2>
+          </Grid>
+        </Grid>
+      </Container>
+      <Container maxWidth="lg">
+        <Divider height="60px" />
+        <GrayTitle>Podcasts & Playlists</GrayTitle>
+        <Divider height="30px" />
+        <CustomCarousel
+          deviceType={deviceType}
+          responsive={{
+            desktop: {
+              breakpoint: { max: 3000, min: 1024 },
+              items: 1,
+              partialVisibilityGutter: 0,
+            },
+            tablet: {
+              breakpoint: { max: 1024, min: 464 },
+              items: 1,
+              partialVisibilityGutter: 0,
+            },
+            mobile: {
+              breakpoint: { max: 464, min: 0 },
+              items: 1,
+              partialVisibilityGutter: 0,
+            },
+          }}
+        >
+          {podcasts.map(
+            (item: interfaceConstant.podcastProps, index: number) => (
+              <PodcastWrapper
+                key={index}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Grid container>
+                  <Grid item xs={12} sm={12} md={7} lg={7}>
+                    <img src="/media/home/botao-spotify.png" alt="spotify" />
+                    <div className="content">
+                      <ColorfulIcon>
+                        <PlaySvgIcon width="12" height="15" fillColor="white" />
+                      </ColorfulIcon>
+                      <h3>{item.title}</h3>
+                      <p>{item.subtitle}</p>
+                    </div>
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={5} lg={5}>
+                    <img src={item.img} alt="imagem" />
+                  </Grid>
+                </Grid>
+              </PodcastWrapper>
+            )
+          )}
+        </CustomCarousel>
+        <Divider height="60px" />
+      </Container>
+      <PurpleSection>
+        <MandalaSvgIcon width="133" height="130" />
+        <p>
+          Somos Curadores Curamos com Luz Luz do nosso amor Toda compaixão virou
+          ação de amor Luz para curar Evoco das estrelas Vem da natureza do
+          centro da Terra de todo o Universo Cura a Mãe Terra e todas as plantas
+          e todas as pedras todos os animais
+        </p>
+        <p>
+          os elementais todos os espíritos os mortos e os vivos os ¨intras¨e os
+          ¨extras¨ Toda a humanidade toda a natureza Cura a Mãe Terra Vem de
+          todo Universo Espalhando a sua Luz Luz que chega á terra Cura toda a
+          natureza Despertando a Humanidade Curando todo o Planeta
+        </p>
+      </PurpleSection>
+      <Footer />
     </HomeWrapper>
   );
 }
+Home.getInitialProps = ({ req }) => {
+  let userAgent;
+  if (req) {
+    userAgent = req.headers["user-agent"];
+  } else {
+    userAgent = navigator.userAgent;
+  }
+  const parser = new UAParser().setUA(userAgent);
+  const result = parser.getResult();
+  const deviceType = (result.device && result.device.type) || "desktop";
+  return { deviceType };
+};

@@ -18,8 +18,8 @@ class MinusSvgIcon extends React.PureComponent<
         <path
           d="M2.19507 1.5L12.5626 1.5"
           stroke={fillColor}
-          stroke-width="3"
-          stroke-linecap="round"
+          strokeWidth="3"
+          strokeLinecap="round"
         />
       </svg>
     );

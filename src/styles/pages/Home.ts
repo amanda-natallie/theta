@@ -150,8 +150,6 @@ export const PriceBlock = styled.div`
   justify-content: flex-start;
   color: ${theme.palette.primary.dark};
 
-
-
   & span {
     font-weight: 800;
   }
@@ -160,5 +158,55 @@ export const PriceBlock = styled.div`
     display: inline;
     font-size: 3.9rem;
     font-weight: 800;
+  }
+`;
+
+export const PodcastWrapper = styled.a`
+  display: block;
+  width: 100%;
+  padding-left: 48px;
+
+  & .content {
+    margin: 60px 0 0 70px;
+
+    & h3 {
+      display: inline;
+      font-size: 2.25rem;
+      color: ${theme.palette.primary.main};
+    }
+
+    & p {
+      color: ${theme.palette.primary.main};
+    }
+  }
+`;
+
+export const PurpleSection = styled.section`
+  background: url("/media/home/bg.png") top center no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & svg {
+    position: absolute;
+    top: -65px;
+  }
+
+  & p {
+    color: white;
+    width: 180px;
+    font-size: 0.975rem;
+    line-height: 20px;
+    margin: 30px;
+
+    &:nth-child(1) {
+      text-align: right;
+    }
+    &:nth-child(2) {
+      text-align: left;
+    }
   }
 `;

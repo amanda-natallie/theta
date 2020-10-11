@@ -27,12 +27,18 @@ export const Subtitle = styled.h3`
   color: ${theme.palette.primary.main};
   font-size: 1.5rem;
 `;
+
 export const Heading06 = styled.h6`
   color: ${theme.palette.primary.main};
   font-size: 1.125rem;
   margin-top: 10px;
 `;
-
+export const GrayTitle = styled.h3`
+  color: ${colors.gray03};
+  font-size: 1.125rem;
+  text-align: center;
+  font-weight: 300;
+`;
 export const Text = styled.p`
   margin-top: 30px;
   font-size: ${(props: interfaceConstant.TextProps) =>

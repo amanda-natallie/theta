@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "./theme";
 
 export default createGlobalStyle`
   * {
@@ -26,5 +27,12 @@ export default createGlobalStyle`
     padding:0
   }
 
-  
+  .react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,
+  .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+    background: ${theme.palette.primary.main + "d9"}
+  }
+  .react-multiple-carousel__arrow.react-multiple-carousel__arrow--right:hover,
+  .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left:hover {
+    background: ${theme.palette.primary.main}
+  }
 `;

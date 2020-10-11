@@ -64,9 +64,17 @@ export const ColorfulIcon = styled.div`
   border-radius: 100%;
   width: 36px;
   height: 36px;
-  display:flex;
+  display:inline-flex;
   align-items:center;
   justify-content: center;
   background: linear-gradient(178.36deg, #00A9E0 -4.16%, #8C38B6 82.8%, #EE2737 167.13%);
   margin-right: 15px;
+`
+
+export const NewsletterButton = styled(ThetaButton)`
+border-radius: 0 8px 8px 0;
+margin: 0;
+background: ${theme.palette.primary.main};
+color: white;
+
 `
