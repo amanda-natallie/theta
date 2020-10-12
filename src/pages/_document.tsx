@@ -7,7 +7,7 @@ import theme from '../styles/theme';
 class MyDocument extends Document {
   static async getInitialProps (ctx: DocumentContext) {
     const styledComponentsSheet = new ServerStyleSheet()
-    const materialSheets = new ServerStyleSheets()
+    const materialSheets = new ServerStyleSheets({injectFirst:true})
     const originalRenderPage = ctx.renderPage;
 
     try {
@@ -41,7 +41,7 @@ class MyDocument extends Document {
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,900;1,300;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,900;1,300;1,400,600&display=swap"
           />
         </Head>
         <body>
