@@ -8,11 +8,14 @@ class ThetaIconSvgIcon extends React.PureComponent<
     const { width, height, bgColor, ...otherProps } = this.props;
     return (
       <svg
-        width={width}
-        height={height}
-        viewBox={`0 0 ${width} ${height}`}
+        style={{
+          width: width ? width : "auto",
+          height: height ? height : "auto",
+        }}
+        viewBox={`0 0 60 55`}
         fill={bgColor}
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
         {...otherProps}
       >
         <path

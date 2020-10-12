@@ -68,7 +68,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
             <ActionsArea>
               <SearchArea color={color} />
             </ActionsArea>
-            <MenuIconButton color={color}  href="/cadastro-usuario">
+            <MenuIconButton color={color}  href="/login">
               <SignInSvgIcon
                 width="19"
                 height="18"

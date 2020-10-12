@@ -6,7 +6,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     transition: all 0.2s ease-in;
-    
+    box-sizing: border-box;
   }
 
   body {
@@ -35,4 +35,5 @@ export default createGlobalStyle`
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left:hover {
     background: ${theme.palette.primary.main}
   }
+
 `;

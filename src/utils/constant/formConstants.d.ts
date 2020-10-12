@@ -16,6 +16,11 @@ declare namespace formConstants {
     passwordConfirm: string;
     termsAccepted: boolean;
   }
+
+  interface LoginProps {
+    user: string
+    password: string
+  }
 }
 
 export default formConstants;

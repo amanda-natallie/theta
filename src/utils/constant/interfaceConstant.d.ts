@@ -43,10 +43,19 @@ declare namespace interfaceConstant {
   interface boxProps {
     bg?: string
     color?: string
+    noPadding?: boolean
   }
   interface ButtonProps {
     fullWidth?: boolean
-    theme: "rainbow" | "purple" | "purpleOutlined" 
+    theme?: "rainbow" | "purple" | "purpleOutlined"
+    underline?: boolean 
+    align?: "left" | "right"
+  }
+
+  interface PageProps {
+    noFooter?: boolean
+    noPadding?: boolean
+    children : React.ReactNode
   }
 }
 

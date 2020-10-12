@@ -4,8 +4,8 @@ import theme from "../../styles/theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 
 export const Box = styled.div`
-  width: calc(100%-40px);
-  min-height: 250px;
+  width: 100%;
+  
   box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 15px;

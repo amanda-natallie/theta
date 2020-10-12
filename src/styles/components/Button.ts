@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { darken } from "@material-ui/core";
 import theme from "../theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
+import Link from "next/link";
 
 const handleColorType = (color: string) => {
   switch (color) {
@@ -36,13 +37,15 @@ export const ThetaButton = styled.a`
   text-decoration: none;
   display: inline-block;
   font-family: "Nunito", sans-serif;
-  
+
   ${(props: interfaceConstant.ButtonProps) =>
-    props.fullWidth ? "width: 100%; text-align: center; padding: 10px 0;" : "padding: 10px 50px;"};
+    props.fullWidth
+      ? "width: 100%; text-align: center; padding: 10px 0;"
+      : "padding: 10px 50px;"};
   font-size: 15px;
   cursor: pointer;
   transition: all 0.1s ease-in;
-  ${( props: interfaceConstant.ButtonProps ) => handleColorType(props.theme)};
+  ${(props: interfaceConstant.ButtonProps) => handleColorType(props.theme)};
   &:hover {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   }
@@ -89,8 +92,8 @@ export const IconButton = styled.a`
   border-radius: 100%;
   width: 36px;
   height: 36px;
-  display:inline-flex;
-  align-items:center;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   background: ${(props: interfaceConstant.boxProps) => props.bg};
   margin-right: 15px;
@@ -98,4 +101,17 @@ export const IconButton = styled.a`
   & svg {
     fill: ${(props: interfaceConstant.boxProps) => props.color};
   }
+`;
+
+export const NavigationButton = styled.a`
+  font-weight: bold;
+  font-size: 0.875rem;
+  line-height: 18px;
+  text-decoration: ${(props: interfaceConstant.ButtonProps) =>
+    props.underline ? "underline" : "none"};
+  text-align: ${(props: interfaceConstant.ButtonProps) =>
+    props.align ? props.align + "; display: block" : "inherit"};
+  color: ${theme.palette.primary.main};
+  
+  
 `;
