@@ -14,6 +14,7 @@ import { Title } from "../general/Typography";
 import { useDispatch } from "react-redux";
 import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
+import Link from "next/link";
 
 const UserSignUpForm = () => {
   const dispatch = useDispatch();
@@ -376,7 +377,9 @@ const UserSignUpForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-              <ThetaButton theme="purple" fullWidth>Cadastrar</ThetaButton>
+            <Link  passHref href="/cadastro-usuario">
+              <ThetaButton theme="purple" fullWidth >Cadastrar</ThetaButton>
+            </Link>
           </Grid>
         </Grid>
       </form>

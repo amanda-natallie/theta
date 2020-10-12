@@ -25,13 +25,7 @@ export const UserSignInWrapper = styled.section`
       display: block
     }
 
-    & a {
-      margin: 0;
-    }
-
-    & a:hover {
-      box-shadow: 1px 4px 12px rgba(118, 66, 255, 0.7);
-    }
+   
     
     & footer {
       padding: 20px 0;

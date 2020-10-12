@@ -35,5 +35,10 @@ export default createGlobalStyle`
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left:hover {
     background: ${theme.palette.primary.main}
   }
-
+#nprogress {
+  z-index: 999999 !important
+}
+.MuiAppBar-root {
+    z-index: 100 !important;
+}
 `;

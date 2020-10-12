@@ -1,4 +1,5 @@
 import { lighten } from "@material-ui/core/styles/colorManipulator";
+import Link from "next/link";
 import styled from "styled-components";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { colors } from "../colors";
@@ -18,6 +19,7 @@ export const HomeWrapper = styled.div`
   & .purple01 {
     background: ${lighten(theme.palette.primary.light, 0.8)};
   }
+
 `;
 export const Intro = styled.div`
   width: 100%;
@@ -120,7 +122,8 @@ export const BenefitsList = styled.ul`
 export const CTA = styled.section`
   width: 100%;
   height: 300px;
-  background: url("/media/home/11.png") top center no-repeat;
+  background: url("/media/user/bg-login.jpg") top center no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   display: flex;
   align-items: center;

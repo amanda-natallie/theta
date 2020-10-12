@@ -46,6 +46,7 @@ import { podcasts } from "../utils/constant/podcast";
 import PlaySvgIcon from "../components/icons/PlaySvgIcon";
 
 import Footer from "../components/layout/Footer";
+import Link from "next/link";
 
 export default function HomePage({ deviceType }) {
   const { scrollY } = useScroll();
@@ -58,7 +59,9 @@ export default function HomePage({ deviceType }) {
           <img src="/media/home/capa-logo.svg" alt="Logo" />
           <h4>Plataforma online de atendimento Thetahealing®</h4>
           <ColoredTitle>Conectados pela cura</ColoredTitle>
-          <ThetaButton theme="rainbow">Conheça</ThetaButton>
+          <Link  passHref href="/">
+            <ThetaButton theme="rainbow">Conheça</ThetaButton>
+          </Link>
           <Navigation alt="Navigation" src="/media/home/arrow.svg" />
         </div>
       </Intro>
@@ -249,7 +252,9 @@ export default function HomePage({ deviceType }) {
               <span>RS</span>
               <p>107,00</p>
             </PriceBlock>
-            <ThetaButton theme="purple">Agenda Online</ThetaButton>
+            <Link  passHref href="/">
+              <ThetaButton theme="purple">Agenda Online</ThetaButton>
+            </Link>
           </Grid>
           <Grid item md={6} className="text-right">
             <BenefitsList>
@@ -348,7 +353,9 @@ export default function HomePage({ deviceType }) {
               <span className="grayspan">contribuir com a cura do Todo.</span>
             </Text>
             <Divider height="30px" />
-            <ThetaButton theme="purple">Projetos Assistidos</ThetaButton>
+            <Link  passHref href="/">
+              <ThetaButton theme="purple">Projetos Assistidos</ThetaButton>
+            </Link>
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <SubContainer>
@@ -360,7 +367,9 @@ export default function HomePage({ deviceType }) {
       <CTA>
         <div className="inner">
           <Title>Você é um ThetaHealer?</Title>
-          <ThetaButton theme="purple">Cadastre-se</ThetaButton>
+          <Link  passHref href="/">
+            <ThetaButton theme="purple">Cadastre-se</ThetaButton>
+          </Link>
         </div>
       </CTA>
       <Container maxWidth="lg">
@@ -387,7 +396,7 @@ export default function HomePage({ deviceType }) {
               partialVisibilityGutter: 30,
             },
           }}
-        >
+        > 
           {blog.map((item: interfaceConstant.blogProps, index: number) => (
             <MidiaBox key={index}>
               <img src={item.image} alt={item.description} />
