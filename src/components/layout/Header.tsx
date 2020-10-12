@@ -36,19 +36,22 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
           container
           direction="row"
           justify="space-between"
-          alignItems="center"
-        >
+          alignItems="center">
           <FlexBox>
-            <BrandArea href="/">
-              <Logo
-                src={
-                  color === "dark"
-                    ? "/media/logo-cinza.svg"
-                    : "/media/logo-branco.svg"
-                }
-              />
-            </BrandArea>
-            <ThetaButton theme="rainbow">Conheça</ThetaButton>
+            <Link passHref href="/">
+              <BrandArea>
+                <Logo
+                  src={
+                    color === "dark"
+                      ? "/media/logo-cinza.svg"
+                      : "/media/logo-branco.svg"
+                  }
+                />
+              </BrandArea>
+            </Link>
+            <Link passHref href="/">
+              <ThetaButton theme="rainbow">Terapeutas</ThetaButton>
+            </Link>
           </FlexBox>
           <NavArea>
             <Nav color={color}>
@@ -68,16 +71,18 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
             <ActionsArea>
               <SearchArea color={color} />
             </ActionsArea>
-            <MenuIconButton color={color}  href="/login">
-              <SignInSvgIcon
-                width="19"
-                height="18"
-                fillColor={
-                  color === "dark" ? theme.palette.primary.main : "white"
-                }
-              />
-              Entrar
-            </MenuIconButton>
+            <Link passHref href="/login">
+              <MenuIconButton color={color}>
+                <SignInSvgIcon
+                  width="19"
+                  height="18"
+                  fillColor={
+                    color === "dark" ? theme.palette.primary.main : "white"
+                  }
+                />
+                Entrar
+              </MenuIconButton>
+            </Link>
           </NavArea>
         </Grid>
       </Container>

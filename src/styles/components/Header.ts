@@ -10,8 +10,9 @@ export const MenuBar = styled(AppBar)`
 
 export const Logo = styled.img`
   max-width: 180px;
+  width: 180px;
 `;
-export const BrandArea = styled(Link)`
+export const BrandArea = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;

@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import formConstants from "../utils/constant/formConstants";
 import { NavigationButton, ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
+import Link from "next/link";
 
 const UserSignInPage = () => {
   const formik = useFormik({
@@ -42,7 +43,7 @@ const UserSignInPage = () => {
           <Divider height="30px" />
           <Grid item xs={12} sm={10} md={6} lg={4}>
             <Box>
-            <Divider height="15px" />
+              <Divider height="15px" />
               <Subtitle>Bem-vindo(a) de volta</Subtitle>
               <Divider height="30px" />
               <Grid container spacing={4}>
@@ -88,21 +89,28 @@ const UserSignInPage = () => {
                     }
                   />
                   <Divider height="5px" />
-                  <NavigationButton align="right" href="/" underline>
-                    Esqueceu sua senha?
-                  </NavigationButton>
+                  <Link  passHref href="/">
+                    <NavigationButton align="right" underline>
+                      Esqueceu sua senha?
+                    </NavigationButton>
+                  </Link>
                 </Grid>
                 <Grid item xs={12}>
-                  <ThetaButton theme="purple" fullWidth>
-                    Login
-                  </ThetaButton>
+                  <Link  passHref href="/">
+                    <ThetaButton theme="purple" fullWidth>
+                      Login
+                    </ThetaButton>
+                  </Link>
                 </Grid>
               </Grid>
-              
+
               <footer>
-                <p>Ainda não tem uma conta? <NavigationButton  href="/" >
-                    Cadastre-se aqui
-                  </NavigationButton></p>
+                <p>
+                  Ainda não tem uma conta?
+                  <Link  passHref href="/cadastro-usuario">
+                    <NavigationButton> Cadastre-se aqui</NavigationButton>
+                  </Link>
+                </p>
               </footer>
             </Box>
           </Grid>

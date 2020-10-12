@@ -5,7 +5,6 @@ import interfaceConstant from "../../utils/constant/interfaceConstant";
 
 export const Box = styled.div`
   width: 100%;
-  
   box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 15px;
@@ -36,6 +35,7 @@ export const Box = styled.div`
 `;
 
 export const MidiaBox = styled(Box)`
+width: calc(100% - 40px);
   margin: 20px;
   padding: 0;
   overflow: hidden;
@@ -116,6 +116,7 @@ export const BigMediaBox = styled(Box)`
 `
 
 export const MidiaBox2 = styled(MidiaBox)`
+width: calc(100% - 40px);
   & .content > .darkDate {
     color: ${theme.palette.primary.dark};
   }

@@ -29,7 +29,9 @@ const Footer = () => {
           <p>Assine nossa newsletter</p>
           <form action="">
             <input type="text" placeholder="Insira seu e-mail" />
-            <NewsletterButton>Assinar</NewsletterButton>
+            <Link  passHref href="/">
+              <NewsletterButton>Assinar</NewsletterButton>
+            </Link>
           </form>
         </div>
       </Container>
