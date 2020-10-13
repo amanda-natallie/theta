@@ -377,9 +377,9 @@ const UserSignUpForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Link  passHref href="/cadastro-usuario">
-              <ThetaButton theme="purple" fullWidth >Cadastrar</ThetaButton>
-            </Link>
+            
+              <ThetaButton as="button" onClick={undefined} theme="purple" fullWidth >Cadastrar</ThetaButton>
+           
           </Grid>
         </Grid>
       </form>

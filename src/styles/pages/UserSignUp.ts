@@ -25,8 +25,10 @@ export const UserSignUpWrapper = styled.section`
     form {
       margin: 50px 0;
       
-      p {
+      p:not(p.MuiFormHelperText-root.Mui-error) {
         color: ${colors.gray35};
+      }
+      p{
         font-size:0.75rem;
         margin-bottom: 20px;
       }

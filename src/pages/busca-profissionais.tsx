@@ -11,8 +11,19 @@ import { SearchTherapists } from "../styles/pages/SearchProfessionals";
 import { CardBox } from "../styles/components/Box";
 import { PriceBlock } from "../styles/pages/Home";
 import { FlexBox } from "../styles/components/FlexBox";
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+        margin: theme.spacing(3),
+    },
+  }),
+);
 
 const SearchProfessionalsPage = () => {
+  const classes = useStyles();
   const [option, setOption] = useState("");
   const [selectedDate, handleDateChange] = useState(undefined);
 
@@ -125,6 +136,11 @@ const SearchProfessionalsPage = () => {
                 </CardBox>
               </Grid>
             ))}
+          </Grid>
+        </Container>
+        <Container maxWidth="lg">
+          <Grid container alignItems="center" justify="center">
+              <Pagination className={classes.root} count={10} variant="outlined" shape="rounded" />
           </Grid>
         </Container>
       </SearchTherapists>
