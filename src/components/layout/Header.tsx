@@ -49,7 +49,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 />
               </BrandArea>
             </Link>
-            <Link passHref href="/">
+            <Link passHref href="/busca-profissionais">
               <ThetaButton theme="rainbow">Terapeutas</ThetaButton>
             </Link>
           </FlexBox>

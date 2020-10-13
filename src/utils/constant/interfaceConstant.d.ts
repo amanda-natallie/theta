@@ -57,6 +57,19 @@ declare namespace interfaceConstant {
     noPadding?: boolean
     children : React.ReactNode
   }
+
+  interface BackButtonProps {
+    link: string
+  }
+
+
+  interface SelectProps {
+    options: string[]
+    setOptions: Function
+    selectedOption: string
+    type: "local" | "date"
+    label: string
+  }
 }
 
 export default interfaceConstant;

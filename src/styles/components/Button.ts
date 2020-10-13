@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { darken } from "@material-ui/core";
 import theme from "../theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
-import Link from "next/link";
+
 
 const handleColorType = (color: string) => {
   switch (color) {

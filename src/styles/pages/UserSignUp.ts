@@ -15,20 +15,6 @@ export const UserSignUpWrapper = styled.section`
   & .form-wrapper {
     padding: 60px 0;
     display: flex;
-   
-
-    & a {
-      margin: 0;
-    }
-
-    & a:hover {
-      box-shadow: 1px 4px 12px rgba(118, 66, 255, 0.7);
-    }
-
-    & svg {
-      margin: 3px 0 0 -6px;
-      transform: rotateY(180deg);
-    }
   }
 
   & .signup-form {

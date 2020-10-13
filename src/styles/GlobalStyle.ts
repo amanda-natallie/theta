@@ -26,6 +26,10 @@ export default createGlobalStyle`
     list-style: none;
     padding:0
   }
+  img {
+    max-width: 100%;
+    display: block
+  }
 
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {

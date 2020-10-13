@@ -1,8 +1,8 @@
 import { Container, Grid, TextField } from "@material-ui/core";
 import { useFormik } from "formik";
 import React from "react";
-import { Box } from "../components/general/Box";
-import { Subtitle } from "../components/general/Typography";
+import { Box } from "../styles/components/Box";
+import { Subtitle } from "../styles/components/Typography";
 import ThetaIconSvgIcon from "../components/icons/ThetaIconSvgIcon";
 import PageWrapper from "../components/layout/PageWrapper";
 import { UserSignInWrapper } from "../styles/pages/UserSignIn";
@@ -101,7 +101,7 @@ const UserSignInPage = () => {
                       Login
                     </ThetaButton>
                   </Link>
-                </Grid>
+                </Grid> 
               </Grid>
 
               <footer>

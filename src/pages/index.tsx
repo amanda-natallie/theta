@@ -6,7 +6,7 @@ import {
   Box,
   MidiaBox,
   MidiaBox2,
-} from "../components/general/Box";
+} from "../styles/components/Box";
 import {
   Quote,
   Title,
@@ -15,7 +15,7 @@ import {
   ColoredTitle,
   Heading06,
   GrayTitle,
-} from "../components/general/Typography";
+} from "../styles/components/Typography";
 import MinusSvgIcon from "../components/icons/MinusSvgIcon";
 import Header from "../components/layout/Header";
 import { colors } from "../styles/colors";
