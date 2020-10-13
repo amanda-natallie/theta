@@ -6,9 +6,16 @@ import interfaceConstant from "../../utils/constant/interfaceConstant";
 import PlaySvgIcon from "../icons/PlaySvgIcon";
 import styled from "styled-components";
 
+const BackButton = ({ link, bordered }: interfaceConstant.BackButtonProps) => {
+
 const LocalWrapper = styled.span`
+  & * {
+    box-sizing: unset;
+  }
+
   & a {
     margin: 0;
+    border: ${bordered ? "8px solid white" : 0};
   }
 
   & a:hover {
@@ -21,7 +28,6 @@ const LocalWrapper = styled.span`
   }
 `;
 
-const BackButton = ({ link }: interfaceConstant.BackButtonProps) => {
   return (
     <LocalWrapper>
       <Link passHref href={link}>

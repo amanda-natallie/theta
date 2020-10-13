@@ -12,6 +12,7 @@ import formConstants from "../utils/constant/formConstants";
 import { NavigationButton, ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import Link from "next/link";
+import Head from "next/head";
 
 const UserSignInPage = () => {
   const formik = useFormik({
@@ -29,6 +30,10 @@ const UserSignInPage = () => {
   });
 
   return (
+  <>
+    <Head>
+      <title>Faça seu login</title>
+    </Head>
     <PageWrapper noFooter noPadding>
       <UserSignInWrapper>
         <Grid
@@ -117,6 +122,7 @@ const UserSignInPage = () => {
         </Grid>
       </UserSignInWrapper>
     </PageWrapper>
+  </>
   );
 };
 

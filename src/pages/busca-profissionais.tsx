@@ -106,7 +106,7 @@ const SearchProfessionalsPage = () => {
                 <CardBox>
                   <FlexBox>
                     <header>
-                      <Avatar src="/media/thera.png" />
+                      <Avatar src="/media/profile/thera.png" />
                     </header>
                     <div className="content">
                       <h5>Davi Lucas</h5>

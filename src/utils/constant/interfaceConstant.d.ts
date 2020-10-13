@@ -44,6 +44,7 @@ declare namespace interfaceConstant {
     bg?: string
     color?: string
     noPadding?: boolean
+    column?: boolean
   }
   interface ButtonProps {
     fullWidth?: boolean
@@ -60,6 +61,7 @@ declare namespace interfaceConstant {
 
   interface BackButtonProps {
     link: string
+    bordered?: boolean
   }
 
 
