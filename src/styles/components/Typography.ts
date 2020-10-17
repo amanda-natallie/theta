@@ -14,17 +14,21 @@ export const ColoredTitle = styled.h1`
     90.47deg,
     #00a9e0 0%,
     #8c38b6 51.56%,
-    #ee2737 100%);
-  
+    #ee2737 100%
+  );
+
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: ${(props: interfaceConstant.TextProps) => props.small ? "3rem" : "4rem"};
+  font-size: ${(props: interfaceConstant.TextProps) =>
+    props.small ? "3rem" : "4rem"};
   margin: 10px 0 30px 0;
 `;
 
 export const Subtitle = styled.h3`
-  color: ${theme.palette.primary.main};
+  color: ${(props: interfaceConstant.TextProps) =>
+    props.color ? props.color : theme.palette.primary.main};
+
   font-size: 1.5rem;
 `;
 
@@ -49,10 +53,10 @@ export const Text = styled.p`
   color: ${(props: interfaceConstant.TextProps) =>
     props.color ? props.color : theme.palette.primary.dark};
 
-    & .grayspan {
-      color: ${theme.palette.primary.main};
-      font-weight: 700;
-    }
+  & .grayspan {
+    color: ${theme.palette.primary.main};
+    font-weight: 700;
+  }
 `;
 export const Quote = styled.p`
   margin: 30px 0;

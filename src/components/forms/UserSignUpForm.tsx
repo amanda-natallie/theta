@@ -10,7 +10,7 @@ import {
   Grid,
   TextField,
 } from "@material-ui/core";
-import { Title } from "../general/Typography";
+import { Title } from "../../styles/components/Typography";
 import { useDispatch } from "react-redux";
 import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
@@ -377,9 +377,9 @@ const UserSignUpForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Link  passHref href="/cadastro-usuario">
-              <ThetaButton theme="purple" fullWidth >Cadastrar</ThetaButton>
-            </Link>
+            
+              <ThetaButton as="button" onClick={undefined} theme="purple" fullWidth >Cadastrar</ThetaButton>
+           
           </Grid>
         </Grid>
       </form>

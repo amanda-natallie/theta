@@ -41,7 +41,7 @@ export const FooterWrapper = styled.footer`
     }
   }
   & .news {
-    width: 36%;
+    width: 46%;
 
     & p {
       margin-bottom: 15px;

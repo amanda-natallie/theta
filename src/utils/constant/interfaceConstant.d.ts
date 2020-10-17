@@ -44,6 +44,7 @@ declare namespace interfaceConstant {
     bg?: string
     color?: string
     noPadding?: boolean
+    column?: boolean
   }
   interface ButtonProps {
     fullWidth?: boolean
@@ -56,6 +57,20 @@ declare namespace interfaceConstant {
     noFooter?: boolean
     noPadding?: boolean
     children : React.ReactNode
+  }
+
+  interface BackButtonProps {
+    link: string
+    bordered?: boolean
+  }
+
+
+  interface SelectProps {
+    options: string[]
+    setOptions: Function
+    selectedOption: string
+    type: "local" | "date"
+    label: string
   }
 }
 

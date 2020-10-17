@@ -15,20 +15,6 @@ export const UserSignUpWrapper = styled.section`
   & .form-wrapper {
     padding: 60px 0;
     display: flex;
-   
-
-    & a {
-      margin: 0;
-    }
-
-    & a:hover {
-      box-shadow: 1px 4px 12px rgba(118, 66, 255, 0.7);
-    }
-
-    & svg {
-      margin: 3px 0 0 -6px;
-      transform: rotateY(180deg);
-    }
   }
 
   & .signup-form {
@@ -39,8 +25,10 @@ export const UserSignUpWrapper = styled.section`
     form {
       margin: 50px 0;
       
-      p {
+      p:not(p.MuiFormHelperText-root.Mui-error) {
         color: ${colors.gray35};
+      }
+      p{
         font-size:0.75rem;
         margin-bottom: 20px;
       }

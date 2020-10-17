@@ -10,8 +10,11 @@ import "./_app.css";
 import "react-multi-carousel/lib/styles.css";
 import store from "../store";
 import withRedux from "next-redux-wrapper";
-import NProgress from "nprogress";
+import moment from "moment"
+import MomentUtils from "@date-io/moment"
+
 import "nprogress/nprogress.css";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 function MyApp({ Component, pageProps }) {
   const TopProgressBar = dynamic(
@@ -20,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     },
     { ssr: false }
   );
-
+ 
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
@@ -39,9 +42,15 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider
+                libInstance={moment}
+                utils={MomentUtils}
+                locale={moment.locale()}
+            >
           <GlobalStyle />
           <TopProgressBar />
           <Component {...pageProps} />
+          </MuiPickersUtilsProvider>
         </ThemeProvider>
       </Provider>
     </>
