@@ -1,8 +1,8 @@
 import { Container, Grid, TextField } from "@material-ui/core";
 import { useFormik } from "formik";
 import React from "react";
-import { Box } from "../components/general/Box";
-import { Subtitle } from "../components/general/Typography";
+import { Box } from "../styles/components/Box";
+import { Subtitle } from "../styles/components/Typography";
 import ThetaIconSvgIcon from "../components/icons/ThetaIconSvgIcon";
 import PageWrapper from "../components/layout/PageWrapper";
 import { UserSignInWrapper } from "../styles/pages/UserSignIn";
@@ -12,6 +12,7 @@ import formConstants from "../utils/constant/formConstants";
 import { NavigationButton, ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import Link from "next/link";
+import Head from "next/head";
 
 const UserSignInPage = () => {
   const formik = useFormik({
@@ -29,6 +30,10 @@ const UserSignInPage = () => {
   });
 
   return (
+  <>
+    <Head>
+      <title>Faça seu login</title>
+    </Head>
     <PageWrapper noFooter noPadding>
       <UserSignInWrapper>
         <Grid
@@ -89,7 +94,7 @@ const UserSignInPage = () => {
                     }
                   />
                   <Divider height="5px" />
-                  <Link  passHref href="/">
+                  <Link  passHref href="/esqueci-minha-senha">
                     <NavigationButton align="right" underline>
                       Esqueceu sua senha?
                     </NavigationButton>
@@ -101,7 +106,7 @@ const UserSignInPage = () => {
                       Login
                     </ThetaButton>
                   </Link>
-                </Grid>
+                </Grid> 
               </Grid>
 
               <footer>
@@ -117,6 +122,7 @@ const UserSignInPage = () => {
         </Grid>
       </UserSignInWrapper>
     </PageWrapper>
+  </>
   );
 };
 

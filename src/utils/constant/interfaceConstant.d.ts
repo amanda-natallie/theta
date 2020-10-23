@@ -44,18 +44,28 @@ declare namespace interfaceConstant {
     bg?: string
     color?: string
     noPadding?: boolean
+    column?: boolean
   }
-  interface ButtonProps {
-    fullWidth?: boolean
-    theme?: "rainbow" | "purple" | "purpleOutlined"
-    underline?: boolean 
-    align?: "left" | "right"
-  }
+  
 
   interface PageProps {
     noFooter?: boolean
     noPadding?: boolean
     children : React.ReactNode
+  }
+
+  interface BackButtonProps {
+    link: string
+    bordered?: boolean
+  }
+
+
+  interface SelectProps {
+    options: string[]
+    setOptions: Function
+    selectedOption: string
+    type: "local" | "date"
+    label: string
   }
 }
 

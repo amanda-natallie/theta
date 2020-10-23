@@ -26,6 +26,10 @@ export default createGlobalStyle`
     list-style: none;
     padding:0
   }
+  img {
+    max-width: 100%;
+    display: block
+  }
 
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
@@ -35,10 +39,11 @@ export default createGlobalStyle`
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--left:hover {
     background: ${theme.palette.primary.main}
   }
-#nprogress {
+  #nprogress, #nprogress *  {
   z-index: 999999 !important
 }
 .MuiAppBar-root {
-    z-index: 100 !important;
+    z-index: 10000 !important;
 }
+
 `;
