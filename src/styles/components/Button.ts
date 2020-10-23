@@ -3,7 +3,12 @@ import { darken } from "@material-ui/core";
 import theme from "../theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 
-
+type ButtonProps = {
+  fullWidth?: boolean
+  theme?: "rainbow" | "purple" | "purpleOutlined"
+  underline?: boolean 
+  align?: "left" | "right"
+}
 const handleColorType = (color: string) => {
   switch (color) {
     case "rainbow":
@@ -29,7 +34,7 @@ const handleColorType = (color: string) => {
   }
 };
 
-export const ThetaButton = styled.a`
+export const ThetaButton = styled.a<ButtonProps>`
   position: relative;
   border-radius: 8px;
   border: 0;
@@ -38,14 +43,14 @@ export const ThetaButton = styled.a`
   display: inline-block;
   font-family: "Nunito", sans-serif;
 
-  ${(props: interfaceConstant.ButtonProps) =>
+  ${(props) =>
     props.fullWidth
       ? "width: 100%; text-align: center; padding: 10px 0;"
       : "padding: 10px 50px;"};
   font-size: 15px;
   cursor: pointer;
   transition: all 0.1s ease-in;
-  ${(props: interfaceConstant.ButtonProps) => handleColorType(props.theme)};
+  ${(props) => handleColorType(props.theme)};
   &:hover {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   }
@@ -103,13 +108,13 @@ export const IconButton = styled.a`
   }
 `;
 
-export const NavigationButton = styled.a`
+export const NavigationButton = styled.a<ButtonProps>`
   font-weight: bold;
   font-size: 0.875rem;
   line-height: 18px;
-  text-decoration: ${(props: interfaceConstant.ButtonProps) =>
+  text-decoration: ${(props) =>
     props.underline ? "underline" : "none"};
-  text-align: ${(props: interfaceConstant.ButtonProps) =>
+  text-align: ${(props) =>
     props.align ? props.align + "; display: block" : "inherit"};
   color: ${theme.palette.primary.main};
   
