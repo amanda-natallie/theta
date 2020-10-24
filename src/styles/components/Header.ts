@@ -21,6 +21,12 @@ export const NavArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 export const Nav = styled.ul`
   display: flex;
@@ -38,7 +44,27 @@ export const Nav = styled.ul`
       letter-spacing: 1px;
     }
   }
+
+  @media (max-width: 500px) {
+    width: 100%;
+
+    & li:nth-child(4) {
+      margin-right: 0;
+    }
+  }
 `;
+
+export const ActionsAreaDiv = styled.div`
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  @media (max-width: 500px) {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+`;
+
 export const ActionsArea = styled.div`
   display: flex;
   align-items: center;

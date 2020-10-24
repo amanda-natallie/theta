@@ -7,6 +7,7 @@ import {
   Logo,
   NavArea,
   Nav,
+  ActionsAreaDiv,
   ActionsArea,
 } from "../../styles/components/Header";
 import Link from "next/link";
@@ -36,7 +37,8 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
           container
           direction="row"
           justify="space-between"
-          alignItems="center">
+          alignItems="center"
+        >
           <FlexBox>
             <Link passHref href="/">
               <BrandArea>
@@ -68,21 +70,24 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <Link href="/">Social</Link>
               </li>
             </Nav>
-            <ActionsArea>
-              <SearchArea color={color} />
-            </ActionsArea>
-            <Link passHref href="/login">
-              <MenuIconButton color={color}>
-                <SignInSvgIcon
-                  width="19"
-                  height="18"
-                  fillColor={
-                    color === "dark" ? theme.palette.primary.main : "white"
-                  }
-                />
-                Entrar
-              </MenuIconButton>
-            </Link>
+            <ActionsAreaDiv>
+              <ActionsArea>
+                <SearchArea color={color} />
+              </ActionsArea>
+
+              <Link passHref href="/login">
+                <MenuIconButton color={color}>
+                  <SignInSvgIcon
+                    width="19"
+                    height="18"
+                    fillColor={
+                      color === "dark" ? theme.palette.primary.main : "white"
+                    }
+                  />
+                  Entrar
+                </MenuIconButton>
+              </Link>
+            </ActionsAreaDiv>
           </NavArea>
         </Grid>
       </Container>
