@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { UAParser } from "ua-parser-js";
 import { Container, Grid } from "@material-ui/core";
 import {
@@ -17,6 +17,7 @@ import {
   GrayTitle,
 } from "../styles/components/Typography";
 import MinusSvgIcon from "../components/icons/MinusSvgIcon";
+import PlusSvgIcon from "../components/icons/PlusSvgIcon";
 import Header from "../components/layout/Header";
 import { colors } from "../styles/colors";
 import { ColorfulIcon, ThetaButton } from "../styles/components/Button";
@@ -49,17 +50,23 @@ import Footer from "../components/layout/Footer";
 import Link from "next/link";
 
 export default function HomePage({ deviceType }) {
+  const [showAboutUs, setShowAboutUs] = useState(true);
+  const [showOurPorpouse, setShowOurPorpouse] = useState(true);
+
   const { scrollY } = useScroll();
 
   return (
     <HomeWrapper>
-      <Header color={scrollY <= 200 ? "light" : "dark"} elevation={scrollY <= 200 ? 0 : 3} />
+      <Header
+        color={scrollY <= 200 ? "light" : "dark"}
+        elevation={scrollY <= 200 ? 0 : 3}
+      />
       <Intro>
         <div className="uplayer">
           <img src="/media/home/capa-logo.svg" alt="Logo" />
           <h4>Plataforma online de atendimento Thetahealing®</h4>
           <ColoredTitle>Conectados pela cura</ColoredTitle>
-          <Link  passHref href="/">
+          <Link passHref href="/">
             <ThetaButton theme="rainbow">Conheça</ThetaButton>
           </Link>
           <Navigation alt="Navigation" src="/media/home/arrow.svg" />
@@ -73,86 +80,109 @@ export default function HomePage({ deviceType }) {
         <Grid container spacing={10}>
           <Grid item xs={12} sm={12} md={6}>
             <IconTitle>
-              <ColorfulIcon>
-                <MinusSvgIcon width="15" fillColor="white" />
+              <ColorfulIcon onClick={() => setShowAboutUs(!showAboutUs)}>
+                {showAboutUs === true ? (
+                  <MinusSvgIcon width="15" fillColor="white" />
+                ) : (
+                  <PlusSvgIcon width="20" fillColor="white" />
+                )}
               </ColorfulIcon>
               <Title>Sobre Nós</Title>
             </IconTitle>
 
-            <Text>
-              Construído com o objetivo de disseminar a cura através do
-              Thetahealing®, este website aproxima aqueles que já praticam a
-              técnica como terapeutas das pessoas que buscam auxílio para sua
-              evolução pessoal.
-            </Text>
+            {showAboutUs && (
+              <>
+                <Text>
+                  Construído com o objetivo de disseminar a cura através do
+                  Thetahealing®, este website aproxima aqueles que já praticam a
+                  técnica como terapeutas das pessoas que buscam auxílio para
+                  sua evolução pessoal.
+                </Text>
 
-            <Text>
-              Todos os profissionais aqui cadastrados são certificados
-              internacionalmente pelo Instituto THInK, uma vez que foram
-              capacitados por instrutores acreditados pela própria
-              desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além da
-              certificação, nossos thetahealers participam constantemente de
-              cursos de reciclagem junto aos mentores da plataforma, que são
-              extremamente qualificados para o desenvolvimento profissional do
-              grupo – tudo para que você tenha a melhor experiência possível!
-            </Text>
+                <Text>
+                  Todos os profissionais aqui cadastrados são certificados
+                  internacionalmente pelo Instituto THInK, uma vez que foram
+                  capacitados por instrutores acreditados pela própria
+                  desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além
+                  da certificação, nossos thetahealers participam constantemente
+                  de cursos de reciclagem junto aos mentores da plataforma, que
+                  são extremamente qualificados para o desenvolvimento
+                  profissional do grupo – tudo para que você tenha a melhor
+                  experiência possível!
+                </Text>
 
-            <Text>
-              Entendendo o grande potencial curativo desta ferramenta, os
-              terapeutas do ThetaBrasil.online atendem de forma solidária, ou
-              seja, cobrando preços abaixo do praticado no mercado, porém com a
-              mesma qualidade e eficiência do serviço prestado em outros canais.
-              Assim, desejamos abrir portas para que você possa experimentar
-              esta incrível ferramenta de cura com total segurança,
-              credibilidade e profissionalismo.{" "}
-            </Text>
-            <Text>
-              Permita-se ter uma vida sem sofrimento, culpa, limitações ou
-              desequilíbrio. Lembre-se: você têm o livre arbítrio de escolha,
-              portanto faça da sua caminhada uma jornada de luz, com a ajuda do
-              Thetahealing®. Conheça nossos terapeutas e agende sua consulta.
-            </Text>
+                <Text>
+                  Entendendo o grande potencial curativo desta ferramenta, os
+                  terapeutas do ThetaBrasil.online atendem de forma solidária,
+                  ou seja, cobrando preços abaixo do praticado no mercado, porém
+                  com a mesma qualidade e eficiência do serviço prestado em
+                  outros canais. Assim, desejamos abrir portas para que você
+                  possa experimentar esta incrível ferramenta de cura com total
+                  segurança, credibilidade e profissionalismo.{" "}
+                </Text>
+                <Text>
+                  Permita-se ter uma vida sem sofrimento, culpa, limitações ou
+                  desequilíbrio. Lembre-se: você têm o livre arbítrio de
+                  escolha, portanto faça da sua caminhada uma jornada de luz,
+                  com a ajuda do Thetahealing®. Conheça nossos terapeutas e
+                  agende sua consulta.
+                </Text>
+              </>
+            )}
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <IconTitle>
-              <ColorfulIcon>
-                <MinusSvgIcon width="15" fillColor="white" />
+              <ColorfulIcon
+                onClick={() => setShowOurPorpouse(!showOurPorpouse)}
+              >
+                {showOurPorpouse === true ? (
+                  <MinusSvgIcon width="15" fillColor="white" />
+                ) : (
+                  <PlusSvgIcon width="20" fillColor="white" />
+                )}
               </ColorfulIcon>
               <Title>E nosso Propósito</Title>
             </IconTitle>
-            <Text>
-              Construído com o objetivo de disseminar a cura através do
-              Thetahealing®, este website aproxima aqueles que já praticam a
-              técnica como terapeutas das pessoas que buscam auxílio para sua
-              evolução pessoal.
-            </Text>
 
-            <Text>
-              Todos os profissionais aqui cadastrados são certificados
-              internacionalmente pelo Instituto THInK, uma vez que foram
-              capacitados por instrutores acreditados pela própria
-              desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além da
-              certificação, nossos thetahealers participam constantemente de
-              cursos de reciclagem junto aos mentores da plataforma, que são
-              extremamente qualificados para o desenvolvimento profissional do
-              grupo – tudo para que você tenha a melhor experiência possível!
-            </Text>
+            {showOurPorpouse && (
+              <>
+                <Text>
+                  Construído com o objetivo de disseminar a cura através do
+                  Thetahealing®, este website aproxima aqueles que já praticam a
+                  técnica como terapeutas das pessoas que buscam auxílio para
+                  sua evolução pessoal.
+                </Text>
 
-            <Text>
-              Entendendo o grande potencial curativo desta ferramenta, os
-              terapeutas do ThetaBrasil.online atendem de forma solidária, ou
-              seja, cobrando preços abaixo do praticado no mercado, porém com a
-              mesma qualidade e eficiência do serviço prestado em outros canais.
-              Assim, desejamos abrir portas para que você possa experimentar
-              esta incrível ferramenta de cura com total segurança,
-              credibilidade e profissionalismo.{" "}
-            </Text>
-            <Text>
-              Permita-se ter uma vida sem sofrimento, culpa, limitações ou
-              desequilíbrio. Lembre-se: você têm o livre arbítrio de escolha,
-              portanto faça da sua caminhada uma jornada de luz, com a ajuda do
-              Thetahealing®. Conheça nossos terapeutas e agende sua consulta.
-            </Text>
+                <Text>
+                  Todos os profissionais aqui cadastrados são certificados
+                  internacionalmente pelo Instituto THInK, uma vez que foram
+                  capacitados por instrutores acreditados pela própria
+                  desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além
+                  da certificação, nossos thetahealers participam constantemente
+                  de cursos de reciclagem junto aos mentores da plataforma, que
+                  são extremamente qualificados para o desenvolvimento
+                  profissional do grupo – tudo para que você tenha a melhor
+                  experiência possível!
+                </Text>
+
+                <Text>
+                  Entendendo o grande potencial curativo desta ferramenta, os
+                  terapeutas do ThetaBrasil.online atendem de forma solidária,
+                  ou seja, cobrando preços abaixo do praticado no mercado, porém
+                  com a mesma qualidade e eficiência do serviço prestado em
+                  outros canais. Assim, desejamos abrir portas para que você
+                  possa experimentar esta incrível ferramenta de cura com total
+                  segurança, credibilidade e profissionalismo.{" "}
+                </Text>
+                <Text>
+                  Permita-se ter uma vida sem sofrimento, culpa, limitações ou
+                  desequilíbrio. Lembre-se: você têm o livre arbítrio de
+                  escolha, portanto faça da sua caminhada uma jornada de luz,
+                  com a ajuda do Thetahealing®. Conheça nossos terapeutas e
+                  agende sua consulta.
+                </Text>
+              </>
+            )}
           </Grid>
 
           <Divider height="60px" />
@@ -252,7 +282,7 @@ export default function HomePage({ deviceType }) {
               <span>RS</span>
               <p>107,00</p>
             </PriceBlock>
-            <Link  passHref href="/">
+            <Link passHref href="/">
               <ThetaButton theme="purple">Agenda Online</ThetaButton>
             </Link>
           </Grid>
@@ -353,7 +383,7 @@ export default function HomePage({ deviceType }) {
               <span className="grayspan">contribuir com a cura do Todo.</span>
             </Text>
             <Divider height="30px" />
-            <Link  passHref href="/">
+            <Link passHref href="/">
               <ThetaButton theme="purple">Projetos Assistidos</ThetaButton>
             </Link>
           </Grid>
@@ -367,7 +397,7 @@ export default function HomePage({ deviceType }) {
       <CTA>
         <div className="inner">
           <Title>Você é um ThetaHealer?</Title>
-          <Link  passHref href="/">
+          <Link passHref href="/">
             <ThetaButton theme="purple">Cadastre-se</ThetaButton>
           </Link>
         </div>
@@ -396,7 +426,7 @@ export default function HomePage({ deviceType }) {
               partialVisibilityGutter: 30,
             },
           }}
-        > 
+        >
           {blog.map((item: interfaceConstant.blogProps, index: number) => (
             <MidiaBox key={index}>
               <img src={item.image} alt={item.description} />
