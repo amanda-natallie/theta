@@ -4,11 +4,11 @@ import theme from "../theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 
 type ButtonProps = {
-  fullWidth?: boolean
-  theme?: "rainbow" | "purple" | "purpleOutlined"
-  underline?: boolean 
-  align?: "left" | "right"
-}
+  fullWidth?: boolean;
+  theme?: "rainbow" | "purple" | "purpleOutlined";
+  underline?: boolean;
+  align?: "left" | "right";
+};
 const handleColorType = (color: string) => {
   switch (color) {
     case "rainbow":
@@ -53,6 +53,12 @@ export const ThetaButton = styled.a<ButtonProps>`
   ${(props) => handleColorType(props.theme)};
   &:hover {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (max-width: 700px) {
+    &:nth-of-type(2) {
+      display: none;
+    }
   }
 `;
 
@@ -112,11 +118,8 @@ export const NavigationButton = styled.a<ButtonProps>`
   font-weight: bold;
   font-size: 0.875rem;
   line-height: 18px;
-  text-decoration: ${(props) =>
-    props.underline ? "underline" : "none"};
+  text-decoration: ${(props) => (props.underline ? "underline" : "none")};
   text-align: ${(props) =>
     props.align ? props.align + "; display: block" : "inherit"};
   color: ${theme.palette.primary.main};
-  
-  
 `;

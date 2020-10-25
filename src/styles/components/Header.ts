@@ -17,15 +17,25 @@ export const BrandArea = styled.a`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const MenuSvg = styled.div`
+  display: none;
+
+  @media (max-width: 700px) {
+    display: inline-block;
+  }
+`;
+
 export const NavArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 500px) {
-    width: 100%;
+  @media (max-width: 700px) {
+    /* width: 100%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; */
+    display: none;
   }
 `;
 export const Nav = styled.ul`
@@ -62,6 +72,7 @@ export const ActionsAreaDiv = styled.div`
     width: 100%;
     justify-content: flex-start;
     margin-top: 16px;
+    margin-bottom: 8px;
   }
 `;
 

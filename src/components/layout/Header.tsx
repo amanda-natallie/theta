@@ -4,6 +4,7 @@ import { ThetaButton, MenuIconButton } from "../../styles/components/Button";
 import {
   MenuBar,
   BrandArea,
+  MenuSvg,
   Logo,
   NavArea,
   Nav,
@@ -16,6 +17,7 @@ import theme from "../../styles/theme";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { FlexBox } from "../../styles/components/FlexBox";
+import HamburguerMenuSvgIcon from "../icons/HamburguerMenuSvgIcon";
 
 const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
   const useStyles = makeStyles({
@@ -40,6 +42,11 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
           alignItems="center"
         >
           <FlexBox>
+            <MenuSvg>
+              <HamburguerMenuSvgIcon
+                fillColor={color === "dark" ? "black" : "white"}
+              />
+            </MenuSvg>
             <Link passHref href="/">
               <BrandArea>
                 <Logo
