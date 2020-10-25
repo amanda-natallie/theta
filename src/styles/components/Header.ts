@@ -55,12 +55,39 @@ export const Nav = styled.ul`
     }
   }
 
-  @media (max-width: 500px) {
-    width: 100%;
+  @media (max-width: 700px) {
+    height: 100vh;
+    width: 100vw;
 
-    & li:nth-child(4) {
-      margin-right: 0;
+    flex-direction: column;
+
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+
+    background: #7643ff;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+
+    li {
+      margin-bottom: 40px;
+      &:nth-child(1) {
+        margin-top: 64px;
+      }
+
+      a {
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+      }
     }
+
+    /* & li:nth-child(4) {
+      margin-right: 0;
+    } */
   }
 `;
 

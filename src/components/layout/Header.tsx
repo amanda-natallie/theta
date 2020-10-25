@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { ThetaButton, MenuIconButton } from "../../styles/components/Button";
 import {
@@ -20,6 +20,8 @@ import { FlexBox } from "../../styles/components/FlexBox";
 import HamburguerMenuSvgIcon from "../icons/HamburguerMenuSvgIcon";
 
 const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
+  const [openMenu, setOpenMenu] = useState(false);
+
   const useStyles = makeStyles({
     root: {
       background: color === "dark" ? "rgba(255,255,255,0.85)" : "none",
@@ -41,8 +43,45 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
           justify="space-between"
           alignItems="center"
         >
+          {openMenu && (
+            <>
+              <button
+                style={{
+                  position: "fixed",
+                  color: "#7643ff",
+                  background: "white",
+                  borderRadius: "50%",
+                  width: "24px",
+                  height: "24px",
+                  zIndex: 100,
+                }}
+                onClick={() => setOpenMenu(false)}
+              >
+                X
+              </button>
+
+              <Nav color={color}>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/">Suporte</Link>
+                </li>
+                <li>
+                  <Link href="/">Notícias</Link>
+                </li>
+                <li>
+                  <Link href="/">Social</Link>
+                </li>
+                <li>
+                  <Link href="/">Entrar</Link>
+                </li>
+              </Nav>
+            </>
+          )}
+
           <FlexBox>
-            <MenuSvg>
+            <MenuSvg onClick={() => setOpenMenu(!openMenu)}>
               <HamburguerMenuSvgIcon
                 fillColor={color === "dark" ? "black" : "white"}
               />
