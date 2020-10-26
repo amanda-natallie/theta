@@ -17,10 +17,26 @@ export const BrandArea = styled.a`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const MenuSvg = styled.div`
+  display: none;
+
+  @media (max-width: 700px) {
+    display: inline-block;
+  }
+`;
+
 export const NavArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 700px) {
+    /* width: 100%;
+    flex-direction: column;
+    justify-content: center; */
+    display: none;
+  }
 `;
 export const Nav = styled.ul`
   display: flex;
@@ -38,7 +54,55 @@ export const Nav = styled.ul`
       letter-spacing: 1px;
     }
   }
+
+  @media (max-width: 700px) {
+    height: 100vh;
+    width: 100vw;
+
+    flex-direction: column;
+
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+
+    background: #7643ff;
+    justify-content: start;
+    align-items: center;
+    margin: 0 auto;
+
+    li {
+      margin-bottom: 40px;
+      &:nth-child(1) {
+        margin-top: 64px;
+      }
+
+      a {
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    /* & li:nth-child(4) {
+      margin-right: 0;
+    } */
+  }
 `;
+
+export const ActionsAreaDiv = styled.div`
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  @media (max-width: 500px) {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+`;
+
 export const ActionsArea = styled.div`
   display: flex;
   align-items: center;

@@ -46,12 +46,7 @@ declare namespace interfaceConstant {
     noPadding?: boolean
     column?: boolean
   }
-  interface ButtonProps {
-    fullWidth?: boolean
-    theme?: "rainbow" | "purple" | "purpleOutlined"
-    underline?: boolean 
-    align?: "left" | "right"
-  }
+  
 
   interface PageProps {
     noFooter?: boolean

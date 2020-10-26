@@ -1,12 +1,14 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { ThetaButton, MenuIconButton } from "../../styles/components/Button";
 import {
   MenuBar,
   BrandArea,
+  MenuSvg,
   Logo,
   NavArea,
   Nav,
+  ActionsAreaDiv,
   ActionsArea,
 } from "../../styles/components/Header";
 import Link from "next/link";
@@ -15,8 +17,11 @@ import theme from "../../styles/theme";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { FlexBox } from "../../styles/components/FlexBox";
+import HamburguerMenuSvgIcon from "../icons/HamburguerMenuSvgIcon";
 
 const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
+  const [openMenu, setOpenMenu] = useState(false);
+
   const useStyles = makeStyles({
     root: {
       background: color === "dark" ? "rgba(255,255,255,0.85)" : "none",
@@ -36,8 +41,51 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
           container
           direction="row"
           justify="space-between"
-          alignItems="center">
+          alignItems="center"
+        >
+          {openMenu && (
+            <>
+              <button
+                style={{
+                  position: "fixed",
+                  color: "#7643ff",
+                  background: "white",
+                  borderRadius: "50%",
+                  width: "24px",
+                  height: "24px",
+                  zIndex: 100,
+                }}
+                onClick={() => setOpenMenu(false)}
+              >
+                X
+              </button>
+
+              <Nav color={color}>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <Link href="/">Suporte</Link>
+                </li>
+                <li>
+                  <Link href="/">Notícias</Link>
+                </li>
+                <li>
+                  <Link href="/">Social</Link>
+                </li>
+                <li>
+                  <Link href="/">Entrar</Link>
+                </li>
+              </Nav>
+            </>
+          )}
+
           <FlexBox>
+            <MenuSvg onClick={() => setOpenMenu(!openMenu)}>
+              <HamburguerMenuSvgIcon
+                fillColor={color === "dark" ? "black" : "white"}
+              />
+            </MenuSvg>
             <Link passHref href="/">
               <BrandArea>
                 <Logo
@@ -68,21 +116,24 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <Link href="/">Social</Link>
               </li>
             </Nav>
-            <ActionsArea>
-              <SearchArea color={color} />
-            </ActionsArea>
-            <Link passHref href="/login">
-              <MenuIconButton color={color}>
-                <SignInSvgIcon
-                  width="19"
-                  height="18"
-                  fillColor={
-                    color === "dark" ? theme.palette.primary.main : "white"
-                  }
-                />
-                Entrar
-              </MenuIconButton>
-            </Link>
+            <ActionsAreaDiv>
+              <ActionsArea>
+                <SearchArea color={color} />
+              </ActionsArea>
+
+              <Link passHref href="/login">
+                <MenuIconButton color={color}>
+                  <SignInSvgIcon
+                    width="19"
+                    height="18"
+                    fillColor={
+                      color === "dark" ? theme.palette.primary.main : "white"
+                    }
+                  />
+                  Entrar
+                </MenuIconButton>
+              </Link>
+            </ActionsAreaDiv>
           </NavArea>
         </Grid>
       </Container>

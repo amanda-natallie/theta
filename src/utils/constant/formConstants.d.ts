@@ -18,8 +18,9 @@ declare namespace formConstants {
   }
 
   interface LoginProps {
-    user: string
-    password: string
+    user?: string
+    password?: string
+    email?: string
   }
 }
 

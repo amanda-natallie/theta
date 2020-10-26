@@ -94,7 +94,7 @@ const UserSignInPage = () => {
                     }
                   />
                   <Divider height="5px" />
-                  <Link  passHref href="/">
+                  <Link  passHref href="/esqueci-minha-senha">
                     <NavigationButton align="right" underline>
                       Esqueceu sua senha?
                     </NavigationButton>

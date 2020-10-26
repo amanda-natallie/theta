@@ -1,9 +1,7 @@
 import React from "react";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 
-class MinusSvgIcon extends React.PureComponent<
-  interfaceConstant.SvgIconProps
-> {
+class MinusSvgIcon extends React.PureComponent<interfaceConstant.SvgIconProps> {
   render() {
     const { width, height, fillColor, ...otherProps } = this.props;
     return (
@@ -25,5 +23,5 @@ class MinusSvgIcon extends React.PureComponent<
     );
   }
 }
- 
+
 export default MinusSvgIcon;

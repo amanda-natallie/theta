@@ -19,7 +19,6 @@ export const HomeWrapper = styled.div`
   & .purple01 {
     background: ${lighten(theme.palette.primary.light, 0.8)};
   }
-
 `;
 export const Intro = styled.div`
   width: 100%;
@@ -82,6 +81,13 @@ export const CenteredImage = styled.img`
 export const Navigation = styled(CenteredImage)`
   position: absolute;
   bottom: 0;
+
+  @media (max-width: 500px) {
+    bottom: -80px;
+  }
+  @media (max-width: 700px) {
+    bottom: -64px;
+  }
 `;
 
 export const IconTitle = styled.div`
@@ -207,7 +213,6 @@ export const PurpleSection = styled.section`
 
     &:first-of-type {
       text-align: right;
-      
     }
     &:last-of-type {
       text-align: left;
