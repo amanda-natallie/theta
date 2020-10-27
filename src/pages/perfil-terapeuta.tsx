@@ -9,6 +9,7 @@ import { CardBox } from "../styles/components/Box";
 import { ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import { FlexBox } from "../styles/components/FlexBox";
+import { PriceBlock } from "../styles/pages/Home";
 import {
   Content,
   Header,
@@ -75,7 +76,7 @@ const ProfessionalPublicProfilePage = () => {
                           <td>Setembro de 2020</td>
                         </tr>
                       </table>
-                      <FlexBox column>
+                      <FlexBox column className="contacts">
                         <p>
                           <SvgIcon>
                             <path
@@ -91,12 +92,63 @@ const ProfessionalPublicProfilePage = () => {
                         <Link href="">www.davilucashealing.com.br</Link>
                         <ul>
                           <li>
-                            <Link href="">
-                              <YoutubeSvgIcon width="16" height="11" />
+                            <Link href="https://youtube.com">
+                              <img
+                                src="/media/icons/social-media/youtube.svg"
+                                alt="youtube"
+                              />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="https://facebook.com">
+                              <img
+                                src="/media/icons/social-media/facebook.svg"
+                                alt="facebook"
+                              />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="https://instagram.com">
+                              <img
+                                src="/media/icons/social-media/instagram.svg"
+                                alt="instagram"
+                              />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="https://spotify.com">
+                              <img
+                                src="/media/icons/social-media/spotify.svg"
+                                alt="spotify"
+                              />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="https://twitter.com">
+                              <img
+                                src="/media/icons/social-media/twitter.svg"
+                                alt="twitter"
+                              />
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="https://linkedin.com">
+                              <img
+                                src="/media/icons/social-media/linkedin.svg"
+                                alt="linkedin"
+                              />
                             </Link>
                           </li>
                         </ul>
                       </FlexBox>
+                    </div>
+                    <div className="right">
+                      <h5>R$ 107,00/h</h5>
+                      <p>
+                        Cada consulta dura em média de 40min à 1h. <br /> Preço
+                        fixo.
+                      </p>
+                      <img src="/media/rating.png" style={{maxHeight: 75, marginTop: 20}}/>
                     </div>
                   </CardBox>
                 </Grid>

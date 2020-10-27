@@ -200,4 +200,49 @@ export const CardBox = styled(Box)`
       max-width: 130px
     }
   }
+  & .contacts {
+    margin-top:20px;
+    p {
+      display: inline-flex;
+      margin:0;
+      color: ${colors.gray50};
+    }
+    a{
+      font-size: 0.875rem;
+      margin-top: 5px
+    }
+
+    a ~ ul {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+
+      li {
+        margin-right:10px;
+        cursor: pointer;
+
+        img {
+          width: 25px
+        }
+      }
+    }
+  }
+  & .right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    h5 {
+      font-size: 2.5rem;
+      color: ${theme.palette.primary.main};
+      text-align: right
+    }
+    p {
+      margin:0;
+      color: ${colors.gray50};
+      font-size: 1rem;
+      text-align: right;
+    }
+  }
 `;
