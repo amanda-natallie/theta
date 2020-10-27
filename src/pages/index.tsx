@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UAParser } from "ua-parser-js";
 import { Container, Grid } from "@material-ui/core";
 import {
@@ -48,6 +48,7 @@ import PlaySvgIcon from "../components/icons/PlaySvgIcon";
 
 import Footer from "../components/layout/Footer";
 import Link from "next/link";
+import Calendar from "../components/general/Calendar";
 
 export default function HomePage({ deviceType }) {
   const [showAboutUs, setShowAboutUs] = useState(true);
@@ -77,6 +78,8 @@ export default function HomePage({ deviceType }) {
       <Divider height="120px" />
 
       <Container maxWidth="lg">
+        <Calendar />
+
         <Grid container spacing={10}>
           <Grid item xs={12} sm={12} md={6}>
             <IconTitle>
