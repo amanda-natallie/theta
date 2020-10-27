@@ -3,6 +3,8 @@ import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarHalfIcon from "@material-ui/icons/StarHalf";
 
+import { Container, StarRatingDiv } from "../../styles/components/StarRating";
+
 const totalRating = 5;
 
 interface IProps {
@@ -36,6 +38,13 @@ const StarRating = ({ rating }: IProps): JSX.Element => {
     }
     return indents;
   };
-  return <Fragment>{ratingList()}</Fragment>;
+  return (
+    <Container>
+      <StarRatingDiv>
+        {ratingList()} <strong>{rating}</strong>
+      </StarRatingDiv>
+      <span>{rating} recomendações</span>
+    </Container>
+  );
 };
 export default StarRating;
