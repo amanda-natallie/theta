@@ -14,7 +14,11 @@ export const Box = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  & * {
+    color: ${colors.gray35};
+  }
 
+ 
   & .avatar {
     width: 120px;
     height: 120px;
@@ -31,6 +35,18 @@ export const Box = styled.div`
     display: inline;
     margin: 5px 0 0 10px;
     font-size: 0.875rem;
+  }
+
+  &.profile-therapist {
+    align-items: flex-start;
+    padding-top: 30px;
+
+    h2 {
+      margin-left: 10px
+    }
+    p {
+      line-height: 1.8;
+    }
   }
 `;
 
@@ -148,6 +164,14 @@ export const CardBox = styled(Box)`
   margin: 10px 0;
   padding: 20px;
   min-height: auto;
+  h2 {
+    font-size: 1.625rem;
+    margin:  0;
+  }
+  
+  & * {
+    color: ${colors.gray50};
+  }
 
   & header {
     margin: 0 20px 0 0;
@@ -180,17 +204,6 @@ export const CardBox = styled(Box)`
         font-size: 0.8125rem;
       }
     }
-    ul {
-      display: flex;
-      margin: 10px 0 0 -5px;
-      li {
-        color: ${colors.gray50};
-        border: 1px solid #e3e1e8; 
-        border-radius: 100px;
-        padding: 8px 25px;
-        margin-right: 5px;
-      }
-    }
   }
   & .pricing {
     p{
@@ -198,6 +211,59 @@ export const CardBox = styled(Box)`
     }
     img {
       max-width: 130px
+    }
+  }
+  & .contacts {
+    margin-top:20px;
+    p {
+      display: inline-flex;
+      margin:0;
+      color: ${colors.gray50};
+    }
+    a{
+      font-size: 0.875rem;
+      margin-top: 5px
+    }
+
+    a ~ ul {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+
+      li {
+        margin-right:10px;
+        cursor: pointer;
+
+        img {
+          width: 25px
+        }
+      }
+    }
+  }
+  & .right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    h5 {
+      font-size: 2.5rem;
+      color: ${theme.palette.primary.main};
+      text-align: right
+    }
+    p {
+      margin:0;
+      color: ${colors.gray50};
+      font-size: 1rem;
+      text-align: right;
+    }
+  }
+  &.box-link {
+    transition: all .2s ease;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
     }
   }
 `;

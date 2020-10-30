@@ -11,15 +11,17 @@ import { SearchTherapists } from "../styles/pages/SearchProfessionals";
 import { CardBox } from "../styles/components/Box";
 import { PriceBlock } from "../styles/pages/Home";
 import { FlexBox } from "../styles/components/FlexBox";
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Pagination from '@material-ui/lab/Pagination';
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import Pagination from "@material-ui/lab/Pagination";
+import { MiniChip } from "../styles/components/MiniChip";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-        margin: theme.spacing(3),
+      margin: theme.spacing(3),
     },
-  }),
+  })
 );
 
 const SearchProfessionalsPage = () => {
@@ -103,44 +105,51 @@ const SearchProfessionalsPage = () => {
           <Grid container>
             {dummy.map((e: any, index: number) => (
               <Grid item xs={12}>
-                <CardBox>
-                  <FlexBox>
-                    <header>
-                      <Avatar src="/media/profile/thera.png" />
-                    </header>
-                    <div className="content">
-                      <h5>Davi Lucas</h5>
-                      <p>ThetaHealer Certificado</p>
-                      <p>
-                        26 anos <span>•</span> Pernambuco, Arcoverde, Brasil
-                      </p>
+                <Link passHref href="perfil-terapeuta">
+                  <CardBox className="">
+                    <FlexBox>
+                      <header>
+                        <Avatar src="/media/profile/thera.png" />
+                      </header>
+                      <div className="content">
+                        <h5>Davi Lucas</h5>
+                        <p>ThetaHealer Certificado</p>
+                        <p>
+                          26 anos <span>•</span> Pernambuco, Arcoverde, Brasil
+                        </p>
 
-                      <ul>
-                        <li>08:00</li>
-                        <li>09:00</li>
-                        <li>10:00</li>
-                        <li>11:00</li>
-                        <li>12:00</li>
-                        <li>13:00</li>
-                        <li>14:00</li>
-                      </ul>
+                        <MiniChip>
+                          <li>08:00</li>
+                          <li>09:00</li>
+                          <li>10:00</li>
+                          <li>11:00</li>
+                          <li>12:00</li>
+                          <li>13:00</li>
+                          <li>14:00</li>
+                        </MiniChip>
+                      </div>
+                    </FlexBox>
+                    <div className="pricing">
+                      <PriceBlock>
+                        <span>RS</span>
+                        <p>107,00</p>
+                      </PriceBlock>
+                      <img src="/media/rating.png" />
                     </div>
-                  </FlexBox>
-                  <div className="pricing">
-                    <PriceBlock>
-                      <span>RS</span>
-                      <p>107,00</p>
-                    </PriceBlock>
-                    <img src="/media/rating.png" />
-                  </div>
-                </CardBox>
+                  </CardBox>
+                </Link>
               </Grid>
             ))}
           </Grid>
         </Container>
         <Container maxWidth="lg">
           <Grid container alignItems="center" justify="center">
-              <Pagination className={classes.root} count={10} variant="outlined" shape="rounded" />
+            <Pagination
+              className={classes.root}
+              count={10}
+              variant="outlined"
+              shape="rounded"
+            />
           </Grid>
         </Container>
       </SearchTherapists>
