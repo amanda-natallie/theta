@@ -23,7 +23,8 @@ declare namespace interfaceConstant {
     maxWidth?: string;
   }
   interface DividerProps {
-    height: string;
+    height?: string;
+    bordered?: boolean
   }
 
   interface blogProps {

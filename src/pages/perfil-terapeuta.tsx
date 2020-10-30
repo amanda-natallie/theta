@@ -1,23 +1,28 @@
+import React, { useState } from "react";
 import { Avatar, Container, Grid, SvgIcon } from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 import BackButton from "../components/general/BackButton";
 import YoutubeSvgIcon from "../components/icons/YoutubeSvgIcon";
 import PageWrapper from "../components/layout/PageWrapper";
-import { CardBox } from "../styles/components/Box";
+import { Box, CardBox } from "../styles/components/Box";
 import { ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import { FlexBox } from "../styles/components/FlexBox";
+import { MiniChip } from "../styles/components/MiniChip";
 import { PriceBlock } from "../styles/pages/Home";
 import {
   Content,
   Header,
+  LanguageList,
   ProfileBlock,
   PublicProfilePageWrapper,
+  TabList,
 } from "../styles/pages/ProfileProfessional";
 
 const ProfessionalPublicProfilePage = () => {
+  const [tabActive, setTabActive] = useState("artigos");
+
   return (
     <>
       <Head>
@@ -148,9 +153,100 @@ const ProfessionalPublicProfilePage = () => {
                         Cada consulta dura em média de 40min à 1h. <br /> Preço
                         fixo.
                       </p>
-                      <img src="/media/rating.png" style={{maxHeight: 75, marginTop: 20}}/>
+                      <img
+                        src="/media/rating.png"
+                        style={{ maxHeight: 75, marginTop: 20 }}
+                      />
                     </div>
                   </CardBox>
+
+                  <Box className="profile-therapist">
+                    <h2>Sobre</h2>
+                    <Divider height="25px" />
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer sagittis tempor mauris. Proin eget bibendum neque,
+                      sed mollis sapien. Mauris pharetra tellus ac nibh bibendum
+                      dictum. Aliquam a varius nulla. Aliquam sed vestibulum
+                      eros. Duis varius ac leo et auctor. Vestibulum ante ipsum
+                      primis in faucibus orci luctus et ultrices posuere cubilia
+                      curae; Maecenas dictum ipsum vitae ornare accumsan. Nam
+                      fringilla egestas dolor ut tincidunt. Suspendisse mollis
+                      justo nibh, et hendrerit nunc vulputate sit amet. Etiam
+                      non massa urna. Duis rhoncus in ipsum ut ornare. Etiam
+                      orci tellus, ornare vel arcu vitae, porttitor ornare
+                      lacus. Phasellus faucibus tellus id aliquet aliquet.
+                      Nullam sem turpis, tempor tempus erat vel, aliquet cursus
+                      lacus.
+                    </p>
+
+                    <p>
+                      Praesent nec vehicula nibh. Vestibulum ante ipsum primis
+                      in faucibus orci luctus et ultrices posuere cubilia curae;
+                      Aliquam non scelerisque enim. Proin urna nunc, molestie
+                      nec sollicitudin id, posuere ut nibh. Aliquam dapibus
+                      tincidunt lacinia. Duis sed euismod mauris. Fusce ac
+                      fringilla magna.
+                    </p>
+                    <Divider height="35px" />
+                    <Divider bordered />
+                    <Divider height="35px" />
+                    <h2>Certificados ThetaHealing®</h2>
+                    <small>
+                      *clique nos botões abaixo para ver os certificados
+                    </small>
+                    <Divider height="40px" />
+                    <MiniChip>
+                      <li>Basic DNA</li>
+                      <li>Advanced DNA</li>
+                      <li>Dig Deeper</li>
+                      <li>Disease and Disorder</li>
+                      <li>DNA 3</li>
+                      <li>Intuitive Anatomy</li>
+                      <li>World Relations</li>
+                      <li>Basic DNA Instructors</li>
+                      <li>Disease and Disorder Instructors</li>
+                      <li>Intuitive Anatomy</li>
+                      <li>Advanced DNA</li>
+                    </MiniChip>
+                    <Divider height="35px" />
+                    <Divider bordered />
+                    <Divider height="35px" />
+                    <h2>Idiomas</h2>
+                    <Divider height="30px" />
+                    <LanguageList>
+                      <li>
+                        <img
+                          src="/media/icons/countries/brazil.svg"
+                          alt="brazil"
+                        />
+                        Português Brasileiro
+                      </li>
+                      <li>
+                        <img
+                          src="/media/icons/countries/germany.svg"
+                          alt="germany"
+                        />
+                        Alemão
+                      </li>
+                      <li>
+                        <img
+                          src="/media/icons/countries/italy.svg"
+                          alt="italy"
+                        />
+                        Italiano
+                      </li>
+                    </LanguageList>
+                    <Divider height="30px" />
+                  </Box>
+                  <Divider height="30px" />
+
+                  
+                    <TabList>
+                      <li onClick={() => setTabActive("artigos")} className={tabActive === "artigos" ? "active" : ""}>Artigos</li>
+                      <li onClick={() => setTabActive("galeria")} className={tabActive === "galeria" ? "active" : ""}>Galeria</li>
+                    </TabList>
+                  
                 </Grid>
                 <Grid item xs={12} md={4}></Grid>
               </Grid>

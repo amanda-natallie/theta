@@ -6,7 +6,6 @@ import theme from "../theme";
 
 export const PublicProfilePageWrapper = styled.main``;
 
-
 export const Header = styled.header`
   position: relative;
   width: 100%;
@@ -62,19 +61,17 @@ export const ProfileBlock = styled.div`
     color: ${colors.gray50};
     &:first-of-type {
       font-weight: 300;
-      font-size: 1.125rem
+      font-size: 1.125rem;
     }
     &:last-of-type {
-      font-size: 1rem
+      font-size: 1rem;
     }
     span {
       display: inline-block;
-      margin: 0 10px
+      margin: 0 10px;
     }
   }
 `;
-
-
 
 export const Content = styled.section`
   margin-top: 70px;
@@ -87,7 +84,45 @@ export const Content = styled.section`
     }
     td {
       color: ${colors.gray03};
-      padding-left: 30px
+      padding-left: 30px;
     }
   }
-`
+`;
+
+export const LanguageList = styled.ul`
+  width: 100%;
+  display: flex;
+  margin-left: 10px;
+
+  li {
+    display: flex;
+    margin-right: 30px;
+
+    img {
+      margin-right: 5px;
+    }
+  }
+`;
+
+export const TabList = styled.ul`
+  width: 100%;
+  display: flex;
+  margin: 30px 0 0 0px;
+  padding: 0;
+  border-top: 1px solid ${colors.containerGray};
+
+  li {
+    font-size: 1.225rem;
+    width: 110px;
+    margin-right:20px;
+    text-align: left;
+    font-weight: 600;
+    padding: 10px 0;
+    color: ${theme.palette.primary.main};
+    cursor: pointer;
+
+    &.active {
+      border-top: 3px solid ${theme.palette.primary.main};
+    }
+  }
+`;
