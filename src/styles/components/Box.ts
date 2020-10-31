@@ -50,7 +50,9 @@ export const Box = styled.div`
   }
 
   &.comingsoon {
-    flex: 1
+    flex: 1;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
