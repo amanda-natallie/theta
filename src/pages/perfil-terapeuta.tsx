@@ -19,9 +19,16 @@ import {
   PublicProfilePageWrapper,
   TabList,
 } from "../styles/pages/ProfileProfessional";
+import { TimePicker } from "@material-ui/pickers";
+import ComingSoon from "../components/general/ComingSoon/ComingSoon";
 
 const ProfessionalPublicProfilePage = () => {
   const [tabActive, setTabActive] = useState("artigos");
+  const [selectedDate, setDateSelected] = useState(new Date())
+
+  const handleDateChange = (e: any): void => {
+    setDateSelected(e)
+  }
 
   return (
     <>
@@ -64,7 +71,7 @@ const ProfessionalPublicProfilePage = () => {
           <Content>
             <Container maxWidth="lg">
               <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={8} lg={9}>
                   <CardBox>
                     <div className="left">
                       <table>
@@ -246,9 +253,26 @@ const ProfessionalPublicProfilePage = () => {
                       <li onClick={() => setTabActive("artigos")} className={tabActive === "artigos" ? "active" : ""}>Artigos</li>
                       <li onClick={() => setTabActive("galeria")} className={tabActive === "galeria" ? "active" : ""}>Galeria</li>
                     </TabList>
-                  
+                    <ComingSoon />
                 </Grid>
-                <Grid item xs={12} md={4}></Grid>
+                <Grid item xs={12} md={4} lg={3}>
+                  <Divider height="10px" />
+                  <FlexBox className="" justify="space-between">
+                    <img src="/media/icons/arrowDown.svg" alt="" />
+                    <span>Escolha o dia e horário desejado &nbsp;</span>
+                  </FlexBox>
+                  <Divider height="10px" />
+                  <FlexBox >
+                    <TimePicker 
+                    fullWidth
+                    inputVariant="outlined"
+                    inputProps={{
+                      margin: "dense"
+                    }}
+                    value={selectedDate} 
+                    onChange={handleDateChange} />
+                  </FlexBox>
+                </Grid>
               </Grid>
             </Container>
           </Content>

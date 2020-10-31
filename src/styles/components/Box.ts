@@ -48,6 +48,10 @@ export const Box = styled.div`
       line-height: 1.8;
     }
   }
+
+  &.comingsoon {
+    flex: 1
+  }
 `;
 
 export const MidiaBox = styled(Box)`

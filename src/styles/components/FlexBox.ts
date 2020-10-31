@@ -7,7 +7,8 @@ export const FlexBox = styled.div`
     props.column ? "flex-start" : "center"};
   flex-direction: ${(props: interfaceConstant.boxProps) =>
     props.column ? "column" : "row"};
-
+  justify-content: ${(props: interfaceConstant.boxProps) =>
+    props.justify ? props.justify : "flex-start"};
   @media (max-width: 700px) {
     min-width: 100vw;
     justify-content: space-between;

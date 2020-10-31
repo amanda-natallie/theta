@@ -46,6 +46,7 @@ declare namespace interfaceConstant {
     color?: string
     noPadding?: boolean
     column?: boolean
+    justify?: "flex-start" | "flex-end" | "space-between" | string 
   }
   
 

@@ -1,4 +1,6 @@
+
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./colors";
 import theme from "./theme";
 
 export default createGlobalStyle`
@@ -7,10 +9,12 @@ export default createGlobalStyle`
     padding: 0;
     transition: all 0.2s ease-in;
     box-sizing: border-box;
+    color: ${colors.gray50}
   }
 
   body {
-    font-size: 16px
+    font-size: 16px;
+
   }
 
   a {
