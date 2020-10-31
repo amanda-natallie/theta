@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
 export const CalendarContainer = styled.div`
-  width: 380px;
+  width: 100%;
+  margin-top: 10px;
+
+  * {
+    outline: none;
+  }
 
   .DayPicker {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0986943);
     border-radius: 16px;
   }

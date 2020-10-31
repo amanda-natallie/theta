@@ -48,6 +48,12 @@ export const Box = styled.div`
       line-height: 1.8;
     }
   }
+
+  &.comingsoon {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const MidiaBox = styled(Box)`
