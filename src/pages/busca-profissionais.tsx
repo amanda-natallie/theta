@@ -15,6 +15,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
+import Loading from '../components/layout/Loading';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

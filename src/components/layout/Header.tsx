@@ -19,10 +19,13 @@ import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { FlexBox } from "../../styles/components/FlexBox";
 import HamburguerMenuSvgIcon from "../icons/HamburguerMenuSvgIcon";
 import {userLogout} from "../../services/users";
+import { useDispatch } from 'react-redux'
+
 
 const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [logStatus, setlogStatus] = useState();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const status: any = localStorage.getItem("userInformation")
@@ -128,7 +131,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <SearchArea color={color} />
               </ActionsArea>
               {logStatus ? (
-                <button style={{backgroundColor: 'transparent'}} onClick={() => userLogout()}>
+                <button style={{backgroundColor: 'transparent'}} onClick={() => {dispatch({ type: 'loading' }); userLogout()}}>
                   <MenuIconButton color={color}>
                     <SignInSvgIcon
                       width="19"

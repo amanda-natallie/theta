@@ -12,8 +12,10 @@ import { Divider } from "../styles/components/Divider";
 import Link from "next/link";
 import Head from "next/head";
 import {userLogin} from  "../services/users";
+import { useDispatch } from 'react-redux'
 
 const UserSignInPage = () => {
+  const dispatch = useDispatch()
   const formik = useFormik({
     initialValues: {
       user: "",
@@ -24,6 +26,7 @@ const UserSignInPage = () => {
       password: Yup.string().required("Obrigatório"),
     }),
     onSubmit: (values: formConstants.LoginProps) => {
+      dispatch({ type: 'loading' })
       userLogin(values.user, values.password);
     },
   });
