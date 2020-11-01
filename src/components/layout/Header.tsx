@@ -25,7 +25,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
   const [logStatus, setlogStatus] = useState();
 
   useEffect(() => {
-    const status = localStorage.getItem("userInformation")
+    const status: any = localStorage.getItem("userInformation")
     setlogStatus(status)
   }, [])
 
@@ -150,7 +150,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                       color === "dark" ? theme.palette.primary.main : "white"
                     }
                   />
-                  {logStatus ? `Sair` : `Entrar`}
+                  Entrar
                 </MenuIconButton>
               </Link>
               )}
