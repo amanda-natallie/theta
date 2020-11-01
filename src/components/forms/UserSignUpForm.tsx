@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
 import Link from "next/link";
+import {userRegistration} from "../../services/users"
 
 const UserSignUpForm = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const UserSignUpForm = () => {
       birthYear: undefined,
       state: "",
       city: "",
-      phone: undefined,
+      phone: "",
       ddd: undefined,
       user: "",
       password: "",
@@ -58,7 +59,21 @@ const UserSignUpForm = () => {
       termsAccepted: Yup.boolean().required("Obrigatório"),
     }),
     onSubmit: (values: formConstants.UserProps) => {
-      //
+      userRegistration({
+        name: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        email_confirmation: values.emailConfirm,
+        dayBorn: values.birthDay.toString(),
+        monthBorn: values.birthMonth.toString(),
+        yearBorn: values.birthYear.toString(),
+        state: values.state,
+        city: values.city,
+        phone: values.phone,
+        username: values.user,
+        password: values.password,
+        password_confirmation: values.passwordConfirm,
+      })
     },
   });
 
@@ -378,7 +393,7 @@ const UserSignUpForm = () => {
           </Grid>
           <Grid item xs={12}>
             
-              <ThetaButton as="button" onClick={undefined} theme="purple" fullWidth >Cadastrar</ThetaButton>
+              <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
            
           </Grid>
         </Grid>
