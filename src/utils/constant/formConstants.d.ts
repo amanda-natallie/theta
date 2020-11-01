@@ -9,7 +9,7 @@ declare namespace formConstants {
     state: string;
     city: string;
     ddd: number;
-    phone: number;
+    phone: string;
     user: string;
     password: string;
     emailConfirm: string;
