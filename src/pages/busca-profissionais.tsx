@@ -134,7 +134,7 @@ const SearchProfessionalsPage = () => {
                         <span>RS</span>
                         <p>107,00</p>
                       </PriceBlock>
-                      <img src="/media/rating.png" />
+                      {/* <img src="/media/rating.png" /> */}
                     </div>
                   </CardBox>
                 </Link>

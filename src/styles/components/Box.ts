@@ -12,8 +12,8 @@ export const Box = styled.div`
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: ${(props: interfaceConstant.boxProps) => props.align ? props.align : "center"} ;
+  justify-content: ${(props: interfaceConstant.boxProps) => props.justify ? props.justify : "flex-start"};
   & * {
     color: ${colors.gray35};
   }
@@ -32,7 +32,7 @@ export const Box = styled.div`
   }
 
   & p {
-    display: inline;
+    display: inline-flex;
     margin: 5px 0 0 10px;
     font-size: 0.875rem;
   }
