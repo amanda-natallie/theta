@@ -32,7 +32,7 @@ export const Box = styled.div`
   }
 
   & p {
-    display: inline;
+    display: inline-flex;
     margin: 5px 0 0 10px;
     font-size: 0.875rem;
   }

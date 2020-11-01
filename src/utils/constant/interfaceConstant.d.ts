@@ -54,6 +54,8 @@ declare namespace interfaceConstant {
     noFooter?: boolean
     noPadding?: boolean
     children : React.ReactNode
+    title?: string
+    breadcrumbs?: string
   }
 
   interface BackButtonProps {
