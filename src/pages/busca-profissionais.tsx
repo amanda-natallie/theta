@@ -44,7 +44,6 @@ const SearchProfessionalsPage = () => {
       month: currentDate.toLocaleString('pt-BR', {month: 'numeric'}),
       year: currentDate.toLocaleString('pt-BR', {year: 'numeric'}),
     })
-    console.log(list)
     setProfessionalsList(list)
     setLoading(false)
   }
