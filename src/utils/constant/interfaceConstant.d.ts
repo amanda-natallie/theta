@@ -47,6 +47,7 @@ declare namespace interfaceConstant {
     noPadding?: boolean
     column?: boolean
     justify?: "flex-start" | "flex-end" | "space-between" | string 
+    align?: "flex-start" | "flex-end" | string
   }
   
 
@@ -54,6 +55,8 @@ declare namespace interfaceConstant {
     noFooter?: boolean
     noPadding?: boolean
     children : React.ReactNode
+    title?: string
+    breadcrumbs?: string
   }
 
   interface BackButtonProps {

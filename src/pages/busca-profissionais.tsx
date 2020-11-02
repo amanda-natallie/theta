@@ -17,6 +17,7 @@ import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
 import Loading from "../components/layout/Loading";
 import {getAllProfessionals} from "../services/profissionals";
+import CheckoutModal from "../components/layout/CheckoutModal";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) =>
 const SearchProfessionalsPage = () => {
   const today = new Date();
   const classes = useStyles();
+  const [open, setOpen] = useState(true);
   const [option, setOption] = useState("");
   const [currentDate, setCurrentDate] = useState<any>(today);
   const [selectedDate, handleDateChange] = useState(undefined);
@@ -76,6 +78,7 @@ const SearchProfessionalsPage = () => {
   }
 
   return (
+    <>
     <PageWrapper>
       {loading && <Loading />}
       <SearchTherapists>
@@ -191,6 +194,8 @@ const SearchProfessionalsPage = () => {
         </Container> */}
       </SearchTherapists>
     </PageWrapper>
+    <CheckoutModal isOpen={open} onClose={() => setOpen(false)} />
+    </>
   );
 };
 
