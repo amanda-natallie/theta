@@ -15,6 +15,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
+import CheckoutModal from "../components/layout/CheckoutModal";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) =>
 
 const SearchProfessionalsPage = () => {
   const classes = useStyles();
+  const [open, setOpen] = useState(true);
   const [option, setOption] = useState("");
   const [selectedDate, handleDateChange] = useState(undefined);
 
@@ -34,6 +36,7 @@ const SearchProfessionalsPage = () => {
   const dummy = ["1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3"];
 
   return (
+    <>
     <PageWrapper>
       <SearchTherapists>
         <Divider height="60px" />
@@ -154,6 +157,8 @@ const SearchProfessionalsPage = () => {
         </Container>
       </SearchTherapists>
     </PageWrapper>
+    <CheckoutModal isOpen={open} onClose={() => setOpen(false)} />
+    </>
   );
 };
 

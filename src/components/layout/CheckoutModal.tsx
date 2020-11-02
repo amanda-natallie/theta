@@ -24,8 +24,8 @@ const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
   return (
     <Dialog
       onClose={handleClose}
-      aria-labelledby="simple-dialog-title"
       open={isOpen}
+      
     >
       <Checkout>
         <ClientTherapistAvatar
