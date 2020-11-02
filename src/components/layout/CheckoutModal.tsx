@@ -13,8 +13,19 @@ import ClientTherapistAvatar from "../general/ClientTherapistAvatar";
 interface Iprops {
   isOpen: boolean;
   onClose: Function;
-  info?: Array<object>;
+  info?: infoProps;
 }
+
+interface infoProps {
+  providerName: string
+  providerPic: string
+  date: string
+  time:string
+  price: string 
+  button: {
+    title: string
+    actionFunction: Function
+}}
 
 const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
   const handleClose = () => {
@@ -29,34 +40,33 @@ const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
     >
       <Checkout>
         <ClientTherapistAvatar
-          therapist="/media/profile/thera.png"
+          therapist={info.providerPic}
           client=""
           size="90"
         />
 
         <Box className="checkout-box">
           <Subtitle color={theme.palette.primary.main}>
-            Sua consulta online com <span>Davi Lucas</span>{" "}
+            Sua consulta online com <span>{info.providerName}</span>{" "}
           </Subtitle>
           <FlexBox>
             <p>
-              <img src="/media/icons/calendar.svg" alt="calendar" /> 21 de
-              Setembro de 2020
+              <img src="/media/icons/calendar.svg" alt="calendar" /> {info.date}
             </p>
             <span>•</span>
             <p>
-              <img src="/media/icons/time.svg" alt="time" /> 09:00 - horário de
-              Brasília
+              <img src="/media/icons/time.svg" alt="time" /> {`${info.time}:00 - horário de
+              Brasília`}
             </p>
           </FlexBox>
           <Divider height="10px" />
           <Subtitle color={colors.gray50}>
-            Total a pagar: <strong> R$107,00 </strong>
+              Total a pagar: <strong> {`R$${info.price}`}</strong>
           </Subtitle>
 
           <Divider height="30px" />
-          <ThetaButton fullWidth theme="purple">
-            EFETUAR PAGAMENTO
+          <ThetaButton fullWidth theme="purple" onClick={() => info.button.actionFunction()}>
+            {info.button.title}
           </ThetaButton>
           
         </Box>

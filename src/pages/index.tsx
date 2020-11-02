@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UAParser } from "ua-parser-js";
 import { Container, Grid } from "@material-ui/core";
 import {
@@ -54,6 +54,12 @@ export default function HomePage({ deviceType }) {
   const [showOurPorpouse, setShowOurPorpouse] = useState(true);
 
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    if(localStorage.getItem("authToken")){
+      window.location.href = "/busca-profissionais"
+    }
+  }, [])
 
   return (
     <HomeWrapper>

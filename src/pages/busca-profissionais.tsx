@@ -16,8 +16,9 @@ import Pagination from "@material-ui/lab/Pagination";
 import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
 import Loading from "../components/layout/Loading";
-import {getAllProfessionals} from "../services/profissionals";
+import { getAllProfessionals } from "../services/profissionals";
 import CheckoutModal from "../components/layout/CheckoutModal";
+import{ makeAppointment } from "../services/appointments"
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,12 +31,23 @@ const useStyles = makeStyles((theme) =>
 const SearchProfessionalsPage = () => {
   const today = new Date();
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [option, setOption] = useState("");
   const [currentDate, setCurrentDate] = useState<any>(today);
   const [selectedDate, handleDateChange] = useState(undefined);
   const [professionalsList, setProfessionalsList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [appointmentInformation, setAppointmentInformation] = useState({ 
+    providerName: "", 
+    providerPic: "",
+    date: "", 
+    time: "", 
+    price: "", 
+    button: {
+      title: "", 
+      actionFunction: () => alert("button")}
+  });
 
   // const options = ["São Paulo", "Rio de Janeiro", "Paraiba", "Minas Gerais"];
 
@@ -49,9 +61,11 @@ const SearchProfessionalsPage = () => {
     setProfessionalsList(list)
     setLoading(false)
   }
+
   const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' };
 
   useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("authToken"))
     getAll()
   }, [currentDate])
 
@@ -75,6 +89,20 @@ const SearchProfessionalsPage = () => {
       }
       
     }
+  }
+
+  const appointimentMaker = (provider: any) => {
+    setAppointmentInformation({ 
+      providerName: provider.name, 
+      providerPic: provider.pic,
+      date: provider.date, 
+      time: provider.time, 
+      price: provider.price, 
+      button: {
+        title: "CONFIRMAR", 
+        actionFunction: () => makeAppointment({provider_id: provider.id, date: currentDate, time: provider.time, token: isLoggedIn})}
+    })
+    setOpen(true)
   }
 
   return (
@@ -124,9 +152,12 @@ const SearchProfessionalsPage = () => {
               <Subtitle style={{textTransform: 'uppercase'}} color={colors.gray50}>{`${currentDate.toLocaleString('pt-BR', dateOptions)}`}</Subtitle>
             </Grid>
             <Grid item lg={4} className="navigation-right">
-              {/* <p>
-                <span>1 - 9 de 15.397.360</span>Terapeutas no Brasil
-              </p> */}
+              <p>
+                {!isLoggedIn && <Link passHref href="login">
+              <span style={{alignSelf: 'center', color: '#7643FF', cursor: 'pointer'}}>Login para ver horários disponíves</span></Link>}
+              
+                {/* <span>1 - 9 de 15.397.360</span>Terapeutas no Brasil */}
+              </p>
               {!(currentDate < today) && <SvgIcon style={{cursor: 'pointer'}} onClick={() => renderDate("back")}>
                 <path
                   fill-rule="evenodd"
@@ -152,7 +183,7 @@ const SearchProfessionalsPage = () => {
           <Grid container>
             {professionalsList.length > 0 && professionalsList.map((item) => (
               <Grid item xs={12} key={item.id}>
-                <Link passHref href="perfil-terapeuta">
+                {/* <Link passHref href="perfil-terapeuta"> */}
                   <CardBox className="">
                     <FlexBox>
                       <header>
@@ -164,9 +195,17 @@ const SearchProfessionalsPage = () => {
                         <p>
                         {renderIdade(item.yearBorn)} anos <span>•</span> {`${item.city}, ${item.state}, Brasil`}
                         </p>
-                        <MiniChip>
-                        {item.availability.map((item) => item.available && <li>{`${item.hour}:00`}</li>)}
-                        </MiniChip>
+                        {isLoggedIn && <MiniChip>
+                        {item.availability.map((newItem) => newItem.available && <button style={{backgroundColor: 'transparent'}} onClick={() =>appointimentMaker({
+                          id: item.id,
+                          name: `${item.name} ${item.lastName}`, 
+                          pic: item.avatar_url,
+                          date: currentDate.toLocaleString('pt-BR', dateOptions),
+                          time: newItem.hour, 
+                          price: item.price, 
+                        })}><li>{`${newItem.hour}:00`}</li></button>)}
+                        </MiniChip>}
+                        
                       </div>
                     </FlexBox>
                     <div className="pricing">
@@ -177,7 +216,7 @@ const SearchProfessionalsPage = () => {
                       {/* <img src="/media/rating.png" /> */}
                     </div>
                   </CardBox>
-                </Link>
+                {/* </Link> */}
               </Grid>
             ))}
           </Grid>
@@ -194,7 +233,7 @@ const SearchProfessionalsPage = () => {
         </Container> */}
       </SearchTherapists>
     </PageWrapper>
-    <CheckoutModal isOpen={open} onClose={() => setOpen(false)} />
+    <CheckoutModal info={appointmentInformation} isOpen={open} onClose={() => setOpen(false)} />
     </>
   );
 };
