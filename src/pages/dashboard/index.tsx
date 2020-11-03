@@ -1,6 +1,5 @@
 import { Avatar, Container, Grid } from "@material-ui/core";
 import React from "react";
-import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
 import ClientFavorites from "../../components/general/DashboardCards/ClientFavorites";
 import TherapistCertificates from "../../components/general/DashboardCards/TherapistCertificates";
 import PaymentStatus from "../../components/general/PaymentStatus";
@@ -9,13 +8,10 @@ import UserCard from "../../components/general/ProfileCard/UserCard";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import { Box } from "../../styles/components/Box";
 import { FlexBox } from "../../styles/components/FlexBox";
-import { Subtitle } from "../../styles/components/Typography";
 import {
   AppointmentList,
   DashboardContent,
 } from "../../styles/pages/dashboard/Dashboard";
-import { ProfileBlock } from "../../styles/pages/ProfileProfessional";
-import theme from "../../styles/theme";
 
 const Dashboard = () => {
   const userType: string = "client";

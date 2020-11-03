@@ -15,6 +15,10 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
+import Loading from "../components/layout/Loading";
+import { getAllProfessionals } from "../services/profissionals";
+import CheckoutModal from "../components/layout/CheckoutModal";
+import{ makeAppointment } from "../services/appointments"
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,16 +29,86 @@ const useStyles = makeStyles((theme) =>
 );
 
 const SearchProfessionalsPage = () => {
+  const today = new Date();
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
   const [option, setOption] = useState("");
+  const [currentDate, setCurrentDate] = useState<any>(today);
   const [selectedDate, handleDateChange] = useState(undefined);
+  const [professionalsList, setProfessionalsList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [appointmentInformation, setAppointmentInformation] = useState({ 
+    providerName: "", 
+    providerPic: "",
+    date: "", 
+    time: "", 
+    price: "", 
+    button: {
+      title: "", 
+      actionFunction: () => alert("button")}
+  });
 
-  const options = ["São Paulo", "Rio de Janeiro", "Paraiba", "Minas Gerais"];
+  // const options = ["São Paulo", "Rio de Janeiro", "Paraiba", "Minas Gerais"];
 
-  const dummy = ["1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3"];
+  const getAll = async () => {
+    setLoading(true)
+    const list: any = await getAllProfessionals({
+      day: currentDate.toLocaleString('pt-BR', {day: 'numeric'}),
+      month: currentDate.toLocaleString('pt-BR', {month: 'numeric'}),
+      year: currentDate.toLocaleString('pt-BR', {year: 'numeric'}),
+    })
+    setProfessionalsList(list)
+    setLoading(false)
+  }
+
+  const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("authToken"))
+    getAll()
+  }, [currentDate])
+
+  const renderIdade = (idade: string) => {
+    const year = today.getFullYear()
+    const age = year - parseInt(idade)
+    return age.toString()
+  }
+
+  const renderDate = (direction: string) => {   
+    if(direction == "forward"){
+      const nextDay = new Date(currentDate.getTime() + 86400000)
+      setCurrentDate(() => nextDay)
+    }
+    if(direction == "back"){
+      const beforeDay = new Date(currentDate.getTime() - 86400000)
+      if(currentDate === today){
+        return
+      } else {
+        setCurrentDate(() => beforeDay)
+      }
+      
+    }
+  }
+
+  const appointimentMaker = (provider: any) => {
+    setAppointmentInformation({ 
+      providerName: provider.name, 
+      providerPic: provider.pic,
+      date: provider.date, 
+      time: provider.time, 
+      price: provider.price, 
+      button: {
+        title: "CONFIRMAR", 
+        actionFunction: () => makeAppointment({provider_id: provider.id, date: currentDate, time: provider.time, token: isLoggedIn})}
+    })
+    setOpen(true)
+  }
 
   return (
+    <>
     <PageWrapper>
+      {loading && <Loading />}
       <SearchTherapists>
         <Divider height="60px" />
         <Container maxWidth="lg">
@@ -47,7 +121,7 @@ const SearchProfessionalsPage = () => {
             </Grid>
           </Grid>
           <Divider height="60px" />
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <Grid item xs={12} md={3}>
               <CustomSelect
                 options={options}
@@ -66,7 +140,7 @@ const SearchProfessionalsPage = () => {
                 label="Data"
               />
             </Grid>
-          </Grid>
+          </Grid> */}
           <Divider height="60px" />
           <Grid
             container
@@ -74,22 +148,26 @@ const SearchProfessionalsPage = () => {
             justify="space-between"
             alignItems="center"
           >
-            <Grid item lg={3}>
-              <Subtitle color={colors.gray50}>Sábado, 19 de Setembro</Subtitle>
+            <Grid item lg={5}>
+              <Subtitle style={{textTransform: 'uppercase'}} color={colors.gray50}>{`${currentDate.toLocaleString('pt-BR', dateOptions)}`}</Subtitle>
             </Grid>
             <Grid item lg={4} className="navigation-right">
               <p>
-                <span>1 - 9 de 15.397.360</span>Terapeutas no Brasil
+                {!isLoggedIn && <Link passHref href="login">
+              <span style={{alignSelf: 'center', color: '#7643FF', cursor: 'pointer'}}>Login para ver horários disponíves</span></Link>}
+              
+                {/* <span>1 - 9 de 15.397.360</span>Terapeutas no Brasil */}
               </p>
-              <SvgIcon onClick={undefined}>
+              {!(currentDate < today) && <SvgIcon style={{cursor: 'pointer'}} onClick={() => renderDate("back")}>
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M2 12C2 6.48 6.49 2 12 2L12.2798 2.00384C17.6706 2.15216 22 6.57356 22 12C22 17.51 17.52 22 12 22C6.49 22 2 17.51 2 12ZM13.98 16C14.27 15.7 14.27 15.23 13.97 14.94L11.02 12L13.97 9.05997C14.27 8.76997 14.27 8.28997 13.98 7.99997C13.68 7.69997 13.21 7.69997 12.92 7.99997L9.43002 11.47C9.29002 11.61 9.21002 11.8 9.21002 12C9.21002 12.2 9.29002 12.39 9.43002 12.53L12.92 16C13.06 16.15 13.25 16.22 13.44 16.22C13.64 16.22 13.83 16.15 13.98 16Z"
                   fill="#7643FF"
                 />
-              </SvgIcon>
-              <SvgIcon>
+              </SvgIcon>}
+
+              <SvgIcon style={{cursor: 'pointer'}} onClick={() => renderDate("forward")}>
                 <circle cx="12" cy="12" r="10" fill="white" />
                 <path
                   fill-rule="evenodd"
@@ -103,46 +181,47 @@ const SearchProfessionalsPage = () => {
         </Container>
         <Container maxWidth="lg">
           <Grid container>
-            {dummy.map((e: any, index: number) => (
-              <Grid item xs={12}>
-                <Link passHref href="perfil-terapeuta">
+            {professionalsList.length > 0 && professionalsList.map((item) => (
+              <Grid item xs={12} key={item.id}>
+                {/* <Link passHref href="perfil-terapeuta"> */}
                   <CardBox className="">
                     <FlexBox>
                       <header>
-                        <Avatar src="/media/profile/thera.png" />
+                        <Avatar src={item.avatar_url} />
                       </header>
                       <div className="content">
-                        <h5>Davi Lucas</h5>
+                        <h5>{`${item.name} ${item.lastName}`} </h5>
                         <p>ThetaHealer Certificado</p>
                         <p>
-                          26 anos <span>•</span> Pernambuco, Arcoverde, Brasil
+                        {renderIdade(item.yearBorn)} anos <span>•</span> {`${item.city}, ${item.state}, Brasil`}
                         </p>
-
-                        <MiniChip>
-                          <li>08:00</li>
-                          <li>09:00</li>
-                          <li>10:00</li>
-                          <li>11:00</li>
-                          <li>12:00</li>
-                          <li>13:00</li>
-                          <li>14:00</li>
-                        </MiniChip>
+                        {isLoggedIn && <MiniChip>
+                        {item.availability.map((newItem) => newItem.available && <button style={{backgroundColor: 'transparent'}} onClick={() =>appointimentMaker({
+                          id: item.id,
+                          name: `${item.name} ${item.lastName}`, 
+                          pic: item.avatar_url,
+                          date: currentDate.toLocaleString('pt-BR', dateOptions),
+                          time: newItem.hour, 
+                          price: item.price, 
+                        })}><li>{`${newItem.hour}:00`}</li></button>)}
+                        </MiniChip>}
+                        
                       </div>
                     </FlexBox>
                     <div className="pricing">
                       <PriceBlock>
-                        <span>RS</span>
-                        <p>107,00</p>
+                        <span>R$</span>
+                        <p>{`${item.price}`}</p>
                       </PriceBlock>
                       {/* <img src="/media/rating.png" /> */}
                     </div>
                   </CardBox>
-                </Link>
+                {/* </Link> */}
               </Grid>
             ))}
           </Grid>
         </Container>
-        <Container maxWidth="lg">
+        {/* <Container maxWidth="lg">
           <Grid container alignItems="center" justify="center">
             <Pagination
               className={classes.root}
@@ -151,9 +230,11 @@ const SearchProfessionalsPage = () => {
               shape="rounded"
             />
           </Grid>
-        </Container>
+        </Container> */}
       </SearchTherapists>
     </PageWrapper>
+    <CheckoutModal info={appointmentInformation} isOpen={open} onClose={() => setOpen(false)} />
+    </>
   );
 };
 

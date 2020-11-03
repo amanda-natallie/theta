@@ -14,7 +14,14 @@ const UserReducer = (state = initialState, action: any): object => {
           ...action.props,
         },
       };
-
+    case "loading":
+      return {
+        isLoading: !state.isLoading,
+        options: {
+          ...state.options,
+          ...action.props,
+        },
+      };
     default:
       return state;
   }
