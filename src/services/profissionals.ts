@@ -17,7 +17,7 @@ export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
     })
     return Promise.all(result)
   } catch(error) {
-    throw new Error(error.message)
+    alert(error.response.data.message);
   }
 }
 

@@ -65,7 +65,7 @@ const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
           </Subtitle>
 
           <Divider height="30px" />
-          <ThetaButton fullWidth theme="purple" onClick={() => info.button.actionFunction()}>
+          <ThetaButton  fullWidth theme="purple" onClick={() => info.button.actionFunction()}>
             {info.button.title}
           </ThetaButton>
           
