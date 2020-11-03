@@ -5,7 +5,6 @@ export const Checkout = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 202px);
 
   .checkout-box {
     max-width: 550px;

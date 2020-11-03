@@ -34,7 +34,6 @@ interface userDataProps{
 }
 
 export const userRegistration = async (userData:userDataProps) => {
-  console.log(userData)
   try {
     const response = await api.post('users', {...userData})
     alert("Tudo pronto, agora é só fazer o login e buscar pelo seu terapeuta.")
