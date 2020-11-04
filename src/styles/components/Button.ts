@@ -66,6 +66,10 @@ export const ThetaButton = styled.a<ButtonProps>`
       display: none;
     }
   }
+
+  & > div {
+    margin: 10px auto;
+  }
 `;
 
 export const MenuIconButton = styled(ThetaButton)`

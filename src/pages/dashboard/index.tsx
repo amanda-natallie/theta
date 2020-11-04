@@ -22,7 +22,7 @@ const Dashboard = () => {
   const array = [1, 1];
 
   //marcar isso como false pra ver variação do box de pending requests
-  const isPending = true;
+  const isPending = false;
   return (
     <DashboardWrapper
       title={userType === "client" ? "Área do cliente" : "Área do ThetaHealer"}
