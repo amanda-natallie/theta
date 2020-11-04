@@ -9,11 +9,13 @@ import { Subtitle } from "../../styles/components/Typography";
 import { Checkout } from "../../styles/pages/dashboard/Checkout";
 import theme from "../../styles/theme";
 import ClientTherapistAvatar from "../general/ClientTherapistAvatar";
+import {BarLoader} from "react-spinners"
 
 interface Iprops {
   isOpen: boolean;
   onClose: Function;
   info?: infoProps;
+  isLoading?: boolean
 }
 
 interface infoProps {
@@ -27,7 +29,7 @@ interface infoProps {
     actionFunction: Function
 }}
 
-const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
+const CheckoutModal = ({ isOpen, onClose, isLoading = false, info }: Iprops) => {
   const handleClose = () => {
     onClose();
   };
@@ -65,8 +67,8 @@ const CheckoutModal = ({ isOpen, onClose, info }: Iprops) => {
           </Subtitle>
 
           <Divider height="30px" />
-          <ThetaButton  fullWidth theme="purple" onClick={() => info.button.actionFunction()}>
-            {info.button.title}
+          <ThetaButton fullWidth theme="purple" onClick={() => info.button.actionFunction()}>
+            {isLoading ? <BarLoader color="white"/> : info.button.title} 
           </ThetaButton>
           
         </Box>

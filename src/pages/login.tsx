@@ -75,6 +75,7 @@ const UserSignInPage = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                  type="password"
                     error={false}
                     fullWidth
                     label="Senha"

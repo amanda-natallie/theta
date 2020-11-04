@@ -6,7 +6,7 @@ export const DashboardContent = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 60px;
+  padding: 60px;
 
   div[class^="Box"] {
     width: 100%;
@@ -30,7 +30,7 @@ export const DashboardContent = styled.section`
 
 export const AppointmentList = styled.ul`
   width: 100%;
-  max-height: 270px;
+  min-height: 430px;
   overflow: auto;
   margin-top: 20px;
 
@@ -63,5 +63,34 @@ export const AppointmentList = styled.ul`
       background: url("/media/icons/camera.svg") top center no-repeat;
       background-size: cover;
     }
+  }
+`;
+
+export const PendingAppointment = styled.div`
+  width: 100%;
+  height: 210px;
+  background: url("/media/bg_dash.png") top center no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 10px;
+
+  padding-left: 30px;
+
+  & * p {
+    color: #fff;
+    display: flex;
+  }
+  img {
+    margin-right: 10px;
+  }
+  span {
+    display: inline-block;
+    margin: 0 20px;
+    color: white
+  }
+  .avatar-therapist {
+    margin-right: 10px;
   }
 `;
