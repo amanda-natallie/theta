@@ -33,4 +33,3 @@ export const makeAppointment = async (props: getAllProfessionalsProps) => {
     alert(error.response.data.message);
   }
 }
-

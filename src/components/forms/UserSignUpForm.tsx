@@ -73,6 +73,7 @@ const UserSignUpForm = () => {
         username: values.user,
         password: values.password,
         password_confirmation: values.passwordConfirm,
+        avatar_url: null,
       })
     },
   });

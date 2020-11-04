@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Avatar, Container, Grid, SvgIcon } from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
-import BackButton from "../components/general/BackButton";
-import YoutubeSvgIcon from "../components/icons/YoutubeSvgIcon";
-import PageWrapper from "../components/layout/PageWrapper";
-import { Box, CardBox } from "../styles/components/Box";
-import { NavigationButton, ThetaButton } from "../styles/components/Button";
-import { Divider } from "../styles/components/Divider";
-import { FlexBox } from "../styles/components/FlexBox";
-import { MiniChip } from "../styles/components/MiniChip";
-import { PriceBlock } from "../styles/pages/Home";
+import BackButton from "../../components/general/BackButton";
+import YoutubeSvgIcon from "../../components/icons/YoutubeSvgIcon";
+import PageWrapper from "../../components/layout/PageWrapper";
+import { Box, CardBox } from "../../styles/components/Box";
+import { NavigationButton, ThetaButton } from "../../styles/components/Button";
+import { Divider } from "../../styles/components/Divider";
+import { FlexBox } from "../../styles/components/FlexBox";
+import { MiniChip } from "../../styles/components/MiniChip";
+import { PriceBlock } from "../../styles/pages/Home";
 import {
   Content,
   Header,
@@ -18,20 +18,16 @@ import {
   ProfileBlock,
   PublicProfilePageWrapper,
   TabList,
-} from "../styles/pages/ProfileProfessional";
+} from "../../styles/pages/ProfileProfessional";
 import { TimePicker } from "@material-ui/pickers";
-import ComingSoon from "../components/general/ComingSoon/ComingSoon";
-import Calendar from "../components/general/Calendar";
-import Router from 'next/router'
+import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
+import Calendar from "../../components/general/Calendar";
+import { useRouter } from 'next/router'
 
 const ProfessionalPublicProfilePage = () => {
   const [tabActive, setTabActive] = useState("artigos");
   const [selectedDate, setDateSelected] = useState(new Date());
-
-  useEffect(() => {
-    alert(Router.pathname)
-  },[])
-  
+  const router = useRouter()
 
   const handleDateChange = (e: any): void => {
     setDateSelected(e);
@@ -59,7 +55,7 @@ const ProfessionalPublicProfilePage = () => {
                       alt="uai"
                       className="profile-avatar"
                     />
-                    <h1>Davi Lucas</h1>
+                    <h1>{router.query.terapeuta}</h1>
                     <p>ThetaHealing certificado</p>
                     <p>
                       <strong>98</strong> consultas <span>•</span>{" "}

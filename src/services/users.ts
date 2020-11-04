@@ -34,6 +34,7 @@ interface userDataProps{
   username: string
   password: string
   password_confirmation: string
+  avatar_url?: string | null
 }
 
 export const userRegistration = async (userData:userDataProps) => {

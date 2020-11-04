@@ -1,5 +1,5 @@
 import { Avatar, Container, Grid } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ClientFavorites from "../../components/general/DashboardCards/ClientFavorites";
 import TherapistCertificates from "../../components/general/DashboardCards/TherapistCertificates";
 import PaymentStatus from "../../components/general/PaymentStatus";
@@ -16,6 +16,17 @@ import {
 const Dashboard = () => {
   const userType: string = "client";
   const array = [1,1,1,1,1,1,1,1,1]
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    avatar_url:"",
+    email: "",
+  })
+
+  useEffect(() => {
+    const userInfo: any = localStorage.getItem("userInformation");
+    setUser(JSON.parse(userInfo))
+  }, [])
   return (
     <DashboardWrapper
       title={userType === "client" ? "Área do cliente" : "Área do ThetaHealer"}
@@ -33,12 +44,12 @@ const Dashboard = () => {
           <Grid item md={4}>
             <Box className="profile" justify="center">
               <Avatar
-                src="/media/profile/thera.png"
+                src={user.avatar_url}
                 alt="uai"
                 className="profile-avatar"
               />
-              <h2>Davi Lucas</h2>
-              <p>davi.luscas@gmail.com</p>
+              <h2>{`${user.name} ${user.lastName}`}</h2>
+              <p>{user.email}</p>
 
               {userType === "client" ? <UserCard /> : <TherapistCard />}
             </Box>
