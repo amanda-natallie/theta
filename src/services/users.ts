@@ -1,4 +1,6 @@
+import React from 'react'
 import api from './api';
+import Error from "next/error"
 
 export const userLogin = async (email: string, password: string) => {
   try {
@@ -7,7 +9,8 @@ export const userLogin = async (email: string, password: string) => {
   localStorage.setItem('userInformation', JSON.stringify(response.data.user))
   window.location.href = response.data.user.typeUser === 'therapist' ? '/perfil-terapeuta' : '/busca-profissionais'
   } catch(error) {
-    throw new Error(error.message)
+    alert(error.response.data.message);
+    window.location.href = '/login'
   }
 }
 
@@ -31,14 +34,16 @@ interface userDataProps{
   username: string
   password: string
   password_confirmation: string
+  avatar_url?: string | null
 }
 
 export const userRegistration = async (userData:userDataProps) => {
   try {
-    const response = await api.post('users', {...userData})
+    await api.post('users', {...userData})
     alert("Tudo pronto, agora é só fazer o login e buscar pelo seu terapeuta.")
     window.location.href = '/login'
   } catch(error) {
-    throw new Error(error.message)
+    console.log(error.response)
+    alert(error.response.data.message);
   }
 }

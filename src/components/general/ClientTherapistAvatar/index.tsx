@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Avatars } from "./ClientTherapistAvatar";
 import { Avatar } from "@material-ui/core";
 
@@ -7,7 +7,16 @@ interface Iprops {
   therapist: string;
   size: string;
 }
+
+
+
 const ClientTherapistAvatar = ({ client, therapist, size }: Iprops) => {
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    const userInfo: any = localStorage.getItem("userInformation");
+    setUser(JSON.parse(userInfo))
+  }, [])
   return (
     <Avatars>
       <Avatar
@@ -42,7 +51,7 @@ const ClientTherapistAvatar = ({ client, therapist, size }: Iprops) => {
         </svg>
       </p>
       <Avatar
-        src={client}
+        src={user ? user.avatar_url : client}
         className="img-rounded"
         style={{ width: size + "px", height: size + "px" }}
       />

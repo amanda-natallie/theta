@@ -30,7 +30,6 @@ export const makeAppointment = async (props: getAllProfessionalsProps) => {
       window.location.href = '/dashboard'
     }
   } catch(error) {
-    throw new Error(error.message)
+    alert(error.response.data.message);
   }
 }
-

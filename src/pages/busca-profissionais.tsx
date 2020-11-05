@@ -19,6 +19,7 @@ import Loading from "../components/layout/Loading";
 import { getAllProfessionals } from "../services/profissionals";
 import CheckoutModal from "../components/layout/CheckoutModal";
 import{ makeAppointment } from "../services/appointments"
+import { renderIdade } from "../utils/helpers"
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,12 +70,6 @@ const SearchProfessionalsPage = () => {
     setIsLoggedIn(localStorage.getItem("authToken"))
     getAll()
   }, [currentDate])
-
-  const renderIdade = (idade: string) => {
-    const year = today.getFullYear()
-    const age = year - parseInt(idade)
-    return age.toString()
-  }
 
   const renderDate = (direction: string) => {   
     if(direction == "forward"){

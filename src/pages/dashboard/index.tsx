@@ -1,6 +1,6 @@
 import { Avatar, Container, Grid } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import React from "react";
 import ClientFavorites from "../../components/general/DashboardCards/ClientFavorites";
 import TherapistCertificates from "../../components/general/DashboardCards/TherapistCertificates";
 import PaymentStatus from "../../components/general/PaymentStatus";
@@ -19,7 +19,18 @@ import {
 
 const Dashboard = () => {
   const userType: string = "client";
-  const array = [1, 1];
+  const array = [1,1,1,1,1,1,1,1,1]
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    avatar_url:"",
+    email: "",
+  })
+
+  useEffect(() => {
+    const userInfo: any = localStorage.getItem("userInformation");
+    setUser(JSON.parse(userInfo))
+  }, [])
 
   //marcar isso como false pra ver variação do box de pending requests
   const isPending = false;

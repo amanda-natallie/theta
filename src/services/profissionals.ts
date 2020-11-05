@@ -17,7 +17,17 @@ export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
     })
     return Promise.all(result)
   } catch(error) {
-    throw new Error(error.message)
+    alert(error.response.data.message);
+  }
+}
+
+export const getProssionalInfo = async (username: string) => {
+  const config = { params: { username } }
+  try {
+    const response = await api.get(`therapists`, config)
+    return response.data
+  } catch(error) {
+    alert(error.response.data.message);
   }
 }
 
