@@ -22,18 +22,51 @@ import {
 import { TimePicker } from "@material-ui/pickers";
 import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
 import Calendar from "../../components/general/Calendar";
+import {getProssionalInfo} from "../../services/profissionals"
+import {renderIdade} from "../../utils/helpers"
 import { useRouter } from 'next/router'
 
 const ProfessionalPublicProfilePage = () => {
   const [tabActive, setTabActive] = useState("artigos");
   const [selectedDate, setDateSelected] = useState(new Date());
+  const [thetaInformation, setThetaInformation] = useState({
+    id: "",
+    name: "",
+    lastName: "",
+    email: "",
+    dayBorn: "",
+    monthBorn: "",
+    yearBorn: "",
+    state: "",
+    city: "",
+    phone: "",
+    username: "",
+    typeUser: "",
+    languages: [],
+    links: [],
+    bio: "",
+    price: "",
+    avatar_url: ""
+  });
   const router = useRouter()
 
   const handleDateChange = (e: any): void => {
     setDateSelected(e);
   };
 
+  const getInformation = async() => {
+    const userName: any = router.query.terapeuta;
+    const response = await getProssionalInfo(userName);
+    console.log(response);
+    setThetaInformation(response[0])
+  };
+
+  useEffect(() => {
+    getInformation();
+  },[])
+
   return (
+    thetaInformation.id ? (
     <>
       <Head>
         <title>Perfil Terapeuta</title>
@@ -51,21 +84,21 @@ const ProfessionalPublicProfilePage = () => {
                 <Grid item xs={12} md={3}>
                   <ProfileBlock>
                     <Avatar
-                      src="/media/profile/thera.png"
+                      src={thetaInformation.avatar_url}
                       alt="uai"
                       className="profile-avatar"
                     />
-                    <h1>{router.query.terapeuta}</h1>
+                    <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
                     <p>ThetaHealing certificado</p>
-                    <p>
+                    {/* <p>
                       <strong>98</strong> consultas <span>•</span>{" "}
                       <strong>541</strong> postagens
-                    </p>
+                    </p> */}
                   </ProfileBlock>
                 </Grid>
                 <FlexBox column>
                   <Divider height="40px" />
-                  <ThetaButton theme="purple">Enviar Mensagem</ThetaButton>
+                  {/* <ThetaButton theme="purple">Enviar Mensagem</ThetaButton> */}
                 </FlexBox>
               </Grid>
             </Container>
@@ -80,16 +113,16 @@ const ProfessionalPublicProfilePage = () => {
                       <table>
                         <tr>
                           <th>Idade</th>
-                          <td>26</td>
+                            <td>{renderIdade(thetaInformation.yearBorn)}</td>
                         </tr>
                         <tr>
                           <th>Localização</th>
-                          <td>Pernambuco, Arco Verde, Brasil</td>
+                          <td>{`${thetaInformation.city}, ${thetaInformation.state}, Brasil`}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th>Membro desde</th>
                           <td>Setembro de 2020</td>
-                        </tr>
+                        </tr> */}
                       </table>
                       <FlexBox column className="contacts">
                         <p>
@@ -103,19 +136,19 @@ const ProfessionalPublicProfilePage = () => {
                           </SvgIcon>
                           +55 (31) 98956-8956
                         </p>
-                        <p>davilucashealing@gmail.com</p>
-                        <Link href="">www.davilucashealing.com.br</Link>
+                        <p>{thetaInformation.email}</p>
+                        <Link href={thetaInformation.links[0]}>{thetaInformation.links[0]}</Link>
                         <ul>
-                          <li>
+                          {/* <li>
                             <Link href="https://youtube.com">
                               <img
                                 src="/media/icons/social-media/youtube.svg"
                                 alt="youtube"
                               />
                             </Link>
-                          </li>
+                          </li> */}
                           <li>
-                            <Link href="https://facebook.com">
+                          <Link href="https://instagram.com">
                               <img
                                 src="/media/icons/social-media/facebook.svg"
                                 alt="facebook"
@@ -139,7 +172,7 @@ const ProfessionalPublicProfilePage = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link href="https://twitter.com">
+                          <Link href="https://instagram.com">
                               <img
                                 src="/media/icons/social-media/twitter.svg"
                                 alt="twitter"
@@ -163,10 +196,10 @@ const ProfessionalPublicProfilePage = () => {
                         Cada consulta dura em média de 40min à 1h. <br /> Preço
                         fixo.
                       </p>
-                      <img
+                      {/* <img
                         src="/media/rating.png"
                         style={{ maxHeight: 75, marginTop: 20 }}
-                      />
+                      /> */}
                     </div>
                   </CardBox>
 
@@ -174,29 +207,7 @@ const ProfessionalPublicProfilePage = () => {
                     <h2>Sobre</h2>
                     <Divider height="25px" />
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Integer sagittis tempor mauris. Proin eget bibendum neque,
-                      sed mollis sapien. Mauris pharetra tellus ac nibh bibendum
-                      dictum. Aliquam a varius nulla. Aliquam sed vestibulum
-                      eros. Duis varius ac leo et auctor. Vestibulum ante ipsum
-                      primis in faucibus orci luctus et ultrices posuere cubilia
-                      curae; Maecenas dictum ipsum vitae ornare accumsan. Nam
-                      fringilla egestas dolor ut tincidunt. Suspendisse mollis
-                      justo nibh, et hendrerit nunc vulputate sit amet. Etiam
-                      non massa urna. Duis rhoncus in ipsum ut ornare. Etiam
-                      orci tellus, ornare vel arcu vitae, porttitor ornare
-                      lacus. Phasellus faucibus tellus id aliquet aliquet.
-                      Nullam sem turpis, tempor tempus erat vel, aliquet cursus
-                      lacus.
-                    </p>
-
-                    <p>
-                      Praesent nec vehicula nibh. Vestibulum ante ipsum primis
-                      in faucibus orci luctus et ultrices posuere cubilia curae;
-                      Aliquam non scelerisque enim. Proin urna nunc, molestie
-                      nec sollicitudin id, posuere ut nibh. Aliquam dapibus
-                      tincidunt lacinia. Duis sed euismod mauris. Fusce ac
-                      fringilla magna.
+                    {thetaInformation.bio}
                     </p>
                     <Divider height="35px" />
                     <Divider bordered />
@@ -251,7 +262,7 @@ const ProfessionalPublicProfilePage = () => {
                   </Box>
                   <Divider height="30px" />
 
-                  <TabList>
+                  {/* <TabList>
                     <li
                       onClick={() => setTabActive("artigos")}
                       className={tabActive === "artigos" ? "active" : ""}
@@ -264,7 +275,7 @@ const ProfessionalPublicProfilePage = () => {
                     >
                       Galeria
                     </li>
-                  </TabList>
+                  </TabList> */}
                   <ComingSoon />
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
@@ -304,7 +315,7 @@ const ProfessionalPublicProfilePage = () => {
           </Content>
         </PublicProfilePageWrapper>
       </PageWrapper>
-    </>
+    </> ) : (<div>Buscando...</div>)
   );
 };
 

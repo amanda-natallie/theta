@@ -21,3 +21,13 @@ export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   }
 }
 
+export const getProssionalInfo = async (username: string) => {
+  const config = { params: { username } }
+  try {
+    const response = await api.get(`therapists`, config)
+    return response.data
+  } catch(error) {
+    alert(error.response.data.message);
+  }
+}
+
