@@ -183,11 +183,15 @@ const SearchProfessionalsPage = () => {
                   <CardBox className="">
                     <FlexBox>
                       <header>
-                        <Avatar src={item.avatar_url} />
+                      <Link passHref={`/terapeutas/${username}`}>
+                      <a> <Avatar src={item.avatar_url} /></a>
+                      </Link>
                       </header>
                       <div className="content">
-                        <h5>{`${item.name} ${item.lastName}`} </h5>
-                        <p>ThetaHealer Certificado</p>
+                      <Link passHref={`/terapeutas/${username}`}>
+                      <a><h5>{`${item.name} ${item.lastName}`} </h5></a>
+                      </Link> 
+                      <p>ThetaHealer Certificado</p>
                         <p>
                         {renderIdade(item.yearBorn)} anos <span>•</span> {`${item.city}, ${item.state}, Brasil`}
                         </p>
