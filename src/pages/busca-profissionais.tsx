@@ -100,7 +100,7 @@ const SearchProfessionalsPage = () => {
     })
     setOpen(true)
   }
-
+console.log("professionalsList", professionalsList)
   return (
     <>
     <PageWrapper>
