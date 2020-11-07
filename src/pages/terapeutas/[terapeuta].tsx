@@ -81,8 +81,8 @@ const ProfessionalPublicProfilePage = () => {
                   <Divider height="20px" />
                   <ThetaButton theme="purple">Recomendações</ThetaButton>
                 </FlexBox>
-                <Grid item xs={12} md={3}>
-                  <ProfileBlock>
+                <Grid item xs={2} md={3}>
+                  <ProfileBlock>1
                     <Avatar
                       src={thetaInformation.avatar_url}
                       alt="uai"

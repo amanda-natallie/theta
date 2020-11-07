@@ -11,9 +11,10 @@ class MyDocument extends Document {
     const originalRenderPage = ctx.renderPage;
 
     try {
-        ctx.renderPage = () => originalRenderPage({
+        ctx.renderPage = ()=>originalRenderPage({
             enhanceApp: App => props => styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />))
           })
+        
         const initialProps = await Document.getInitialProps(ctx)
         return {
           ...initialProps,
