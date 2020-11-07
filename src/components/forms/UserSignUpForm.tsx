@@ -28,8 +28,8 @@ const UserSignUpForm = () => {
       birthDay: undefined,
       birthMonth: undefined,
       birthYear: undefined,
-      state: "",
       city: "",
+      state: "",
       phone: "",
       ddd: undefined,
       user: "",
@@ -48,8 +48,8 @@ const UserSignUpForm = () => {
       birthDay: Yup.number().required("Obrigatório"),
       birthMonth: Yup.number().required("Obrigatório"),
       birthYear: Yup.number().required("Obrigatório"),
-      state: Yup.string().required("Obrigatório"),
       city: Yup.string().required("Obrigatório"),
+      state: Yup.string().required("Obrigatório"),
       phone: Yup.string().required("Obrigatório"),
       user: Yup.string().required("Obrigatório"),
       password: Yup.string().required("Obrigatório"),
@@ -227,25 +227,6 @@ const UserSignUpForm = () => {
             <TextField
               fullWidth
               error={false}
-              label="Estado"
-              placeholder="Digite seu estado"
-              value={formik.values.state}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("state", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.state && formik.errors.state
-                  ? formik.errors.state
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              error={false}
               label="Cidade"
               placeholder="Digite sua cidade"
               value={formik.values.city}
@@ -261,6 +242,26 @@ const UserSignUpForm = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              error={false}
+              label="Estado"
+              placeholder="Digite seu estado"
+              value={formik.values.state}
+              onBlur={formik.handleBlur}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                formik.setFieldValue("state", event.target.value, true);
+              }}
+              variant="outlined"
+              helperText={
+                formik.touched.state && formik.errors.state
+                  ? formik.errors.state
+                  : null
+              }
+            />
+          </Grid>
+         
           <Grid item xs={12} className="divider">
             <FormLabel>Nº de Telefone</FormLabel>
           </Grid>
