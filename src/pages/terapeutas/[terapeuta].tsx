@@ -25,8 +25,12 @@ import Calendar from "../../components/general/Calendar";
 import {getProssionalInfo} from "../../services/profissionals"
 import {renderIdade} from "../../utils/helpers"
 import { useRouter } from 'next/router'
+import { Select, MenuItem} from '@material-ui/core'
+import { id } from "date-fns/locale";
 
-const ProfessionalPublicProfilePage = () => {
+
+
+  const ProfessionalPublicProfilePage = () => {
   const [tabActive, setTabActive] = useState("artigos");
   const [selectedDate, setDateSelected] = useState(new Date());
   const [thetaInformation, setThetaInformation] = useState({
@@ -53,7 +57,6 @@ const ProfessionalPublicProfilePage = () => {
   const handleDateChange = (e: any): void => {
     setDateSelected(e);
   };
-
   const getInformation = async() => {
     const userName: any = router.query.terapeuta;
     const response = await getProssionalInfo(userName);
@@ -64,9 +67,11 @@ const ProfessionalPublicProfilePage = () => {
   useEffect(() => {
     getInformation();
   },[])
-
+  console.log(`${thetaInformation.dayBorn}`)
   return (
+    
     thetaInformation.id ? (
+      
     <>
       <Head>
         <title>Perfil Terapeuta</title>
@@ -285,18 +290,13 @@ const ProfessionalPublicProfilePage = () => {
                     <span>Escolha o dia e horário desejado &nbsp;</span>
                   </FlexBox>
                   <Divider height="10px" />
-                  <FlexBox>
-                    <TimePicker
-                      fullWidth
-                      inputVariant="outlined"
-                      inputProps={{
-                        margin: "dense",
-                      }}
-                      value={selectedDate}
-                      onChange={handleDateChange}
-                    />
-                  </FlexBox>
-                  <Calendar />
+
+                  <Select value="" displayEmpty>
+                 <MenuItem value="" disabled>Escolha seu horário</MenuItem>
+                {/*thetaInformation.map(newItem =><MenuItem key={newItem}>{newItem}</MenuItem>)*/}
+                </Select>
+                  
+                 <Calendar />
                   <Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">

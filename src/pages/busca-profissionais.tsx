@@ -47,7 +47,7 @@ const SearchProfessionalsPage = () => {
     time: "", 
     price: "", 
     button: {
-      title: "", 
+    title: "", 
       actionFunction: () => setLocalLoading(true)}
   });
 
@@ -183,12 +183,12 @@ console.log("professionalsList", professionalsList)
                   <CardBox className="">
                     <FlexBox>
                       <header>
-                      <Link passHref={`/terapeutas/${username}`}>
+                      <Link passHref href={`/terapeutas/${item.username}`}>
                       <a> <Avatar src={item.avatar_url} /></a>
                       </Link>
                       </header>
                       <div className="content">
-                      <Link passHref={`/terapeutas/${username}`}>
+                      <Link passHref href ={`/terapeutas/${item.username}`}>
                       <a><h5>{`${item.name} ${item.lastName}`} </h5></a>
                       </Link> 
                       <p>ThetaHealer Certificado</p>
