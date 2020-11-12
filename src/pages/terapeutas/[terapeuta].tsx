@@ -22,11 +22,13 @@ import {
 import { TimePicker } from "@material-ui/pickers";
 import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
 import Calendar from "../../components/general/Calendar";
-import {getProssionalInfo} from "../../services/profissionals"
+ import {getProssionalInfo}from "../../services/profissionals"
 import {renderIdade} from "../../utils/helpers"
 import { useRouter } from 'next/router'
 import { Select, MenuItem} from '@material-ui/core'
 import { id } from "date-fns/locale";
+import { userInfo } from "os";
+import { CollectionsBookmarkSharp } from "@material-ui/icons";
 
 
 
@@ -53,7 +55,7 @@ import { id } from "date-fns/locale";
     avatar_url: ""
   });
   const router = useRouter()
-
+ 
   const handleDateChange = (e: any): void => {
     setDateSelected(e);
   };
@@ -290,12 +292,12 @@ import { id } from "date-fns/locale";
                     <span>Escolha o dia e horário desejado &nbsp;</span>
                   </FlexBox>
                   <Divider height="10px" />
-
+                    <FlexBox>
                   <Select value="" displayEmpty>
                  <MenuItem value="" disabled>Escolha seu horário</MenuItem>
                 {/*thetaInformation.map(newItem =><MenuItem key={newItem}>{newItem}</MenuItem>)*/}
                 </Select>
-                  
+                </FlexBox> 
                  <Calendar />
                   <Divider height="20px" />
                   <FlexBox>
