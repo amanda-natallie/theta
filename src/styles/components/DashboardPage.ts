@@ -10,6 +10,9 @@ export const DashboardPage = styled.main`
   position: relative;
 
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 256px;
     height: 100vh;
     margin: 0;
@@ -34,20 +37,24 @@ export const DashboardPage = styled.main`
 
   .main {
     width: calc(100% - 256px);
-
+    margin-left: 256px;
     .topbar {
+      position: fixed;
+      width: calc(100% - 256px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 30px;
       height: 65px;
       border-bottom: 1px solid ${colors.containerGray};
+      background-color: white;
 
       .actions {
         display: flex;
       }
     }
     .breadcrumbs {
+      margin-top: 70px;
       width: 100%;
       padding: 30px;
 

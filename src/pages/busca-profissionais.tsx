@@ -69,6 +69,7 @@ const SearchProfessionalsPage = () => {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("authToken"))
     getAll()
+    console.log(professionalsList)
   }, [currentDate])
 
   const renderDate = (direction: string) => {   
@@ -103,8 +104,8 @@ const SearchProfessionalsPage = () => {
 console.log("professionalsList", professionalsList)
   return (
     <>
-    <PageWrapper>
       {loading && <Loading />}
+    <PageWrapper>
       <SearchTherapists>
         <Divider height="60px" />
         <Container maxWidth="lg">

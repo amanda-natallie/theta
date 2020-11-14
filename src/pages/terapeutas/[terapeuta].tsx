@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Container, Grid, SvgIcon } from "@material-ui/core";
+import {
+  Avatar,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  SvgIcon,
+} from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
 import BackButton from "../../components/general/BackButton";
@@ -22,19 +29,37 @@ import {
 import { TimePicker } from "@material-ui/pickers";
 import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
 import Calendar from "../../components/general/Calendar";
- import {getProssionalInfo}from "../../services/profissionals"
-import {renderIdade} from "../../utils/helpers"
-import { useRouter } from 'next/router'
-import { Select, MenuItem} from '@material-ui/core'
+import {
+  getProssionalInfo,
+  therapistAvailability,
+} from "../../services/profissionals";
+import { renderIdade } from "../../utils/helpers";
+import { useRouter } from "next/router";
+import { Select, MenuItem } from "@material-ui/core";
 import { id } from "date-fns/locale";
 import { userInfo } from "os";
 import { CollectionsBookmarkSharp } from "@material-ui/icons";
+import { makeAppointment } from "../../services/appointments";
+import Loading from "../../components/layout/Loading";
 
-
-
-  const ProfessionalPublicProfilePage = () => {
-  const [tabActive, setTabActive] = useState("artigos");
-  const [selectedDate, setDateSelected] = useState(new Date());
+const ProfessionalPublicProfilePage = () => {
+  const today = new Date();
+  /* const [tabActive, setTabActive] = useState("artigos"); */
+  const [currentDate, setCurrentDate] = useState<any>(today);
+  const [open, setOpen] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [appointmentInformation, setAppointmentInformation] = useState({
+    providerName: "",
+    providerPic: "",
+    date: "",
+    time: "",
+    price: "",
+    button: {
+      title: "",
+      actionFunction: () => setLocalLoading(true),
+    },
+  });
   const [thetaInformation, setThetaInformation] = useState({
     id: "",
     name: "",
@@ -52,28 +77,51 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
     links: [],
     bio: "",
     price: "",
-    avatar_url: ""
+    avatar_url: "",
+    availability: [],
   });
-  const router = useRouter()
- 
-  const handleDateChange = (e: any): void => {
+  const router = useRouter();
+  const dateOptions = { weekday: "long", month: "long", day: "numeric" };
+
+  /*   const handleDateChange = (e: any): void => {
     setDateSelected(e);
-  };
-  const getInformation = async() => {
+  }; */
+  const getInformation = async () => {
     const userName: any = router.query.terapeuta;
+
     const response = await getProssionalInfo(userName);
-    console.log(response);
-    setThetaInformation(response[0])
+    const hours = await therapistAvailability(response[0].id);
+
+    setThetaInformation({ ...response[0], availability: hours });
   };
 
   useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("authToken"));
     getInformation();
-  },[])
-  console.log(`${thetaInformation.dayBorn}`)
-  return (
-    
-    thetaInformation.id ? (
-      
+  }, []);
+
+  const appointimentMaker = (hour: any) => {
+    const provider_id = thetaInformation.id;
+    const info = {
+      date: currentDate.toLocaleString("pt-BR", dateOptions),
+      time: hour,
+      token: isLoggedIn,
+    };
+
+    setAppointmentInformation({
+      ...info,
+      providerName: thetaInformation.name,
+      providerPic: thetaInformation.avatar_url,
+      price: thetaInformation.price,
+      button: {
+        title: "CONFIRMAR",
+        actionFunction: () => makeAppointment({ ...info, provider_id }),
+      },
+    });
+    setOpen(true);
+  };
+  console.log("ihhuuuu", thetaInformation.availability);
+  return thetaInformation.id ? (
     <>
       <Head>
         <title>Perfil Terapeuta</title>
@@ -89,7 +137,7 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                   <ThetaButton theme="purple">Recomendações</ThetaButton>
                 </FlexBox>
                 <Grid item xs={2} md={3}>
-                  <ProfileBlock>1
+                  <ProfileBlock>
                     <Avatar
                       src={thetaInformation.avatar_url}
                       alt="uai"
@@ -105,7 +153,12 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                 </Grid>
                 <FlexBox column>
                   <Divider height="40px" />
-                  {/* <ThetaButton theme="purple">Enviar Mensagem</ThetaButton> */}
+                  <ThetaButton
+                    theme="purple"
+                    style={{ opacity: 0, userSelect: "none", cursor: "unset" }}
+                  >
+                    Enviar Mensagem
+                  </ThetaButton>
                 </FlexBox>
               </Grid>
             </Container>
@@ -120,7 +173,7 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                       <table>
                         <tr>
                           <th>Idade</th>
-                            <td>{renderIdade(thetaInformation.yearBorn)}</td>
+                          <td>{renderIdade(thetaInformation.yearBorn)}</td>
                         </tr>
                         <tr>
                           <th>Localização</th>
@@ -144,7 +197,9 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                           +55 (31) 98956-8956
                         </p>
                         <p>{thetaInformation.email}</p>
-                        <Link href={thetaInformation.links[0]}>{thetaInformation.links[0]}</Link>
+                        <Link href={thetaInformation.links[0]}>
+                          {thetaInformation.links[0]}
+                        </Link>
                         <ul>
                           {/* <li>
                             <Link href="https://youtube.com">
@@ -155,7 +210,7 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                             </Link>
                           </li> */}
                           <li>
-                          <Link href="https://instagram.com">
+                            <Link href="https://instagram.com">
                               <img
                                 src="/media/icons/social-media/facebook.svg"
                                 alt="facebook"
@@ -179,7 +234,7 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                             </Link>
                           </li>
                           <li>
-                          <Link href="https://instagram.com">
+                            <Link href="https://instagram.com">
                               <img
                                 src="/media/icons/social-media/twitter.svg"
                                 alt="twitter"
@@ -213,9 +268,7 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                   <Box className="profile-therapist">
                     <h2>Sobre</h2>
                     <Divider height="25px" />
-                    <p>
-                    {thetaInformation.bio}
-                    </p>
+                    <p>{thetaInformation.bio}</p>
                     <Divider height="35px" />
                     <Divider bordered />
                     <Divider height="35px" />
@@ -286,27 +339,66 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
                   <ComingSoon />
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
-                  <Divider height="10px" />
-                  <FlexBox className="" justify="space-between">
-                    <img src="/media/icons/arrowDown.svg" alt="" />
-                    <span>Escolha o dia e horário desejado &nbsp;</span>
-                  </FlexBox>
-                  <Divider height="10px" />
-                    <FlexBox>
-                  <Select value="" displayEmpty>
-                 <MenuItem value="" disabled>Escolha seu horário</MenuItem>
-                {/*thetaInformation.map(newItem =><MenuItem key={newItem}>{newItem}</MenuItem>)*/}
-                </Select>
-                </FlexBox> 
-                 <Calendar />
+                  {thetaInformation.availability.length > 0 && (
+                    <>
+                      <Divider height="10px" />
+                      <FlexBox className="" justify="space-between">
+                        <img src="/media/icons/arrowDown.svg" alt="" />
+                        <span>Escolha o dia e horário desejado &nbsp;</span>
+                      </FlexBox>
+                      <Divider height="10px" />
+                      <FlexBox>
+                        {thetaInformation.availability.some(
+                          (e: any) => e.available === true
+                        ) ? (
+                          <FormControl fullWidth>
+                            <InputLabel disableAnimation shrink={false}>
+                              Escolha seu horário
+                            </InputLabel>
+                            <Select
+                              MenuProps={{
+                                anchorOrigin: {
+                                  vertical: "bottom",
+                                  horizontal: "left",
+                                },
+                                transformOrigin: {
+                                  vertical: "top",
+                                  horizontal: "left",
+                                },
+                                getContentAnchorEl: null,
+                              }}
+                            >
+                              {thetaInformation.availability.map(
+                                (newItem: any, index: number) =>
+                                  newItem.available && (
+                                    <MenuItem
+                                      onChange={(e: any) =>
+                                        appointimentMaker(e.target.value)
+                                      }
+                                    >
+                                      {`${newItem.hour}:00`}
+                                    </MenuItem>
+                                  ) 
+                              )}
+                            </Select>
+                          </FormControl>
+                        ) : (
+                          "Desculpe, este terapeuta não tem horários disponíveis!"
+                        )}
+                      </FlexBox>
+                    </>
+                  )}
+                  {/* <Calendar />
                   <Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">
-                      <ThetaButton theme="purple" fullWidth>Avançar</ThetaButton>
+                      <ThetaButton theme="purple" fullWidth>
+                        Avançar
+                      </ThetaButton>
                     </Link>
-                  </FlexBox>
+                  </FlexBox> 
                   <Divider height="30px" />
-                  <hr />
+                  <hr />*/}
                   <Divider height="20px" />
                   <h2>Perfis Similares</h2>
                   <Divider height="20px" />
@@ -317,7 +409,9 @@ import { CollectionsBookmarkSharp } from "@material-ui/icons";
           </Content>
         </PublicProfilePageWrapper>
       </PageWrapper>
-    </> ) : (<div>Buscando...</div>)
+    </>
+  ) : (
+    <Loading />
   );
 };
 
