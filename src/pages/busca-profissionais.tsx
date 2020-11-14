@@ -101,6 +101,7 @@ const SearchProfessionalsPage = () => {
     })
     setOpen(true)
   }
+  
 console.log("professionalsList", professionalsList)
   return (
     <>
@@ -189,7 +190,11 @@ console.log("professionalsList", professionalsList)
                       </Link>
                       </header>
                       <div className="content">
+<<<<<<< Updated upstream
                       <Link passHref href ={`/terapeutas/${item.username}`}>
+=======
+                      <Link passHref href={`/terapeutas/${item.username}`}>
+>>>>>>> Stashed changes
                       <a><h5>{`${item.name} ${item.lastName}`} </h5></a>
                       </Link> 
                       <p>ThetaHealer Certificado</p>
