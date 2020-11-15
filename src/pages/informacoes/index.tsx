@@ -4,16 +4,17 @@ import BackButton from "../../components/general/BackButton";
 import { FlexBox } from "../../styles/components/FlexBox";
 import { CardBox } from "../../styles/components/Box"
 import { Container, Grid } from '@material-ui/core';
+import { TitleInfo } from "../../styles/components/TitleInfo"
 import { Title } from "../../styles/components/Typography"
+import {SvgIcon} from '@material-ui/core'
+
 
 
 
 const information =() =>{
     return( 
         <> 
-        
         <PageWrapper >
-           
             <Container maxWidth='lg'>
             <Grid container>
             <Grid item xs={2} md={4}>
@@ -25,27 +26,28 @@ const information =() =>{
           </Grid>
             <FlexBox column>
             <CardBox>
+                <FlexBox column >
+               <TitleInfo>Oque é nosso Projeto</TitleInfo>
+               <TitleInfo><p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p></TitleInfo> 
+                </FlexBox>
+            </CardBox>
+            <CardBox>
                 <Grid>
-               <h1>Oque é nosso Projeto</h1>
-                <p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p>
+                <TitleInfo>Termos de condições </TitleInfo>
+                <TitleInfo><p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p></TitleInfo> 
                 </Grid>
             </CardBox>
             <CardBox>
                 <Grid>
-                <h1>Termos de condições </h1>
-                <p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p>
+                <TitleInfo>Perguntas frequentes</TitleInfo>
+                <TitleInfo><p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p></TitleInfo> 
+
                 </Grid>
             </CardBox>
             <CardBox>
                 <Grid>
-                <h1>Perguntas frequentes</h1>
-                <p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p>
-                </Grid>
-            </CardBox>
-            <CardBox>
-                <Grid>
-                <h1>Fale conosco</h1>
-                <p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p>
+                <TitleInfo>Fale conosco</TitleInfo>
+               <TitleInfo><p>Quisque at arcu at turpis lobortis ultrices. Nullam et accumsan</p></TitleInfo> 
                 </Grid>
             </CardBox>
             </FlexBox>
