@@ -19,6 +19,7 @@ import {
 import Loading from "../../components/layout/Loading";
 import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
+import { renderDate } from "../../utils/helpers";
 
 const Dashboard = () => {
   
@@ -26,18 +27,16 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [user, setUser] = useState(undefined);
 
-  useEffect(() => {
-    const userInfo: any = localStorage.getItem("userInformation");
-    setUser(JSON.parse(userInfo));
-  }, []);
-
   const getInformation = async () => {
-    const response = user.typeUser === "client" ? await therapistAppointments(isLoggedIn) : await userAppointments(isLoggedIn);
-    setAppointments({ ...response[0] });
+    const userInfo: any = localStorage.getItem("userInformation");
+    const token: string = localStorage.getItem("authToken");
+    setUser(JSON.parse(userInfo));
+    setIsLoggedIn(token);
+    const response = userInfo.typeUser === "client" ? await userAppointments(token) : await therapistAppointments(token);
+    setAppointments(response);
   };
 
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem("authToken"));
     getInformation();
   }, []);
 
@@ -153,8 +152,8 @@ const Dashboard = () => {
                           <FlexBox justify="space-between">
                             <h5>{appointmentItem.user.name}</h5>
                             <p className="time">
-                              <img src="/media/icons/time.svg" alt="time" />{" "}
-                              {new Date(appointmentItem.date)}
+                              <img src="/media/icons/time.svg" alt="time" />
+                              {renderDate(appointmentItem.date)}
                             </p>
                             <PaymentStatus status="Pago" />
                           </FlexBox>
