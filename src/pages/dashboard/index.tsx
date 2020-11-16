@@ -16,137 +16,161 @@ import {
   DashboardContent,
   PendingAppointment,
 } from "../../styles/pages/dashboard/Dashboard";
+import Loading from "../../components/layout/Loading";
+import { therapistAppointments } from "../../services/profissionals";
+import { userAppointments } from "../../services/users";
 
 const Dashboard = () => {
-  const userType: string = "client";
-  const array = [1,1,1,1,1,1,1,1,1]
-  const [user, setUser] = useState({
-    name: "",
-    lastName: "",
-    avatar_url:"",
-    email: "",
-  })
+  
+  const [appointments, setAppointments] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
     const userInfo: any = localStorage.getItem("userInformation");
-    setUser(JSON.parse(userInfo))
-  }, [])
+    setUser(JSON.parse(userInfo));
+  }, []);
+
+  const getInformation = async () => {
+    const response = user.typeUser === "client" ? await therapistAppointments(isLoggedIn) : await userAppointments(isLoggedIn);
+    setAppointments({ ...response[0] });
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("authToken"));
+    getInformation();
+  }, []);
 
   //marcar isso como false pra ver variação do box de pending requests
   const isPending = false;
-  return (
-    <DashboardWrapper
-      title={userType === "client" ? "Área do cliente" : "Área do ThetaHealer"}
-    >
-      <DashboardContent>
-        <Container maxWidth="lg">
-          <Grid container spacing={2}>
-            <Grid item md={8}>
-              <Grid container spacing={3}>
-                <Grid item md={6}>
-                  {userType === "client" ? (
-                    <ClientFavorites />
-                  ) : (
-                    <TherapistCertificates />
-                  )}
-                </Grid>
-                <Grid item md={6}>
-                  <Box className="profile" justify="center">
-                    <Avatar
-                      src="/media/profile/thera.png"
-                      alt="uai"
-                      className="profile-avatar"
-                    />
-                    <h2>Davi Lucas</h2>
-                    <p>davi.luscas@gmail.com</p>
 
-                    {userType === "client" ? <UserCard /> : <TherapistCard />}
+  return (
+    <>
+      { isLoggedIn && user ? (
+        <DashboardWrapper
+          title={
+            user.typeUser === "client"
+              ? "Área do cliente"
+              : "Área do ThetaHealer"
+          }
+        >
+          <DashboardContent>
+            <Container maxWidth="lg">
+              <Grid container spacing={2}>
+                <Grid item md={8}>
+                  <Grid container spacing={3}>
+                    <Grid item md={6}>
+                      {user.typeUser === "client" ? (
+                        <ClientFavorites />
+                      ) : (
+                        <TherapistCertificates />
+                      )}
+                    </Grid>
+                    <Grid item md={6}>
+                      <Box className="profile" justify="center">
+                        <Avatar
+                          src="/media/profile/thera.png"
+                          alt="uai"
+                          className="profile-avatar"
+                        />
+                        <h2>{user.name} {user.lastName}</h2>
+                        <p>{user.email}</p>
+
+                        {user.typeUser === "client" ? (
+                          <UserCard />
+                        ) : (
+                          <TherapistCard />
+                        )}
+                      </Box>
+                    </Grid>
+                    {user.typeUser === "client" && (
+                      <Grid item xs={12}>
+                        <PendingAppointment>
+                          <Subtitle color={"white"}>
+                            {isPending
+                              ? "Finalize seu agendamento agora mesmo!"
+                              : "Busque profissionais e faça sua consulta agora!"}
+                          </Subtitle>
+                          {isPending ? (
+                            <>
+                              <FlexBox>
+                                <Avatar
+                                  src="/media/thera.png"
+                                  className="avatar-therapist"
+                                />{" "}
+                                <p> Matheus Rabelo</p>
+                                <span>•</span>
+                                <p>ThetaHealer Certificado</p>
+                              </FlexBox>
+                              <FlexBox>
+                                <p>
+                                  <img
+                                    src="/media/icons/calendar.svg"
+                                    alt="calendar"
+                                  />{" "}
+                                  12 de outubro de 2020
+                                </p>
+                                <span>•</span>
+                                <p>
+                                  <img src="/media/icons/time.svg" alt="time" />{" "}
+                                  {`09:00 - horário de Brasília`}
+                                </p>
+                              </FlexBox>
+                              <ThetaButton
+                                theme="rainbow"
+                                style={{ alignSelf: "baseline" }}
+                              >
+                                Pagar agora
+                              </ThetaButton>
+                            </>
+                          ) : (
+                            <Link passHref href="/busca-profissionais">
+                              <ThetaButton
+                                theme="rainbow"
+                                style={{ alignSelf: "baseline" }}
+                              >
+                                Buscar Profissionais
+                              </ThetaButton>
+                            </Link>
+                          )}
+                        </PendingAppointment>
+                      </Grid>
+                    )}
+                  </Grid>
+                </Grid>
+                <Grid item md={4}>
+                  <Box
+                    style={{
+                      height: user.typeUser === "client" ? "auto" : "270px",
+                      maxHeight: user.typeUser === "client" ? "505px" : "270px",
+                    }}
+                  >
+                    <h2>Agendamentos</h2>
+
+                    <AppointmentList>
+                      {appointments && appointments.map((appointmentItem: any, index: number) => (
+                        <li key={index}>
+                          <FlexBox justify="space-between">
+                            <h5>{appointmentItem.user.name}</h5>
+                            <p className="time">
+                              <img src="/media/icons/time.svg" alt="time" />{" "}
+                              {new Date(appointmentItem.date)}
+                            </p>
+                            <PaymentStatus status="Pago" />
+                          </FlexBox>
+                        </li>
+                      ))}
+                    </AppointmentList>
                   </Box>
                 </Grid>
-                {userType === "client" && (
-                  <Grid item xs={12}>
-                    <PendingAppointment>
-                      <Subtitle color={"white"}>
-                        {isPending
-                          ? "Finalize seu agendamento agora mesmo!"
-                          : "Busque profissionais e faça sua consulta agora!"}
-                      </Subtitle>
-                      {isPending ? (
-                        <>
-                          <FlexBox>
-                            <Avatar
-                              src="/media/thera.png"
-                              className="avatar-therapist"
-                            />{" "}
-                            <p> Matheus Rabelo</p>
-                            <span>•</span>
-                            <p>ThetaHealer Certificado</p>
-                          </FlexBox>
-                          <FlexBox>
-                            <p>
-                              <img
-                                src="/media/icons/calendar.svg"
-                                alt="calendar"
-                              />{" "}
-                              12 de outubro de 2020
-                            </p>
-                            <span>•</span>
-                            <p>
-                              <img src="/media/icons/time.svg" alt="time" />{" "}
-                              {`09:00 - horário de Brasília`}
-                            </p>
-                          </FlexBox>
-                          <ThetaButton
-                            theme="rainbow"
-                            style={{ alignSelf: "baseline" }}
-                          >
-                            Pagar agora
-                          </ThetaButton>
-                        </>
-                      ) : (
-                        <Link passHref href="/busca-profissionais">
-                          <ThetaButton
-                            theme="rainbow"
-                            style={{ alignSelf: "baseline" }}
-                          >
-                            Buscar Profissionais
-                          </ThetaButton>
-                        </Link>
-                      )}
-                    </PendingAppointment>
-                  </Grid>
-                )}
               </Grid>
-            </Grid>
-            <Grid item md={4}>
-              <Box
-                style={{
-                  height: userType === "client" ? "auto" : "270px",
-                  maxHeight: userType === "client" ? "505px" : "270px",
-                }}
-              >
-                <h2>Agendamentos</h2>
-
-                <AppointmentList>
-                  {array.map((_: any, index: number) => (
-                    <li key={index}>
-                      <FlexBox justify="space-between">
-                        <h5>John Doe</h5>
-                        <p className="time">
-                          <img src="/media/icons/time.svg" alt="time" /> 09:00
-                        </p>
-                        <PaymentStatus status="Pago" />
-                      </FlexBox>
-                      <p>Faltam 2 dias e 1:53 min</p>
-                    </li>
-                  ))}
-                </AppointmentList>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </DashboardContent>
-    </DashboardWrapper>
+            </Container>
+          </DashboardContent>
+        </DashboardWrapper>
+      ) : (
+        <Loading />
+      )}
+    </>
   );
 };
 

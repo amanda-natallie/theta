@@ -7,7 +7,7 @@ export const userLogin = async (email: string, password: string) => {
     const response = await api.post('sessions', {email, password})
   localStorage.setItem('authToken', response.data.token)
   localStorage.setItem('userInformation', JSON.stringify(response.data.user))
-  window.location.href = response.data.user.typeUser === 'therapist' ? '/perfil-terapeuta' : '/busca-profissionais'
+  window.location.href = response.data.user.typeUser === 'therapist' ? '/dashboard' : '/busca-profissionais'
   } catch(error) {
     alert(error.response.data.message);
     window.location.href = '/login'
@@ -47,3 +47,12 @@ export const userRegistration = async (userData:userDataProps) => {
     alert(error.response.data.message);
   }
 }
+
+export const userAppointments = async (token: string) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+
+  const availability = await api.get(`appointments/user`, config);
+  return availability.data;
+};
