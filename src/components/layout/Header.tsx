@@ -123,7 +123,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <Link href="/">Notícias</Link>
               </li>
               <li>
-                <Link href="/">Social</Link>
+                <Link href="/dashboard">Área do cliente</Link>
               </li>
             </Nav>
             <ActionsAreaDiv>
