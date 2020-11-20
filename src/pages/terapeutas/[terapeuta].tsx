@@ -27,10 +27,8 @@ import {
   TabList,
 } from "../../styles/pages/ProfileProfessional";
 import { TimePicker } from "@material-ui/pickers";
-import { Select, MenuItem }  from '@material-ui/core' 
 import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
 import Calendar from "../../components/general/Calendar";
-<<<<<<< Updated upstream
 import {
   getProssionalInfo,
   therapistAvailability,
@@ -62,19 +60,6 @@ const ProfessionalPublicProfilePage = () => {
       actionFunction: () => setLocalLoading(true),
     },
   });
-=======
-import { getProssionalInfo } from "../../services/profissionals"
-import { getProfessionalSchedule } from "../../services/schedule"
-import { renderIdade } from "../../utils/helpers"
-import { useRouter } from 'next/router'
-import { id } from "date-fns/locale";
-import { AppointmentList } from "../../styles/pages/dashboard/Dashboard";
-
-const ProfessionalPublicProfilePage = () => {
-  const [tabActive, setTabActive] = useState("artigos");
-  const [selectedDate, setDateSelected] = useState(new Date());
-  const [getSchedule, setGetSchedule] = useState([]);
->>>>>>> Stashed changes
   const [thetaInformation, setThetaInformation] = useState({
     id: "",
     name: "",
@@ -103,26 +88,16 @@ const ProfessionalPublicProfilePage = () => {
   }; */
   const getInformation = async () => {
     const userName: any = router.query.terapeuta;
-<<<<<<< Updated upstream
 
     const response = await getProssionalInfo(userName);
     const hours = await therapistAvailability(response[0].id);
 
     setThetaInformation({ ...response[0], availability: hours });
-=======
-    const response = await getProssionalInfo(`${userName}`);
-    setThetaInformation(response[0]);
-    const scheduleResponse = await getProfessionalSchedule();
-    //setGetSchedule( scheduleResponse[0] );
-    console.log("test", scheduleResponse)
-
->>>>>>> Stashed changes
   };
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("authToken"));
     getInformation();
-<<<<<<< Updated upstream
   }, []);
 
   const appointimentMaker = (hour: any) => {
@@ -147,16 +122,6 @@ const ProfessionalPublicProfilePage = () => {
   };
   console.log("ihhuuuu", thetaInformation.availability);
   return thetaInformation.id ? (
-
-    
-  },[])
-
-  
-
-
-  return (
-    thetaInformation.id ? (
->>>>>>> Stashed changes
     <>
       <Head>
         <title>Perfil Terapeuta</title>
@@ -374,7 +339,6 @@ const ProfessionalPublicProfilePage = () => {
                   <ComingSoon />
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
-<<<<<<< Updated upstream
                   {thetaInformation.availability.length > 0 && (
                     <>
                       <Divider height="10px" />
@@ -425,27 +389,6 @@ const ProfessionalPublicProfilePage = () => {
                     </>
                   )}
                   {/* <Calendar />
-=======
-                  <Divider height="10px" />
-                  <FlexBox className="" justify="space-between">
-                    <img src="/media/icons/arrowDown.svg" alt="" />
-                    <span>Escolha o dia e horário desejado &nbsp;</span>
-                  </FlexBox>
-                  <Divider height="10px" />
-                  <FlexBox>
-                  <Select value="" displayEmpty fullWidth>
-                  <MenuItem value="" disabled>Escolha seu horário</MenuItem>
-                    { getSchedule && getSchedule.map((item) => { 
-                      
-                        item.available && (
-                          <MenuItem>{item.hour}</MenuItem> 
-                        )
-                      })
-                    }
-                  </Select>
-                  </FlexBox>
-                  <Calendar />
->>>>>>> Stashed changes
                   <Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">
