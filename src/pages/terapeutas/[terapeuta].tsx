@@ -233,7 +233,7 @@ const ProfessionalPublicProfilePage = () => {
                         </p>
                         <p>{thetaInformation.email}</p>
                         <Link href={thetaInformation.links[0]}>
-                          {thetaInformation.links[0]}
+                          {/* {thetaInformation.links[0]} */}
                         </Link>
                         <ul>
                           {/* <li>

@@ -10,7 +10,7 @@ export const DashboardContent = styled.section`
 
   div[class^="Box"] {
     width: 100%;
-    height: 270px;
+    height: 310px;
     border-radius: 4px;
   }
   .profile {
@@ -30,7 +30,7 @@ export const DashboardContent = styled.section`
 
 export const AppointmentList = styled.ul`
   width: 100%;
-  min-height: 430px;
+  max-height: 310px;
   overflow: auto;
   margin-top: 20px;
 

@@ -11,7 +11,7 @@ interface Iprops {
 
 
 const ClientTherapistAvatar = ({ client, therapist, size }: Iprops) => {
-  const [user, setUser] = useState()
+  const [user, setUser]: any = useState()
 
   useEffect(() => {
     const userInfo: any = localStorage.getItem("userInformation");
