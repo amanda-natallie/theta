@@ -75,7 +75,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/">Suporte</Link>
+                <Link href="/informacoes" >Suporte</Link>
                 </li>
                 <li>
                   <Link href="/">Notícias</Link>
@@ -117,7 +117,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/">Suporte</Link>
+              <Link href="/informacoes" >Suporte</Link>
               </li>
               <li>
                 <Link href="/">Notícias</Link>
