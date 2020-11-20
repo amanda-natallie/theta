@@ -8,7 +8,7 @@ import { TextInformation } from "../../styles/components/TextInformation";
 import { Container, Grid } from "@material-ui/core";
 import { Title } from "../../styles/components/Typography";
 import { Divider } from "../../styles/components/Divider";
-import { HeaderWithBackButtonWrapper } from "./styles";
+import { HeaderWithBackButtonWrapper } from "../../styles/pages/Support";
 import Link from "next/link";
 
 const information = () => {
