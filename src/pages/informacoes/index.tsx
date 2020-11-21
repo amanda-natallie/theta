@@ -8,10 +8,6 @@ import { TextInformation } from "../../styles/components/TextInformation"
 import { Container, Grid } from '@material-ui/core';
 import { Title } from "../../styles/components/Typography"
 
-
-
-
-
 const information =() =>{
     return( 
         <> 
