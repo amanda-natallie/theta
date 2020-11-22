@@ -11,35 +11,51 @@ import { Divider } from "../../styles/components/Divider";
 import { HeaderWithBackButtonWrapper } from "../../styles/pages/Support";
 import Link from "next/link";
 
-const information =() =>{
-    return( 
-        <> 
-        <PageWrapper >
-            <Container maxWidth='lg'style={{justifyContent:'space-between', marginTop:"20px"}}>
-                <Grid container >
-                    <Grid item xs={2} md={4}>
-                         <BackButton link="/" />
-                    </Grid>
-                    <Grid item xs={10} md={8} >
-                        <Title>Suporte</Title>
-                    </Grid>
-                </Grid>
-           <Link passHref href="/suporte/nosso-projeto">
-            <CardBox >
-                <TextInformation>               
-                <image style={{margin:"2px"}}>
-                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path opacity="0.4" d="M18.6453 34.576C15.0305 32.3432 11.6702 29.7105 8.62582 26.726C6.47664 24.5951 4.83528 21.9932 3.82718 19.1192C2.02593 13.5141 4.1227 7.10834 9.97676 5.20663C13.0667 4.23626 16.4272 4.83194 19.0112 6.80807C21.5961 4.83415 24.9555 4.23866 28.0456 5.20663C33.8996 7.10834 36.0105 13.5141 34.2092 19.1192C33.2093 21.9905 31.5777 24.5922 29.4387 26.726C26.3916 29.7073 23.0317 32.3397 19.4193 34.576L19.0252 34.8333L18.6453 34.576Z" fill="#7643FF"/>
-                    <path d="M19.0166 34.8327L18.6447 34.5753C15.0254 32.3428 11.6604 29.7101 8.61113 26.7254C6.45175 24.5975 4.80062 21.9953 3.78434 19.1185C1.99716 13.5135 4.09393 7.10772 9.94799 5.206C13.0379 4.23563 16.4427 4.83177 19.0166 6.82445V34.8327Z" fill="#7643FF"/>
-                    <path d="M28.8636 15.8321C28.5455 15.8116 28.2493 15.6527 28.0444 15.3925C27.8394 15.1323 27.7437 14.7937 27.7797 14.4561C27.8142 13.344 27.1814 12.3318 26.2056 11.938C25.5868 11.7691 25.2121 11.099 25.3669 10.4381C25.5138 9.78788 26.1227 9.38358 26.7346 9.52993C26.8119 9.54275 26.8863 9.57074 26.954 9.61249C28.9105 10.3654 30.1772 12.3918 30.0764 14.6074C30.0732 14.9433 29.9423 15.2633 29.7136 15.4942C29.485 15.7251 29.1782 15.847 28.8636 15.8321Z" fill="#7643FF"/>
-                    </svg>
+const information = () => {
+  return (
+    <>
+      <PageWrapper>
+        <Container
+          maxWidth="lg"
+          style={{ justifyContent: "space-between", marginTop: "20px" }}
+        >
+          <Grid container>
+            <HeaderWithBackButtonWrapper>
+              <BackButton link="/" />
+              <Title>Suporte</Title>
+              <div />
+            </HeaderWithBackButtonWrapper>
+          </Grid>
+          <Link passHref href="/suporte/nosso-projeto">
+            <CardBox>
+              <TextInformation>
+                <image style={{ margin: "2px" }}>
+                  <svg
+                    width="38"
+                    height="38"
+                    viewBox="0 0 38 38"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      opacity="0.4"
+                      d="M18.6453 34.576C15.0305 32.3432 11.6702 29.7105 8.62582 26.726C6.47664 24.5951 4.83528 21.9932 3.82718 19.1192C2.02593 13.5141 4.1227 7.10834 9.97676 5.20663C13.0667 4.23626 16.4272 4.83194 19.0112 6.80807C21.5961 4.83415 24.9555 4.23866 28.0456 5.20663C33.8996 7.10834 36.0105 13.5141 34.2092 19.1192C33.2093 21.9905 31.5777 24.5922 29.4387 26.726C26.3916 29.7073 23.0317 32.3397 19.4193 34.576L19.0252 34.8333L18.6453 34.576Z"
+                      fill="#7643FF"
+                    />
+                    <path
+                      d="M19.0166 34.8327L18.6447 34.5753C15.0254 32.3428 11.6604 29.7101 8.61113 26.7254C6.45175 24.5975 4.80062 21.9953 3.78434 19.1185C1.99716 13.5135 4.09393 7.10772 9.94799 5.206C13.0379 4.23563 16.4427 4.83177 19.0166 6.82445V34.8327Z"
+                      fill="#7643FF"
+                    />
+                    <path
+                      d="M28.8636 15.8321C28.5455 15.8116 28.2493 15.6527 28.0444 15.3925C27.8394 15.1323 27.7437 14.7937 27.7797 14.4561C27.8142 13.344 27.1814 12.3318 26.2056 11.938C25.5868 11.7691 25.2121 11.099 25.3669 10.4381C25.5138 9.78788 26.1227 9.38358 26.7346 9.52993C26.8119 9.54275 26.8863 9.57074 26.954 9.61249C28.9105 10.3654 30.1772 12.3918 30.0764 14.6074C30.0732 14.9433 29.9423 15.2633 29.7136 15.4942C29.485 15.7251 29.1782 15.847 28.8636 15.8321Z"
+                      fill="#7643FF"
+                    />
+                  </svg>
                 </image>
                 <FlexBox column>
                   <TitleInfo>Oque é nosso Projeto</TitleInfo>
                   <TitleInfo>
-                    <h1>
-                      Conheça um pouco mais sobre o ThetaHealing Brasil. 
-                    </h1>
+                    <h1>Conheça um pouco mais sobre o ThetaHealing Brasil.</h1>
                   </TitleInfo>
                 </FlexBox>
               </TextInformation>
@@ -91,9 +107,7 @@ const information =() =>{
                 <FlexBox column>
                   <TitleInfo>Termos e condições </TitleInfo>
                   <TitleInfo>
-                    <h1>
-                      Leia os nossos termos de uso e privacidade
-                    </h1>
+                    <h1>Leia os nossos termos de uso e privacidade</h1>
                   </TitleInfo>
                 </FlexBox>
               </TextInformation>
@@ -145,9 +159,7 @@ const information =() =>{
                 <FlexBox column>
                   <TitleInfo>Perguntas frequentes</TitleInfo>
                   <TitleInfo>
-                    <h1>
-                      Tire todas as suas duvidas no nosso FAQ   
-                    </h1>
+                    <h1>Tire todas as suas duvidas no nosso FAQ</h1>
                   </TitleInfo>
                 </FlexBox>
               </TextInformation>
@@ -201,9 +213,7 @@ const information =() =>{
                 <FlexBox column>
                   <TitleInfo>Fale conosco</TitleInfo>
                   <TitleInfo>
-                    <h1>
-                      Entre em contato conosco quando quiser
-                    </h1>
+                    <h1>Entre em contato conosco quando quiser</h1>
                   </TitleInfo>
                 </FlexBox>
               </TextInformation>
