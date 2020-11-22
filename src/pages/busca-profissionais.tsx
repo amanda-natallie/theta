@@ -121,7 +121,7 @@ const SearchProfessionalsPage = () => {
                 <BackButton link="/" />
               </Grid>
               <Grid item xs={10} md={8}>
-                <Title>Selecione seu melhor horário</Title>
+                <Title>Selecione seu terapeuta de preferência</Title>
               </Grid>
             </Grid>
             <Divider height="60px" />
@@ -210,8 +210,7 @@ const SearchProfessionalsPage = () => {
           </Container>
           <Container maxWidth="lg">
             <Grid container>
-              {professionalsList.length > 0 &&
-                professionalsList.map((item) => (
+              {professionalsList &&               professionalsList.map((item) => (
                   <Grid item xs={12} key={item.id}>
                     {/* <Link passHref href="perfil-terapeuta"> */}
                     <CardBox className="">

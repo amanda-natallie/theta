@@ -268,28 +268,31 @@ export default function HomePage({ deviceType }) {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Box>
+             <Link passHref href="/busca-profissionais">
+              <Box className="box-link">
                 <div className="avatar">
                   <CenteredImage src="/media/home/6.svg" alt="" />
                 </div>
                 <Heading06>Escolha seu Terapeuta</Heading06>
                 <Text color={colors.gray03}>
-                  Clique no botão abaixo e navegue nos perfis dos profissionais
+                  Clique aqui e navegue nos perfis dos profissionais
                   cadastrados.
                 </Text>
               </Box>
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Box>
+            <Link passHref href="/agendamento-por-horario">
+              <Box className="box-link">
                 <div className="avatar">
                   <CenteredImage src="/media/home/7.svg" alt="" />
                 </div>
                 <Heading06>Agende o horário</Heading06>
                 <Text color={colors.gray03}>
-                  Você pode filtrar por nome, localização, data, hora ou
-                  certificação Thetahealing®.
+                  Você pode filtrar por data e hora. Clique aqui para agendar seu horário.
                 </Text>
               </Box>
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
               <Box>

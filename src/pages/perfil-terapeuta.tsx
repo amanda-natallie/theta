@@ -28,9 +28,6 @@ const ProfessionalPublicProfilePage = () => {
   const [tabActive, setTabActive] = useState("artigos");
   const [selectedDate, setDateSelected] = useState(new Date());
 
-  useEffect(() => {
-    alert(Router.pathname)
-  },[])
   
 
   const handleDateChange = (e: any): void => {
