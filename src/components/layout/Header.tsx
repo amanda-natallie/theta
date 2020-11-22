@@ -77,9 +77,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <li>
                 <Link href="/informacoes" >Suporte</Link>
                 </li>
-                <li>
-                  <Link href="/">Notícias</Link>
-                </li>
+                
                 <li>
                   <Link href="/">Social</Link>
                 </li>
@@ -119,17 +117,15 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
               <li>
               <Link href="/informacoes" >Suporte</Link>
               </li>
-              <li>
-                <Link href="/">Notícias</Link>
-              </li>
+              
               <li>
                 <Link href="/dashboard">Área do cliente</Link>
               </li>
             </Nav>
             <ActionsAreaDiv>
-              <ActionsArea>
+              {/* <ActionsArea>
                 <SearchArea color={color} />
-              </ActionsArea>
+              </ActionsArea> */}
               {logStatus ? (
                 <button style={{backgroundColor: 'transparent'}} onClick={() => {dispatch({ type: 'loading' }); userLogout()}}>
                   <MenuIconButton color={color}>

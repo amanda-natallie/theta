@@ -20,14 +20,18 @@ import Loading from "../../components/layout/Loading";
 import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
 import { renderDate } from "../../utils/helpers";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
+  const router = useRouter()
+
   const [appointments, setAppointments] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [user, setUser] = useState(undefined);
 
   const getInformation = async () => {
+    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {   
     const userInfo: any = localStorage.getItem("userInformation");
     const token: string = localStorage.getItem("authToken");
     setUser(JSON.parse(userInfo));
@@ -39,7 +43,10 @@ const Dashboard = () => {
         ? await userAppointments(token)
         : await therapistAppointments(token);
     setAppointments(response);
-  };
+  } else {
+    router.push("/login")
+  }
+}
 
   useEffect(() => {
     getInformation();
