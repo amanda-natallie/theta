@@ -455,21 +455,27 @@ export default function HomePage({ deviceType }) {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={12} md={6} lg={4}>
-            <MidiaBox2>
-              <img src="/media/home/Image.jpg" alt="ok" />
-            </MidiaBox2>
+            <Link passHref href="https://www.instagram.com/thetabrasilonline/" >
+              <MidiaBox2 className="box-link">
+                <img src="/media/midia/insta.png" alt="ok" />
+              </MidiaBox2>
+            </Link>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Link passHref href="https://www.facebook.com/ThetaBrasil.online">
+              <MidiaBox2 className="box-link">
+                <img src="/media/midia/face.png" alt="ok" />
+              </MidiaBox2>
+            </Link>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Link passHref href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w">
+              <MidiaBox2 className="box-link">
+                <img src="/media/midia/youtube.png" alt="ok" />
+              </MidiaBox2>
+            </Link>
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} lg={4}>
-            <MidiaBox2>
-              <img src="/media/home/Image.jpg" alt="ok" />
-            </MidiaBox2>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
-            <MidiaBox2>
-              <img src="/media/home/Image.jpg" alt="ok" />
-            </MidiaBox2>
-          </Grid>
         </Grid>
       </Container>
       <Container maxWidth="lg">
@@ -528,16 +534,49 @@ export default function HomePage({ deviceType }) {
       <PurpleSection>
         <img src="/media/home/mandala.png" width="133" height="130" />
         <p>
-          Somos Curadores Curamos com Luz Luz do nosso amor Toda compaixão virou
-          ação de amor Luz para curar Evoco das estrelas Vem da natureza do
-          centro da Terra de todo o Universo Cura a Mãe Terra e todas as plantas
-          e todas as pedras todos os animais
+          Somos Curadores
+          <br />
+          Curamos com Luz
+          <br />
+          Luz do nosso amor
+          <br />
+          Toda compaixão <br />
+          Virou ação de amor <br />
+          Luz para curar <br />
+          Evoco das estrelas
+          <br />
+          Vem da natureza
+          <br />
+          Do centro da Terra
+          <br />
+          De todo o Universo
+          <br />
+          Cura a Mãe Terra
+          <br />
+          E todas as plantas
+          <br />
+          E todas as pedras
+          <br />
+          Todos os animais
+          <br />
         </p>
         <p>
-          os elementais todos os espíritos os mortos e os vivos os ¨intras¨e os
-          ¨extras¨ Toda a humanidade toda a natureza Cura a Mãe Terra Vem de
-          todo Universo Espalhando a sua Luz Luz que chega á terra Cura toda a
-          natureza Despertando a Humanidade Curando todo o Planeta
+          Os elementais
+          <br />
+          Todos os espíritos <br />
+          os mortos e os vivos <br />
+          os ¨intras¨ e os ¨extras¨ <br />
+          Toda a humanidade <br />
+          toda a natureza <br />
+          Cura a Mãe Terra <br />
+          Vem de todo Universo <br />
+          Espalhando a sua Luz <br />
+          Luz que chega á terra
+          <br />
+          Cura toda a natureza <br />
+          Despertando a Humanidade <br />
+          Curando todo o Planeta
+          <br />
         </p>
       </PurpleSection>
       <Footer />
