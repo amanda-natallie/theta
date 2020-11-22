@@ -57,6 +57,17 @@ export const Text = styled.p`
     color: ${theme.palette.primary.main};
     font-weight: 700;
   }
+
+  & .navigation {
+    transition: all .2s ease;
+    cursor: pointer;
+
+    &:hover {
+     color: #000;
+     font-weight: 700;
+    }
+  
+  }
 `;
 export const Quote = styled.p`
   margin: 30px 0;

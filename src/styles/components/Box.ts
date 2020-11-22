@@ -138,6 +138,7 @@ export const BigMediaBox = styled(Box)`
 `;
 
 export const MidiaBox2 = styled(MidiaBox)`
+  min-height: unset;
   width: calc(100% - 40px);
   & .content > .darkDate {
     color: ${theme.palette.primary.dark};

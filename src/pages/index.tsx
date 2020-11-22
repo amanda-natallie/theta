@@ -50,16 +50,16 @@ import Footer from "../components/layout/Footer";
 import Link from "next/link";
 
 export default function HomePage({ deviceType }) {
-  const [showAboutUs, setShowAboutUs] = useState(true);
-  const [showOurPorpouse, setShowOurPorpouse] = useState(true);
+  const [showAboutUs, setShowAboutUs] = useState(false);
+  const [showOurPorpouse, setShowOurPorpouse] = useState(false);
 
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    if(localStorage.getItem("authToken")){
-      window.location.href = "/busca-profissionais"
+    if (localStorage.getItem("authToken")) {
+      window.location.href = "/busca-profissionais";
     }
-  }, [])
+  }, []);
 
   return (
     <HomeWrapper>
@@ -85,116 +85,85 @@ export default function HomePage({ deviceType }) {
       <Container maxWidth="lg">
         <Grid container spacing={10}>
           <Grid item xs={12} sm={12} md={6}>
-            <IconTitle>
-              <ColorfulIcon onClick={() => setShowAboutUs(!showAboutUs)}>
-                {showAboutUs === true ? (
-                  <MinusSvgIcon width="15" fillColor="white" />
-                ) : (
-                  <PlusSvgIcon width="20" fillColor="white" />
-                )}
-              </ColorfulIcon>
-              <Title>Sobre Nós</Title>
-            </IconTitle>
+            <Title>Sobre Nós</Title>
+            <Text>
+              Utilizando a terapia holística-quântica chamada Thetahealing®,
+              este website abre mais um canal, uma fonte para seu
+              auto-conhecimento e cura. Nossa comunidade de terapeutas
+              thetahealers preparam-se constantemente para auxiliar você que
+              busca uma vida mais feliz, tranquila, confiante, saudável e
+              abundante.
+            </Text>
+
+            <Text>
+              Todos os profissionais aqui cadastrados são certificados
+              internacionalmente pelo Instituto THInK e seus diplomas anexados
+              aos seus perfis pessoais. Isso significa que você está no local
+              certo se deseja conhecer e ser tratado com a verdadeira técnica
+              Thetahealing®.
+              <span
+                onClick={() => setShowAboutUs(!showAboutUs)}
+                className="navigation"
+                style={{ marginLeft: 10 }}
+              >
+                {showAboutUs ? "ver menos" : "ver mais"}
+              </span>
+            </Text>
 
             {showAboutUs && (
-              <>
-                <Text>
-                  Construído com o objetivo de disseminar a cura através do
-                  Thetahealing®, este website aproxima aqueles que já praticam a
-                  técnica como terapeutas das pessoas que buscam auxílio para
-                  sua evolução pessoal.
-                </Text>
-
-                <Text>
-                  Todos os profissionais aqui cadastrados são certificados
-                  internacionalmente pelo Instituto THInK, uma vez que foram
-                  capacitados por instrutores acreditados pela própria
-                  desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além
-                  da certificação, nossos thetahealers participam constantemente
-                  de cursos de reciclagem junto aos mentores da plataforma, que
-                  são extremamente qualificados para o desenvolvimento
-                  profissional do grupo – tudo para que você tenha a melhor
-                  experiência possível!
-                </Text>
-
-                <Text>
-                  Entendendo o grande potencial curativo desta ferramenta, os
-                  terapeutas do ThetaBrasil.online atendem de forma solidária,
-                  ou seja, cobrando preços abaixo do praticado no mercado, porém
-                  com a mesma qualidade e eficiência do serviço prestado em
-                  outros canais. Assim, desejamos abrir portas para que você
-                  possa experimentar esta incrível ferramenta de cura com total
-                  segurança, credibilidade e profissionalismo.{" "}
-                </Text>
-                <Text>
-                  Permita-se ter uma vida sem sofrimento, culpa, limitações ou
-                  desequilíbrio. Lembre-se: você têm o livre arbítrio de
-                  escolha, portanto faça da sua caminhada uma jornada de luz,
-                  com a ajuda do Thetahealing®. Conheça nossos terapeutas e
-                  agende sua consulta.
-                </Text>
-              </>
+              <Text>
+                A plataforma ThetaBrasil.online é destinada para atendimento
+                somente no formato online, onde toda experiência será realizada
+                de forma segura e protegida. Ver você feliz é nosso objetivo.
+                Permita-se viver sem sofrimento, culpa, ressentimentos ou
+                limitações. Você merece! Lembre-se de que você têm o livre
+                arbítrio de escolha - faça da sua caminhada uma jornada de luz
+                com a ajuda do Thetahealing®.
+              </Text>
             )}
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
-            <IconTitle>
-              <ColorfulIcon
+            <Title>E nosso Propósito</Title>
+            <Text>
+              Por meio desta plataforma de atendimento online, desejamos
+              desmistificar alguns préconceitos sobre o Thetahealing®, pois
+              estamos convictos da sua eficácia e benefícios reais. Não somos
+              curandeiros, mas o desejo da curar nos move. Somos curadores de
+              alma. Queremos ajudar pessoas pois essa é a nosso propósito. E o
+              Thetahealing® é nossa ferramenta de trabalho.
+            </Text>
+
+            <Text>
+              Decidimos trabalhar de forma solidária, cobrando um valor abaixo
+              do praticado no mercado e doando 10 por cento de toda receita para
+              projetos sociais cadastrados.
+              <span
                 onClick={() => setShowOurPorpouse(!showOurPorpouse)}
+                className="navigation"
+                style={{ marginLeft: 10 }}
               >
-                {showOurPorpouse === true ? (
-                  <MinusSvgIcon width="15" fillColor="white" />
-                ) : (
-                  <PlusSvgIcon width="20" fillColor="white" />
-                )}
-              </ColorfulIcon>
-              <Title>E nosso Propósito</Title>
-            </IconTitle>
+                {showOurPorpouse ? "ver menos" : "ver mais"}
+              </span>
+            </Text>
 
             {showOurPorpouse && (
-              <>
-                <Text>
-                  Construído com o objetivo de disseminar a cura através do
-                  Thetahealing®, este website aproxima aqueles que já praticam a
-                  técnica como terapeutas das pessoas que buscam auxílio para
-                  sua evolução pessoal.
-                </Text>
-
-                <Text>
-                  Todos os profissionais aqui cadastrados são certificados
-                  internacionalmente pelo Instituto THInK, uma vez que foram
-                  capacitados por instrutores acreditados pela própria
-                  desenvolvedora da técnica Thetahealing®, Vianna Stibal. Além
-                  da certificação, nossos thetahealers participam constantemente
-                  de cursos de reciclagem junto aos mentores da plataforma, que
-                  são extremamente qualificados para o desenvolvimento
-                  profissional do grupo – tudo para que você tenha a melhor
-                  experiência possível!
-                </Text>
-
-                <Text>
-                  Entendendo o grande potencial curativo desta ferramenta, os
-                  terapeutas do ThetaBrasil.online atendem de forma solidária,
-                  ou seja, cobrando preços abaixo do praticado no mercado, porém
-                  com a mesma qualidade e eficiência do serviço prestado em
-                  outros canais. Assim, desejamos abrir portas para que você
-                  possa experimentar esta incrível ferramenta de cura com total
-                  segurança, credibilidade e profissionalismo.{" "}
-                </Text>
-                <Text>
-                  Permita-se ter uma vida sem sofrimento, culpa, limitações ou
-                  desequilíbrio. Lembre-se: você têm o livre arbítrio de
-                  escolha, portanto faça da sua caminhada uma jornada de luz,
-                  com a ajuda do Thetahealing®. Conheça nossos terapeutas e
-                  agende sua consulta.
-                </Text>
-              </>
+              <Text>
+                Solidariedade, seriedade, compromisso, honestidade e ética
+                profissional são virtudes que nos guiam nesta caminhada. Por
+                meio do trabalho voluntário de cura Thetahealing®, queremos
+                causar um real impacto positivo na sociedade. A compaixão é um
+                sentimento pulsante no coração de todo curador e no
+                ThetaBrasil.online, exercemos nossa contribuição para o Todo em
+                agradecimento pela evolução espiritual, possibilitada através do
+                conhecimento da técnica Thetahealing®.
+              </Text>
             )}
           </Grid>
 
           <Divider height="60px" />
 
           <Grid item xs={12} sm={12} md={6}>
-            <CenteredImage maxWidth="90%" src="/media/home/2.svg" />
+            <CenteredImage maxWidth="60%" src="/media/home/2.svg" />
           </Grid>
           <Grid item xs={12} sm={12} md={6} className="text-right">
             <Title>
@@ -244,30 +213,32 @@ export default function HomePage({ deviceType }) {
               </SubContainer>
             </Grid>
           </Grid>
+          <Grid container spacing={10}>
+            <Grid item xs={12} sm={12} md={5}>
+              <SubContainer>
+                <CenteredImage maxWidth="70%" src="/media/home/4.svg" />
+              </SubContainer>
+            </Grid>
+            <Grid item xs={12} sm={12} md={7} className="text-right">
+              <Title>Sobre o THInK</Title>
+              <Text color={colors.gray03}>
+                O Instituto de Conhecimento Thetahealing® (Thetahealing
+                Institute of Knowledge) foi criado pela própria desenvolvedora
+                da técnica para ser a casa do thetahealing. É por meio dele que
+                instrutores do mundo todo são treinados e acreditados. Somente
+                os certificados emitidos por esta escola validam o terapeuta
+                como thetahealer. O THInK publica atualmente livros sobre
+                Thetahealing em 21 idiomas e já capacitaram terapeutas em 152
+                países distintos.
+              </Text>
+            </Grid>
+          </Grid>
         </Container>
       </section>
       <Container maxWidth="lg">
         <Divider height="120px" />
         <Grid container spacing={10}>
-          <Grid item xs={12} sm={12} md={5}>
-            <SubContainer>
-              <CenteredImage maxWidth="70%" src="/media/home/4.svg" />
-            </SubContainer>
-          </Grid>
-          <Grid item xs={12} sm={12} md={7} className="text-right">
-            <Title>Sobre o THInK</Title>
-            <Text color={colors.gray03}>
-              O Instituto de Conhecimento Thetahealing® (Thetahealing Institute
-              of Knowledge) foi criado pela própria desenvolvedora da técnica
-              para ser a casa do thetahealing. É por meio dele que instrutores
-              do mundo todo são treinados e acreditados. Somente os certificados
-              emitidos por esta escola validam o terapeuta como thetahealer. O
-              THInK publica atualmente livros sobre Thetahealing em 21 idiomas e
-              já capacitaram terapeutas em 152 países distintos.
-            </Text>
-            <Text>
-              Se você busca por respostas, Thetahealing te ajuda a obtê-las.
-            </Text>
+          <Grid item xs={12} sm={12} className="text-center">
             <Divider height="20px" />
             <Subtitle>
               Thetahealing® não é uma religião; é uma técnica para mudar crenças
@@ -279,29 +250,7 @@ export default function HomePage({ deviceType }) {
             </Text>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item md={6}>
-            <Text color={colors.gray03} size="1.3rem">
-              Consultas a partir de
-            </Text>
-            <PriceBlock>
-              <span>RS</span>
-              <p>107,00</p>
-            </PriceBlock>
-            <Link passHref href="/">
-              <ThetaButton theme="purple">Agenda Online</ThetaButton>
-            </Link>
-          </Grid>
-          <Grid item md={6} className="text-right">
-            <BenefitsList>
-              <li>Agendamento rápido e fácil</li>
-              <li>Valor consulta mais acessível</li>
-              <li>Informações sobre o mundo da cura ThetaHealing®</li>
-              <li>Histórico pessoal de agendamento e consultas</li>
-              <li>Terapeutas Qualificados</li>
-            </BenefitsList>
-          </Grid>
-        </Grid>
+
         <Divider height="60px" />
       </Container>
       <section className="gray01">
@@ -367,8 +316,32 @@ export default function HomePage({ deviceType }) {
               </Box>
             </Grid>
           </Grid>
+          <Divider height="30px" />
+          <Grid container>
+            <Grid item md={6}>
+              <Text color={colors.gray03} size="1.3rem">
+                Consultas a partir de
+              </Text>
+              <PriceBlock>
+                <span>RS</span>
+                <p>107,00</p>
+              </PriceBlock>
+              <Link passHref href="/">
+                <ThetaButton theme="purple">Agenda Online</ThetaButton>
+              </Link>
+            </Grid>
+            <Grid item md={6} className="text-right">
+              <BenefitsList>
+                <li>Agendamento rápido e fácil</li>
+                <li>Valor consulta mais acessível</li>
+                <li>Informações sobre o mundo da cura ThetaHealing®</li>
+                <li>Histórico pessoal de agendamento e consultas</li>
+                <li>Terapeutas Qualificados</li>
+              </BenefitsList>
+            </Grid>
+          </Grid>
+          <Divider height="30px" />
         </Container>
-        <Divider height="90px" />
       </section>
       <Container maxWidth="lg">
         <Divider height="90px" />
@@ -408,7 +381,7 @@ export default function HomePage({ deviceType }) {
           </Link>
         </div>
       </CTA>
-      <Container maxWidth="lg">
+      {/*   <Container maxWidth="lg">
         <GrayTitle>
           Theta<strong>Voice</strong>
         </GrayTitle>
@@ -478,67 +451,23 @@ export default function HomePage({ deviceType }) {
         </Grid>
         <Divider height="50px" />
       </Container>
+       */}
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={12} md={6} lg={4}>
             <MidiaBox2>
               <img src="/media/home/Image.jpg" alt="ok" />
-              <div className="content">
-                <span className="darkDate">Outubro, 10, 2020</span>
-                <p>
-                  #Until recently, the prevailing view assumed lorem ipsum was
-                  born as a nonsense text. “It's not Latin, though it looks like
-                  it, and it actually says nothing,” Before & After magazine
-                  answered a curious reader, “Its ‘words’ loosely approximate
-                  the frequency with which letters occur in English, which is
-                  why at a glance it looks pretty real.”
-                </p>
-                <footer>
-                  <img src="/media/home/facebook.png" alt="facebook" />
-                </footer>
-              </div>
+            </MidiaBox2>
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6} lg={4}>
+            <MidiaBox2>
+              <img src="/media/home/Image.jpg" alt="ok" />
             </MidiaBox2>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={4}>
             <MidiaBox2>
               <img src="/media/home/Image.jpg" alt="ok" />
-              <div className="content">
-                <span>
-                  thetabrasil <small>em agosto 10, 2020</small>
-                </span>
-                <p>
-                  #Until recently, the prevailing view assumed lorem ipsum was
-                  born as a nonsense text. “It's not Latin, though it looks like
-                  it, and it actually says nothing,” Before & After magazine
-                  answered a curious reader, “Its ‘words’ loosely approximate
-                  the frequency with which letters occur in English, which is
-                  why at a glance it looks pretty real.”
-                </p>
-                <footer>
-                  <img src="/media/home/facebook.png" alt="facebook" />
-                </footer>
-              </div>
-            </MidiaBox2>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
-            <MidiaBox2>
-              <img src="/media/home/Image.jpg" alt="ok" />
-              <div className="content">
-                <span>
-                  thetabrasil <small>em agosto 10, 2020</small>
-                </span>
-                <p>
-                  #Until recently, the prevailing view assumed lorem ipsum was
-                  born as a nonsense text. “It's not Latin, though it looks like
-                  it, and it actually says nothing,” Before & After magazine
-                  answered a curious reader, “Its ‘words’ loosely approximate
-                  the frequency with which letters occur in English, which is
-                  why at a glance it looks pretty real.”
-                </p>
-                <footer>
-                  <img src="/media/home/facebook.png" alt="facebook" />
-                </footer>
-              </div>
             </MidiaBox2>
           </Grid>
         </Grid>

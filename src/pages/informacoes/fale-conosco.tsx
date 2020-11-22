@@ -15,7 +15,7 @@ const ContactUs = () =>{
         <Container maxWidth='lg' style={{marginTop:"50px"}}> 
                 <Grid container >
                     <Grid item xs={2} md={4}>
-                         <BackButton link="/" />
+                         <BackButton link="/informacoes" />
                     </Grid>
                     <Grid item xs={10} md={8} >
                         <Title>Estamos aqui para te ajudar :)</Title>
