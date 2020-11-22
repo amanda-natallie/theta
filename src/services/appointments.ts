@@ -13,7 +13,7 @@ export const makeAppointment = async (props: getAllProfessionalsProps) => {
   { month: '2-digit'})}-${date.toLocaleString('en-US', { day: '2-digit'})} ${time}:00:00`
 
   const requestBody = { 
-    provider_id,
+    therapist_id: provider_id,
     date: formatDate,
   }
 

@@ -1,19 +1,25 @@
 import { Breadcrumbs, Typography } from "@material-ui/core";
 import Link from "next/link";
 import React, { memo } from "react";
+import { useDispatch } from "react-redux"
+import { userLogout } from "../../services/users";
+import { MenuIconButton } from "../../styles/components/Button";
 import {
   DashboardPage,
   DashboardMenu,
 } from "../../styles/components/DashboardPage";
 import { Divider } from "../../styles/components/Divider";
 import { FlexBox } from "../../styles/components/FlexBox";
+import theme from "../../styles/theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
+import SignInSvgIcon from "../icons/SignInSvgIcon";
 
 const DashboardWrapper = ({
   title,
   breadcrumbs,
   children,
 }: interfaceConstant.PageProps) => {
+  const dispatch = useDispatch()
   return (
     <DashboardPage>
       <div className="sidebar">
@@ -65,6 +71,16 @@ const DashboardWrapper = ({
               alt="notification menu"
             />
             <img src="/media/icons/dashboard/usericon.svg" alt="user menu" />
+            <button style={{backgroundColor: 'transparent'}} onClick={() => {dispatch({ type: 'loading' }); userLogout()}}>
+                  <MenuIconButton color="dark">
+                    <SignInSvgIcon
+                      width="19"
+                      height="18"
+                      fillColor={theme.palette.primary.main}
+                    />
+                    Sair
+                  </MenuIconButton>
+                </button>
           </div>
         </div>
         <div className="breadcrumbs">

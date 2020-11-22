@@ -10,21 +10,18 @@ import {
 import Head from "next/head";
 import Link from "next/link";
 import BackButton from "../../components/general/BackButton";
-import YoutubeSvgIcon from "../../components/icons/YoutubeSvgIcon";
 import PageWrapper from "../../components/layout/PageWrapper";
 import { Box, CardBox } from "../../styles/components/Box";
-import { NavigationButton, ThetaButton } from "../../styles/components/Button";
+import { ThetaButton } from "../../styles/components/Button";
 import { Divider } from "../../styles/components/Divider";
 import { FlexBox } from "../../styles/components/FlexBox";
 import { MiniChip } from "../../styles/components/MiniChip";
-import { PriceBlock } from "../../styles/pages/Home";
 import {
   Content,
   Header,
   LanguageList,
   ProfileBlock,
   PublicProfilePageWrapper,
-  TabList,
 } from "../../styles/pages/ProfileProfessional";
 import { TimePicker } from "@material-ui/pickers";
 import ComingSoon from "../../components/general/ComingSoon/ComingSoon";
@@ -36,20 +33,17 @@ import {
 import { renderIdade } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { Select, MenuItem } from "@material-ui/core";
-import { id } from "date-fns/locale";
-import { userInfo } from "os";
-import { CollectionsBookmarkSharp } from "@material-ui/icons";
 import { makeAppointment } from "../../services/appointments";
 import Loading from "../../components/layout/Loading";
 
 const ProfessionalPublicProfilePage = () => {
   const today = new Date();
   /* const [tabActive, setTabActive] = useState("artigos"); */
-  const [currentDate, setCurrentDate] = useState<any>(today);
-  const [open, setOpen] = useState(false);
-  const [localLoading, setLocalLoading] = useState(false);
+  const [currentDate] = useState<any>(today);
+  const [, setOpen] = useState(false);
+  const [, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
-  const [appointmentInformation, setAppointmentInformation] = useState({
+  const [, setAppointmentInformation] = useState({
     providerName: "",
     providerPic: "",
     date: "",
@@ -369,7 +363,7 @@ const ProfessionalPublicProfilePage = () => {
                               }}
                             >
                               {thetaInformation.availability.map(
-                                (newItem: any, index: number) =>
+                                (newItem: any) =>
                                   newItem.available && (
                                     <MenuItem
                                       onChange={(e: any) =>

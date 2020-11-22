@@ -40,3 +40,13 @@ export const therapistAvailability = async (id: string) => {
 };
 
 
+export const therapistAppointments = async (token: string) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+
+  const availability = await api.get(`appointments/therapist`, config);
+  return availability.data;
+};
+
+
