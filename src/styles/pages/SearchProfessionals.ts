@@ -19,3 +19,7 @@ export const SearchTherapists = styled.section`
   
   }
 `;
+
+export const TimeChips = styled.section`
+  margin: 20px
+`

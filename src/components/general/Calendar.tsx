@@ -4,8 +4,13 @@ import "react-day-picker/lib/style.css";
 
 import { CalendarContainer } from "../../styles/components/Calendar";
 
-const Calendar: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+interface Iprops {
+  selectedDate: any, 
+  setSelectedDate: Function
+}
+
+const Calendar = ({selectedDate, setSelectedDate}: Iprops) => {
+  
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {

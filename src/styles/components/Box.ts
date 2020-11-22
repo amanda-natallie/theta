@@ -176,7 +176,7 @@ export const CardBox = styled(Box)`
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02),
     0px 8px 12px rgba(0, 0, 0, 0.14);
   border-radius: 4px;
-  flex-direction: row;
+  flex-direction: ${(props: interfaceConstant.boxProps) => props.column ? "column" : "row"}; 
   justify-content: space-between;
   margin: 10px 0;
   padding: 20px;
