@@ -72,7 +72,7 @@ export default function HomePage({ deviceType }) {
           <img src="/media/home/capa-logo.svg" alt="Logo" />
           <h4>Plataforma online de atendimento Thetahealing®</h4>
           <ColoredTitle>Conectados pela cura</ColoredTitle>
-          <Link passHref href="/">
+          <Link passHref href="/suporte/conheca">
             <ThetaButton theme="rainbow">Conheça</ThetaButton>
           </Link>
           <Navigation alt="Navigation" src="/media/home/arrow.svg" />

@@ -42,7 +42,7 @@ const Footer = () => {
         <FooterMenu>
           <Link href="#" >Home</Link>
           <Link href="#" >Contato</Link>
-          <Link href="/informacoes" >Suporte</Link>
+          <Link href="/suporte" >Suporte</Link>
           <Link href="#" >Notícias</Link>
           <Link href="#" >Projetos Assistidos</Link>
         </FooterMenu>

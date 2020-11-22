@@ -21,10 +21,10 @@ const information =() =>{
                          <BackButton link="/" />
                     </Grid>
                     <Grid item xs={10} md={8} >
-                        <Title>Informações</Title>
+                        <Title>Suporte</Title>
                     </Grid>
                 </Grid>
-           <Link passHref href="/informacoes/nosso-projeto">
+           <Link passHref href="/suporte/nosso-projeto">
             <CardBox >
                 <TextInformation>               
                 <image style={{margin:"2px"}}>
@@ -64,7 +64,7 @@ const information =() =>{
             </CardBox>
           </Link>
           <Divider height="10px" />
-          <Link passHref href="/informacoes/termos-e-condicoes">
+          <Link passHref href="/suporte/termos-e-condicoes">
             <CardBox className="box-link">
               <TextInformation>
                 <image style={{ margin: "2px" }}>
@@ -118,7 +118,7 @@ const information =() =>{
             </CardBox>
           </Link>
           <Divider height="10px" />
-          <Link passHref href="/informacoes/perguntas-frequentes">
+          <Link passHref href="/suporte/perguntas-frequentes">
             <CardBox className="box-link">
               <TextInformation>
                 <image style={{ margin: "2px" }}>
@@ -173,7 +173,7 @@ const information =() =>{
             </CardBox>
           </Link>
           <Divider height="10px" />
-          <Link passHref href="/informacoes/fale-conosco">
+          <Link passHref href="/suporte/fale-conosco">
             <CardBox className="box-link">
               <TextInformation>
                 <image style={{ margin: "2px" }}>

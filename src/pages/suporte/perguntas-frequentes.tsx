@@ -16,7 +16,7 @@ const CommonQuestions = () =>{
             <Container maxWidth='lg'style={{justifyContent:'space-between', marginTop:"50px"}}>
                 <Grid container >
                     <Grid item xs={2} md={4}>
-                        <BackButton link="/informacoes" />
+                        <BackButton link="/suporte" />
                     </Grid>
                     <Grid item xs={10} md={8} >
                         <Title>Perguntas Frequentes</Title>

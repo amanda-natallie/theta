@@ -14,7 +14,7 @@ const OurProject = () => {
         <Container maxWidth="lg" style={{ marginTop: "50px" }}>
           <Grid container>
           <HeaderWithBackButtonWrapper>
-              <BackButton link="/informacoes" />
+              <BackButton link="/suporte" />
               <Title>Nosso Projeto</Title>
               <div />
             </HeaderWithBackButtonWrapper>
