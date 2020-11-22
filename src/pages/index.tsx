@@ -481,7 +481,7 @@ export default function HomePage({ deviceType }) {
 
         </Grid>
       </Container>
-      <Container maxWidth="lg">
+     {/*  <Container maxWidth="lg">
         <Divider height="60px" />
         <GrayTitle>Podcasts & Playlists</GrayTitle>
         <Divider height="30px" />
@@ -533,7 +533,7 @@ export default function HomePage({ deviceType }) {
           )}
         </CustomCarousel>
         <Divider height="60px" />
-      </Container>
+      </Container> */}
       <PurpleSection>
         <img src="/media/home/mandala.png" width="133" height="130" />
         <p>
