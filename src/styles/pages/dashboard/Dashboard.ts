@@ -45,6 +45,9 @@ export const AppointmentList = styled.ul`
     justify-content: center;
     flex-direction: column;
     margin-bottom: 10px;
+    transition: all .2s ease;
+    cursor: pointer; 
+
 
     > div {
       width: 100%;
@@ -62,6 +65,19 @@ export const AppointmentList = styled.ul`
       height: 50px;
       background: url("/media/icons/camera.svg") top center no-repeat;
       background-size: cover;
+    }
+
+    &:hover {
+      background: ${theme.palette.primary.main};
+      
+      & * {
+        color: white;
+        fill: white;
+      }
+
+      & img {
+        filter: brightness(0) invert(1);
+      }
     }
   }
 `;

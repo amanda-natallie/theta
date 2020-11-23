@@ -53,11 +53,12 @@ export const userRegistration = async (userData: userDataProps) => {
     });
 };
 
-export const userAppointments = async (token: string) => {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
 
-  const availability = await api.get(`appointments/user`, config);
-  return availability.data;
+export const userAppointments = async (id: string) => {
+  try {
+    const response = await api.get(`/appointments/client/${id}`,);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
+  }
 };

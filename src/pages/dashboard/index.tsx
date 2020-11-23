@@ -25,6 +25,7 @@ import { useRouter } from "next/router";
 const Dashboard = () => {
   const router = useRouter()
 
+  const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [appointments, setAppointments] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
@@ -32,17 +33,19 @@ const Dashboard = () => {
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {   
-    const userInfo: any = localStorage.getItem("userInformation");
+    const userInfo = JSON.parse(localStorage.getItem("userInformation") || "{}");
     const token: string = localStorage.getItem("authToken");
-    setUser(JSON.parse(userInfo));
+    setUser(userInfo);
     setIsLoggedIn(token);
 
     user && setIsEmailConfirmed(user.confirmed_email);
+    
     const response =
-      userInfo.typeUser === "client"
-        ? await userAppointments(token)
-        : await therapistAppointments(token);
+    userInfo.typeUser === "client"
+    ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
+    : await therapistAppointments(userInfo.id);
     setAppointments(response);
+    console.log("kaakak", response)
   } else {
     router.push("/login")
   }
@@ -52,8 +55,7 @@ const Dashboard = () => {
     getInformation();
   }, []);
 
-  //marcar isso como false pra ver variação do box de pending requests
-  const isPending = false;
+
 
   return (
     <>
@@ -98,46 +100,69 @@ const Dashboard = () => {
                   <Grid item md={4}>
                     <Box>
                       <h2>Agendamentos</h2>
+                        {user.typeUser && "client" ? (
+                            <AppointmentList>
+                              {appointments &&
+                                appointments.map(
+                                  (appointmentItem: any, index: number) => (
+                                    <li key={index} onClick={() => setCurrentAppointment(appointmentItem)}>
+                                      <FlexBox justify="space-between">
+                                        <h5>{appointmentItem.therapist.name}</h5>
+                                        <p className="time">
+                                          <img
+                                            src="/media/icons/time.svg"
+                                            alt="time"
+                                          />
+                                          {renderDate(appointmentItem.date)}
+                                        </p>
+                                        <PaymentStatus status="Pago" />
+                                      </FlexBox>
+                                    </li>
+                                  )
+                                )}
+                            </AppointmentList>
+                        ) : 
+                        (
+                            <AppointmentList>
+                              {appointments &&
+                                appointments.map(
+                                  (appointmentItem: any, index: number) => (
+                                    <li key={index}>
+                                      <FlexBox justify="space-between">
+                                        <h5>{appointmentItem.user.name}</h5>
+                                        <p className="time">
+                                          <img
+                                            src="/media/icons/time.svg"
+                                            alt="time"
+                                          />
+                                          {renderDate(appointmentItem.date)}
+                                        </p>
+                                        <PaymentStatus status="Pago" />
+                                      </FlexBox>
+                                    </li>
+                                  )
+                                )}
+                            </AppointmentList>
 
-                      <AppointmentList>
-                        {appointments &&
-                          appointments.map(
-                            (appointmentItem: any, index: number) => (
-                              <li key={index}>
-                                <FlexBox justify="space-between">
-                                  <h5>{appointmentItem.user.name}</h5>
-                                  <p className="time">
-                                    <img
-                                      src="/media/icons/time.svg"
-                                      alt="time"
-                                    />
-                                    {renderDate(appointmentItem.date)}
-                                  </p>
-                                  <PaymentStatus status="Pago" />
-                                </FlexBox>
-                              </li>
-                            )
-                          )}
-                      </AppointmentList>
+                        )}
                     </Box>
                   </Grid>
 
-                  {user.typeUser === "client" && (
+                  {user.typeUser === "client" && currentAppointment && (
                     <Grid item xs={12}>
                       <PendingAppointment>
                         <Subtitle color={"white"}>
-                          {!isPending
-                            ? "Finalize seu agendamento agora mesmo!"
-                            : "Busque profissionais e faça sua consulta agora!"}
+                        {currentAppointment.status === "Aguardando Pagamento" ? 
+                        "Finalize seu agendamento agora mesmo!" : ""}
                         </Subtitle>
-                        {!isPending ? (
+                       
                           <>
                             <FlexBox>
                               <Avatar
                                 src="/media/thera.png"
                                 className="avatar-therapist"
                               />{" "}
-                              <p> Matheus Rabelo</p>
+                              <p> {currentAppointment.therapist.name}</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </FlexBox>
@@ -162,16 +187,8 @@ const Dashboard = () => {
                               Pagar agora
                             </ThetaButton>
                           </>
-                        ) : (
-                          <Link passHref href="/busca-profissionais">
-                            <ThetaButton
-                              theme="rainbow"
-                              style={{ alignSelf: "baseline" }}
-                            >
-                              Buscar Profissionais
-                            </ThetaButton>
-                          </Link>
-                        )}
+                        
+                        
                       </PendingAppointment>
                     </Grid>
                   )}
