@@ -8,13 +8,13 @@ interface getAllProfessionalsProps {
 
 export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   const { day, month, year } = props;
-  const config = { params: { day, month, year } };
+  const requestBody: any = { date: `${year}-${month}-${day}T08:00` };
   try {
-    const providers: any = await api.get("providers");
+    const providers: any = await api.get("therapists");
     const result = providers.data.map(async (item) => {
-      const availability = await api.get(
-        `providers/${item.id}/day-availability`,
-        config
+      const availability = await api.post(
+        `appointments/therapist/${item.id}/available`,
+        requestBody
       );
       return { ...item, availability: availability.data };
     });
@@ -48,5 +48,3 @@ export const therapistAppointments = async (token: string) => {
   const availability = await api.get(`appointments/therapist`, config);
   return availability.data;
 };
-
-
