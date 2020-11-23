@@ -286,7 +286,7 @@ const ProfessionalPublicProfilePage = () => {
                       onChange={handleDateChange}
                     />
                   </FlexBox>
-                  <Calendar />
+                  <Calendar selectedDate={selectedDate} setSelectedDate={setDateSelected}/>
                   <Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">
