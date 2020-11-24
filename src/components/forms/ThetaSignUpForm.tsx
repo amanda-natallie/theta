@@ -33,7 +33,7 @@ const ThetaSignUpForm = () => {
       
     },
     validationSchema: Yup.object().shape({
-      nome:Yup.string().required("Obrigatório"),
+      /* nome:Yup.string().required("Obrigatório"),
       firstName: Yup.string().required("Obrigatório"),
       lastName: Yup.string().required("Obrigatório"),
       CPF: Yup.string().required("Obrigatório"),
@@ -52,9 +52,9 @@ const ThetaSignUpForm = () => {
       passwordConfirm: Yup.string()
         .required("Obrigatório")
         .oneOf([Yup.ref("password"), null], "As senhas não combinam"),
-      termsAccepted: Yup.boolean().required("Obrigatório"),
+      termsAccepted: Yup.boolean().required("Obrigatório"), */
     }),
-    onSubmit: (values: formConstants.ThetaProps) => {
+    onSubmit: (values: any) => {
       //
     },
   });
