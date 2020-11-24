@@ -32,6 +32,7 @@
     "react-dom": "16.13.1",
     "react-loading": "^2.0.3",
     "react-multi-carousel": "^2.5.5",
+    "react-paypal-button-v2": "^2.6.2",
     "react-redux": "^7.2.1",
     "react-spinners": "^0.9.0",
     "redux": "^4.0.5",

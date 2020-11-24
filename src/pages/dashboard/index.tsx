@@ -23,7 +23,7 @@ import { userAppointments } from "../../services/users";
 import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { renderAppointmentText } from "../../services/appointments";
-import PaypalButton from "../../components/general/PayPalButton";
+import PaypalButton from "../../components/general/PaypalButton";
 
 const Dashboard = () => {
   const router = useRouter()

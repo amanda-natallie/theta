@@ -1,10 +1,10 @@
 import React, { useRef, useEffect} from "react";
 
 const PaypalButton = (setShowDialog: any) => {
-  const paypal = useRef();
+  const paypal: any = useRef(null);
 
   useEffect(() => {
-    window.paypal.Buttons({
+    paypal.Buttons({
       createOrder: (data, actions, err) => {
         return actions.order.create({
           intent: "CAPTURE",
