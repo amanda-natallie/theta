@@ -17,28 +17,16 @@ declare namespace formConstants {
     termsAccepted: boolean;
   }
   interface ThetaProps {
+    name: string;
     firstName: string;
     lastName: string;
+    CPF: string;
     email: string;
-    birthDay: number;
-    birthMonth: number;
-    birthYear: number;
     state: string;
     city: string;
     ddd: number;
     phone: number;
-    user: string;
-    password: string;
-    emailConfirm: string;
-    passwordConfirm: string;
-    termsAccepted: boolean;
-    languages: Array<string>;
-    facebook: string,
-    instagram: string,
-    linkedin: string,
-    youtube: string,
-    twitter: string,
-    extra: string;
+    certificate:string;
   }
 
   interface LoginProps {

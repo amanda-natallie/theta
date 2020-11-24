@@ -67,6 +67,7 @@ declare namespace interfaceConstant {
     type: "local" | "date"
     label: string
   }
+  
 }
 
 export default interfaceConstant;

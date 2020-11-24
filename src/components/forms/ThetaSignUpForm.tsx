@@ -11,47 +11,32 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Title } from "../../styles/components/Typography";
+import ListStyle  from "../../styles/components/listStyle"
 import { useDispatch } from "react-redux";
 import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
 import Link from "next/link";
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const ThetaSignUpForm = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      name:"",
+      CPF:"",
       email: "",
-      birthDay: undefined,
-      birthMonth: undefined,
-      birthYear: undefined,
       state: "",
       city: "",
       phone: undefined,
       ddd: undefined,
-      user: "",
-      password: "",
-      emailConfirm: "",
-      passwordConfirm: "",
-      termsAccepted: false,
-      languages: [],
-      facebook: "",
-      instagram: "",
-      linkedin: "",
-      youtube: "",
-      twitter: "",
-      extra: "",
+      certificate: "",
+      
     },
     validationSchema: Yup.object().shape({
+      nome:Yup.string().required("Obrigatório"),
       firstName: Yup.string().required("Obrigatório"),
       lastName: Yup.string().required("Obrigatório"),
+      CPF: Yup.string().required("Obrigatório"),
       email: Yup.string().required("Obrigatório"),
       emailConfirm: Yup.string()
         .required("Obrigatório")
@@ -77,168 +62,76 @@ const ThetaSignUpForm = () => {
   return (
     <Container maxWidth="sm" className="form signup-form">
       <Title>Você é Thetahealer? </Title>
+      <ListStyle>
+      <p>Se você aceitar o chamado de colaborar com a cura do Todo através do 
+        ThetaBrasil.online, honrará o compromisso de curar-se para poder curar o outro. 
+        Se comprometerá, com seriedade e disciplina, com seu auto-desenvolvimento no Thetahealing. 
+        Respeitará cada cliente assistido e reconhecerá a divindade que habita ser deste universo. </p>
+        <p>À nossa equipe de thetahealers, oferecemos:</p>
+        
+        <ul>
+          <li><b>Apoio técnico, emocional e energético</b> para desenvolver-se na carreira;</li>
+          <li><b>Divulgação como terapeuta e voluntário,</b> em registros e comunicações internas e externas;</li>
+          <li><b>Página pessoal interativa</b> dentro da plataforma para <b>divulgação do trabalho individual,</b> com total transparência de informação;</li>
+          <li>Aproximação de demais terapeutas para <b>networking;</b></li>
+          <li><b>Conhecimento aprofundado</b> sobre a carreira profissional de Thetahealer;</li>
+          <li><b>Capacitação e vivências em Thetahealing:</b> workshops, mini-cursos personalizados, 
+            grupos de estudo e meetings são exemplos de eventos de capacitação técnica promovidos 
+            por nossos instrutores certificados pelo THInK -totalmente grátis!</li>
+          <li><b>Uma fonte de renda extra:</b> tanto para terapeutas iniciantes como para profissionais renomados;</li>
+          <li>Atendimento livre, <b>conforme agenda disponível</b>, sem restrições</li>
+          <li>Uma <b>plataforma segura</b>, desenvolvida com a mais <b>nova tecnologia</b>, 
+            e <b>engajada</b> com público-alvo através de um extensivo trabalho de <b>divulgação em mídias digitais;</b></li>
+          <li>Um local para que você desenvolva um <b>trabalho voluntário significativo;</b></li>
+          <li>Validação da sua <b>capacitação como terapeuta na técnica Thetahealing</b>, em todo Brasil.</li>
+        </ul>
+        </ListStyle>
+        
       <Title>Faça parte deste projeto!</Title>
+      
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={2}>
-          <Grid item xs={12} lg={6}>
+        <Grid item xs={12}>
             <TextField
-              error={false}
               fullWidth
-              label="Primeiro Nome"
+              error={false}
+              label="Nome"
               placeholder="Insira seu nome"
-              value={formik.values.firstName}
+              value={formik.values.name}
               onBlur={formik.handleBlur}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("firstName", event.target.value, true);
+                formik.setFieldValue("name", event.target.value, true);
               }}
               variant="outlined"
               helperText={
-                formik.touched.firstName && formik.errors.firstName
-                  ? formik.errors.firstName
+                formik.touched.name && formik.errors.name
+                  ? formik.errors.name
                   : null
               }
             />
           </Grid>
-          <Grid item xs={12} lg={6}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Ultimo Nome"
-              placeholder="Insira seu sobrenome"
-              value={formik.values.lastName}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("lastName", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.lastName && formik.errors.lastName
-                  ? formik.errors.lastName
-                  : null
-              }
-            />
-          </Grid>
+         
           <Grid item xs={12}>
             <TextField
               fullWidth
               error={false}
-              label="E-mail"
-              placeholder="Insira seu e-mail"
-              value={formik.values.email}
+              label="CPF"
+              placeholder="Insira seu CPF"
+              value={formik.values.CPF}
               onBlur={formik.handleBlur}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("email", event.target.value, true);
+                formik.setFieldValue("CPF", event.target.value, true);
               }}
               variant="outlined"
               helperText={
-                formik.touched.email && formik.errors.email
-                  ? formik.errors.email
+                formik.touched.CPF && formik.errors.CPF
+                  ? formik.errors.CPF
                   : null
               }
             />
           </Grid>
-
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Confirme seu E-mail"
-              placeholder="Insira seu e-mail"
-              value={formik.values.emailConfirm}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("emailConfirm", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.emailConfirm && formik.errors.emailConfirm
-                  ? formik.errors.emailConfirm
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12} className="divider">
-            <FormLabel>Data de Nascimento</FormLabel>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Dia"
-              placeholder="Dia"
-              value={formik.values.birthDay}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthDay", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.birthDay && formik.errors.birthDay
-                  ? formik.errors.birthDay
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Mês"
-              placeholder="Mês"
-              value={formik.values.birthMonth}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthMonth", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.birthMonth && formik.errors.birthMonth
-                  ? formik.errors.birthMonth
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Ano"
-              placeholder="Ano"
-              value={formik.values.birthYear}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthYear", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.birthYear && formik.errors.birthYear
-                  ? formik.errors.birthYear
-                  : null
-              }
-            />
-          </Grid>
-
           <Grid item xs={12} className="divider">
             <FormLabel>Localização</FormLabel>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              error={false}
-              label="Estado"
-              placeholder="Digite seu estado"
-              value={formik.values.state}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("state", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.state && formik.errors.state
-                  ? formik.errors.state
-                  : null
-              }
-            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -259,6 +152,27 @@ const ThetaSignUpForm = () => {
               }
             />
           </Grid>
+         
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              error={false}
+              label="Estado"
+              placeholder="Digite seu estado"
+              value={formik.values.state}
+              onBlur={formik.handleBlur}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                formik.setFieldValue("state", event.target.value, true);
+              }}
+              variant="outlined"
+              helperText={
+                formik.touched.state && formik.errors.state
+                  ? formik.errors.state
+                  : null
+              }
+            />
+          </Grid>
+          
           <Grid item xs={12} className="divider">
             <FormLabel>Nº de Telefone</FormLabel>
           </Grid>
@@ -300,376 +214,54 @@ const ThetaSignUpForm = () => {
               }
             />
           </Grid>
-          <Grid item xs={12} className="divider">
-            <FormLabel>Dados de Acesso</FormLabel>
-          </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               error={false}
-              label="Nome de usuário"
-              placeholder="Escolha um nome de usuário"
-              value={formik.values.user}
+              label="E-mail"
+              placeholder="Insira seu e-mail"
+              value={formik.values.email}
               onBlur={formik.handleBlur}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("user", event.target.value, true);
+                formik.setFieldValue("email", event.target.value, true);
               }}
               variant="outlined"
               helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
+                formik.touched.email && formik.errors.email
+                  ? formik.errors.email
                   : null
               }
             />
           </Grid>
+
+        
           <Grid item xs={12}>
-            <TextField
-              fullWidth
-              error={false}
-              type="password"
-              label="Senha"
-              placeholder="Escolha uma senha"
-              value={formik.values.password}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("password", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.password && formik.errors.password
-                  ? formik.errors.password
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              error={false}
-              type="password"
-              label="Confirme sua Senha"
-              placeholder="Confirme sua senha"
-              value={formik.values.passwordConfirm}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue(
-                  "passwordConfirm",
-                  event.target.value,
-                  true
-                );
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.passwordConfirm && formik.errors.passwordConfirm
-                  ? formik.errors.passwordConfirm
-                  : null
-              }
-            />
-            <p>
-              Use 8 ou mais caracteres com uma mistura de letras, números e
-              símbolos. Não deve conter seu nome ou nome de usuário.
-            </p>
-          </Grid>
-
-          <Grid item xs={12} className="divider">
-            <FormLabel>Sou fluente em:</FormLabel>
-          </Grid>
-
-          <Grid item xs={12} lg={12}>
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Português"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Inglês"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Espanhol"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Mandarim"
-          />
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Arabe"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Russo"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Bengali"
-          />
-
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Hindi"
-          />
-          <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-            label="Outros"
-          />
-          </Grid>
-          <Grid item xs={1}>
-            <YouTubeIcon color='primary' fontSize="default" style={{margin: 10}}/>
-          </Grid>
-          <Grid item xs={11}>
           <TextField
               fullWidth
               error={false}
-              label="https://www.youtube.com/"
-              placeholder="https://www.youtube.com/"
-              value={formik.values.user}
+              label="Certificados emitidos pelo instituto THInk"
+              placeholder="Insira seu link"
+              value={formik.values.certificate}
               onBlur={formik.handleBlur}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("youtube", event.target.value, true);
+                formik.setFieldValue("certificado", event.target.value, true);
               }}
               variant="outlined"
               helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
+                formik.touched.certificate && formik.errors.certificate
+                  ? formik.errors.certificate
                   : null
               }
             />
           </Grid>
+         
+         
+         
 
-          <Grid item xs={1}>
-            <TwitterIcon color='primary' fontSize="default" style={{margin: 10}}/>
-          </Grid>
-          <Grid item xs={11}>
-          <TextField
-              fullWidth
-              error={false}
-              label="https://www.twitter.com/"
-              placeholder="https://www.twitter.com/"
-              value={formik.values.user}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("twitter", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
-                  : null
-              }
-            />
-          </Grid>
+          
+        
+          
 
-          <Grid item xs={1}>
-            <FacebookIcon color='primary' fontSize="default" style={{margin: 10}}/>
-          </Grid>
-          <Grid item xs={11}>
-          <TextField
-              fullWidth
-              error={false}
-              label="https://www.facebook.com/"
-              placeholder="https://www.facebook.com/"
-              value={formik.values.user}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("facebook", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
-                  : null
-              }
-            />
-          </Grid>
-
-          <Grid item xs={1}>
-            <InstagramIcon color='primary' fontSize="default" style={{margin: 10}}/>
-          </Grid>
-          <Grid item xs={11}>
-          <TextField
-              fullWidth
-              error={false}
-              label="https://www.instagram.com/"
-              placeholder="https://www.instagram.com/"
-              value={formik.values.user}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("instagram", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
-                  : null
-              }
-            />
-          </Grid>
-
-          <Grid item xs={1}>
-            <LinkedInIcon color='primary' fontSize="default" style={{margin: 10}}/>
-          </Grid>
-          <Grid item xs={11}>
-          <TextField
-              fullWidth
-              error={false}
-              label="https://www.linkedin.com/in"
-              placeholder="https://www.linkedin.com/in"
-              value={formik.values.user}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("linkedin", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
-                  : null
-              }
-            />
-          </Grid>
-
-          <Grid item xs={8}>
-            <FormControlLabel
-            className="accepterms"
-              control={
-                <Checkbox
-                  checked={formik.values.termsAccepted}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    formik.setFieldValue(
-                      "termsAccepted",
-                      !formik.values.termsAccepted,
-                      true
-                    );
-                  }}
-                  color="primary"
-                />
-              }
-              label="Ao usar a plataforma ThetaBrasil concordo com os termos de uso"
-            />
-          </Grid>
           <Grid item xs={12}>
             <ThetaButton as="button" onClick={undefined} theme="purple" fullWidth >Cadastrar</ThetaButton>
           </Grid>
