@@ -30,6 +30,8 @@ const ThetaSignUpForm = () => {
       phone: undefined,
       ddd: undefined,
       certificate: "",
+      firstName: "",
+      lastName: "",
       
     },
     validationSchema: Yup.object().shape({
