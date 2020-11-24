@@ -34,7 +34,7 @@ const ThetaSignUpForm = () => {
       lastName: "",
       
     },
-    validationSchema: Yup.object().shape({
+    validationSchema: Yup.object().shape({ 
       /* nome:Yup.string().required("Obrigatório"),
       firstName: Yup.string().required("Obrigatório"),
       lastName: Yup.string().required("Obrigatório"),
