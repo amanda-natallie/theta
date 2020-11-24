@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./colors";
 import theme from "./theme";
 
 export default createGlobalStyle`
@@ -10,7 +11,8 @@ export default createGlobalStyle`
   }
 
   body {
-    font-size: 16px
+    font-size: 16px;
+    
   }
 
   a {
@@ -29,6 +31,9 @@ export default createGlobalStyle`
   img {
     max-width: 100%;
     display: block
+  }
+  p, h1, h2, h3, h4, h5, h6, span{
+    color: ${colors.gray50};
   }
 
   .react-multiple-carousel__arrow.react-multiple-carousel__arrow--right,

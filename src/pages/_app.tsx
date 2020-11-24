@@ -3,7 +3,7 @@ import App from "next/app";
 import Head from "next/head";
 import dynamic from 'next/dynamic'
 import { ThemeProvider } from "@material-ui/styles";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import GlobalStyle from "../styles/GlobalStyle";
 import theme from "../styles/theme";
 import "./_app.css";
@@ -12,11 +12,12 @@ import store from "../store";
 import withRedux from "next-redux-wrapper";
 import moment from "moment"
 import MomentUtils from "@date-io/moment"
-
+import Loading from "../components/layout/Loading";
 import "nprogress/nprogress.css";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 function MyApp({ Component, pageProps }) {
+  const { isLoading } = useSelector((state: any) => state.user)
   const TopProgressBar = dynamic(
     () => {
       return import("../components/general/TopProgressBar");
@@ -47,6 +48,7 @@ function MyApp({ Component, pageProps }) {
                 utils={MomentUtils}
                 locale={moment.locale()}
             >
+          {isLoading && <Loading />}
           <GlobalStyle />
           <TopProgressBar />
           <Component {...pageProps} />

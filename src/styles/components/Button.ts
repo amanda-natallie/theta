@@ -26,7 +26,13 @@ const handleColorType = (color: string) => {
         background: linear-gradient(90.47deg, #00A9E0 0%, #8C38B6 51.56%, #EE2737 100%);
       }`;
     case "purple":
-      return `color: #fff; background: ${theme.palette.primary.main}; border: 1px solid ${theme.palette.primary.main}`;
+      return `
+        color: #fff !important; 
+        background: ${theme.palette.primary.main}; 
+        border: 1px solid ${theme.palette.primary.main};
+         
+        
+      `;
     case "purpleOutlined":
       return `color: ${theme.palette.primary.main}; background: white; border: 2px solid ${theme.palette.primary.main}; font-weight: 700;`;
     default:
@@ -59,6 +65,10 @@ export const ThetaButton = styled.a<ButtonProps>`
     &:nth-of-type(2) {
       display: none;
     }
+  }
+
+  & > div {
+    margin: 10px auto;
   }
 `;
 

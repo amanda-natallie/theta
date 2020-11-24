@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { ThetaButton, MenuIconButton } from "../../styles/components/Button";
 import {
@@ -18,9 +18,19 @@ import SignInSvgIcon from "../icons/SignInSvgIcon";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { FlexBox } from "../../styles/components/FlexBox";
 import HamburguerMenuSvgIcon from "../icons/HamburguerMenuSvgIcon";
+import {userLogout} from "../../services/users";
+import { useDispatch } from 'react-redux'
+
 
 const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [logStatus, setlogStatus] = useState();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const status: any = localStorage.getItem("userInformation")
+    setlogStatus(status)
+  }, [])
 
   const useStyles = makeStyles({
     root: {
@@ -65,11 +75,9 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/">Suporte</Link>
+                <Link href="/suporte" >Suporte</Link>
                 </li>
-                <li>
-                  <Link href="/">Notícias</Link>
-                </li>
+                
                 <li>
                   <Link href="/">Social</Link>
                 </li>
@@ -107,20 +115,31 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/">Suporte</Link>
+              <Link href="/suporte" >Suporte</Link>
               </li>
+              
               <li>
-                <Link href="/">Notícias</Link>
-              </li>
-              <li>
-                <Link href="/">Social</Link>
+                <Link href="/dashboard">Área do cliente</Link>
               </li>
             </Nav>
             <ActionsAreaDiv>
-              <ActionsArea>
+              {/* <ActionsArea>
                 <SearchArea color={color} />
-              </ActionsArea>
-
+              </ActionsArea> */}
+              {logStatus ? (
+                <button style={{backgroundColor: 'transparent'}} onClick={() => {dispatch({ type: 'loading' }); userLogout()}}>
+                  <MenuIconButton color={color}>
+                    <SignInSvgIcon
+                      width="19"
+                      height="18"
+                      fillColor={
+                        color === "dark" ? theme.palette.primary.main : "white"
+                      }
+                    />
+                    Sair
+                  </MenuIconButton>
+                </button>
+              ) : (
               <Link passHref href="/login">
                 <MenuIconButton color={color}>
                   <SignInSvgIcon
@@ -133,6 +152,8 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                   Entrar
                 </MenuIconButton>
               </Link>
+              )}
+
             </ActionsAreaDiv>
           </NavArea>
         </Grid>

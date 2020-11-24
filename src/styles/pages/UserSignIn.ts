@@ -5,8 +5,6 @@ import theme from "../theme";
 
 export const UserSignInWrapper = styled.section`
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
   background: url("/media/user/bg-login.jpg") top center no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -16,11 +14,11 @@ export const UserSignInWrapper = styled.section`
 
   & .form-wrapper {
     width: 100%;
-    height: 100vh;
-    padding: 60px 0;
+    height: calc(100vh - 72px);
+    
 
     & .logo {
-      height: 186px;
+      height: 90px;
       margin: 0 auto;
       display: block
     }

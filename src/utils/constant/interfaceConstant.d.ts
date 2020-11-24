@@ -23,7 +23,8 @@ declare namespace interfaceConstant {
     maxWidth?: string;
   }
   interface DividerProps {
-    height: string;
+    height?: string;
+    bordered?: boolean
   }
 
   interface blogProps {
@@ -45,6 +46,8 @@ declare namespace interfaceConstant {
     color?: string
     noPadding?: boolean
     column?: boolean
+    justify?: "flex-start" | "flex-end" | "space-between" | string 
+    align?: "flex-start" | "flex-end" | string
   }
   
 
@@ -52,6 +55,8 @@ declare namespace interfaceConstant {
     noFooter?: boolean
     noPadding?: boolean
     children : React.ReactNode
+    title?: string
+    breadcrumbs?: string
   }
 
   interface BackButtonProps {

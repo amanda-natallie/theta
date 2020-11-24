@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
 import Link from "next/link";
+import {userRegistration} from "../../services/users"
 
 const UserSignUpForm = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,9 @@ const UserSignUpForm = () => {
       birthDay: undefined,
       birthMonth: undefined,
       birthYear: undefined,
-      state: "",
       city: "",
-      phone: undefined,
+      state: "",
+      phone: "",
       ddd: undefined,
       user: "",
       password: "",
@@ -47,8 +48,8 @@ const UserSignUpForm = () => {
       birthDay: Yup.number().required("Obrigatório"),
       birthMonth: Yup.number().required("Obrigatório"),
       birthYear: Yup.number().required("Obrigatório"),
-      state: Yup.string().required("Obrigatório"),
       city: Yup.string().required("Obrigatório"),
+      state: Yup.string().required("Obrigatório"),
       phone: Yup.string().required("Obrigatório"),
       user: Yup.string().required("Obrigatório"),
       password: Yup.string().required("Obrigatório"),
@@ -58,7 +59,21 @@ const UserSignUpForm = () => {
       termsAccepted: Yup.boolean().required("Obrigatório"),
     }),
     onSubmit: (values: formConstants.UserProps) => {
-      //
+      userRegistration({
+        name: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        email_confirmation: values.emailConfirm,
+        dayBorn: values.birthDay.toString(),
+        monthBorn: values.birthMonth.toString(),
+        yearBorn: values.birthYear.toString(),
+        state: values.state,
+        city: values.city,
+        phone: values.phone,
+        username: values.user,
+        password: values.password,
+        password_confirmation: values.passwordConfirm,
+      })
     },
   });
 
@@ -212,25 +227,6 @@ const UserSignUpForm = () => {
             <TextField
               fullWidth
               error={false}
-              label="Estado"
-              placeholder="Digite seu estado"
-              value={formik.values.state}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("state", event.target.value, true);
-              }}
-              variant="outlined"
-              helperText={
-                formik.touched.state && formik.errors.state
-                  ? formik.errors.state
-                  : null
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              error={false}
               label="Cidade"
               placeholder="Digite sua cidade"
               value={formik.values.city}
@@ -246,6 +242,26 @@ const UserSignUpForm = () => {
               }
             />
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              error={false}
+              label="Estado"
+              placeholder="Digite seu estado"
+              value={formik.values.state}
+              onBlur={formik.handleBlur}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                formik.setFieldValue("state", event.target.value, true);
+              }}
+              variant="outlined"
+              helperText={
+                formik.touched.state && formik.errors.state
+                  ? formik.errors.state
+                  : null
+              }
+            />
+          </Grid>
+         
           <Grid item xs={12} className="divider">
             <FormLabel>Nº de Telefone</FormLabel>
           </Grid>
@@ -378,7 +394,7 @@ const UserSignUpForm = () => {
           </Grid>
           <Grid item xs={12}>
             
-              <ThetaButton as="button" onClick={undefined} theme="purple" fullWidth >Cadastrar</ThetaButton>
+              <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
            
           </Grid>
         </Grid>

@@ -1,20 +1,21 @@
 import { Container, Grid, TextField } from "@material-ui/core";
-import { useFormik } from "formik";
+import { useFormik, Form } from "formik";
 import React from "react";
 import { Box } from "../styles/components/Box";
 import { Subtitle } from "../styles/components/Typography";
-import ThetaIconSvgIcon from "../components/icons/ThetaIconSvgIcon";
 import PageWrapper from "../components/layout/PageWrapper";
 import { UserSignInWrapper } from "../styles/pages/UserSignIn";
-import theme from "../styles/theme";
 import * as Yup from "yup";
 import formConstants from "../utils/constant/formConstants";
 import { NavigationButton, ThetaButton } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import Link from "next/link";
 import Head from "next/head";
+import {userLogin} from  "../services/users";
+import { useDispatch } from 'react-redux'
 
 const UserSignInPage = () => {
+  const dispatch = useDispatch()
   const formik = useFormik({
     initialValues: {
       user: "",
@@ -25,7 +26,8 @@ const UserSignInPage = () => {
       password: Yup.string().required("Obrigatório"),
     }),
     onSubmit: (values: formConstants.LoginProps) => {
-      //
+      dispatch({ type: 'loading' })
+      userLogin(values.user, values.password);
     },
   });
 
@@ -73,6 +75,7 @@ const UserSignInPage = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                  type="password"
                     error={false}
                     fullWidth
                     label="Senha"
@@ -101,14 +104,11 @@ const UserSignInPage = () => {
                   </Link>
                 </Grid>
                 <Grid item xs={12}>
-                  <Link  passHref href="/">
-                    <ThetaButton theme="purple" fullWidth>
+                    <ThetaButton theme="purple" fullWidth onClick={() => formik.submitForm()}>
                       Login
                     </ThetaButton>
-                  </Link>
                 </Grid> 
               </Grid>
-
               <footer>
                 <p>
                   Ainda não tem uma conta?
