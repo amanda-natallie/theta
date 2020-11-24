@@ -33,3 +33,16 @@ export const makeAppointment = async (props: getAllProfessionalsProps) => {
     alert(error.response.data.message);
   }
 }
+
+export const renderAppointmentText = (status: string) => {
+  switch(status) {
+    case "Aguardando Pagamento":
+      return "Finalize seu agendamento agora mesmo!"
+    case "Aguardando Confirmação":
+        return "Aguarde enquanto o Thetahealer confirma o agendamento"
+    case "Cancelado":
+        return "Seu agendamento está cancelado, efetue um novo agendamento"
+    default:
+      return "Seu agendamento está confirmado, clique no botão abaixo para entrar na sala"
+  }
+}

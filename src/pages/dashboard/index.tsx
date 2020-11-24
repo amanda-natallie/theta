@@ -1,4 +1,4 @@
-import { Avatar, Container, Grid } from "@material-ui/core";
+import { Avatar, Container, Grid, Dialog } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ClientFavorites from "../../components/general/DashboardCards/ClientFavorites";
@@ -9,6 +9,7 @@ import UserCard from "../../components/general/ProfileCard/UserCard";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import { Box } from "../../styles/components/Box";
 import { ThetaButton } from "../../styles/components/Button";
+import { PayPalButton } from "react-paypal-button-v2";
 import { FlexBox } from "../../styles/components/FlexBox";
 import { Subtitle, Title } from "../../styles/components/Typography";
 import {
@@ -19,12 +20,14 @@ import {
 import Loading from "../../components/layout/Loading";
 import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
-import { renderDate } from "../../utils/helpers";
+import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
 import { useRouter } from "next/router";
+import { renderAppointmentText } from "../../services/appointments";
+import PaypalButton from "../../components/general/PaypalButton";
 
 const Dashboard = () => {
   const router = useRouter();
-
+  const [showDialog, setShowDialog] = useState(false);
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [appointments, setAppointments] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
@@ -112,17 +115,17 @@ const Dashboard = () => {
                                   }
                                 >
                                   <FlexBox justify="space-between">
-                                    <FlexBox column>
-                                      <h5>{appointmentItem.therapist.name}</h5>
-                                      <p className="time">
-                                        <img
-                                          src="/media/icons/time.svg"
-                                          alt="time"
-                                        />
-                                        {renderDate(appointmentItem.date)}
-                                      </p>
-                                    </FlexBox>
-                                    <PaymentStatus status="Aguardando Pagamento" />
+                                    <h5>{appointmentItem.therapist.name}</h5>
+                                    <p className="time">
+                                      <img
+                                        src="/media/icons/time.svg"
+                                        alt="time"
+                                      />
+                                      {renderDate(appointmentItem.date)}
+                                    </p>
+                                    <PaymentStatus
+                                      status={appointmentItem.status}
+                                    />
                                   </FlexBox>
                                 </li>
                               )
@@ -157,42 +160,53 @@ const Dashboard = () => {
                     <Grid item xs={12}>
                       <PendingAppointment>
                         <Subtitle color={"white"}>
-                          {currentAppointment.status === "Aguardando Pagamento"
-                            ? "Finalize seu agendamento agora mesmo!"
-                            : ""}
+                          {renderAppointmentText(currentAppointment.status)}
                         </Subtitle>
 
                         <>
-                          <FlexBox>
-                            <Avatar
-                              src="/media/thera.png"
-                              className="avatar-therapist"
-                            />{" "}
-                            <p> {currentAppointment.therapist.name}</p>
-                            <span>•</span>
-                            <p>ThetaHealer Certificado</p>
-                          </FlexBox>
                           <FlexBox>
                             <p>
                               <img
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              12 de outubro de 2020
+                              <p> {currentAppointment.therapist.name}</p>
+                              <span>•</span>
+                              <p>ThetaHealer Certificado</p>
+                            </p>
+                          </FlexBox>
+                          <FlexBox>
+                            <p>
+                              <img
+                                src="/media/icons/calendar.svg"
+                                alt="calendar"
+                              />
+                              {getDateExtend(currentAppointment.date)}
                             </p>
                             <span>•</span>
                             <p>
                               <img src="/media/icons/time.svg" alt="time" />{" "}
-                              {`09:00 - horário de Brasília`}
+                              {`${getDateTime(
+                                currentAppointment.date
+                              )} - horário de Brasília`}
                             </p>
                           </FlexBox>
                           <ThetaButton
                             theme="rainbow"
                             style={{ alignSelf: "baseline" }}
+                            onClick={() => setShowDialog(true)}
                           >
                             Pagar agora
                           </ThetaButton>
                         </>
+                        <Dialog
+                          onClose={() => setShowDialog(false)}
+                          open={showDialog}
+                        >
+                          <div style={{ margin: 30 }}>
+                            <PaypalButton setShowDialog={setShowDialog} />{" "}
+                          </div>
+                        </Dialog>
                       </PendingAppointment>
                     </Grid>
                   )}

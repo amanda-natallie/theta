@@ -11,3 +11,16 @@ export const renderDate = (date: string) => {
     month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(receivedDate);
   return convertedDate.toString()
 }
+
+export const getDateExtend = (date: string) => {
+  const receivedDate = new Date(date)
+  const convertedDate = new Intl.DateTimeFormat('pt-BR', {year: 'numeric', 
+  day: '2-digit', month: 'long'}).format(receivedDate);
+  return convertedDate.toString()
+}
+
+export const getDateTime = (date: string) => {
+  const receivedDate = new Date(date)
+  const convertedDate = new Intl.DateTimeFormat('pt-BR', {hour: '2-digit', minute: '2-digit'}).format(receivedDate);
+  return convertedDate.toString()
+}
