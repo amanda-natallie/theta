@@ -534,7 +534,7 @@ export default function HomePage({ deviceType }) {
         </CustomCarousel>
         <Divider height="60px" />
       </Container> */}
-      <Divider height="70px" />
+      <Divider height="140px" />
       <PurpleSection>
         <img src="/media/home/mandala.png" width="133" height="130" />
         <p>
