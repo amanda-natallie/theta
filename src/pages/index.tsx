@@ -329,7 +329,7 @@ export default function HomePage({ deviceType }) {
                 <span>RS</span>
                 <p>107,00</p>
               </PriceBlock>
-              <Link passHref href="/">
+              <Link passHref href="/agendamento-por-horario">
                 <ThetaButton theme="purple">Agenda Online</ThetaButton>
               </Link>
             </Grid>
@@ -365,7 +365,7 @@ export default function HomePage({ deviceType }) {
               <span className="grayspan">contribuir com a cura do Todo.</span>
             </Text>
             <Divider height="30px" />
-            <Link passHref href="/">
+            <Link passHref href="/projetos-assistidos">
               <ThetaButton theme="purple">Projetos Assistidos</ThetaButton>
             </Link>
           </Grid>
@@ -379,7 +379,7 @@ export default function HomePage({ deviceType }) {
       <CTA>
         <div className="inner">
           <Title>Você é um ThetaHealer?</Title>
-          <Link passHref href="/">
+          <Link passHref href="/cadastro-terapeuta">
             <ThetaButton theme="purple">Cadastre-se</ThetaButton>
           </Link>
         </div>
