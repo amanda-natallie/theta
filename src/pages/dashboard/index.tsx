@@ -9,7 +9,6 @@ import UserCard from "../../components/general/ProfileCard/UserCard";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import { Box } from "../../styles/components/Box";
 import { ThetaButton } from "../../styles/components/Button";
-import { PayPalButton } from "react-paypal-button-v2";
 import { FlexBox } from "../../styles/components/FlexBox";
 import { Subtitle, Title } from "../../styles/components/Typography";
 import {
