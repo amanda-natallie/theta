@@ -25,8 +25,8 @@ import { renderAppointmentText } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
 
 const Dashboard = () => {
-  const router = useRouter()
-  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const router = useRouter();
+  const [showDialog, setShowDialog] = useState(false);
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [appointments, setAppointments] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
@@ -35,30 +35,30 @@ const Dashboard = () => {
   console.log(currentAppointment);
 
   const getInformation = async () => {
-    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {   
-    const userInfo = JSON.parse(localStorage.getItem("userInformation") || "{}");
-    const token: string = localStorage.getItem("authToken");
-    setUser(userInfo);
-    setIsLoggedIn(token);
+    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
+      const userInfo = JSON.parse(
+        localStorage.getItem("userInformation") || "{}"
+      );
+      const token: string = localStorage.getItem("authToken");
+      setUser(userInfo);
+      setIsLoggedIn(token);
 
-    user && setIsEmailConfirmed(user.confirmed_email);
-    
-    const response =
-    userInfo.typeUser === "client"
-    ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
-    : await therapistAppointments(userInfo.id);
-    setAppointments(response);
-    console.log("kaakak", response)
-  } else {
-    router.push("/login")
-  }
-}
+      user && setIsEmailConfirmed(user.confirmed_email);
+
+      const response =
+        userInfo.typeUser === "client"
+          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
+          : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
+      setAppointments(response);
+      console.log("kaakak", response);
+    } else {
+      router.push("/login");
+    }
+  };
 
   useEffect(() => {
     getInformation();
   }, []);
-
-
 
   return (
     <>
@@ -74,14 +74,14 @@ const Dashboard = () => {
             <Container maxWidth="lg">
               {user.confirmed_email ? (
                 <Grid container spacing={2}>
-                  <Grid item md={4}>
+                  {/* <Grid item md={4}>
                     {user.typeUser === "client" ? (
                       <ClientFavorites />
                     ) : (
                       <TherapistCertificates />
                     )}
-                  </Grid>
-                  <Grid item md={4}>
+                  </Grid> */}
+                  <Grid item md={6}>
                     <Box className="profile" justify="center">
                       <Avatar
                         src="/media/profile/thera.png"
@@ -100,54 +100,59 @@ const Dashboard = () => {
                       )}
                     </Box>
                   </Grid>
-                  <Grid item md={4}>
+                  <Grid item md={6}>
                     <Box>
                       <h2>Agendamentos</h2>
-                        {user.typeUser && "client" ? (
-                            <AppointmentList>
-                              {appointments &&
-                                appointments.map(
-                                  (appointmentItem: any, index: number) => (
-                                    <li key={index} onClick={() => setCurrentAppointment(appointmentItem)}>
-                                      <FlexBox justify="space-between">
-                                        <h5>{appointmentItem.therapist.name}</h5>
-                                        <p className="time">
-                                          <img
-                                            src="/media/icons/time.svg"
-                                            alt="time"
-                                          />
-                                          {renderDate(appointmentItem.date)}
-                                        </p>
-                                        <PaymentStatus status={appointmentItem.status} />
-                                      </FlexBox>
-                                    </li>
-                                  )
-                                )}
-                            </AppointmentList>
-                        ) : 
-                        (
-                            <AppointmentList>
-                              {appointments &&
-                                appointments.map(
-                                  (appointmentItem: any, index: number) => (
-                                    <li key={index}>
-                                      <FlexBox justify="space-between">
-                                        <h5>{appointmentItem.user.name}</h5>
-                                        <p className="time">
-                                          <img
-                                            src="/media/icons/time.svg"
-                                            alt="time"
-                                          />
-                                          {renderDate(appointmentItem.date)}
-                                        </p>
-                                        <PaymentStatus status="Pago" />
-                                      </FlexBox>
-                                    </li>
-                                  )
-                                )}
-                            </AppointmentList>
-
-                        )}
+                      {user.typeUser && "client" ? (
+                        <AppointmentList>
+                          {appointments &&
+                            appointments.map(
+                              (appointmentItem: any, index: number) => (
+                                <li
+                                  key={index}
+                                  onClick={() =>
+                                    setCurrentAppointment(appointmentItem)
+                                  }
+                                >
+                                  <FlexBox justify="space-between">
+                                    <h5>{appointmentItem.therapist.name}</h5>
+                                    <p className="time">
+                                      <img
+                                        src="/media/icons/time.svg"
+                                        alt="time"
+                                      />
+                                      {renderDate(appointmentItem.date)}
+                                    </p>
+                                    <PaymentStatus
+                                      status={appointmentItem.status}
+                                    />
+                                  </FlexBox>
+                                </li>
+                              )
+                            )}
+                        </AppointmentList>
+                      ) : (
+                        <AppointmentList>
+                          {appointments &&
+                            appointments.map(
+                              (appointmentItem: any, index: number) => (
+                                <li key={index}>
+                                  <FlexBox justify="space-between">
+                                    <h5>{appointmentItem.user.name}</h5>
+                                    <p className="time">
+                                      <img
+                                        src="/media/icons/time.svg"
+                                        alt="time"
+                                      />
+                                      {renderDate(appointmentItem.date)}
+                                    </p>
+                                    <PaymentStatus status="Pago" />
+                                  </FlexBox>
+                                </li>
+                              )
+                            )}
+                        </AppointmentList>
+                      )}
                     </Box>
                   </Grid>
 
@@ -155,49 +160,53 @@ const Dashboard = () => {
                     <Grid item xs={12}>
                       <PendingAppointment>
                         <Subtitle color={"white"}>
-                        {
-                          renderAppointmentText(currentAppointment.status)
-                        }
+                          {renderAppointmentText(currentAppointment.status)}
                         </Subtitle>
-                       
-                          <>
-                            <FlexBox>
-                              <Avatar
-                                src="/media/thera.png"
-                                className="avatar-therapist"
+
+                        <>
+                          <FlexBox>
+                            <p>
+                              <img
+                                src="/media/icons/calendar.svg"
+                                alt="calendar"
                               />{" "}
                               <p> {currentAppointment.therapist.name}</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
-                            </FlexBox>
-                            <FlexBox>
-                              <p>
-                                <img
-                                  src="/media/icons/calendar.svg"
-                                  alt="calendar"
-                                />
-                                {getDateExtend(currentAppointment.date)}
-                              </p>
-                              <span>•</span>
-                              <p>
-                                <img src="/media/icons/time.svg" alt="time" />{" "}
-                                {`${getDateTime(currentAppointment.date)} - horário de Brasília`}
-                              </p>
-                            </FlexBox>
-                            <ThetaButton
-                              theme="rainbow"
-                              style={{ alignSelf: "baseline" }}
-                              onClick={() =>setShowDialog(true)}
-                            >
-                              Pagar agora
-                            </ThetaButton>
-                          </>
-                          <Dialog
-                            onClose={() => setShowDialog(false)}
-                            open={showDialog}
+                            </p>
+                          </FlexBox>
+                          <FlexBox>
+                            <p>
+                              <img
+                                src="/media/icons/calendar.svg"
+                                alt="calendar"
+                              />
+                              {getDateExtend(currentAppointment.date)}
+                            </p>
+                            <span>•</span>
+                            <p>
+                              <img src="/media/icons/time.svg" alt="time" />{" "}
+                              {`${getDateTime(
+                                currentAppointment.date
+                              )} - horário de Brasília`}
+                            </p>
+                          </FlexBox>
+                          <ThetaButton
+                            theme="rainbow"
+                            style={{ alignSelf: "baseline" }}
+                            onClick={() => setShowDialog(true)}
                           >
-                            <div style={{margin: 30}}>
-                          <PaypalButton setShowDialog={setShowDialog} /> </div></Dialog>
+                            Pagar agora
+                          </ThetaButton>
+                        </>
+                        <Dialog
+                          onClose={() => setShowDialog(false)}
+                          open={showDialog}
+                        >
+                          <div style={{ margin: 30 }}>
+                            <PaypalButton setShowDialog={setShowDialog} />{" "}
+                          </div>
+                        </Dialog>
                       </PendingAppointment>
                     </Grid>
                   )}

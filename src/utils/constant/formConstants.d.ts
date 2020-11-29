@@ -16,6 +16,18 @@ declare namespace formConstants {
     passwordConfirm: string;
     termsAccepted: boolean;
   }
+  interface ThetaProps {
+    name: string;
+    firstName: string;
+    lastName: string;
+    CPF: string;
+    email: string;
+    state: string;
+    city: string;
+    ddd: number;
+    phone: number;
+    certificate:string;
+  }
 
   interface LoginProps {
     user?: string

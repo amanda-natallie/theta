@@ -27,7 +27,7 @@ const information = () => {
             </HeaderWithBackButtonWrapper>
           </Grid>
           <Link passHref href="/suporte/nosso-projeto">
-            <CardBox>
+            <CardBox className="box-link">
               <TextInformation>
                 <image style={{ margin: "2px" }}>
                   <svg
