@@ -26,12 +26,13 @@ import PaypalButton from "../../components/general/PaypalButton";
 
 const Dashboard = () => {
   const router = useRouter()
-  const [showDialog, setShowDialog] = useState(false);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [appointments, setAppointments] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [user, setUser] = useState(undefined);
+  console.log(currentAppointment);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {   
@@ -196,7 +197,7 @@ const Dashboard = () => {
                             open={showDialog}
                           >
                             <div style={{margin: 30}}>
-                          <PaypalButton setShowDialog={setShowDialog}/> </div></Dialog>
+                          <PaypalButton setShowDialog={setShowDialog} /> </div></Dialog>
                       </PendingAppointment>
                     </Grid>
                   )}

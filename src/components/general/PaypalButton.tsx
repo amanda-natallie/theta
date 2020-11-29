@@ -1,6 +1,13 @@
-import React, { useRef, useEffect} from "react";
+import React, { useRef, useEffect, SetStateAction, Dispatch} from "react";
+import { appointmentUpdateStatus } from "../../services/appointments";
 
-const PaypalButton = (setShowDialog: any) => {
+interface PaypalButtonProps {
+  appointmentId: string,
+  ammount: string,
+  setShowDialog: any,
+}
+
+const PaypalButton = ({appointmentId, ammount, setShowDialog}: PaypalButtonProps) => {
   const paypal = useRef();
 
   useEffect(() => {
@@ -13,7 +20,7 @@ const PaypalButton = (setShowDialog: any) => {
               description: "Sessão Thetahealing Online",
               amount: {
                 currency: "BRL",
-                value: 107.00
+                value: parseFloat(ammount).toFixed(2)
               }
             }
           ]
@@ -21,7 +28,8 @@ const PaypalButton = (setShowDialog: any) => {
       },
       onApprove: async (data, actions) => {
         const order = await actions.order.capture()
-        console.log(order)
+        appointmentUpdateStatus(appointmentId, "aguardando_confirmacao")
+        alert("Obrigado pelo seu pagamento. Você poderá acompanhar o andamento do seu agendamento na area do cliente")
         setShowDialog(false)
         window.location.href = "/dashboard";
       },

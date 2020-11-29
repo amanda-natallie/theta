@@ -46,3 +46,11 @@ export const renderAppointmentText = (status: string) => {
       return "Seu agendamento está confirmado, clique no botão abaixo para entrar na sala"
   }
 }
+
+export const appointmentUpdateStatus = async (id: string, status: string) => {
+  try{
+    await api.get(`/appointments/${id}?status=${status}`);
+  } catch(error) {
+    alert(error.response.data.message);
+  }
+}
