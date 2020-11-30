@@ -1,3 +1,4 @@
+import formConstants from "../utils/constant/formConstants";
 import api from "./api";
 
 interface getAllProfessionalsProps {
@@ -5,6 +6,18 @@ interface getAllProfessionalsProps {
   month: string;
   year: string;
 }
+export const userRegistration = async (userData: formConstants.ITherapist) => {
+  await api
+    .post("users", { ...userData })
+    .then(() => {
+      alert("Verifique seu e-mail para confirmar sua conta.");
+      window.location.href = "/login";
+    })
+    .catch((error: any) => {
+      console.log(error.response);
+      alert(error.response.data.message);
+    });
+};
 
 export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   const { day, month, year } = props;

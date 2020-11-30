@@ -20,7 +20,11 @@ import MinusSvgIcon from "../components/icons/MinusSvgIcon";
 import PlusSvgIcon from "../components/icons/PlusSvgIcon";
 import Header from "../components/layout/Header";
 import { colors } from "../styles/colors";
-import { ColorfulIcon, ThetaButton } from "../styles/components/Button";
+import {
+  ColorfulIcon,
+  NavigationButton,
+  ThetaButton,
+} from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import {
   CenteredImage,
@@ -48,6 +52,7 @@ import PlaySvgIcon from "../components/icons/PlaySvgIcon";
 
 import Footer from "../components/layout/Footer";
 import Link from "next/link";
+import ThetaLogoIconColored from "../components/icons/ThetaLogoIconColored";
 
 export default function HomePage({ deviceType }) {
   const [showAboutUs, setShowAboutUs] = useState(false);
@@ -71,7 +76,7 @@ export default function HomePage({ deviceType }) {
         <div className="uplayer">
           <img src="/media/home/capa-logo.svg" alt="Logo" />
           <h4>Plataforma online de atendimento Thetahealing®</h4>
-          <ColoredTitle>Conectados pela cura</ColoredTitle>
+          <ColoredTitle>conectados pela cura</ColoredTitle>
           <Link passHref href="/suporte/conheca">
             <ThetaButton theme="rainbow">Conheça</ThetaButton>
           </Link>
@@ -268,60 +273,89 @@ export default function HomePage({ deviceType }) {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-             <Link passHref href="/busca-profissionais">
-              <Box className="box-link">
-                <div className="avatar">
-                  <CenteredImage src="/media/home/6.svg" alt="" />
-                </div>
-                <Heading06>Escolha seu Terapeuta</Heading06>
-                <Text color={colors.gray03}>
-                  Clique aqui e navegue nos perfis dos profissionais
-                  cadastrados.
-                </Text>
-              </Box>
+              <Link passHref href="/busca-profissionais">
+                <Box className="box-link">
+                  <div className="avatar">
+                    <CenteredImage src="/media/home/6.svg" alt="" />
+                  </div>
+                  <Heading06>Escolha seu Terapeuta</Heading06>
+                  <Text color={colors.gray03}>
+                    Clique aqui e navegue nos perfis dos profissionais
+                    cadastrados.
+                  </Text>
+                </Box>
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Link passHref href="/agendamento-por-horario">
-              <Box className="box-link">
-                <div className="avatar">
-                  <CenteredImage src="/media/home/7.svg" alt="" />
-                </div>
-                <Heading06>Agende o horário</Heading06>
-                <Text color={colors.gray03}>
-                  Você pode filtrar por data e hora. Clique aqui para agendar seu horário.
-                </Text>
-              </Box>
+              <Link passHref href="/agendamento-por-horario">
+                <Box className="box-link">
+                  <div className="avatar">
+                    <CenteredImage src="/media/home/7.svg" alt="" />
+                  </div>
+                  <Heading06>Agende o horário</Heading06>
+                  <Text color={colors.gray03}>
+                    Você pode filtrar por data e hora. Clique aqui para agendar
+                    seu horário.
+                  </Text>
+                </Box>
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Box>
-                <div className="avatar">
-                  <CenteredImage src="/media/home/8.svg" alt="" />
-                </div>
-                <Heading06>Realize o pagamento</Heading06>
-                <Text color={colors.gray03}>
-                  Forma de pagamento descomplicada, rápida e segura. Aceitamos
-                  cartões de crédito e débito
-                </Text>
-              </Box>
+              <Link passHref href="/suporte/perguntas-frequentes">
+                <Box className="box-link">
+                  <div className="avatar">
+                    <CenteredImage src="/media/home/8.svg" alt="" />
+                  </div>
+                  <Heading06>Realize o pagamento</Heading06>
+                  <Text color={colors.gray03}>
+                    Forma de pagamento descomplicada, rápida e segura. Aceitamos
+                    cartões de crédito e débito
+                  </Text>
+                </Box>
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Box>
-                <div className="avatar">
-                  <CenteredImage src="/media/home/9.svg" alt="" />
-                </div>
-                <Heading06>Acesse sua sala</Heading06>
-                <Text color={colors.gray03}>
-                  Faça o login ou clique no link recebido pelo email para
-                  iniciar sua consulta.
-                </Text>
-              </Box>
+              <Link passHref href="/login">
+                <Box className="box-link">
+                  <div className="avatar">
+                    <CenteredImage src="/media/home/9.svg" alt="" />
+                  </div>
+                  <Heading06>Acesse sua sala</Heading06>
+                  <Text color={colors.gray03}>
+                    Faça o login ou clique no link recebido pelo email para
+                    iniciar sua consulta.
+                  </Text>
+                </Box>
+              </Link>
             </Grid>
           </Grid>
           <Divider height="30px" />
-          <Grid container>
+          <Grid container justify="space-between">
+            <Grid item md={5} />
+            <Grid item md={7}>
+              <ColoredTitle as="h2" small  style={{ textAlign: "right" }}>
+                Terapeutas qualificados
+              </ColoredTitle>
+            </Grid>
             <Grid item md={6}>
+              <ThetaLogoIconColored />
+              <p>
+                Ao utilizar a plataforma, garantimos que você terá uma
+                experiência confiável e segura. Sua privacidade será sempre
+                resguardada, conforme os
+                <Link passHref href="/suporte/termos-e-condicoes">
+                  <NavigationButton> Termos e Condições </NavigationButton>
+                </Link>
+                de uso.
+              </p>
+              <BenefitsList>
+                <li>Agendamento rápido e fácil</li>
+                <li>Valor consulta mais acessível</li>
+                <li>Informações sobre o mundo da cura ThetaHealing®</li>
+                <li>Histórico pessoal de agendamento e consultas</li>
+              </BenefitsList>
+              </Grid>
+            <div>
               <Text color={colors.gray03} size="1.3rem">
                 Consultas a partir de
               </Text>
@@ -332,16 +366,7 @@ export default function HomePage({ deviceType }) {
               <Link passHref href="/agendamento-por-horario">
                 <ThetaButton theme="purple">Agenda Online</ThetaButton>
               </Link>
-            </Grid>
-            <Grid item md={6} className="text-right">
-              <BenefitsList>
-                <li>Agendamento rápido e fácil</li>
-                <li>Valor consulta mais acessível</li>
-                <li>Informações sobre o mundo da cura ThetaHealing®</li>
-                <li>Histórico pessoal de agendamento e consultas</li>
-                <li>Terapeutas Qualificados</li>
-              </BenefitsList>
-            </Grid>
+            </div>
           </Grid>
           <Divider height="30px" />
         </Container>
@@ -458,7 +483,7 @@ export default function HomePage({ deviceType }) {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={12} sm={12} md={6} lg={4}>
-            <Link passHref href="https://www.instagram.com/thetabrasilonline/" >
+            <Link passHref href="https://www.instagram.com/thetabrasilonline/">
               <MidiaBox2 className="box-link">
                 <img src="/media/midia/insta.png" alt="ok" />
               </MidiaBox2>
@@ -472,16 +497,18 @@ export default function HomePage({ deviceType }) {
             </Link>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={4}>
-            <Link passHref href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w">
+            <Link
+              passHref
+              href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w"
+            >
               <MidiaBox2 className="box-link">
                 <img src="/media/midia/youtube.png" alt="ok" />
               </MidiaBox2>
             </Link>
           </Grid>
-
         </Grid>
       </Container>
-     {/*  <Container maxWidth="lg">
+      {/*  <Container maxWidth="lg">
         <Divider height="60px" />
         <GrayTitle>Podcasts & Playlists</GrayTitle>
         <Divider height="30px" />

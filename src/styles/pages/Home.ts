@@ -111,12 +111,13 @@ export const BenefitsList = styled.ul`
     color: ${theme.palette.primary.main};
     margin: 5px 60px 5px 0;
     font-size: 0.875rem;
+    padding-left: 30px;
 
     &:after {
       content: "";
       display: block;
       position: absolute;
-      right: -50px;
+      left: 0px;
       top: 0;
       width: 21px;
       height: 15px;
