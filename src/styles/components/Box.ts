@@ -64,7 +64,19 @@ export const Box = styled.div`
     }
   }
 `;
+export const BoxForm = styled.div`
+  width: 51vw;
+  height:214px;
+  box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 15px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props: interfaceConstant.boxProps) => props.align ? props.align : "center"} ;
+  justify-content: ${(props: interfaceConstant.boxProps) => props.justify ? props.justify : "flex-start"};
 
+  `
 export const MidiaBox = styled(Box)`
   width: calc(100% - 40px);
   margin: 20px;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import formConstants from "../../utils/constant/formConstants";
 import {
@@ -18,7 +18,9 @@ import Link from "next/link";
 import {userRegistration} from "../../services/users"
 
 const UserSignUpForm = () => {
+
   const dispatch = useDispatch();
+
 
   const formik = useFormik({
     initialValues: {
@@ -30,6 +32,7 @@ const UserSignUpForm = () => {
       birthYear: undefined,
       city: "",
       state: "",
+      certificate:"",
       phone: "",
       ddd: undefined,
       user: "",
@@ -50,6 +53,7 @@ const UserSignUpForm = () => {
       birthYear: Yup.number().required("Obrigatório"),
       city: Yup.string().required("Obrigatório"),
       state: Yup.string().required("Obrigatório"),
+      cetificate: Yup.string().required("Obrigatório"),
       phone: Yup.string().required("Obrigatório"),
       user: Yup.string().required("Obrigatório"),
       password: Yup.string().required("Obrigatório"),
@@ -57,6 +61,7 @@ const UserSignUpForm = () => {
         .required("Obrigatório")
         .oneOf([Yup.ref("password"), null], "As senhas não combinam"),
       termsAccepted: Yup.boolean().required("Obrigatório"),
+      
     }),
     onSubmit: (values: formConstants.UserProps) => {
       userRegistration({
@@ -69,6 +74,7 @@ const UserSignUpForm = () => {
         yearBorn: values.birthYear.toString(),
         state: values.state,
         city: values.city,
+        certificate: values.certificate,
         phone: values.phone,
         username: values.user,
         password: values.password,
@@ -76,11 +82,12 @@ const UserSignUpForm = () => {
       })
     },
   });
-
   return (
+    
     <Container maxWidth="sm" className="form signup-form">
       <Title>Entre para a ThetaBrasil</Title>
       <form onSubmit={formik.handleSubmit}>
+
         <Grid container spacing={2}>
           <Grid item xs={12} lg={6}>
             <TextField
@@ -358,7 +365,7 @@ const UserSignUpForm = () => {
                 formik.setFieldValue(
                   "passwordConfirm",
                   event.target.value,
-                  true
+                  true 
                 );
               }}
               variant="outlined"
@@ -370,9 +377,10 @@ const UserSignUpForm = () => {
             />
             <p>
               Use 8 ou mais caracteres com uma mistura de letras, números e
-              símbolos. Não deve conter seu nome ou nome de usuário.
+              símbolos.Não deve conter seu nome ou nome de usuário.
             </p>
           </Grid>
+
           <Grid item xs={8}>
             <FormControlLabel
             className="accepterms"
@@ -392,12 +400,12 @@ const UserSignUpForm = () => {
               label="Ao usar a plataforma ThetaBrasil concordo com os termos de uso"
             />
           </Grid>
+
           <Grid item xs={12}>
-            
               <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
-           
           </Grid>
         </Grid>
+        
       </form>
     </Container>
   );

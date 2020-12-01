@@ -17,6 +17,8 @@ import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
 import Link from "next/link";
 import { userRegistration } from "../../services/profissionals";
+import { FormatAlignJustify } from "@material-ui/icons";
+import { BoxForm } from "../../styles/components/Box";
 
 const ThetaSignUpForm = () => {
   const dispatch = useDispatch();
@@ -432,7 +434,110 @@ const ThetaSignUpForm = () => {
               símbolos. Não deve conter seu nome ou nome de usuário.
             </p>
           </Grid>
+          <Grid item xs={12}>
+            <h1>Sou fluente em:</h1>
+            <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Inglês"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Mandarin"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Espanhol"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Hindi"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Árabe"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Português"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Bengali"
+            />
+             <FormControlLabel control={<Checkbox color="primary"/>}
+              label="Russo"
+            />
+
+          <Grid container xs={12} style={{justifyContent:"flex-end"}}>
+            <ThetaButton type="button" theme="purple">Adicionar</ThetaButton>
+            </Grid>
+
+          </Grid>
+
+          <Grid item xs ={12}>
+          <Grid style={{margin:"12px"}} container direction="row" alignItems="center">
+          <Grid style={{marginRight:"12px"}} item >
+            <img src="media/icons/social-media/youtube.svg" />
+            </Grid>
+            <Grid item xs={10}>
+            <TextField  fullWidth placeholder="https://www.youtube.com/" />
+            </Grid>
+            
+            </Grid>
+
+            <Grid style={{margin:"12px"}} container xs="12" direction="row" alignItems="center">
+          <Grid style={{marginRight:"12px"}} item >
+            <img src="media/icons/social-media/twitter.svg" />
+            </Grid>
+            <Grid item xs={10}>
+            <TextField  fullWidth placeholder="https://www.twitter.com/" />
+            </Grid>
+            
+            </Grid>
+
+           <Grid style={{margin:"12px"}} container xs="12" direction="row" alignItems="center">
+          <Grid style={{marginRight:"12px"}} item >
+            <img src="media/icons/social-media/facebook.svg" />
+            </Grid>
+            <Grid item xs={10}>
+            <TextField  fullWidth placeholder="https://www.facebook.com/" />
+            </Grid>
+            </Grid>
+
+            <Grid style={{margin:"12px"}} container xs="12" direction="row" alignItems="center">
+          <Grid style={{marginRight:"12px"}} item >
+            <img src="media/icons/social-media/instagram.svg" />
+            </Grid>
+            <Grid item xs={10}>
+            <TextField  fullWidth placeholder="https://www.instagram.com/" />
+            </Grid>
+            </Grid>
+
+            <Grid style={{margin:"12px"}} container xs="12" direction="row" alignItems="center">
+          <Grid style={{marginRight:"12px"}} item >
+            <img src="media/icons/social-media/linkedin.svg" />
+            </Grid>
+            <Grid item xs={10}>
+            <TextField  fullWidth placeholder="https://www.linkedin.com/in" />
+            </Grid>
+            </Grid>
+            </Grid>
+            <Grid container xs={12} style={{justifyContent:"flex-end"}}>
+            <ThetaButton type="button"  theme="purple">Adicionar</ThetaButton>
+            </Grid>
+              <Grid container xs={12}>
+
+             <BoxForm >
+               <h1>Faça upload dos seus diplomas</h1>
+               <input  type="file" />
+             </BoxForm>
+             <Grid item xs={12}>
+
+             <TextField fullWidth multiline rows={8} label="Quer acrescentar algo a mais? Digite aqui"/>
+             </Grid>
+
+             <BoxForm>
+             <h1>Adicione suas fotos aqui para seu perfil de terapeuta</h1>
+             <input  type="file" />
+
+             </BoxForm>
+             </Grid>
+
           <Grid item xs={8}>
+            
             <FormControlLabel
             className="accepterms"
               control={
@@ -454,7 +559,15 @@ const ThetaSignUpForm = () => {
           <Grid item xs={12}>
             
               <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
-           
+              <Grid item xs={12}>
+                <h1>A Theta Brasil  coleta e usa dados pessoais em conformidade 
+                  com nossa Política de Privacidade.  Ao criar uma conta, você concorda com nossos
+                  Termos e Condições.</h1>
+                </Grid>
+                <Grid item xs={12}>
+                  <img src="media/icons/analises.svg" alt=""/>
+                </Grid>
+                
           </Grid>
         </Grid>
       </form>

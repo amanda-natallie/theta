@@ -8,6 +8,7 @@ declare namespace formConstants {
     birthYear: number;
     state: string;
     city: string;
+    certificate: string;
     ddd: number;
     phone: string;
     user: string;
