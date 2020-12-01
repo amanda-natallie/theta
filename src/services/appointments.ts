@@ -1,3 +1,4 @@
+import { status } from 'nprogress';
 import api from './api';
 
 interface getAllProfessionalsProps {
@@ -47,9 +48,18 @@ export const renderAppointmentText = (status: string) => {
   }
 }
 
-export const appointmentUpdateStatus = async (id: string, status: string) => {
+export const appointmentUpdateStatus = async (id: string, status: string, order_id?: string) => {
+  const config = {
+    headers: { 'content-type': `application/json` },
+  }
+  const requestBody: any = { 
+    status, order_id
+  }
+  console.log(requestBody)
   try{
-    await api.get(`/appointments/${id}?status=${status}`);
+    const response = await api.post(`/appointments/${id}`, requestBody, config);
+    console.log(response);
+    return alert(response.data.message);
   } catch(error) {
     alert(error.response.data.message);
   }

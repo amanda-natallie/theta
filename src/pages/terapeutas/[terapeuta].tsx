@@ -76,16 +76,16 @@ const ProfessionalPublicProfilePage = () => {
   });
   const router = useRouter();
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
+  console.log(thetaInformation)
+  console.log(JSON.parse(thetaInformation.links[0]))
 
   /*   const handleDateChange = (e: any): void => {
     setDateSelected(e);
   }; */
   const getInformation = async () => {
     const userName: any = router.query.terapeuta;
-
     const response = await getProssionalInfo(userName);
     const hours = await therapistAvailability(response[0].id);
-
     setThetaInformation({ ...response[0], availability: hours });
   };
 
@@ -114,7 +114,6 @@ const ProfessionalPublicProfilePage = () => {
     });
     setOpen(true);
   };
-  console.log("ihhuuuu", thetaInformation.availability);
   return thetaInformation.id ? (
     <>
       <Head>
@@ -134,7 +133,7 @@ const ProfessionalPublicProfilePage = () => {
                   <ProfileBlock>
                     <Avatar
                       src={thetaInformation.avatar_url}
-                      alt="uai"
+                      alt="avatar"
                       className="profile-avatar"
                     />
                     <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
@@ -191,9 +190,9 @@ const ProfessionalPublicProfilePage = () => {
                           +55 (31) 98956-8956
                         </p>
                         <p>{thetaInformation.email}</p>
-                        <Link href={thetaInformation.links[0]}>
-                          {/* {thetaInformation.links[0]} */}
-                        </Link>
+                        {/* <Link href={thetaInformation.links[0]}>
+                          {thetaInformation.links[0]}
+                        </Link> */}
                         <ul>
                           {/* <li>
                             <Link href="https://youtube.com">

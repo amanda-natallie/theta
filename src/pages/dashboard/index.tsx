@@ -47,7 +47,7 @@ const Dashboard = () => {
 
       const response =
         userInfo.typeUser === "client"
-          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
+          ? await userAppointments(userInfo.id)
           : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
       setAppointments(response);
       console.log("kaakak", response);
@@ -204,7 +204,7 @@ const Dashboard = () => {
                           open={showDialog}
                         >
                           <div style={{ margin: 30 }}>
-                            <PaypalButton setShowDialog={setShowDialog} />{" "}
+                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
                           </div>
                         </Dialog>
                       </PendingAppointment>
