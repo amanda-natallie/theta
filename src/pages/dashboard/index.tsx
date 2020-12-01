@@ -9,8 +9,8 @@ import UserCard from "../../components/general/ProfileCard/UserCard";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import { Box } from "../../styles/components/Box";
 import { ThetaButton } from "../../styles/components/Button";
-import { PayPalButton } from "react-paypal-button-v2";
 import { FlexBox } from "../../styles/components/FlexBox";
+import ReactLoading from "react-loading";
 import { Subtitle, Title } from "../../styles/components/Typography";
 import {
   AppointmentList,
@@ -22,47 +22,53 @@ import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
 import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
 import { useRouter } from "next/router";
-import { renderAppointmentText } from "../../services/appointments";
+import { renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
+import { appointmentMock, userInfoMock } from "../../mocks";
 
 const Dashboard = () => {
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState(appointmentMock);
+  const [localLoading, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(userInfoMock);
+  console.log(currentAppointment);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
+      
       const userInfo = JSON.parse(
         localStorage.getItem("userInformation") || "{}"
       );
       const token: string = localStorage.getItem("authToken");
-      setUser(userInfo);
       setIsLoggedIn(token);
+      setUser(userInfo);
 
-      user && setIsEmailConfirmed(user.confirmed_email);
+      //user && setIsEmailConfirmed(user.confirmed_email);
 
-      const response =
+      /* const response =
         userInfo.typeUser === "client"
           ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
           : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
       setAppointments(response);
-      console.log("kaakak", response);
+      setLocalLoading(false) */
     } else {
       router.push("/login");
     }
-  };
+  }; 
 
   useEffect(() => {
     getInformation();
-  }, []);
+  }, []); 
 
+
+  
   return (
     <>
-      {isLoggedIn && user ? (
+      { /*isLoggedIn && */ user ? (
         <DashboardWrapper
           title={
             user.typeUser === "client"
@@ -103,7 +109,8 @@ const Dashboard = () => {
                   <Grid item md={6}>
                     <Box>
                       <h2>Agendamentos</h2>
-                      {user.typeUser && "client" ? (
+                     {localLoading ? <div style={{ margin: "auto", display: "table" }} ><ReactLoading type="spin" color="#7643FF" /></div>
+                      : user.typeUser && "client" ? (
                         <AppointmentList>
                           {appointments &&
                             appointments.map(
@@ -114,8 +121,11 @@ const Dashboard = () => {
                                     setCurrentAppointment(appointmentItem)
                                   }
                                 >
-                                  <FlexBox justify="space-between">
-                                    <h5>{appointmentItem.therapist.name}</h5>
+                                  <FlexBox justify="space-between" style={{
+                                    alignItems: "center",
+                                    height: "65px"
+                                  }}>
+                                    <h5>{/* {appointmentItem.therapist.name} */} Matheus Rabelo</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -156,13 +166,14 @@ const Dashboard = () => {
                     </Box>
                   </Grid>
 
-                  {user.typeUser === "client" && currentAppointment && (
+                  {user.typeUser === "client" ? (
+                    currentAppointment && (
                     <Grid item xs={12}>
                       <PendingAppointment>
                         <Subtitle color={"white"}>
                           {renderAppointmentText(currentAppointment.status)}
                         </Subtitle>
-
+                        {currentAppointment.status !== "Cancelado" ? (
                         <>
                           <FlexBox>
                             <p>
@@ -170,7 +181,7 @@ const Dashboard = () => {
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              <p> {currentAppointment.therapist.name}</p>
+                              <p> {/* {currentAppointment.therapist.name} */} Matheus Rabelo</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </p>
@@ -191,25 +202,130 @@ const Dashboard = () => {
                               )} - horário de Brasília`}
                             </p>
                           </FlexBox>
-                          <ThetaButton
-                            theme="rainbow"
-                            style={{ alignSelf: "baseline" }}
-                            onClick={() => setShowDialog(true)}
-                          >
-                            Pagar agora
-                          </ThetaButton>
+                          {currentAppointment.status === "Aguardando Pagamento" && (
+                            <ThetaButton
+                              theme="rainbow"
+                              style={{ alignSelf: "baseline" }}
+                              onClick={() => setShowDialog(true)}
+                            >
+                              Pagar agora
+                            </ThetaButton>
+                          )}
+                          {currentAppointment.status === "confirmado" && (
+                            /*TO DO: add lógica pra mostrar / esconder botão */ 
+                            /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
+                            <ThetaButton
+                              theme="rainbow"
+                              style={{ alignSelf: "baseline" }}
+                              onClick={() => setShowDialog(true)}
+                            >
+                              Entre em sua sala
+                            </ThetaButton>
+
+                          )}
                         </>
+                        ) : (
+                          <ThetaButton
+                              theme="rainbow"
+                              style={{ alignSelf: "baseline" }}
+                              onClick={() => router.push("busca-terapeutas")}
+                            >
+                              Buscar outros profissionais
+                            </ThetaButton>
+                        )} 
                         <Dialog
                           onClose={() => setShowDialog(false)}
                           open={showDialog}
                         >
                           <div style={{ margin: 30 }}>
-                            <PaypalButton setShowDialog={setShowDialog} />{" "}
+                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
                           </div>
                         </Dialog>
                       </PendingAppointment>
                     </Grid>
-                  )}
+                  
+                  )) : (
+                    currentAppointment && (
+                    <Grid item xs={12}>
+                    <PendingAppointment>
+                      <Subtitle color={"white"}>
+                        {renderAppointmentTexTherapist(currentAppointment.status)}
+                      </Subtitle>
+                      {currentAppointment.status !== "Cancelado" ? (
+                      <>
+                        <FlexBox>
+                          
+                          
+                            <p style={{marginRight: 30}}> <strong style={{marginRight: 5}}>Cliente: </strong> {/* {currentAppointment.therapist.name} */} Amanda Natallie</p>
+                            <p> <strong style={{marginRight: 5}}>E-mail: </strong> amanda.natallie.2@gmail.com</p>                            
+                          
+                        </FlexBox>
+                        <FlexBox>
+                          <p>
+                            <img
+                              src="/media/icons/calendar.svg"
+                              alt="calendar"
+                            />
+                            {getDateExtend(currentAppointment.date)}
+                          </p>
+                          <span>•</span>
+                          <p>
+                            <img src="/media/icons/time.svg" alt="time" />{" "}
+                            {`${getDateTime(
+                              currentAppointment.date
+                            )} - horário de Brasília`}
+                          </p>
+                        </FlexBox>
+                       
+                        {currentAppointment.status === "Aguardando Confirmação" && (
+                          /*TO DO: add lógica pra mostrar / esconder botão */ 
+                          /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
+                          <FlexBox>
+                            <ThetaButton
+                              theme="rainbow"
+                              style={{ alignSelf: "baseline", marginRight: 20 }}
+                              onClick={() => undefined}
+                            >
+                              Aceitar solicitação
+                            </ThetaButton>
+
+                            <ThetaButton
+                              theme="purple"
+                              style={{ alignSelf: "baseline" }}
+                              onClick={() => undefined}
+                            >
+                              Cancelar solicitação
+                            </ThetaButton>
+                          </ FlexBox>
+                        )}
+                        {currentAppointment.status === "confirmado" && (
+                          /*TO DO: add lógica pra mostrar / esconder botão */ 
+                          /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
+                          <ThetaButton
+                            theme="rainbow"
+                            style={{ alignSelf: "baseline" }}
+                            onClick={() => setShowDialog(true)}
+                          >
+                            Entre em sua sala
+                          </ThetaButton>
+
+                        )}
+                      </>
+                      ) : (
+                        <p></p>
+                      )} 
+                      <Dialog
+                        onClose={() => setShowDialog(false)}
+                        open={showDialog}
+                      >
+                        <div style={{ margin: 30 }}>
+                          <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
+                        </div>
+                      </Dialog>
+                    </PendingAppointment>
+                  </Grid>
+                
+                  ))}
                 </Grid>
               ) : (
                 <Grid item md={12}>

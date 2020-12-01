@@ -97,13 +97,15 @@ const SearchProfessionalsPage = () => {
       price: provider.price,
       button: {
         title: "CONFIRMAR",
-        actionFunction: () =>
+        actionFunction: () => {
+          setLocalLoading(true)
           makeAppointment({
             provider_id: provider.id,
             date: currentDate,
             time: provider.time,
             token: isLoggedIn,
-          }),
+          })
+        }
       },
     });
     setOpen(true);

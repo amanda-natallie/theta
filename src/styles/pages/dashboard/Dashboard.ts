@@ -41,8 +41,8 @@ export const AppointmentList = styled.ul`
     padding: 0 20px 0 75px;
     position: relative;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
     margin-bottom: 10px;
     transition: all .2s ease;
@@ -79,6 +79,7 @@ export const AppointmentList = styled.ul`
         filter: brightness(0) invert(1);
       }
     }
+    
   }
 `;
 

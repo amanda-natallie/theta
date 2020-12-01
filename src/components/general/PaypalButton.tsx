@@ -1,10 +1,17 @@
-import React, { useRef, useEffect} from "react";
+import React, { useRef, useEffect, SetStateAction, Dispatch} from "react";
+import { appointmentUpdateStatus } from "../../services/appointments";
 
-const PaypalButton = (setShowDialog: any) => {
-  const paypal: any = useRef(null);
+interface PaypalButtonProps {
+  appointmentId: string,
+  ammount: string,
+  setShowDialog: any,
+}
+
+const PaypalButton = ({appointmentId, ammount, setShowDialog}: PaypalButtonProps) => {
+  const paypal = useRef();
 
   useEffect(() => {
-    paypal.Buttons({
+    (window as any).paypal.Buttons({
       createOrder: (data, actions, err) => {
         return actions.order.create({
           intent: "CAPTURE",
@@ -13,15 +20,16 @@ const PaypalButton = (setShowDialog: any) => {
               description: "Sessão Thetahealing Online",
               amount: {
                 currency: "BRL",
-                value: 107.00
+                value: parseFloat(ammount).toFixed(2)
               }
             }
           ]
         })
       },
       onApprove: async (data, actions) => {
-        const order = await actions.order.capture()
-        console.log(order)
+        await actions.order.capture().then(async details => {
+          await appointmentUpdateStatus(appointmentId, "Aguardando Confirmação", data.orderID)
+        })
         setShowDialog(false)
         window.location.href = "/dashboard";
       },

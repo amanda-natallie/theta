@@ -21,16 +21,7 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
-    MuiSelect: {
-      outlined: {
-        paddingLeft: "40px",
-        color: "#7643FF",
-      },
-      select: {
-        padding: "12px 14px",
-        
-      },
-    },
+    
     MuiInputBase: {
       root: {
         borderRadius: 8,

@@ -21,7 +21,7 @@ export const userRegistration = async (userData: formConstants.ITherapist) => {
 
 export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   const { day, month, year } = props;
-  const requestBody: any = { date: `${year}-${month}-${day}T08:00` };
+  const requestBody: any = { "date": `${year}-${month}-${day}T08:00` };
   try {
     const providers: any = await api.get("therapists");
     const result = providers.data.map(async (item) => {
@@ -40,7 +40,7 @@ export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
 export const getProssionalInfo = async (username: string) => {
   const config = { params: { username } };
   try {
-    const response = await api.get(`therapists`, config);
+    const response = await api.get(`therapists/username/`, config);
     return response.data;
   } catch (error) {
     alert(error.response.data.message);
@@ -48,7 +48,7 @@ export const getProssionalInfo = async (username: string) => {
 };
 
 export const therapistAvailability = async (id: string) => {
-  const availability = await api.get(`providers/${id}/day-availability`);
+  const availability = await api.post(`appointments/therapist/${id}`);
   return availability.data;
 };
 

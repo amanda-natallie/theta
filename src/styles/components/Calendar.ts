@@ -41,4 +41,8 @@ export const CalendarContainer = styled.div`
     border-radius: 10px;
     color: #ffffff !important;
   }
+
+  .DayPicker-Caption {
+    padding: 0 1.5em !important
+  }
 `;
