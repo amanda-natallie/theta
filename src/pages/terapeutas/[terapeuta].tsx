@@ -77,7 +77,7 @@ const ProfessionalPublicProfilePage = () => {
   const router = useRouter();
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
   console.log(thetaInformation)
-  console.log(JSON.parse(thetaInformation.links[0]))
+  console.log(JSON.parse(thetaInformation.links[0] || "[]"))
 
   /*   const handleDateChange = (e: any): void => {
     setDateSelected(e);
