@@ -93,7 +93,7 @@ export const appointmentMock = [
     user_id: "2bcabf18-5c0f-4bd4-91df-2b8162a8f489",
     date: "2020-11-19T18:00:00.000Z",
     url: "https://meet.jit.si/afebc4b2f985414b1651",
-    status: "confirmado",
+    status: "Confirmado",
     price: null,
     order_id: null,
     created_at: "2020-11-19T16:54:32.525Z",

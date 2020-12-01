@@ -211,7 +211,7 @@ const Dashboard = () => {
                               Pagar agora
                             </ThetaButton>
                           )}
-                          {currentAppointment.status === "confirmado" && (
+                          {currentAppointment.status === "Confirmado" && (
                             /*TO DO: add lógica pra mostrar / esconder botão */ 
                             /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
                             <ThetaButton
@@ -298,7 +298,7 @@ const Dashboard = () => {
                             </ThetaButton>
                           </ FlexBox>
                         )}
-                        {currentAppointment.status === "confirmado" && (
+                        {currentAppointment.status === "Confirmado" && (
                           /*TO DO: add lógica pra mostrar / esconder botão */ 
                           /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
                           <ThetaButton
