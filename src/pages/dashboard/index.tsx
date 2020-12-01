@@ -9,7 +9,6 @@ import UserCard from "../../components/general/ProfileCard/UserCard";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import { Box } from "../../styles/components/Box";
 import { ThetaButton } from "../../styles/components/Button";
-import { PayPalButton } from "react-paypal-button-v2";
 import { FlexBox } from "../../styles/components/FlexBox";
 import { Subtitle, Title } from "../../styles/components/Typography";
 import {
@@ -33,6 +32,7 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [user, setUser] = useState(undefined);
+  console.log(currentAppointment);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
       const response =
         userInfo.typeUser === "client"
-          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
+          ? await userAppointments(userInfo.id)
           : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
       setAppointments(response);
       console.log("kaakak", response);
@@ -204,7 +204,7 @@ const Dashboard = () => {
                           open={showDialog}
                         >
                           <div style={{ margin: 30 }}>
-                            <PaypalButton setShowDialog={setShowDialog} />{" "}
+                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
                           </div>
                         </Dialog>
                       </PendingAppointment>

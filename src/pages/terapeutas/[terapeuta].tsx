@@ -87,16 +87,16 @@ const ProfessionalPublicProfilePage = () => {
   });
   const router = useRouter();
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
+  console.log(thetaInformation)
+  
 
   /*   const handleDateChange = (e: any): void => {
     setDateSelected(e);
   }; */
   const getInformation = async () => {
     const userName: any = router.query.terapeuta;
-
     const response = await getProssionalInfo(userName);
     const hours = await therapistAvailability(response[0].id);
-
     setThetaInformation({ ...response[0], availability: hours });
   };
 
@@ -145,7 +145,7 @@ const ProfessionalPublicProfilePage = () => {
                   <ProfileBlock>
                     <Avatar
                       src={thetaInformation.avatar_url}
-                      alt="uai"
+                      alt="avatar"
                       className="profile-avatar"
                     />
                     <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>

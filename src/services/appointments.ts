@@ -1,3 +1,4 @@
+import { status } from 'nprogress';
 import api from './api';
 
 interface getAllProfessionalsProps {
@@ -44,5 +45,22 @@ export const renderAppointmentText = (status: string) => {
         return "Seu agendamento está cancelado, efetue um novo agendamento"
     default:
       return "Seu agendamento está confirmado, clique no botão abaixo para entrar na sala"
+  }
+}
+
+export const appointmentUpdateStatus = async (id: string, status: string, order_id?: string) => {
+  const config = {
+    headers: { 'content-type': `application/json` },
+  }
+  const requestBody: any = { 
+    status, order_id
+  }
+  console.log(requestBody)
+  try{
+    const response = await api.post(`/appointments/${id}`, requestBody, config);
+    console.log(response);
+    return alert(response.data.message);
+  } catch(error) {
+    alert(error.response.data.message);
   }
 }
