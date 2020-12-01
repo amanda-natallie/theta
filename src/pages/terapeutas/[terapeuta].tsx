@@ -40,6 +40,7 @@ const ProfessionalPublicProfilePage = () => {
   const today = new Date();
   /* const [tabActive, setTabActive] = useState("artigos"); */
   const [currentDate] = useState<any>(today);
+  const [selectedDate, setSelectedDate] = useState(undefined)
   const [, setOpen] = useState(false);
   const [, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
@@ -349,54 +350,60 @@ const ProfessionalPublicProfilePage = () => {
                   {thetaInformation.availability.length > 0 && (
                     <>
                       <Divider height="10px" />
-                      <FlexBox className="" justify="space-between">
+                      <FlexBox className="" justify="flex-start">
                         <img src="/media/icons/arrowDown.svg" alt="" />
-                        <span>Escolha o dia e horário desejado &nbsp;</span>
+                        <span>Escolha o dia desejado &nbsp;</span>
                       </FlexBox>
+                      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
                       <Divider height="10px" />
-                      <FlexBox>
-                        {thetaInformation.availability.some(
-                          (e: any) => e.available === false
-                        ) ? (
-                          <FormControl fullWidth>
-                            <InputLabel disableAnimation shrink={false}>
-                              Escolha seu horário
-                            </InputLabel>
-                            <Select
-                              MenuProps={{
-                                anchorOrigin: {
-                                  vertical: "bottom",
-                                  horizontal: "left",
-                                },
-                                transformOrigin: {
-                                  vertical: "top",
-                                  horizontal: "left",
-                                },
-                                getContentAnchorEl: null,
-                              }}
-                            >
-                              {thetaInformation.availability.map(
-                                (newItem: any) =>
-                                  newItem.available && (
-                                    <MenuItem
-                                      onChange={(e: any) =>
-                                        appointimentMaker(e.target.value)
-                                      }
-                                    >
-                                      {`${newItem.hour}:00`}
-                                    </MenuItem>
-                                  )
-                              )}
-                            </Select>
-                          </FormControl>
-                        ) : (
-                          "Desculpe, este terapeuta não tem horários disponíveis!"
-                        )}
-                      </FlexBox>
+                      {selectedDate && (
+
+                        <FlexBox>
+                          {thetaInformation.availability.some(
+                            (e: any) => e.available === false
+                          ) ? (
+                            <FormControl fullWidth variant="outlined" margin="normal">
+                              <InputLabel disableAnimation shrink={false}>
+                                Escolha seu horário
+                              </InputLabel>
+                              <Select
+                                
+                                MenuProps={{
+                                  anchorOrigin: {
+                                    vertical: "bottom",
+                                    horizontal: "left",
+                                  },
+                                  transformOrigin: {
+                                    vertical: "top",
+                                    horizontal: "left",
+                                  },
+                                  getContentAnchorEl: null,
+                                }}
+                              >
+                                {thetaInformation.availability.map(
+                                  (newItem: any) =>
+                                    newItem.available && (
+                                      <MenuItem
+                                        onChange={(e: any) =>
+                                          appointimentMaker(e.target.value)
+                                        }
+                                      >
+                                        {`${newItem.hour}:00`}
+                                      </MenuItem>
+                                    )
+                                )}
+                              </Select>
+                            </FormControl>
+                          ) : (
+                            "Desculpe, este terapeuta não tem horários disponíveis!"
+                          )}
+                        </FlexBox>
+                     
+                      )}
                     </>
                   )}
-                  {/* <Calendar />
-                  <Divider height="20px" />
+                   
+                  {/*<Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">
                       <ThetaButton theme="purple" fullWidth>
