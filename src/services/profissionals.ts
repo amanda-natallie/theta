@@ -48,7 +48,7 @@ export const getProssionalInfo = async (username: string) => {
 };
 
 export const therapistAvailability = async (id: string) => {
-  const availability = await api.post(`appointments/therapist/${id}/available`);
+  const availability = await api.post(`appointments/therapist/${id}`);
   return availability.data;
 };
 

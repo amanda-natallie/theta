@@ -40,7 +40,7 @@ const ProfessionalPublicProfilePage = () => {
   const today = new Date();
   /* const [tabActive, setTabActive] = useState("artigos"); */
   const [currentDate] = useState<any>(today);
-  const [selectedDate, setSelectedDate] = useState(undefined)
+  const [selectedDate, setSelectedDate] = useState(undefined);
   const [, setOpen] = useState(false);
   const [, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
@@ -84,21 +84,93 @@ const ProfessionalPublicProfilePage = () => {
     created_at: "2020-11-19T12:49:22.539Z",
     updated_at: "2020-11-19T12:49:22.539Z",
     avatar_url: null,
-    availability: []
+    availability: [],
   });
   const router = useRouter();
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
-  console.log(thetaInformation)
-  
+  console.log(thetaInformation);
 
-  /*   const handleDateChange = (e: any): void => {
-    setDateSelected(e);
-  }; */
   const getInformation = async () => {
     const userName: any = router.query.terapeuta;
     const response = await getProssionalInfo(userName);
-    const hours = await therapistAvailability(response[0].id);
-    setThetaInformation({ ...response[0], availability: hours });
+    //const hours = await therapistAvailability(response[0].id);
+    setThetaInformation({
+      ...response[0],
+      availability: [
+        {
+          hour: 6,
+          available: true,
+        },
+        {
+          hour: 7,
+          available: true,
+        },
+        {
+          hour: 8,
+          available: true,
+        },
+        {
+          hour: 9,
+          available: true,
+        },
+        {
+          hour: 10,
+          available: true,
+        },
+        {
+          hour: 11,
+          available: true,
+        },
+        {
+          hour: 12,
+          available: true,
+        },
+        {
+          hour: 13,
+          available: true,
+        },
+        {
+          hour: 14,
+          available: true,
+        },
+        {
+          hour: 15,
+          available: true,
+        },
+        {
+          hour: 16,
+          available: true,
+        },
+        {
+          hour: 17,
+          available: true,
+        },
+        {
+          hour: 18,
+          available: true,
+        },
+        {
+          hour: 19,
+          available: true,
+        },
+        {
+          hour: 20,
+          available: true,
+        },
+        {
+          hour: 21,
+          available: true,
+        },
+        {
+          hour: 22,
+          available: true,
+        },
+        {
+          hour: 23,
+          available: true,
+        },
+      ],
+    });
   };
 
   useEffect(() => {
@@ -126,8 +198,8 @@ const ProfessionalPublicProfilePage = () => {
     });
     setOpen(true);
   };
-  
-  return thetaInformation.id ? (
+
+  return thetaInformation.id !== undefined ? (
     <>
       <Head>
         <title>Perfil Terapeuta</title>
@@ -174,7 +246,7 @@ const ProfessionalPublicProfilePage = () => {
             <Container maxWidth="lg">
               <Grid container spacing={2}>
                 <Grid item xs={12} md={8} lg={9}>
-                <CardBox>
+                  <CardBox>
                     <div className="left">
                       <table>
                         <tr>
@@ -270,7 +342,7 @@ const ProfessionalPublicProfilePage = () => {
                   </CardBox>
 
                   <Box className="profile-therapist">
-                  {thetaInformation.bio && (
+                    {thetaInformation.bio && (
                       <>
                         <h2>Sobre</h2>
                         <Divider height="25px" />
@@ -279,7 +351,7 @@ const ProfessionalPublicProfilePage = () => {
                         <Divider bordered />
                         <Divider height="35px" />
                       </>
-                  )}
+                    )}
                     <h2>Certificados ThetaHealing®</h2>
                     <small>
                       *clique nos botões abaixo para ver os certificados
@@ -354,20 +426,25 @@ const ProfessionalPublicProfilePage = () => {
                         <img src="/media/icons/arrowDown.svg" alt="" />
                         <span>Escolha o dia desejado &nbsp;</span>
                       </FlexBox>
-                      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                      <Calendar
+                        selectedDate={selectedDate}
+                        setSelectedDate={setSelectedDate}
+                      />
                       <Divider height="10px" />
                       {selectedDate && (
-
                         <FlexBox>
                           {thetaInformation.availability.some(
-                            (e: any) => e.available === false
+                            (e: any) => e.available === true
                           ) ? (
-                            <FormControl fullWidth variant="outlined" margin="normal">
+                            <FormControl
+                              fullWidth
+                              variant="outlined"
+                              margin="normal"
+                            >
                               <InputLabel disableAnimation shrink={false}>
                                 Escolha seu horário
                               </InputLabel>
                               <Select
-                                
                                 MenuProps={{
                                   anchorOrigin: {
                                     vertical: "bottom",
@@ -395,14 +472,13 @@ const ProfessionalPublicProfilePage = () => {
                               </Select>
                             </FormControl>
                           ) : (
-                            "Desculpe, este terapeuta não tem horários disponíveis!"
+                            "Desculpe, este terapeuta não tem horários disponíveis no dia escolhido!"
                           )}
                         </FlexBox>
-                     
                       )}
                     </>
                   )}
-                   
+
                   {/*<Divider height="20px" />
                   <FlexBox>
                     <Link passHref href="/login">
