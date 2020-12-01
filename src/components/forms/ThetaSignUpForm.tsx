@@ -522,7 +522,7 @@ const ThetaSignUpForm = () => {
                 <img src="media/icons/social-media/youtube.svg" />
               </Grid>
               <Grid item xs={10}>
-                <TextField fullWidth placeholder="https://www.youtube.com/" />
+                <TextField fullWidth variant="outlined" placeholder="https://www.youtube.com/" />
               </Grid>
             </Grid>
 
@@ -537,7 +537,7 @@ const ThetaSignUpForm = () => {
                 <img src="media/icons/social-media/twitter.svg" />
               </Grid>
               <Grid item xs={10}>
-                <TextField fullWidth placeholder="https://www.twitter.com/" />
+                <TextField fullWidth variant="outlined" placeholder="https://www.twitter.com/" />
               </Grid>
             </Grid>
 
@@ -552,7 +552,7 @@ const ThetaSignUpForm = () => {
                 <img src="media/icons/social-media/facebook.svg" />
               </Grid>
               <Grid item xs={10}>
-                <TextField fullWidth placeholder="https://www.facebook.com/" />
+                <TextField fullWidth variant="outlined" placeholder="https://www.facebook.com/" />
               </Grid>
             </Grid>
 
@@ -567,7 +567,7 @@ const ThetaSignUpForm = () => {
                 <img src="media/icons/social-media/instagram.svg" />
               </Grid>
               <Grid item xs={10}>
-                <TextField fullWidth placeholder="https://www.instagram.com/" />
+                <TextField fullWidth variant="outlined" placeholder="https://www.instagram.com/" />
               </Grid>
             </Grid>
 
@@ -584,6 +584,7 @@ const ThetaSignUpForm = () => {
               <Grid item xs={10}>
                 <TextField
                   fullWidth
+                  variant="outlined"
                   placeholder="https://www.linkedin.com/in"
                 />
               </Grid>

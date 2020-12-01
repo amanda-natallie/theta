@@ -113,13 +113,13 @@ const UserSignInPage = () => {
                 <p>
                   Ainda não tem uma conta? 
                   <Link  passHref href="/cadastro-usuario">
-                    <NavigationButton> Cadastre-se aqui</NavigationButton>
+                    <NavigationButton style={{ marginLeft: 5}}> Cadastre-se aqui</NavigationButton>
                   </Link>
                 </p>
                 <p>
                   
-                  <Link  passHref href="/cadastro-usuario">
-                    <NavigationButton> Clique aqui</NavigationButton>
+                  <Link  passHref href="/cadastro-terapeuta">
+                    <NavigationButton style={{ marginRight: 5}}> Clique aqui </NavigationButton>
                   </Link>
                   se você é um terapeuta e precisa se cadastrar
                 </p>
