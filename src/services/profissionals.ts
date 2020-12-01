@@ -40,7 +40,7 @@ export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
 export const getProssionalInfo = async (username: string) => {
   const config = { params: { username } };
   try {
-    const response = await api.get(`therapists`, config);
+    const response = await api.get(`therapists/username/`, config);
     return response.data;
   } catch (error) {
     alert(error.response.data.message);
@@ -48,7 +48,7 @@ export const getProssionalInfo = async (username: string) => {
 };
 
 export const therapistAvailability = async (id: string) => {
-  const availability = await api.get(`providers/${id}/day-availability`);
+  const availability = await api.get(`/appointments/therapist/${id}`);
   return availability.data;
 };
 
