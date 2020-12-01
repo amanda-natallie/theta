@@ -42,9 +42,21 @@ export const renderAppointmentText = (status: string) => {
     case "Aguardando Confirmação":
         return "Aguarde enquanto o Thetahealer confirma o agendamento"
     case "Cancelado":
-        return "Seu agendamento está cancelado, efetue um novo agendamento"
+        return "Infelizmente seu agendamento foi cancelado, efetue um novo agendamento"
     default:
-      return "Seu agendamento está confirmado, clique no botão abaixo para entrar na sala"
+      return "Seu agendamento foi confirmado!"
+  }
+}
+export const renderAppointmentTexTherapist = (status: string) => {
+  switch(status) {
+    case "Aguardando Pagamento":
+      return "O cliente ainda não realizou o pagamento"
+    case "Aguardando Confirmação":
+        return "Você precisa confirmar este agendamento"
+    case "Cancelado":
+        return "Você cancelou este agendamento"
+    default:
+      return "Seu agendamento foi confirmado!"
   }
 }
 

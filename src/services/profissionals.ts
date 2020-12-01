@@ -21,7 +21,7 @@ export const userRegistration = async (userData: formConstants.ITherapist) => {
 
 export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   const { day, month, year } = props;
-  const requestBody: any = { date: `${year}-${month}-${day}T08:00` };
+  const requestBody: any = { "date": `${year}-${month}-${day}T08:00` };
   try {
     const providers: any = await api.get("therapists");
     const result = providers.data.map(async (item) => {

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components"
 
 const Small = styled.small`
+  text-align: right;
   &.paid { color: green}
   &.pending { color: orange}
   &.cancelled { color: red}
@@ -15,10 +16,10 @@ const PaymentStatus = ({status}: Iprops) => {
 
   const getClassName = () => {
     switch (status) {
-      case "Pago":
+      case "Aguardando Confirmação":
         return "paid"
         
-      case "Pagamento Pendente": 
+      case "Aguardando Pagamento": 
       return "pending"
     
       case "Cancelado": 
