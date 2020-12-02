@@ -27,9 +27,7 @@ const PaypalButton = ({appointmentId, ammount, setShowDialog}: PaypalButtonProps
         })
       },
       onApprove: async (data, actions) => {
-        await actions.order.capture().then(async details => {
-          await appointmentUpdateStatus(appointmentId, "Aguardando Confirmação", data.orderID)
-        })
+        await appointmentUpdateStatus(appointmentId, "Aguardando Confirmação", data.orderID)
         setShowDialog(false)
         window.location.href = "/dashboard";
       },

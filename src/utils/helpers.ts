@@ -24,3 +24,8 @@ export const getDateTime = (date: string) => {
   const convertedDate = new Intl.DateTimeFormat('pt-BR', {hour: '2-digit', minute: '2-digit'}).format(receivedDate);
   return convertedDate.toString()
 }
+
+export const renderPhone = (phonenumber: string) => {
+  const formattedNumber = `+55 (${phonenumber.slice(0, 2)}) ${phonenumber.slice(2, 7)}-${phonenumber.slice(-4)}`
+  return formattedNumber
+}

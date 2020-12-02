@@ -35,7 +35,6 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [user, setUser] = useState(userInfoMock);
-  console.log(currentAppointment);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
@@ -49,12 +48,12 @@ const Dashboard = () => {
 
       //user && setIsEmailConfirmed(user.confirmed_email);
 
-      /* const response =
+      const response =
         userInfo.typeUser === "client"
-          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
-          : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
+          ? await userAppointments(userInfo.id)
+          : await therapistAppointments(userInfo.id);
       setAppointments(response);
-      setLocalLoading(false) */
+      setLocalLoading(false)
     } else {
       router.push("/login");
     }
@@ -63,8 +62,6 @@ const Dashboard = () => {
   useEffect(() => {
     getInformation();
   }, []); 
-
-
   
   return (
     <>
@@ -125,7 +122,7 @@ const Dashboard = () => {
                                     alignItems: "center",
                                     height: "65px"
                                   }}>
-                                    <h5>{/* {appointmentItem.therapist.name} */} Matheus Rabelo</h5>
+                                    <h5>{appointmentItem.therapist && appointmentItem.therapist.name}</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -181,7 +178,7 @@ const Dashboard = () => {
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              <p> {/* {currentAppointment.therapist.name} */} Matheus Rabelo</p>
+                              <p> {currentAppointment.therapist.name}</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </p>
