@@ -9,6 +9,8 @@ import {
   FormLabel,
   Grid,
   TextField,
+  MenuItem,
+  Menu
 } from "@material-ui/core";
 import { Title } from "../../styles/components/Typography";
 import ListStyle from "../../styles/components/listStyle";
@@ -252,10 +254,11 @@ const ThetaSignUpForm = () => {
                   ? formik.errors.birthDay
                   : null
               }
-            />
+            /> 
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
+              select
               fullWidth
               error={false}
               label="Mês"
@@ -271,7 +274,21 @@ const ThetaSignUpForm = () => {
                   ? formik.errors.birthMonth
                   : null
               }
-            />
+            >
+            <MenuItem value="Janeiro">Janeiro</MenuItem>
+            <MenuItem value="Fevereiro">Fevereiro</MenuItem>
+            <MenuItem value="Março">Março</MenuItem>
+            <MenuItem value="Abril">Abril</MenuItem>
+            <MenuItem value="Maio">Maio</MenuItem>
+            <MenuItem value="Junho">Junho</MenuItem>
+            <MenuItem value="Julho">Julho</MenuItem>
+            <MenuItem value="Agosto">Agosto</MenuItem>
+            <MenuItem value="Setembro">Setembro</MenuItem>
+            <MenuItem value="outubro">Outubro</MenuItem>
+            <MenuItem value="Novembro">Novembro</MenuItem>
+            <MenuItem value="dezembro">Dezembro</MenuItem>
+            
+            </TextField>
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
