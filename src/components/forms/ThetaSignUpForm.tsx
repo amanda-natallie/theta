@@ -471,18 +471,25 @@ const ThetaSignUpForm = () => {
           </Grid>
           <Grid item xs={12}>
             <h1>Sou fluente em:</h1>
+            </Grid>
+          <Grid container xs={8}>
+            
+            <Grid item xs={4}>
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Inglês"
             />
-            <FormControlLabel
+             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Mandarin"
             />
-            <FormControlLabel
+             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Espanhol"
             />
+            </Grid>
+            
+            <Grid item xs={4}>
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Hindi"
@@ -495,6 +502,9 @@ const ThetaSignUpForm = () => {
               control={<Checkbox color="primary" />}
               label="Português"
             />
+            </Grid>
+            
+            <Grid item xs={4}>
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Bengali"
@@ -503,85 +513,86 @@ const ThetaSignUpForm = () => {
               control={<Checkbox color="primary" />}
               label="Russo"
             />
-
-            <Grid container xs={12} style={{ justifyContent: "flex-end" }}>
+            </Grid>
+           
+            
+          </Grid>
+          <Grid container xs={12} style={{ justifyContent: "flex-end", marginBottom:"10px" }}>
               <ThetaButton type="button" theme="purple">
                 Adicionar
               </ThetaButton>
             </Grid>
-          </Grid>
-
-          <Grid item xs={12}>
+           <Grid container>   
+         
             <Grid
-              style={{ margin: "12px" }}
+              style={{marginBottom:"10px"}} 
               container
-              direction="row"
               alignItems="center"
             >
-              <Grid style={{ marginRight: "12px" }} item>
+              <Grid item xs={1}>
                 <img src="media/icons/social-media/youtube.svg" />
               </Grid>
-              <Grid item xs={10}>
-                <TextField fullWidth variant="outlined" placeholder="https://www.youtube.com/" />
+              <Grid item xs={11}>
+                <TextField fullWidth 
+                variant="outlined" 
+                placeholder="https://www.youtube.com/" />
               </Grid>
             </Grid>
 
-            <Grid
-              style={{ margin: "12px" }}
+            <Grid              
+              style={{marginBottom:"10px"}} 
               container
-              xs={12}
-              direction="row"
               alignItems="center"
             >
-              <Grid style={{ marginRight: "12px" }} item>
+              <Grid item xs={1}>
                 <img src="media/icons/social-media/twitter.svg" />
               </Grid>
-              <Grid item xs={10}>
-                <TextField fullWidth variant="outlined" placeholder="https://www.twitter.com/" />
+              <Grid item xs={11}>
+                <TextField fullWidth 
+                variant="outlined"
+                placeholder="https://www.twitter.com/" />
               </Grid>
             </Grid>
 
             <Grid
-              style={{ margin: "12px" }}
+              style={{marginBottom:"10px"}} 
               container
-              xs={12}
-              direction="row"
               alignItems="center"
             >
-              <Grid style={{ marginRight: "12px" }} item>
+              <Grid item xs={1}>
                 <img src="media/icons/social-media/facebook.svg" />
               </Grid>
-              <Grid item xs={10}>
-                <TextField fullWidth variant="outlined" placeholder="https://www.facebook.com/" />
+              <Grid item xs={11}>
+                <TextField fullWidth 
+                variant="outlined"
+                placeholder="https://www.facebook.com/" />
               </Grid>
             </Grid>
 
             <Grid
-              style={{ margin: "12px" }}
+              style={{marginBottom:"10px"}} 
               container
-              xs={12}
-              direction="row"
               alignItems="center"
             >
-              <Grid style={{ marginRight: "12px" }} item>
+              <Grid item xs={1}>
                 <img src="media/icons/social-media/instagram.svg" />
               </Grid>
-              <Grid item xs={10}>
-                <TextField fullWidth variant="outlined" placeholder="https://www.instagram.com/" />
+              <Grid item xs={11}>
+                <TextField fullWidth 
+                variant="outlined" 
+                placeholder="https://www.instagram.com/" />
               </Grid>
             </Grid>
 
             <Grid
-              style={{ margin: "12px" }}
+              style={{marginBottom:"10px"}} 
               container
-              xs={12}
-              direction="row"
               alignItems="center"
             >
-              <Grid style={{ marginRight: "12px" }} item>
+              <Grid item xs={1}>
                 <img src="media/icons/social-media/linkedin.svg" />
               </Grid>
-              <Grid item xs={10}>
+              <Grid item xs={11}>
                 <TextField
                   fullWidth
                   variant="outlined"
@@ -589,20 +600,21 @@ const ThetaSignUpForm = () => {
                 />
               </Grid>
             </Grid>
-          </Grid>
           <Grid container xs={12} style={{ justifyContent: "flex-end" }}>
             <ThetaButton type="button" theme="purple">
               Adicionar
             </ThetaButton>
+          </Grid>
           </Grid>
           <Grid container xs={12}>
             <BoxForm>
               <h1>Faça upload dos seus diplomas</h1>
               <input type="file" />
             </BoxForm>
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{margin:"12px 0 12px 0"}}>
               <TextField
                 fullWidth
+                variant="outlined"
                 multiline
                 rows={8}
                 label="Quer acrescentar algo a mais? Digite aqui"
@@ -644,7 +656,8 @@ const ThetaSignUpForm = () => {
               Cadastrar
             </ThetaButton>
             <Grid item xs={12}>
-              <h1>
+              <h1 style={{fontSize:"12px", color:"#666666", alignItems:"center", textAlign:"center", margin:"10px"}}>
+
                 A Theta Brasil coleta e usa dados pessoais em conformidade com
                 nossa Política de Privacidade. Ao criar uma conta, você concorda
                 com nossos Termos e Condições.
