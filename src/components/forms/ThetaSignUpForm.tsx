@@ -286,7 +286,7 @@ const ThetaSignUpForm = () => {
             <MenuItem value="Setembro">Setembro</MenuItem>
             <MenuItem value="outubro">Outubro</MenuItem>
             <MenuItem value="Novembro">Novembro</MenuItem>
-            <MenuItem value="dezembro">Dezembro</MenuItem>
+            <MenuItem value="Dezembro">Dezembro</MenuItem>
             
             </TextField>
           </Grid>
