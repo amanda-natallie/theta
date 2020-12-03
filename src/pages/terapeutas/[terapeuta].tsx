@@ -30,7 +30,7 @@ import {
   getProssionalInfo,
   therapistAvailability,
 } from "../../services/profissionals";
-import { renderIdade } from "../../utils/helpers";
+import { renderIdade, renderPhone, getDateTime } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { Select, MenuItem } from "@material-ui/core";
 import { makeAppointment } from "../../services/appointments";
@@ -87,98 +87,45 @@ const ProfessionalPublicProfilePage = () => {
     availability: [],
   });
   const router = useRouter();
+  const userName: any = router.query.terapeuta;
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
-  console.log(thetaInformation);
 
-  const getInformation = async () => {
-    const userName: any = router.query.terapeuta;
+  const getInformation = async (bodyDate?: any) => {
     const response = await getProssionalInfo(userName);
-    //const hours = await therapistAvailability(response[0].id);
-    setThetaInformation({
-      ...response[0],
-      availability: [
-        {
-          hour: 6,
-          available: true,
-        },
-        {
-          hour: 7,
-          available: true,
-        },
-        {
-          hour: 8,
-          available: true,
-        },
-        {
-          hour: 9,
-          available: true,
-        },
-        {
-          hour: 10,
-          available: true,
-        },
-        {
-          hour: 11,
-          available: true,
-        },
-        {
-          hour: 12,
-          available: true,
-        },
-        {
-          hour: 13,
-          available: true,
-        },
-        {
-          hour: 14,
-          available: true,
-        },
-        {
-          hour: 15,
-          available: true,
-        },
-        {
-          hour: 16,
-          available: true,
-        },
-        {
-          hour: 17,
-          available: true,
-        },
-        {
-          hour: 18,
-          available: true,
-        },
-        {
-          hour: 19,
-          available: true,
-        },
-        {
-          hour: 20,
-          available: true,
-        },
-        {
-          hour: 21,
-          available: true,
-        },
-        {
-          hour: 22,
-          available: true,
-        },
-        {
-          hour: 23,
-          available: true,
-        },
-      ],
-    });
+    if(bodyDate){
+      const hours = await therapistAvailability(response[0].id, bodyDate);
+      setThetaInformation({
+        ...response[0],
+        availability: hours,
+      });
+    } else {
+      const hours = await therapistAvailability(response[0].id);
+      setThetaInformation({
+        ...response[0],
+        availability: hours,
+      });
+    }
+
   };
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("authToken"));
-    getInformation();
+    userName && getInformation();
   }, []);
 
+  useEffect(() => {
+    if(selectedDate){
+      const bodyDate = { 
+        day: new Intl.DateTimeFormat('pt-BR', {day: '2-digit'}).format(selectedDate),
+        month: new Intl.DateTimeFormat('pt-BR', {month: '2-digit'}).format(selectedDate),
+        year: new Intl.DateTimeFormat('pt-BR', {year: 'numeric'}).format(selectedDate)
+      }
+      getInformation(bodyDate);
+    }
+  }, [selectedDate]);
+
   const appointimentMaker = (hour: any) => {
+    console.log("appointment maker")
     const provider_id = thetaInformation.id;
     const info = {
       date: currentDate.toLocaleString("pt-BR", dateOptions),
@@ -251,16 +198,16 @@ const ProfessionalPublicProfilePage = () => {
                       <table>
                         <tr>
                           <th>Idade</th>
-                          <td>26</td>
+                          <td>{renderIdade(thetaInformation.yearBorn)}</td>
                         </tr>
                         <tr>
                           <th>Localização</th>
-                          <td>Pernambuco, Arco Verde, Brasil</td>
+                         <td>{`${thetaInformation.city}, ${thetaInformation.state},Brasil`}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th>Membro desde</th>
                           <td>Setembro de 2020</td>
-                        </tr>
+                        </tr> */}
                       </table>
                       <FlexBox column className="contacts">
                         <p>
@@ -272,10 +219,10 @@ const ProfessionalPublicProfilePage = () => {
                               fill="#B8B8B8"
                             />
                           </SvgIcon>
-                          +55 (31) 98956-8956
+                          {renderPhone(thetaInformation.phone)}
                         </p>
-                        <p>davilucashealing@gmail.com</p>
-                        <Link href="">www.davilucashealing.com.br</Link>
+                         <p>{thetaInformation.email}</p>
+                      <Link href="">{`www.thetabrasil.com.br/${thetaInformation.username}`}</Link>
                         <ul>
                           <li>
                             <Link href="https://youtube.com">
@@ -329,15 +276,15 @@ const ProfessionalPublicProfilePage = () => {
                       </FlexBox>
                     </div>
                     <div className="right">
-                      <h5>R$ 107,00/h</h5>
+                      <h5>{`R$ ${thetaInformation.price}/h`}</h5>
                       <p>
                         Cada consulta dura em média de 40min à 1h. <br /> Preço
                         fixo.
                       </p>
-                      <img
+                      {/* <img
                         src="/media/rating.png"
                         style={{ maxHeight: 75, marginTop: 20 }}
-                      />
+                      /> */}
                     </div>
                   </CardBox>
 
@@ -358,17 +305,9 @@ const ProfessionalPublicProfilePage = () => {
                     </small>
                     <Divider height="40px" />
                     <MiniChip>
-                      <li>Basic DNA</li>
-                      <li>Advanced DNA</li>
-                      <li>Dig Deeper</li>
-                      <li>Disease and Disorder</li>
-                      <li>DNA 3</li>
-                      <li>Intuitive Anatomy</li>
-                      <li>World Relations</li>
-                      <li>Basic DNA Instructors</li>
-                      <li>Disease and Disorder Instructors</li>
-                      <li>Intuitive Anatomy</li>
-                      <li>Advanced DNA</li>
+                      {thetaInformation.certificates.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
                     </MiniChip>
                     <Divider height="35px" />
                     <Divider bordered />
@@ -490,9 +429,9 @@ const ProfessionalPublicProfilePage = () => {
                   <Divider height="30px" />
                   <hr />*/}
                   <Divider height="20px" />
-                  <h2>Perfis Similares</h2>
+                  {/* <h2>Perfis Similares</h2>
                   <Divider height="20px" />
-                  <ComingSoon />
+                  <ComingSoon /> */}
                 </Grid>
               </Grid>
             </Container>

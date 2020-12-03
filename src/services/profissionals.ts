@@ -21,13 +21,12 @@ export const userRegistration = async (userData: formConstants.ITherapist) => {
 
 export const getAllProfessionals = async (props: getAllProfessionalsProps) => {
   const { day, month, year } = props;
-  const requestBody: any = { "date": `${year}-${month}-${day}T08:00` };
+  const requestBody: any = { date: `${year}-${("0" + month).slice(-2)}-${("0" + day).slice(-2)}T08:00` };
   try {
     const providers: any = await api.get("therapists");
     const result = providers.data.map(async (item) => {
       const availability = await api.post(
-        `appointments/therapist/${item.id}/available`,
-        requestBody
+        `appointments/therapist/${item.id}/available`, requestBody
       );
       return { ...item, availability: availability.data };
     });
@@ -47,17 +46,31 @@ export const getProssionalInfo = async (username: string) => {
   }
 };
 
-export const therapistAvailability = async (id: string) => {
-  const availability = await api.post(`appointments/therapist/${id}`);
-  return availability.data;
+export const therapistAvailability = async (id: string, dateBody?: any) => {
+  if(dateBody){
+    const { day, month, year } = dateBody;
+    const requestBody: any = { date: `${year}-${("0" + month).slice(-2)}-${("0" + day).slice(-2)}T08:00` };
+    const availability = await api.post(
+      `appointments/therapist/${id}/available`, requestBody
+    );
+    return availability.data;
+  } else {
+    const availability = await api.post(
+      `appointments/therapist/${id}/available`
+    );
+    return availability.data;
+  }
+  
+  
+
+  
 };
 
-
-export const therapistAppointments = async (token: string) => {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
+export const therapistAppointments = async (id: string) => {
+  try {
+    const response = await api.get(`/appointments/therapist/${id}`,);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
   }
-
-  const availability = await api.get(`appointments/therapist`, config);
-  return availability.data;
 };

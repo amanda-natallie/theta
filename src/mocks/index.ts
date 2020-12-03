@@ -29,7 +29,9 @@ export const appointmentMock = [
     id: "1c552dba-4f28-40a4-9a2b-79122ba99b81",
     therapist_id: "41a1e06a-e20d-4bb5-8c59-9af9ee709f1e",
     therapist: {
-      name: "Anderson Nardoni"
+      id: "f4682440-8f55-4293-8926-4c7108f79e3c",
+      lastName: "Terapeuta 3",
+      name: "Alan",
     },
     
     user_id: "2bcabf18-5c0f-4bd4-91df-2b8162a8f489",
