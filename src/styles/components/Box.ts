@@ -85,7 +85,10 @@ export const BoxForm = styled.div`
   align-items: center;
   color: #7643FF;
  }
-  `
+`
+ 
+  
+
 export const MidiaBox = styled(Box)`
   width: calc(100% - 40px);
   margin: 20px;
