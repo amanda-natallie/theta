@@ -69,8 +69,6 @@ export const appointmentUpdateStatus = async (id: string, status: string, order_
   }
   try{
     const response = await api.post(`/appointments/${id}`, requestBody, config);
-    console.log(response)
-    console.log(response.data)
     return alert(response.data.message);
   } catch(error) {
     alert(error.response.data.message);

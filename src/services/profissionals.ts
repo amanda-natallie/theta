@@ -66,12 +66,11 @@ export const therapistAvailability = async (id: string, dateBody?: any) => {
   
 };
 
-
-export const therapistAppointments = async (token: string) => {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
+export const therapistAppointments = async (id: string) => {
+  try {
+    const response = await api.get(`/appointments/therapist/${id}`,);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
   }
-
-  const availability = await api.get(`appointments/therapist`, config);
-  return availability.data;
 };

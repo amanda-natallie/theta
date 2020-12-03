@@ -22,7 +22,7 @@ import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
 import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
 import { useRouter } from "next/router";
-import { renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
+import { appointmentUpdateStatus, renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
 import { appointmentMock, userInfoMock } from "../../mocks";
 
@@ -122,7 +122,7 @@ const Dashboard = () => {
                                     alignItems: "center",
                                     height: "65px"
                                   }}>
-                                    <h5>{appointmentItem.therapist && appointmentItem.therapist.name}</h5>
+                                    <h5>{appointmentItem.therapist ? appointmentItem.therapist.name : 'Priscilla Leite'}</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -178,7 +178,7 @@ const Dashboard = () => {
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              <p> {currentAppointment.therapist.name}</p>
+                              <p> {currentAppointment.therapist ? currentAppointment.therapist.name : 'Prisclla Leite'}</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </p>
@@ -281,7 +281,7 @@ const Dashboard = () => {
                             <ThetaButton
                               theme="rainbow"
                               style={{ alignSelf: "baseline", marginRight: 20 }}
-                              onClick={() => undefined}
+                              onClick={() => appointmentUpdateStatus(currentAppointment.id, "Confirmado")}
                             >
                               Aceitar solicitação
                             </ThetaButton>
@@ -289,7 +289,7 @@ const Dashboard = () => {
                             <ThetaButton
                               theme="purple"
                               style={{ alignSelf: "baseline" }}
-                              onClick={() => undefined}
+                              onClick={() => appointmentUpdateStatus(currentAppointment.id, "Cancelado")}
                             >
                               Cancelar solicitação
                             </ThetaButton>
@@ -301,7 +301,7 @@ const Dashboard = () => {
                           <ThetaButton
                             theme="rainbow"
                             style={{ alignSelf: "baseline" }}
-                            onClick={() => setShowDialog(true)}
+                            onClick={() => alert(currentAppointment.url)}
                           >
                             Entre em sua sala
                           </ThetaButton>
