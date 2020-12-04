@@ -86,6 +86,33 @@ export const BoxForm = styled.div`
   color: #7643FF;
  }
 `
+export const SmallBox = styled.div`
+padding:10px;
+margin: 10px 0 10px 0;
+
+display:flex;
+width:26vw;
+align-items:center;
+text-align:center;
+height:5vh;
+ box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02),
+    0px 8px 12px rgba(0, 0, 0, 0.14);
+ border-radius: 4px;
+flex-direction: ${(props: interfaceConstant.boxProps) => props.column ? "column" : "row"}; 
+justify-content: space-between;
+
+h1{
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 18px;
+display: flex;
+align-items: center;
+color: #706880; 
+}
+`
+
  
   
 

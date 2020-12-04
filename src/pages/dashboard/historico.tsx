@@ -4,6 +4,7 @@ import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import Schedule from "../../styles/components/Schedule"
 
 const HistoricPage = () =>{
+    
     return(    
     <>
     <Schedule>

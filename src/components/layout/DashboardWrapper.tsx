@@ -20,9 +20,12 @@ const DashboardWrapper = ({
   children,
 }: interfaceConstant.PageProps) => {
   const dispatch = useDispatch()
+  
   return (
     <DashboardPage>
       <div className="sidebar">
+        <Link passHref href="/">
+        <a className="active">
         <FlexBox justify="center">
           <img
             src="/media/home/capa-logo.svg"
@@ -30,6 +33,8 @@ const DashboardWrapper = ({
             className="brand"
           />
         </FlexBox>
+        </a>
+        </Link>
         <Divider height="30px" />
         <FlexBox justify="space-between" className="topmenu">
           <h2>Matheus Rabelo</h2>
@@ -45,7 +50,7 @@ const DashboardWrapper = ({
             </Link>
           </li>
           <li>
-            <Link passHref href="/chamadas">
+            <Link passHref href="/historico">
               <a>
                 <img
                   src="/media/icons/dashboard/chamadasmenuicon.svg"
