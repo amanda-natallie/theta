@@ -20,7 +20,7 @@ import {
 import Loading from "../../components/layout/Loading";
 import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
-import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
+import { renderDate, getDateExtend, getDateTime, getDateDifference } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { appointmentUpdateStatus, renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
@@ -115,7 +115,7 @@ const Dashboard = () => {
                                 <li
                                   key={index}
                                   onClick={() =>
-                                    setCurrentAppointment(appointmentItem)
+                                    setCurrentAppointment({...appointmentItem, closeToMetting: getDateDifference(appointmentItem.date) < 10, bankTransfer: getDateDifference(appointmentItem.date) > 4400})
                                   }
                                 >
                                   <FlexBox justify="space-between" style={{
@@ -214,9 +214,10 @@ const Dashboard = () => {
                             <ThetaButton
                               theme="rainbow"
                               style={{ alignSelf: "baseline" }}
-                              onClick={() => setShowDialog(true)}
+                              // onClick={() => alert(currentAppointment.url)}
+                              onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
                             >
-                              Entre em sua sala
+                              {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
                             </ThetaButton>
 
                           )}
@@ -235,7 +236,8 @@ const Dashboard = () => {
                           open={showDialog}
                         >
                           <div style={{ margin: 30 }}>
-                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
+                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} 
+                              setShowDialog={setShowDialog} bankTransfer={currentAppointment.bankTransfer}/>
                           </div>
                         </Dialog>
                       </PendingAppointment>
@@ -301,9 +303,9 @@ const Dashboard = () => {
                           <ThetaButton
                             theme="rainbow"
                             style={{ alignSelf: "baseline" }}
-                            onClick={() => alert(currentAppointment.url)}
+                            onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
                           >
-                            Entre em sua sala
+                          {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
                           </ThetaButton>
 
                         )}
@@ -316,7 +318,8 @@ const Dashboard = () => {
                         open={showDialog}
                       >
                         <div style={{ margin: 30 }}>
-                          <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
+                        <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} 
+                              setShowDialog={setShowDialog} bankTransfer={currentAppointment.bankTransfer}/>
                         </div>
                       </Dialog>
                     </PendingAppointment>

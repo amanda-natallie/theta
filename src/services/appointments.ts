@@ -70,6 +70,7 @@ export const appointmentUpdateStatus = async (id: string, status: string, order_
   try{
     const response = await api.post(`/appointments/${id}`, requestBody, config);
     return alert(response.data.message);
+    window.location.href = '/dashboard'
   } catch(error) {
     alert(error.response.data.message);
   }
