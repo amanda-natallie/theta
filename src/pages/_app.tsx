@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
         />
-        <script src="https://www.paypal.com/sdk/js?client-id=AeMPYxMIsyTS1bmkZVpTwkzU0mN89SuftaukacwEoNVPrCS6Zy_hUHjCNW3PdyCA-iTKPDSkNA_TP6um&currency=BRL"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=AeMPYxMIsyTS1bmkZVpTwkzU0mN89SuftaukacwEoNVPrCS6Zy_hUHjCNW3PdyCA-iTKPDSkNA_TP6um&currency=BRL&locale=pt_BR"></script>
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
