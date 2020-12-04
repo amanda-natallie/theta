@@ -30,6 +30,7 @@ interface userDataProps {
   yearBorn: string;
   state: string;
   city: string;
+  certificate: string;
   phone: string;
   username: string;
   password: string;

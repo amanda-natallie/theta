@@ -51,7 +51,7 @@ const DashboardWrapper = ({
                   src="/media/icons/dashboard/chamadasmenuicon.svg"
                   alt="Chamadas"
                 />
-                <span>Chamadas</span>
+                <span>Historico</span>
               </a>
             </Link>
           </li>
