@@ -50,11 +50,11 @@ const DashboardWrapper = ({
             </Link>
           </li>
           <li>
-            <Link passHref href="/historico">
-              <a>
+            <Link passHref href="/dashboard/historico">
+              <a className="active">
                 <img
                   src="/media/icons/dashboard/chamadasmenuicon.svg"
-                  alt="Chamadas"
+                  alt="historico"
                 />
                 <span>Historico</span>
               </a>
