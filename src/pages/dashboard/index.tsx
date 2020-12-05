@@ -20,9 +20,9 @@ import {
 import Loading from "../../components/layout/Loading";
 import { therapistAppointments } from "../../services/profissionals";
 import { userAppointments } from "../../services/users";
-import { renderDate, getDateExtend, getDateTime } from "../../utils/helpers";
+import { renderDate, getDateExtend, getDateTime, getDateDifference } from "../../utils/helpers";
 import { useRouter } from "next/router";
-import { renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
+import { appointmentUpdateStatus, renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
 import { appointmentMock, userInfoMock } from "../../mocks";
 
@@ -35,7 +35,6 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
   const [user, setUser] = useState(userInfoMock);
-  console.log(currentAppointment);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
@@ -49,12 +48,12 @@ const Dashboard = () => {
 
       //user && setIsEmailConfirmed(user.confirmed_email);
 
-      /* const response =
+      const response =
         userInfo.typeUser === "client"
-          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
-          : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
+          ? await userAppointments(userInfo.id)
+          : await therapistAppointments(userInfo.id);
       setAppointments(response);
-      setLocalLoading(false) */
+      setLocalLoading(false)
     } else {
       router.push("/login");
     }
@@ -63,8 +62,6 @@ const Dashboard = () => {
   useEffect(() => {
     getInformation();
   }, []); 
-
-
   
   return (
     <>
@@ -117,15 +114,14 @@ const Dashboard = () => {
                                 <li
                                   key={index}
                                   onClick={() =>
-                                    setCurrentAppointment(appointmentItem)
+                                    setCurrentAppointment({...appointmentItem, closeToMetting: getDateDifference(appointmentItem.date) < 10, bankTransfer: getDateDifference(appointmentItem.date) > 4400})
                                   }
                                 >
                                   <FlexBox justify="space-between" style={{
                                     alignItems: "center",
                                     height: "65px"
                                   }}>
-                    
-                                    <h5>{user.name}{user.lastName}</h5>
+                                    <h5>{appointmentItem.therapist ? appointmentItem.therapist.name : 'Priscilla Leite'}</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -181,7 +177,7 @@ const Dashboard = () => {
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              <p> </p>
+                              <p> {currentAppointment.therapist ? currentAppointment.therapist.name : 'Prisclla Leite'}</p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </p>
@@ -211,15 +207,16 @@ const Dashboard = () => {
                               Pagar agora
                             </ThetaButton>
                           )}
-                          {currentAppointment.status === "confirmado" && (
+                          {currentAppointment.status === "Confirmado" && (
                             /*TO DO: add lógica pra mostrar / esconder botão */ 
                             /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
                             <ThetaButton
                               theme="rainbow"
                               style={{ alignSelf: "baseline" }}
-                              onClick={() => setShowDialog(true)}
+                              // onClick={() => alert(currentAppointment.url)}
+                              onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
                             >
-                              Entre em sua sala
+                              {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
                             </ThetaButton>
 
                           )}
@@ -238,7 +235,8 @@ const Dashboard = () => {
                           open={showDialog}
                         >
                           <div style={{ margin: 30 }}>
-                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
+                            <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} 
+                              setShowDialog={setShowDialog} bankTransfer={currentAppointment.bankTransfer}/>
                           </div>
                         </Dialog>
                       </PendingAppointment>
@@ -284,7 +282,7 @@ const Dashboard = () => {
                             <ThetaButton
                               theme="rainbow"
                               style={{ alignSelf: "baseline", marginRight: 20 }}
-                              onClick={() => undefined}
+                              onClick={() => appointmentUpdateStatus(currentAppointment.id, "Confirmado")}
                             >
                               Aceitar solicitação
                             </ThetaButton>
@@ -292,21 +290,21 @@ const Dashboard = () => {
                             <ThetaButton
                               theme="purple"
                               style={{ alignSelf: "baseline" }}
-                              onClick={() => undefined}
+                              onClick={() => appointmentUpdateStatus(currentAppointment.id, "Cancelado")}
                             >
                               Cancelar solicitação
                             </ThetaButton>
                           </ FlexBox>
                         )}
-                        {currentAppointment.status === "confirmado" && (
+                        {currentAppointment.status === "Confirmado" && (
                           /*TO DO: add lógica pra mostrar / esconder botão */ 
                           /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
                           <ThetaButton
                             theme="rainbow"
                             style={{ alignSelf: "baseline" }}
-                            onClick={() => setShowDialog(true)}
+                            onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
                           >
-                            Entre em sua sala
+                          {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
                           </ThetaButton>
 
                         )}
@@ -319,7 +317,8 @@ const Dashboard = () => {
                         open={showDialog}
                       >
                         <div style={{ margin: 30 }}>
-                          <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} setShowDialog={setShowDialog} />
+                        <PaypalButton appointmentId={currentAppointment.id} ammount={currentAppointment.price} 
+                              setShowDialog={setShowDialog} bankTransfer={currentAppointment.bankTransfer}/>
                         </div>
                       </Dialog>
                     </PendingAppointment>
