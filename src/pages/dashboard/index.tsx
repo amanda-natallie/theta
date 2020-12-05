@@ -29,8 +29,8 @@ import { appointmentMock, userInfoMock } from "../../mocks";
 const Dashboard = () => {
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
-  const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [appointments, setAppointments] = useState(appointmentMock);
+  const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [localLoading, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
@@ -53,6 +53,7 @@ const Dashboard = () => {
           ? await userAppointments(userInfo.id)
           : await therapistAppointments(userInfo.id);
       setAppointments(response);
+      
       setLocalLoading(false)
     } else {
       router.push("/login");
@@ -65,7 +66,7 @@ const Dashboard = () => {
   
   return (
     <>
-      { /*isLoggedIn && */ user ? (
+      { isLoggedIn &&  user ? (
         <DashboardWrapper
           title={
             user.typeUser === "client"
@@ -86,10 +87,10 @@ const Dashboard = () => {
                   </Grid> */}
                   <Grid item md={6}>
                     <Box className="profile" justify="center">
-                      <Avatar
-                 className="profile-avatar"> 
-                 {user.avatar_url}
-                 </Avatar>
+                    <Avatar
+                      className="profile-avatar"> 
+                      {user.avatar_url}
+                      </Avatar>
                       <h2>
                         {user.name} {user.lastName}
                       </h2>
@@ -210,15 +211,25 @@ const Dashboard = () => {
                           {currentAppointment.status === "Confirmado" && (
                             /*TO DO: add lógica pra mostrar / esconder botão */ 
                             /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
-                            <ThetaButton
-                              theme="rainbow"
-                              style={{ alignSelf: "baseline" }}
-                              // onClick={() => alert(currentAppointment.url)}
-                              onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
-                            >
-                              {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
-                            </ThetaButton>
+                           currentAppointment.closeToMetting ? (
+                            <Link passHref href={currentAppointment.url}>
+                                <ThetaButton
+                                  target="_blank"
+                                  theme="rainbow"
+                                  style={{ alignSelf: "baseline" }}>
+                                  Entre em sua sala
+                                </ThetaButton>
+                            </Link>
 
+                           )
+                            : (
+                              <ThetaButton
+                                  theme="rainbow"
+                                  style={{ alignSelf: "baseline" }}>
+                                  Aguarde para iniciar sua sessão
+                                </ThetaButton>
+                              
+                            )
                           )}
                         </>
                         ) : (

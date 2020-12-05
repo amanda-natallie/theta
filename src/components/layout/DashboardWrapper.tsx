@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { memo, useEffect, useState  } from "react";
 import { useDispatch } from "react-redux"
 import { userLogout } from "../../services/users";
-import { MenuIconButton } from "../../styles/components/Button";
+import { MenuIconButton, ThetaButton } from "../../styles/components/Button";
 import {
   DashboardPage,
   DashboardMenu,
@@ -36,15 +36,6 @@ const DashboardWrapper = ({
       const token: string = localStorage.getItem("authToken");
       setIsLoggedIn(token);
       setUser(userInfo);
-
-      //user && setIsEmailConfirmed(user.confirmed_email);
-
-      /* const response =
-        userInfo.typeUser === "client"
-          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
-          : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
-      setAppointments(response);
-      setLocalLoading(false) */
     } else {
       router.push("/login");
     }
@@ -70,7 +61,7 @@ const DashboardWrapper = ({
         </Link>
         <Divider height="30px" />
         <FlexBox justify="space-between" className="topmenu">
-                <h2>{user.name}{user.lastName}</h2>
+                <h2>{user.name} {user.lastName}</h2>
           <img src="/media/icons/chevronDown.svg" alt="abrir menu" />
         </FlexBox>
         <DashboardMenu>
@@ -89,10 +80,17 @@ const DashboardWrapper = ({
                   src="/media/icons/dashboard/chamadasmenuicon.svg"
                   alt="historico"
                 />
-                <span>Historico</span>
+                <span>Histórico</span>
               </a>
             </Link>
           </li>
+          {user.typeUser === "client" && (
+            <li style={{ position: "absolute", bottom: 10 }}>
+              <ThetaButton onClick={() => undefined}>
+                deletar conta
+              </ThetaButton>
+            </li>
+          )}
         </DashboardMenu>
       </div>
 

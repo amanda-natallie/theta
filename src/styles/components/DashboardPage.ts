@@ -69,8 +69,11 @@ export const DashboardPage = styled.main`
   }
 `;
 export const DashboardMenu = styled.ul`
+display: flex;
+flex-direction: column;
   width: 100%;
-
+  height: 100%;
+  
   li {
     display: flex;
     margin: 5px 0;
