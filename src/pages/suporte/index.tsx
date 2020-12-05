@@ -80,7 +80,7 @@ const information = () => {
             </CardBox>
           </Link>
           <Divider height="10px" />
-          <Link passHref href="/suporte/termos-e-condicoes">
+          <Link passHref href="/suporte/termos-e-condicoes-terapeuta">
             <CardBox className="box-link">
               <TextInformation>
                 <image style={{ margin: "2px" }}>
@@ -105,7 +105,60 @@ const information = () => {
                   </svg>
                 </image>
                 <FlexBox column>
-                  <TitleInfo>Termos e condições </TitleInfo>
+                  <TitleInfo>Termos e condições do Terapeuta </TitleInfo>
+                  <TitleInfo>
+                    <h1>Leia os nossos termos de uso e privacidade</h1>
+                  </TitleInfo>
+                </FlexBox>
+              </TextInformation>
+              <image>
+                <svg
+                  width="71"
+                  height="28"
+                  viewBox="0 0 71 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M28.9569 0.00175858C28.2451 0.00175858 27.6628 0.58411 27.6628 1.29587V13.3311C27.6628 14.9488 27.0157 16.5017 25.851 17.6664C24.6863 18.8311 23.1334 19.4782 21.5157 19.4782H16.2746C15.5628 19.4782 14.9805 20.0605 14.9805 20.7723C14.9805 21.4841 15.5628 22.0664 16.2746 22.0664H21.5157C23.8451 22.0664 26.0451 21.1605 27.6628 19.5429C29.2804 17.9252 30.1863 15.7252 30.1863 13.3958V1.3606C30.251 0.584133 29.6686 0.00175858 28.9569 0.00175858Z"
+                    fill="#7643FF"
+                  />
+                  <path
+                    d="M28.9571 0.00266838C28.6336 0.00266838 28.3101 0.132104 28.0512 0.390926L21.3218 7.12029C20.8042 7.63793 20.8042 8.41443 21.3218 8.93208C21.8395 9.44972 22.616 9.44972 23.1336 8.93208L28.9571 3.10857L34.7806 8.93208C35.2983 9.44972 36.0748 9.44972 36.5924 8.93208C37.1101 8.41443 37.1101 7.63793 36.5924 7.12029L29.863 0.390926C29.6042 0.132104 29.2807 0.00266838 28.9571 0.00266838Z"
+                    fill="#7643FF"
+                  />
+                </svg>
+              </image>
+            </CardBox>
+          </Link>
+          
+          <Divider height="10px" />
+          <Link passHref href="/suporte/termos-e-condicoes-usuario">
+            <CardBox className="box-link">
+              <TextInformation>
+                <image style={{ margin: "2px" }}>
+                  <svg
+                    width="44"
+                    height="44"
+                    viewBox="0 0 44 44"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      opacity="0.4"
+                      d="M29.6835 3.66797H14.3183C8.745 3.66797 5.5 6.9313 5.5 12.523V31.4613C5.5 37.1446 8.745 40.3346 14.3183 40.3346H29.6835C35.3467 40.3346 38.5 37.1446 38.5 31.4613V12.523C38.5 6.9313 35.3467 3.66797 29.6835 3.66797Z"
+                      fill="#7643FF"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.8138 12.1914V12.2097C14.0237 12.2097 13.3838 12.8514 13.3838 13.6397C13.3838 14.4281 14.0237 15.0697 14.8138 15.0697H20.2937C21.0838 15.0697 21.7255 14.4281 21.7255 13.6196C21.7255 12.8331 21.0838 12.1914 20.2937 12.1914H14.8138ZM29.1872 23.3565H14.8138C14.0237 23.3565 13.3838 22.7148 13.3838 21.9265C13.3838 21.1381 14.0237 20.4946 14.8138 20.4946H29.1872C29.9755 20.4946 30.6172 21.1381 30.6172 21.9265C30.6172 22.7148 29.9755 23.3565 29.1872 23.3565ZM29.1871 31.7347H14.8138C14.2637 31.808 13.7321 31.533 13.4387 31.0747C13.1454 30.598 13.1454 29.993 13.4387 29.5347C13.7321 29.058 14.2637 28.8014 14.8138 28.8564H29.1871C29.9186 28.9297 30.4704 29.553 30.4704 30.3047C30.4704 31.0362 29.9186 31.6614 29.1871 31.7347Z"
+                      fill="#7643FF"
+                    />
+                  </svg>
+                </image>
+                <FlexBox column>
+                  <TitleInfo>Termos e condições do Usuario </TitleInfo>
                   <TitleInfo>
                     <h1>Leia os nossos termos de uso e privacidade</h1>
                   </TitleInfo>
