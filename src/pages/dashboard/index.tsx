@@ -124,7 +124,8 @@ const Dashboard = () => {
                                     alignItems: "center",
                                     height: "65px"
                                   }}>
-                                    <h5>{/* {appointmentItem.therapist.name} */} Matheus Rabelo</h5>
+                    
+                                    <h5>{user.name}{user.lastName}</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -180,7 +181,7 @@ const Dashboard = () => {
                                 src="/media/icons/calendar.svg"
                                 alt="calendar"
                               />{" "}
-                              <p> {/* {currentAppointment.therapist.name} */} Matheus Rabelo</p>
+                              <p> </p>
                               <span>•</span>
                               <p>ThetaHealer Certificado</p>
                             </p>

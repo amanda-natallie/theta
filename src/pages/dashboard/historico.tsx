@@ -1,16 +1,41 @@
-import { Container, Grid } from "@material-ui/core";
-import React from "react";
+import { Box, Container, Grid } from "@material-ui/core";
+import React, {useEffect, useState}from "react";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import Schedule from "../../styles/components/Schedule"
+import { userAppointments }  from "../../services/users"
+import { useRouter } from "next/router";
+import { appointmentMock, userInfoMock } from "../../mocks";
+import PaymentStatus from "../../components/general/PaymentStatus";
+import { FlexBox } from "../../styles/components/FlexBox";
+import { AppointmentList } from "../../styles/pages/dashboard/Dashboard";
+import { renderDate } from "../../utils/helpers";
+
+
+
+
+
+
+
 
 const HistoricPage = () =>{
     
+    const [userAppointments, setuserAppointments] = useState([])
+
+
+
+      const getInfo = async ()=>{
+         
+      }
+       
     return(    
     <>
     <Schedule>
     <DashboardWrapper>
         <Container maxWidth="lg">
-                <ul>
+            <Box>
+        <Grid>
+        <ul>
+            
                     <li>
                         <header>
                             <Grid container  >
@@ -116,6 +141,10 @@ const HistoricPage = () =>{
                         </Grid>
                     </li>
                 </ul>
+                    
+            </Grid>
+        </Box>
+                  
                 </Container>
     </DashboardWrapper>
     </Schedule>

@@ -1,6 +1,6 @@
 import { Breadcrumbs, Typography } from "@material-ui/core";
 import Link from "next/link";
-import React, { memo } from "react";
+import React, { memo, useEffect, useState  } from "react";
 import { useDispatch } from "react-redux"
 import { userLogout } from "../../services/users";
 import { MenuIconButton } from "../../styles/components/Button";
@@ -13,13 +13,46 @@ import { FlexBox } from "../../styles/components/FlexBox";
 import theme from "../../styles/theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
+import { useRouter } from "next/router";
+import { appointmentMock, userInfoMock } from "../../mocks";
+
 
 const DashboardWrapper = ({
   title,
   breadcrumbs,
   children,
 }: interfaceConstant.PageProps) => {
+  const router = useRouter();
   const dispatch = useDispatch()
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [user, setUser] = useState(userInfoMock);
+
+  const getInformation = async () => {
+    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
+      
+      const userInfo = JSON.parse(
+        localStorage.getItem("userInformation") || "{}"
+      );
+      const token: string = localStorage.getItem("authToken");
+      setIsLoggedIn(token);
+      setUser(userInfo);
+
+      //user && setIsEmailConfirmed(user.confirmed_email);
+
+      /* const response =
+        userInfo.typeUser === "client"
+          ? await userAppointments("2bcabf18-5c0f-4bd4-91df-2b8162a8f489")
+          : await therapistAppointments("a74ce34d-d256-46aa-829a-25441c58bea7");
+      setAppointments(response);
+      setLocalLoading(false) */
+    } else {
+      router.push("/login");
+    }
+  }; 
+
+  useEffect(() => {
+    getInformation();
+  }, []); 
   
   return (
     <DashboardPage>
@@ -37,7 +70,7 @@ const DashboardWrapper = ({
         </Link>
         <Divider height="30px" />
         <FlexBox justify="space-between" className="topmenu">
-          <h2>Matheus Rabelo</h2>
+                <h2>{user.name}{user.lastName}</h2>
           <img src="/media/icons/chevronDown.svg" alt="abrir menu" />
         </FlexBox>
         <DashboardMenu>
@@ -51,7 +84,7 @@ const DashboardWrapper = ({
           </li>
           <li>
             <Link passHref href="/dashboard/historico">
-              <a className="active">
+              <a >
                 <img
                   src="/media/icons/dashboard/chamadasmenuicon.svg"
                   alt="historico"
