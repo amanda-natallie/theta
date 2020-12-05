@@ -87,10 +87,9 @@ const Dashboard = () => {
                   <Grid item md={6}>
                     <Box className="profile" justify="center">
                       <Avatar
-                        src="/media/profile/thera.png"
-                        alt="uai"
-                        className="profile-avatar"
-                      />
+                 className="profile-avatar"> 
+                 {user.avatar_url}
+                 </Avatar>
                       <h2>
                         {user.name} {user.lastName}
                       </h2>
