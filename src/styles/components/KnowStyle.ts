@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const knowStyle = styled.section `
+display:flex;
 section{
     margin:40px;
 }
@@ -34,7 +35,23 @@ height:50px;
 color: #FFFFFF;
 background-color: #7643FF;
 }
+button :hover{
+    cursor:pointer;
+}
 
-
+@media(max-width: 1000px) {
+    width:100%;
+    justify-content:center;
+    img{
+        margin:0 auto;
+        width:40vw;
+    }
+    .content{
+        justify-content:center;
+        align-items:center;
+        flex-direction: column;
+    }
+  }
 `
+
 export default knowStyle

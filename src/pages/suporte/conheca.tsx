@@ -3,7 +3,7 @@ import PageWrapper from "../../components/layout/PageWrapper";
 import { FlexBox } from "../../styles/components/FlexBox";
 import KnowStyle  from "../../styles/components/KnowStyle";
 import { Title } from "../../styles/components/Typography"
-import { Grid, Container, Box } from '@material-ui/core';
+import { Grid, Container, Box, Link } from '@material-ui/core';
 import BackButton from "../../components/general/BackButton";
  
  const know = () =>{
@@ -24,7 +24,7 @@ import BackButton from "../../components/general/BackButton";
                     <KnowStyle>
                     <Container maxWidth='lg'>
                           
-                            <Box display="flex" flexDirection='row' justifyContent="center">
+                            <Box className="content" display="flex" justifyContent="center">
                              <section>
                             <h1>Mostre-me</h1>
                             <p>Estamos muito feliz com sua presença em nossa comunidade terapêutica Thetahealing®.
@@ -44,7 +44,7 @@ import BackButton from "../../components/general/BackButton";
                            </section>
                            </Box>
 
-                           <Box display="flex" flexDirection='row' justifyContent="center">
+                           <Box  className="content" display="flex"  justifyContent="center">
                             <section>
                            <img src="/media/world.svg"/>
                            </section>
@@ -61,7 +61,7 @@ import BackButton from "../../components/general/BackButton";
                             simplesmente confiar no poder da manifestação pura e sincera.</p>
                             </section>
                             </Box>
-                           <Box display="flex" flexDirection='row' justifyContent="center">
+                           <Box   className="content" display="flex" justifyContent="center">
                             <section>
                             <p>Contribuir para a cura do Todo é nosso principal objetivo. Por meio dos atendimentos solidários
                             realizados pelo ThetaBrasil.online, fortalecemos nosso compromisso com a cura universal através
@@ -69,13 +69,15 @@ import BackButton from "../../components/general/BackButton";
                             <p>
                             Eu ajudo você. Você me ajuda. Nós ajudamos o outro.
                             Clique abaixo e conheça mais sobre os projetos assistidos pela plataforma ThetaBrasil.online. </p>
+                            <Link href="/terapeutas/projetos-assistidos">
                             <button>Projetos assistidos</button>
+                            </Link>
                           </section>
                           <section>
                            <img src="/media/logocolor.svg"/>
                             </section>
                             </Box>
-                            <Box display="flex" flexDirection='row' justifyContent="end">
+                            <Box  className="content" display="flex"  justifyContent="end">
                             <section>
                            <h1 style={{margin:"20px"}}> ... está feito, está feito, está feito</h1>
                            <p>Se você chegou até aqui, é porque sentiu o chamado para a cura interior. Uma dor física, a falta de alguém ou de algo,
@@ -85,7 +87,7 @@ import BackButton from "../../components/general/BackButton";
                             a fim de realizar seus desejos mais profundos e abrir-se para a felicidade e realização plena que já habita em você.</p>
                           </section>
                           </Box>
-                          <Box display="flex" flexDirection='row' justifyContent="center">
+                          <Box  className="content" display="flex" justifyContent="center">
                             <section>
                             <h1>Como funciona?</h1>
                             <p>Neste site você encontra informações diversas sobre Thetahealing®, incluindo uma lista confiável
@@ -107,7 +109,7 @@ import BackButton from "../../components/general/BackButton";
                             </section>
                             </Box>
 
-                            <Box display="flex" flexDirection='row' justifyContent="center">
+                            <Box   className="content" display="flex" justifyContent="center">
                             <section>
                             <img src="/media/play.svg"/>
                             </section>
