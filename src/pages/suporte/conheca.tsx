@@ -69,7 +69,7 @@ import BackButton from "../../components/general/BackButton";
                             <p>
                             Eu ajudo você. Você me ajuda. Nós ajudamos o outro.
                             Clique abaixo e conheça mais sobre os projetos assistidos pela plataforma ThetaBrasil.online. </p>
-                            <Link href="/terapeutas/projetos-assistidos">
+                            <Link href="/projetos-assistidos">
                             <button>Projetos assistidos</button>
                             </Link>
                           </section>
