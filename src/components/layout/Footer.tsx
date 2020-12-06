@@ -49,9 +49,9 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={4}>
         <SocialMenu>
-          <Link href="#" ><img src="/media/home/19.svg" alt="youtube"/></Link>
-          <Link href="#" ><img src="/media/home/18.svg" alt="facebook"/></Link>
-          <Link href="#" ><img src="/media/home/17.svg" alt="instagram"/></Link>
+          <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube"/></Link>
+          <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook"/></Link>
+          <Link href="https://www.instagram.com/thetabrasilonline/" ><img src="/media/home/17.svg" alt="instagram"/></Link>
           <Link href="#" ><img src="/media/home/16.svg" alt="spotify"/></Link>
           <Link href="#" ><img src="/media/home/14.svg" alt="spotify"/></Link>
           <Link href="#" ><img src="/media/home/15.svg" alt="spotify"/></Link>
