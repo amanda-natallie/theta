@@ -1,31 +1,28 @@
 import { Box, Container, Grid } from "@material-ui/core";
 import React, {useEffect, useState}from "react";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
-import Schedule from "../../styles/components/Schedule"
-import { userAppointments }  from "../../services/users"
-import { useRouter } from "next/router";
-import { appointmentMock, userInfoMock } from "../../mocks";
-import PaymentStatus from "../../components/general/PaymentStatus";
-import { FlexBox } from "../../styles/components/FlexBox";
-import { AppointmentList } from "../../styles/pages/dashboard/Dashboard";
-import { renderDate } from "../../utils/helpers";
-
-
-
-
-
-
-
+import Schedule from "../../styles/components/Schedule";
+import {userPastAppointments} from "../../services/users";
+import {therapistPastAppointments} from "../../services/profissionals";
 
 const HistoricPage = () =>{
-    
-    const [userAppointments, setuserAppointments] = useState([])
+    const [appointments, setAppointments] = useState([])
 
+    const getInfo = async ()=>{
+    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
+        const userInfo = JSON.parse(
+            localStorage.getItem("userInformation") || "{}"
+        );
+        const response =
+            userInfo.typeUser === "client"
+            ? await userPastAppointments(userInfo.id)
+            : await therapistPastAppointments(userInfo.id);
+        setAppointments(response);
+    } };
 
-
-      const getInfo = async ()=>{
-         
-      }
+    useEffect(() => {
+        getInfo();
+    }, [])
        
     return(    
     <>

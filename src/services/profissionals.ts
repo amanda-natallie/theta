@@ -74,3 +74,12 @@ export const therapistAppointments = async (id: string) => {
     alert(error.response.data.message);
   }
 };
+
+export const therapistPastAppointments = async (id: string) => {
+  try {
+    const response = await api.get(`/appointments/past/${id}`,);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
+  }
+};

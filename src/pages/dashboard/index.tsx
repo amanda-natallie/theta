@@ -26,19 +26,61 @@ import { appointmentUpdateStatus, renderAppointmentText, renderAppointmentTexThe
 import PaypalButton from "../../components/general/PaypalButton";
 import { appointmentMock, userInfoMock } from "../../mocks";
 
+interface userProps {
+  avatar_url: string | undefined,
+  bio: string | undefined,
+  certificates: string | undefined,
+  city: string,
+  confirmed_email: string,
+  consultations: number,
+  created_at: string,
+  dayBorn: string,
+  email: string,
+  id: string,
+  languages: string | undefined,
+  lastName: string,
+  links: string | undefined,
+  monthBorn: string,
+  name: string,
+  phone: string,
+  price: string,
+  state: string,
+  typeUser: string,
+  updated_at: string,
+  username: string,
+  yearBorn: string,
+}
+
+interface appointmentsProps {
+  id: string,
+  therapist_id: string,
+  therapist: {
+    id: string,
+    lastName: string,
+    name: string,
+  }
+  user_id: string,
+  date: string,
+  url: string,
+  status: string,
+  price: string | undefined,
+  order_id: string | undefined,
+  created_at: string,
+  updated_at: string,
+}
+
 const Dashboard = () => {
   const router = useRouter();
   const [showDialog, setShowDialog] = useState(false);
-  const [appointments, setAppointments] = useState(appointmentMock);
+  const [appointments, setAppointments] = useState<appointmentsProps | any>();
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [localLoading, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
-  const [user, setUser] = useState(userInfoMock);
+  const [user, setUser] = useState<userProps | undefined>();
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
-      
       const userInfo = JSON.parse(
         localStorage.getItem("userInformation") || "{}"
       );
@@ -53,6 +95,8 @@ const Dashboard = () => {
           ? await userAppointments(userInfo.id)
           : await therapistAppointments(userInfo.id);
       setAppointments(response);
+
+      response && response.lenght > 0 && setCurrentAppointment({...response[0], closeToMetting: getDateDifference(response[0].date) < 10, bankTransfer: getDateDifference(response[0].date) > 4400})
       
       setLocalLoading(false)
     } else {
@@ -109,7 +153,7 @@ const Dashboard = () => {
                      {localLoading ? <div style={{ margin: "auto", display: "table" }} ><ReactLoading type="spin" color="#7643FF" /></div>
                       : user.typeUser && "client" ? (
                         <AppointmentList>
-                          {appointments &&
+                          {appointments && appointments.length > 0 ?
                             appointments.map(
                               (appointmentItem: any, index: number) => (
                                 <li
@@ -136,11 +180,11 @@ const Dashboard = () => {
                                   </FlexBox>
                                 </li>
                               )
-                            )}
+                            ) : <li><h5 style={{textAlign: 'center', marginTop: 10}}>Você não tem agendamentos</h5></li>}
                         </AppointmentList>
                       ) : (
                         <AppointmentList>
-                          {appointments &&
+                          {appointments && appointments.length > 0 ?
                             appointments.map(
                               (appointmentItem: any, index: number) => (
                                 <li key={index}>
@@ -157,7 +201,7 @@ const Dashboard = () => {
                                   </FlexBox>
                                 </li>
                               )
-                            )}
+                            ) : <li><h5 style={{textAlign: 'center', marginTop: 10}}>Você não tem agendamentos</h5></li>}
                         </AppointmentList>
                       )}
                     </Box>
@@ -310,19 +354,36 @@ const Dashboard = () => {
                         {currentAppointment.status === "Confirmado" && (
                           /*TO DO: add lógica pra mostrar / esconder botão */ 
                           /* <p>Iremos liberar uma sala para você e seu terapeuta 10 minutos antes do horário da consulta.</p> */
-                          <ThetaButton
-                            theme="rainbow"
-                            style={{ alignSelf: "baseline" }}
-                            onClick={() => {currentAppointment.closeToMetting ? alert(currentAppointment.url) : alert('Aguarde o horário agendado')}}
-                          >
-                          {currentAppointment.closeToMetting ? "Entre em sua sala" : "Aguarde para iniciar sua sessão"}
-                          </ThetaButton>
+                          currentAppointment.closeToMetting ? (
+                            <Link passHref href={currentAppointment.url}>
+                                <ThetaButton
+                                  target="_blank"
+                                  theme="rainbow"
+                                  style={{ alignSelf: "baseline" }}>
+                                  Entre em sua sala
+                                </ThetaButton>
+                            </Link>
 
-                        )}
-                      </>
-                      ) : (
-                        <p></p>
-                      )} 
+                           )
+                            : (
+                              <ThetaButton
+                                  theme="rainbow"
+                                  style={{ alignSelf: "baseline" }}>
+                                  Aguarde para iniciar sua sessão
+                                </ThetaButton>
+                              
+                            )
+                          )}
+                        </>
+                        ) : (
+                          <ThetaButton
+                              theme="rainbow"
+                              style={{ alignSelf: "baseline" }}
+                              onClick={() => router.push("busca-terapeutas")}
+                            >
+                              Buscar outros profissionais
+                            </ThetaButton>
+                        )} 
                       <Dialog
                         onClose={() => setShowDialog(false)}
                         open={showDialog}
