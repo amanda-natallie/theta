@@ -14,7 +14,7 @@ import theme from "../../styles/theme";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import SignInSvgIcon from "../icons/SignInSvgIcon";
 import { useRouter } from "next/router";
-import { appointmentMock, userInfoMock } from "../../mocks";
+import { appointmentMock, userInfoMock } from "../../../src/mocks";
 
 
 const DashboardWrapper = ({
