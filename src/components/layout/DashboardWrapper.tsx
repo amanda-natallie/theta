@@ -86,8 +86,8 @@ const DashboardWrapper = ({
           </li>
           {user.typeUser === "client" && (
             <li style={{ position: "absolute", bottom: 10 }}>
-              <ThetaButton onClick={() => undefined}>
-                deletar conta
+              <ThetaButton onClick={() => window.confirm("Tem certeza que deseja cancelar sua conta?")}>
+                Cancelar Conta
               </ThetaButton>
             </li>
           )}

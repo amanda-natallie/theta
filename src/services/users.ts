@@ -60,3 +60,12 @@ export const userAppointments = async (id: string) => {
     alert(error.response.data.message);
   }
 };
+
+export const userPastAppointments = async (id: string) => {
+  try {
+    const response = await api.get(`/appointments/client/past/${id}`,);
+    return response.data;
+  } catch (error) {
+    alert(error.response.data.message);
+  }
+};
