@@ -109,7 +109,7 @@ export default function HomePage({ deviceType }) {
               <span
                 onClick={() => setShowAboutUs(!showAboutUs)}
                 className="navigation"
-                style={{ marginLeft: 10 }}
+                style={{ marginLeft: 10, }}
               >
                 {showAboutUs ? "ver menos" : "ver mais"}
               </span>
@@ -145,7 +145,7 @@ export default function HomePage({ deviceType }) {
               <span
                 onClick={() => setShowOurPorpouse(!showOurPorpouse)}
                 className="navigation"
-                style={{ marginLeft: 10 }}
+                style={{ marginLeft: 10, color:"#7643FF", fontSize:"16px"}}
               >
                 {showOurPorpouse ? "ver menos" : "ver mais"}
               </span>

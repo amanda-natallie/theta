@@ -59,12 +59,15 @@ export const Text = styled.p`
   }
 
   & .navigation {
+    font-weight: 700;
+    color:"#7643FF";
+    font-size:"16px";
     transition: all .2s ease;
     cursor: pointer;
 
     &:hover {
      color: #000;
-     font-weight: 700;
+     font-weight: 900;
     }
   
   }
