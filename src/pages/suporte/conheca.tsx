@@ -125,10 +125,16 @@ import BackButton from "../../components/general/BackButton";
                             </section>
                             
                             </Box>
-
-                            
+                            <Link href="/terapeutas/agendamento-por-horario">
+                            <div className="ContainerButton"> 
+                                <button className="scheduleConsult" type="button"> Agendar Consulta                        
+                                    <img className="iconButton"src="/media/calendar-know.svg"/>
+                                </button>
+                            </div>
+                            </Link>
                             
                     </Container>
+                   
                     </KnowStyle>
                     
             </PageWrapper>

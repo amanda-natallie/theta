@@ -36,7 +36,27 @@ color: #FFFFFF;
 background-color: #7643FF;
 }
 button :hover{
-    cursor:pointer;
+cursor:pointer;
+}
+.ContainerButton{
+display:flex;
+width:100%;
+justify-content:end;
+}
+.scheduleConsult{
+display:flex;
+justify-content:space-around;
+padding:5px;
+align-items:center;
+width:160px;
+height:38px;
+border-radius:5px;
+color: #FFFFFF;
+background-color: #7643FF;
+}
+.iconButton{
+width:14px;
+height:14px;
 }
 
 @media(max-width: 1000px) {
