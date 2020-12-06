@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { UAParser } from "ua-parser-js";
 import { Container, Grid } from "@material-ui/core";
 import {
-  BigMediaBox,
   Box,
-  MidiaBox,
   MidiaBox2,
 } from "../styles/components/Box";
 import {
@@ -14,21 +12,16 @@ import {
   Subtitle,
   ColoredTitle,
   Heading06,
-  GrayTitle,
 } from "../styles/components/Typography";
-import MinusSvgIcon from "../components/icons/MinusSvgIcon";
-import PlusSvgIcon from "../components/icons/PlusSvgIcon";
 import Header from "../components/layout/Header";
 import { colors } from "../styles/colors";
 import {
-  ColorfulIcon,
   NavigationButton,
   ThetaButton,
 } from "../styles/components/Button";
 import { Divider } from "../styles/components/Divider";
 import {
   CenteredImage,
-  IconTitle,
   Intro,
   Navigation,
   HomeWrapper,
@@ -36,25 +29,14 @@ import {
   BenefitsList,
   CTA,
   PriceBlock,
-  PodcastWrapper,
   PurpleSection,
 } from "../styles/pages/Home";
 import { useScroll } from "../utils/hooks/useScroll";
-import CustomCarousel from "../components/general/CustomCarousel";
-import { blog } from "../utils/constant/blog";
-import interfaceConstant from "../utils/constant/interfaceConstant";
-import theme from "../styles/theme";
-import CalendarSvgIcon from "../components/icons/CalendarSvgIcon";
-import { Tag } from "../styles/components/Tag";
-import CalendarV2SvgIcon from "../components/icons/CalendarV2SvgIcon";
-import { podcasts } from "../utils/constant/podcast";
-import PlaySvgIcon from "../components/icons/PlaySvgIcon";
-
 import Footer from "../components/layout/Footer";
 import Link from "next/link";
 import ThetaLogoIconColored from "../components/icons/ThetaLogoIconColored";
 
-export default function HomePage({ deviceType }) {
+export default function HomePage({ }) {
   const [showAboutUs, setShowAboutUs] = useState(false);
   const [showOurPorpouse, setShowOurPorpouse] = useState(false);
 
@@ -109,7 +91,7 @@ export default function HomePage({ deviceType }) {
               <span
                 onClick={() => setShowAboutUs(!showAboutUs)}
                 className="navigation"
-                style={{ marginLeft: 10, }}
+                style={{ marginLeft: 10 }}
               >
                 {showAboutUs ? "ver menos" : "ver mais"}
               </span>
@@ -145,7 +127,7 @@ export default function HomePage({ deviceType }) {
               <span
                 onClick={() => setShowOurPorpouse(!showOurPorpouse)}
                 className="navigation"
-                style={{ marginLeft: 10, color:"#7643FF", fontSize:"16px"}}
+                style={{ marginLeft: 10}}
               >
                 {showOurPorpouse ? "ver menos" : "ver mais"}
               </span>

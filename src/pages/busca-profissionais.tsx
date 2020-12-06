@@ -1,25 +1,21 @@
-import { Avatar, Container, Grid, SvgIcon, TextField } from "@material-ui/core";
+import { Avatar, Container, Grid, SvgIcon } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import BackButton from "../components/general/BackButton";
-import CustomSelect from "../components/general/CustomSelect";
 import PageWrapper from "../components/layout/PageWrapper";
 import { Divider } from "../styles/components/Divider";
 import { Subtitle, Title } from "../styles/components/Typography";
-import { DatePicker } from "@material-ui/pickers";
 import { colors } from "../styles/colors";
 import { SearchTherapists } from "../styles/pages/SearchProfessionals";
 import { CardBox } from "../styles/components/Box";
 import { PriceBlock } from "../styles/pages/Home";
 import { FlexBox } from "../styles/components/FlexBox";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
 import { MiniChip } from "../styles/components/MiniChip";
 import Link from "next/link";
 import Loading from "../components/layout/Loading";
 import { getAllProfessionals } from "../services/profissionals";
 import CheckoutModal from "../components/layout/CheckoutModal";
 import { makeAppointment } from "../services/appointments";
-import { renderIdade } from "../utils/helpers";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,11 +27,10 @@ const useStyles = makeStyles((theme) =>
 
 const SearchProfessionalsPage = () => {
   const today = new Date();
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [option, setOption] = useState("");
+  const [] = useState("");
   const [currentDate, setCurrentDate] = useState<any>(today);
-  const [selectedDate, handleDateChange] = useState(undefined);
+  const [] = useState(undefined);
   const [professionalsList, setProfessionalsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [localLoading, setLocalLoading] = useState(false);
@@ -122,7 +117,7 @@ const SearchProfessionalsPage = () => {
                 <BackButton link="/" />
               </Grid>
               <Grid item xs={10} md={8}>
-                <Title>Selecione seu terapeuta de preferência</Title>
+                <Title>Conheça nossos terapeutas</Title>
               </Grid>
             </Grid>
             <Divider height="60px" />
@@ -211,7 +206,7 @@ const SearchProfessionalsPage = () => {
           </Container>
           <Container maxWidth="lg">
             <Grid container>
-              {professionalsList &&               professionalsList.map((item) => (
+              {professionalsList &&professionalsList.map((item) => (
                   <Grid item xs={12} key={item.id}>
                     {/* <Link passHref href="perfil-terapeuta"> */}
                     <CardBox className="">
@@ -232,7 +227,6 @@ const SearchProfessionalsPage = () => {
                           </Link>
                           <p>ThetaHealer Certificado</p>
                           <p>
-                            {renderIdade(item.yearBorn)} anos <span>•</span>{" "}
                             {`${item.city}, ${item.state}, Brasil`}
                           </p>
                           {isLoggedIn && (

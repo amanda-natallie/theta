@@ -66,6 +66,10 @@ height:14px;
         margin:0 auto;
         width:40vw;
     }
+    p{
+        width:100%;
+    }
+
     .content{
         justify-content:center;
         align-items:center;

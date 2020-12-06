@@ -51,21 +51,31 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterMenu = styled.nav`
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 
   & a {
     color: ${colors.gray50};
     font-size: 0.875rem;
   }
+  @media (max-width:700px){
+    flex-direction:column;
+    align-items:flex-start;
+    a{
+      margin:5px;
+    }
+  }
 `;
 
 export const Copyright = styled.p`
+ position:absolute;
   margin-top: 30px;
   color: ${colors.gray50};
   font-size: 0.875rem;
+ 
 `;
 
 

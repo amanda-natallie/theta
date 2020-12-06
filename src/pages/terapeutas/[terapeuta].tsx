@@ -197,8 +197,6 @@ const ProfessionalPublicProfilePage = () => {
                     <div className="left">
                       <table>
                         <tr>
-                          <th>Idade</th>
-                          <td>{renderIdade(thetaInformation.yearBorn)}</td>
                         </tr>
                         <tr>
                           <th>Localização</th>

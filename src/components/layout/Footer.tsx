@@ -36,8 +36,8 @@ const Footer = () => {
         </div>
       </Container>
       <Divider height="90px" />
-      <Container maxWidth="lg">
-        <Grid container spacing={10}>
+      <Container maxWidth="lg" >
+        <Grid container spacing={10} style={{flexDirection:"column"}}>
         <Grid item xs={12} sm={12} md={6} lg={8}>
         <FooterMenu>
           <Link href="#" >Home</Link>
@@ -46,7 +46,6 @@ const Footer = () => {
           <Link href="#" >Notícias</Link>
           <Link href="#" >Projetos Assistidos</Link>
         </FooterMenu>
-        <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={4}>
         <SocialMenu>
@@ -57,8 +56,11 @@ const Footer = () => {
           <Link href="#" ><img src="/media/home/14.svg" alt="spotify"/></Link>
           <Link href="#" ><img src="/media/home/15.svg" alt="spotify"/></Link>
         </SocialMenu>
+        <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
+
         </Grid>
         </Grid>
+
       </Container>
     </FooterWrapper>
   );
