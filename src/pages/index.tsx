@@ -60,11 +60,11 @@ export default function HomePage({ deviceType }) {
 
   const { scrollY } = useScroll();
 
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      window.location.href = "/busca-profissionais";
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("authToken")) {
+  //     window.location.href = "/busca-profissionais";
+  //   }
+  // }, []);
 
   return (
     <HomeWrapper>

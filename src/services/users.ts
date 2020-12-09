@@ -63,9 +63,9 @@ export const userAppointments = async (id: string) => {
 
 export const userPastAppointments = async (id: string) => {
   try {
-    const response = await api.get(`/appointments/client/past/${id}`,);
+    const response = await api.get(`/appointments/clients/past/${id}`,);
     return response.data;
   } catch (error) {
-    alert(error.response.data.message);
+    alert(error);
   }
 };

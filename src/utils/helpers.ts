@@ -33,7 +33,8 @@ export const renderPhone = (phonenumber: string) => {
 }
 
 export const getDateDifference = (date: string) => {
-  const appointmentDate = new Date(date)
+  let appointmentDate = new Date(date)
+  appointmentDate.setHours(appointmentDate.getHours() + 3)
   const todayDate = new Date()
   const differenceMinutes = (appointmentDate.getTime() - todayDate.getTime()) / 1000
   return differenceMinutes / 60
