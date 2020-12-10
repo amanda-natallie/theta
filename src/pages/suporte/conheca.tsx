@@ -40,13 +40,13 @@ import BackButton from "../../components/general/BackButton";
                             também buscam a cura.</p>
                             </section>   
                             <section>
-                           <img src="/media/logoazul.svg"/>
+                           <img className="Bluelogo" src="/media/logoazul.svg"/>
                            </section>
                            </Box>
 
                            <Box  className="content" display="flex"  justifyContent="center">
                             <section>
-                           <img src="/media/world.svg"/>
+                           <img className="worldImage"src="/media/world.svg"/>
                            </section>
                            <section>
                             <p>Cremos no termo holístico da palavra cura, observando a boa fluidez entre os corpos físico,

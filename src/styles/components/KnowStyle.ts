@@ -62,6 +62,12 @@ height:14px;
 @media(max-width: 1000px) {
     width:100%;
     justify-content:center;
+    .Bluelogo{
+        display:none;
+    }
+    .worldImage{
+        position:inherit;
+    }
     img{
         margin:0 auto;
         width:40vw;
@@ -73,7 +79,6 @@ height:14px;
     .content{
         justify-content:center;
         align-items:center;
-        flex-direction: column;
     }
   }
 `

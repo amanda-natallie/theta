@@ -16,7 +16,7 @@ import { colors } from "../../styles/colors";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <Container maxWidth="lg">
+      <Container className="newResponse" maxWidth="lg">
         <div className="brand">
           <ThetaIconSvgIcon width="47" height="49" />
           <p>

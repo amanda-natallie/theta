@@ -210,7 +210,7 @@ const SearchProfessionalsPage = () => {
                   <Grid item xs={12} key={item.id}>
                     {/* <Link passHref href="perfil-terapeuta"> */}
                     <CardBox className="">
-                      <FlexBox>
+                      <div style={{display:"flex"}}>
                         <header>
                           <Link passHref href={`/terapeutas/${item.username}`}>
                             <a>
@@ -258,7 +258,7 @@ const SearchProfessionalsPage = () => {
                             </MiniChip>
                           )}
                         </div>
-                      </FlexBox>
+                        </div>
                       <div className="pricing">
                         <PriceBlock>
                           <span>R$</span>
