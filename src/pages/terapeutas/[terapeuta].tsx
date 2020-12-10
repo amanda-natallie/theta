@@ -297,27 +297,32 @@ const ProfessionalPublicProfilePage = () => {
                     <h2>Idiomas</h2>
                     <Divider height="30px" />
                     <LanguageList>
-                      <li>
-                        <img
-                          src="/media/icons/countries/brazil.svg"
-                          alt="brazil"
-                        />
-                        Português Brasileiro
-                      </li>
-                      <li>
-                        <img
-                          src="/media/icons/countries/germany.svg"
-                          alt="germany"
-                        />
-                        Alemão
-                      </li>
-                      <li>
-                        <img
-                          src="/media/icons/countries/italy.svg"
-                          alt="italy"
-                        />
-                        Italiano
-                      </li>
+                      {
+                        thetaInformation.languages.map((item) => {
+                          switch(item.name){
+                            case 'English':
+                              return (
+                                <li>
+                                  <img
+                                    src="/media/icons/countries/usa.svg"
+                                    alt="brazil"
+                                  />
+                                  {item.name}
+                                </li>
+                              )
+                              case 'Portuguese':
+                                return (
+                                  <li>
+                                  <img
+                                    src="/media/icons/countries/brazil.svg"
+                                    alt="brazil"
+                                  />
+                                  {item.name}
+                                </li>
+                                )
+                          }
+                        })
+                      }
                     </LanguageList>
                     <Divider height="30px" />
                   </Box>
