@@ -58,7 +58,7 @@ const ProfessionalPublicProfilePage = () => {
   });
   const [thetaInformation, setThetaInformation] = useState<any>({});
   const router = useRouter();
-  const userName: any = router.query.terapeuta;
+  let userName: any = router.query.terapeuta;
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
 
   const getInformation = async (bodyDate?: any) => {
@@ -83,6 +83,14 @@ const ProfessionalPublicProfilePage = () => {
     setIsLoggedIn(localStorage.getItem("authToken"));
     userName && getInformation();
   }, []);
+
+  useEffect(() => {
+    if(!userName){
+      userName = router.query.terapeuta;
+    } else {
+      thetaInformation.id === undefined && getInformation();
+    }
+  });
 
   useEffect(() => {
     if(selectedDate){
