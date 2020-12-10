@@ -238,11 +238,17 @@ justify-content:space-between;
     0px 8px 12px rgba(0, 0, 0, 0.14);
   border-radius: 4px;
   flex-direction: ${(props: interfaceConstant.boxProps) => props.column ? "column" : "row"}; 
-  margin: 10px 0;
+  margin: 20px 0 10px 0;
   padding: 20px;
   min-height: auto;
- 
+  .dateSchedule{
+    @media(max-width:767px){
+    display:flex;
+    flex-direction:column;
+    }
   }
+ 
+  
   h2 {
     font-size: 1.625rem;
     margin:  0;
