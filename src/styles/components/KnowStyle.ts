@@ -79,6 +79,7 @@ height:14px;
     .content{
         justify-content:center;
         align-items:center;
+        flex-direction:column;
     }
   }
 `
