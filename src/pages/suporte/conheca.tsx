@@ -10,7 +10,7 @@ import BackButton from "../../components/general/BackButton";
     return (
         <>
         <PageWrapper>
-        <Container maxWidth='lg' style={{margin:"50px"}}> 
+        <Container maxWidth='lg' > 
                 <Grid container >
                     <Grid item xs={2} md={4}>
                          <BackButton link="/" />
