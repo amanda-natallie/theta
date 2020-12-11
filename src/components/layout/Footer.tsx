@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         <div className="news">
-          <p>Assine nossa newsletter</p>
+          <h1>Assine nossa newsletter</h1>
           <form action="">
             <input type="text" placeholder="Insira seu e-mail" />
             <Link  passHref href="/">
@@ -49,6 +49,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={4}>
         <SocialMenu>
+
           <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube"/></Link>
           <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook"/></Link>
           <Link href="https://www.instagram.com/thetabrasilonline/" ><img src="/media/home/17.svg" alt="instagram"/></Link>
@@ -57,6 +58,7 @@ const Footer = () => {
           <Link href="#" ><img src="/media/home/15.svg" alt="spotify"/></Link>
         </SocialMenu>
         <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
+
 
         </Grid>
         </Grid>

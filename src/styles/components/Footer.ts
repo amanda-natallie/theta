@@ -31,7 +31,7 @@ export const FooterWrapper = styled.footer`
   & .brand {
     display: flex;
     align-items: center;
-    & p {
+    & h1 {
       max-width: 350px;
       margin-left: 20px;
       color: ${colors.gray50};
@@ -45,7 +45,7 @@ export const FooterWrapper = styled.footer`
   & .news {
     width: 46%;
 
-    & p {
+    & h1 {
       margin-bottom: 15px;
       font-size: 0.875rem;
     }
@@ -54,6 +54,11 @@ export const FooterWrapper = styled.footer`
     form{
       width:100%;
       display:flex;
+      justify-items:center;
+   }
+    & h1{
+      width:100%;
+      text-align:center;
     }
      .newResponse{
        display:flex;
@@ -72,9 +77,13 @@ export const FooterWrapper = styled.footer`
      .news{
        display:flex;
        margin:20px;
-       width:70%;
+       width:100%;
        flex-direction:column;
        justify-content:center;
+       @media(max-width:500px){
+         width:90%;
+         margin:20px;
+       }
 
      }
   }
@@ -85,7 +94,6 @@ export const FooterMenu = styled.nav`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   @media(max-width:500px){
     display:none;
