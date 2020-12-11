@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
 export const MenuInformation = styled.div `
+@media(max-width:900px){
+    display:none;
+}
+
 ul {
     width:166px;
     height:245px;

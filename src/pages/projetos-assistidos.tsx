@@ -44,7 +44,7 @@ import BackButton from "../components/general/BackButton";
                         adolescentes e jovens vivendo e/ou convivendo[1] com HIV/Aids por meio da socialização de informações e oferta de apoio psicossocial.</p>
                         <img src="media/mug.svg"/>
 
-                    <h1>Sobre o projeto</h1>
+                    <h1 >Sobre o projeto</h1>
                     <p>The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. 
                         A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.</p>
 

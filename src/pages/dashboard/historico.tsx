@@ -1,9 +1,9 @@
-import { Box, Container, Grid } from "@material-ui/core";
-import React, {useEffect, useState}from "react";
+import { Container, Grid, Box } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import Schedule from "../../styles/components/Schedule";
-import {userPastAppointments} from "../../services/users";
-import {therapistPastAppointments} from "../../services/profissionals";
+import { userPastAppointments } from "../../services/users";
+import { therapistPastAppointments } from "../../services/profissionals";
 
 const HistoricPage = () =>{
     const [appointments, setAppointments] = useState([])
@@ -74,7 +74,7 @@ const HistoricPage = () =>{
     </DashboardWrapper>
     </Schedule>
 
-    </>
-        )
+        </>
+    )
 }
 export default HistoricPage

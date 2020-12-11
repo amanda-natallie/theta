@@ -52,12 +52,12 @@ const information = () => {
                     />
                   </svg>
                 </image>
-                <FlexBox column>
+                <div>
                   <TitleInfo>Oque é nosso Projeto</TitleInfo>
                   <TitleInfo>
                     <h1>Conheça um pouco mais sobre o ThetaHealing Brasil.</h1>
                   </TitleInfo>
-                </FlexBox>
+                </div>
               </TextInformation>
               <image>
                 <svg
@@ -104,14 +104,14 @@ const information = () => {
                     />
                   </svg>
                 </image>
-                <FlexBox column>
+                <div>
                   <TitleInfo>Termos e condições do Terapeuta </TitleInfo>
                   <TitleInfo>
                     <h1>Leia os nossos termos de uso e privacidade</h1>
                   </TitleInfo>
-                </FlexBox>
+                </div>
               </TextInformation>
-              <image>
+              <image >
                 <svg
                   width="71"
                   height="28"
@@ -157,12 +157,12 @@ const information = () => {
                     />
                   </svg>
                 </image>
-                <FlexBox column>
+                <div>
                   <TitleInfo>Termos e condições do Usuario </TitleInfo>
                   <TitleInfo>
                     <h1>Leia os nossos termos de uso e privacidade</h1>
                   </TitleInfo>
-                </FlexBox>
+                </div>
               </TextInformation>
               <image>
                 <svg
@@ -209,12 +209,12 @@ const information = () => {
                     />
                   </svg>
                 </image>
-                <FlexBox column>
+                <div>
                   <TitleInfo>Perguntas frequentes</TitleInfo>
                   <TitleInfo>
                     <h1>Tire todas as suas duvidas no nosso FAQ</h1>
                   </TitleInfo>
-                </FlexBox>
+                </div>
               </TextInformation>
 
               <image>
@@ -263,12 +263,12 @@ const information = () => {
                   </svg>
                 </image>
 
-                <FlexBox column>
+                <div>
                   <TitleInfo>Fale conosco</TitleInfo>
                   <TitleInfo>
                     <h1>Entre em contato conosco quando quiser</h1>
                   </TitleInfo>
-                </FlexBox>
+                </div>
               </TextInformation>
               <image>
                 <svg

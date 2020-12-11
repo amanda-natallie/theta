@@ -39,7 +39,9 @@ export const FooterWrapper = styled.footer`
     }
     & svg {
     }
-  }
+    
+    }
+  
   & .news {
     width: 46%;
 
@@ -48,24 +50,74 @@ export const FooterWrapper = styled.footer`
       font-size: 0.875rem;
     }
   }
+  @media(max-width:500px){
+    form{
+      width:100%;
+      display:flex;
+    }
+     .newResponse{
+       display:flex;
+       flex-direction:column;
+       text-align:center;
+     }
+     .brand{
+       display:flex;
+       margin:10px;
+       flex-direction:column;
+       & svg{
+         width:70px;
+         height:60px
+       }
+     }
+     .news{
+       display:flex;
+       margin:20px;
+       width:70%;
+       flex-direction:column;
+       justify-content:center;
+
+     }
+  }
+
 `;
 
 export const FooterMenu = styled.nav`
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width:500px){
+    display:none;
+  }
+
 
   & a {
     color: ${colors.gray50};
     font-size: 0.875rem;
   }
+  
+    a{
+      margin:5px;
+    }
+  
+ 
+    
+  
 `;
 
 export const Copyright = styled.p`
+ position:absolute;
   margin-top: 30px;
   color: ${colors.gray50};
   font-size: 0.875rem;
+  
+  @media(max-width:500px){
+    text-align:center;
+    flex-wrap:wrap;
+
+  }
+ 
 `;
 
 
@@ -74,4 +126,5 @@ width: 100%;
 display: flex;
 align-items: center;
 justify-content: space-between;
+cursor:pointer;
 `

@@ -7,7 +7,6 @@ const AssistedProject = styled.div `
 }
 h1{
     color:#828282;
-    align-self:flex-start;
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;

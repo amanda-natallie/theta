@@ -1,8 +1,6 @@
 import { Avatar, Container, Grid, Dialog } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ClientFavorites from "../../components/general/DashboardCards/ClientFavorites";
-import TherapistCertificates from "../../components/general/DashboardCards/TherapistCertificates";
 import PaymentStatus from "../../components/general/PaymentStatus";
 import TherapistCard from "../../components/general/ProfileCard/TherapistCard";
 import UserCard from "../../components/general/ProfileCard/UserCard";
@@ -11,7 +9,7 @@ import { Box } from "../../styles/components/Box";
 import { ThetaButton } from "../../styles/components/Button";
 import { FlexBox } from "../../styles/components/FlexBox";
 import ReactLoading from "react-loading";
-import { Subtitle, Title } from "../../styles/components/Typography";
+import { Subtitle } from "../../styles/components/Typography";
 import {
   AppointmentList,
   DashboardContent,
@@ -77,7 +75,7 @@ const Dashboard = () => {
   const [currentAppointment, setCurrentAppointment] = useState(undefined);
   const [localLoading, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
-  const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
+  const [] = useState(false);
   const [user, setUser] = useState<userProps | undefined>();
   const [isLoading, setIsLoading] = useState(false);
 

@@ -21,5 +21,8 @@ export const SearchTherapists = styled.section`
 `;
 
 export const TimeChips = styled.section`
-  margin: 20px
+  margin: 20px;
+  @media(max-width:767px){
+    width:80vw;
+  }
 `
