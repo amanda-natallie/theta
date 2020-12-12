@@ -63,7 +63,7 @@ const information = () => {
             </HeaderWithBackButtonWrapper>
           </Grid>
           <Grid container>
-            <CardBox column align="flex-end" style={{ padding: 30 }}>
+            <CardBox column >
               <Subtitle
                 color={theme.palette.secondary.main}
                 style={{ alignSelf: "flex-start" }}
@@ -71,7 +71,7 @@ const information = () => {
                 Escolha o dia e o horário desejado
               </Subtitle>
 
-              <FlexBox>
+              <FlexBox className="dateSchedule">
                 <Calendar
                   selectedDate={selectedDate}
                   setSelectedDate={setSelectedDate}

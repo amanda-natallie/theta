@@ -20,6 +20,7 @@ import {
   Content,
   Header,
   LanguageList,
+  Profile,
   ProfileBlock,
   PublicProfilePageWrapper,
 } from "../../styles/pages/ProfileProfessional";
@@ -155,11 +156,11 @@ const ProfessionalPublicProfilePage = () => {
         <PublicProfilePageWrapper>
           <Header bg="/media/profile/bg.jpg">
             <Container maxWidth="lg">
-              <Grid container alignItems="center" justify="space-between">
+              <Profile>
                 <FlexBox column>
                   <BackButton link="/busca-profissionais" bordered />
                   <Divider height="20px" />
-                  <ThetaButton theme="purple">Recomendações</ThetaButton>
+                  <ThetaButton className="buttonRecommend" theme="purple">Recomendações</ThetaButton>
                 </FlexBox>
                 <Grid item xs={2} md={3}>
                   <ProfileBlock>
@@ -185,7 +186,7 @@ const ProfessionalPublicProfilePage = () => {
                     Enviar Mensagem
                   </ThetaButton>
                 </FlexBox>
-              </Grid>
+              </Profile>
             </Container>
           </Header>
 
@@ -197,8 +198,6 @@ const ProfessionalPublicProfilePage = () => {
                     <div className="left">
                       <table>
                         <tr>
-                          <th>Idade</th>
-                          <td>{renderIdade(thetaInformation.yearBorn)}</td>
                         </tr>
                         <tr>
                           <th>Localização</th>

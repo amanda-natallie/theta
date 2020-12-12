@@ -5,14 +5,17 @@ const AssistedProject = styled.div `
    text-align:center;
    justify-content:center;
 }
+@media(max-width:700px){
+    p{
+    width:90%;
+    }
+    
+}
 h1{
     color:#828282;
-    align-self:flex-start;
     font-family: Nunito;
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 120%;
 }
 p{
     color:#362A66;
@@ -20,7 +23,6 @@ p{
     font-family: Nunito;
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
     line-height: 150%;
     text-align: center;
 }

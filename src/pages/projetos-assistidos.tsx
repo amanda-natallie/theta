@@ -11,8 +11,8 @@ import BackButton from "../components/general/BackButton";
     return (
         <>
         <PageWrapper>
-        <Container maxWidth='lg' style={{alignItems:"center"}}> 
-                <Grid container style={{margin:"50px"}} >
+        <Container maxWidth="lg"> 
+                <Grid container  >
                     <Grid item xs={2} md={4}>
                          <BackButton link="/" />
                     </Grid>
@@ -21,7 +21,7 @@ import BackButton from "../components/general/BackButton";
                     </Grid>
                 </Grid>
                 <AssistedProject>
-                     <FlexBox column>
+                    
                     <Title style={{margin:"10px"}}>Solidariedade e compaixão</Title>
                     <p>Nós do ThetaBrasil.online queremos promover uma conexão entre thetahealers, público em geral e 
                         projetos sociais, estabelecendo entre eles uma rede de apoio humano solidário. 
@@ -44,7 +44,7 @@ import BackButton from "../components/general/BackButton";
                         adolescentes e jovens vivendo e/ou convivendo[1] com HIV/Aids por meio da socialização de informações e oferta de apoio psicossocial.</p>
                         <img src="media/mug.svg"/>
 
-                    <h1>Sobre o projeto</h1>
+                    <h1 >Sobre o projeto</h1>
                     <p>The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. 
                         A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.</p>
 
@@ -60,7 +60,7 @@ import BackButton from "../components/general/BackButton";
                     <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. 
                     Today it's seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or read on for the authoritative history of lorem ipsum.ipsum.
                     </p>
-                    </FlexBox>
+                 
                     </AssistedProject>
 
 

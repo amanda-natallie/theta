@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const knowStyle = styled.section `
+display:flex;
 section{
     margin:40px;
 }
@@ -34,7 +35,53 @@ height:50px;
 color: #FFFFFF;
 background-color: #7643FF;
 }
+button :hover{
+cursor:pointer;
+}
+.ContainerButton{
+display:flex;
+width:100%;
+justify-content:end;
+}
+.scheduleConsult{
+display:flex;
+justify-content:space-around;
+padding:5px;
+align-items:center;
+width:160px;
+height:38px;
+border-radius:5px;
+color: #FFFFFF;
+background-color: #7643FF;
+}
+.iconButton{
+width:14px;
+height:14px;
+}
 
+@media(max-width: 1000px) {
+    width:100%;
+    justify-content:center;
+    .Bluelogo{
+        display:none;
+    }
+    .worldImage{
+        position:inherit;
+    }
+    img{
+        margin:0 auto;
+        width:40vw;
+    }
+    p{
+        width:100%;
+    }
 
+    .content{
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+    }
+  }
 `
+
 export default knowStyle

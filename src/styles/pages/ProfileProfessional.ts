@@ -37,7 +37,14 @@ export const Header = styled.header`
     z-index: 0;
   }
 `;
-
+export const Profile  =  styled.div`
+display:flex;
+@media(max-width:700px){
+  .buttonRecommend{
+  
+  }
+}
+`
 export const ProfileBlock = styled.div`
   display: flex;
   align-items: center;

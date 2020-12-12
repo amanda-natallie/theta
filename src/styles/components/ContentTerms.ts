@@ -30,4 +30,7 @@ p{
     font-size:14px;
     line-height:25px;
 }
+ol{
+    margin:20px;
+}
 `

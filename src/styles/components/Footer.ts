@@ -31,7 +31,7 @@ export const FooterWrapper = styled.footer`
   & .brand {
     display: flex;
     align-items: center;
-    & p {
+    & h1 {
       max-width: 350px;
       margin-left: 20px;
       color: ${colors.gray50};
@@ -39,33 +39,93 @@ export const FooterWrapper = styled.footer`
     }
     & svg {
     }
-  }
+    
+    }
+  
   & .news {
     width: 46%;
 
-    & p {
+    & h1 {
       margin-bottom: 15px;
       font-size: 0.875rem;
     }
   }
+  @media(max-width:500px){
+    form{
+      width:100%;
+      display:flex;
+      justify-items:center;
+   }
+    & h1{
+      width:100%;
+      text-align:center;
+    }
+     .newResponse{
+       display:flex;
+       flex-direction:column;
+       text-align:center;
+     }
+     .brand{
+       display:flex;
+       margin:10px;
+       flex-direction:column;
+       & svg{
+         width:70px;
+         height:60px
+       }
+     }
+     .news{
+       display:flex;
+       margin:20px;
+       width:100%;
+       flex-direction:column;
+       justify-content:center;
+       @media(max-width:500px){
+         width:90%;
+         margin:20px;
+       }
+
+     }
+  }
+
 `;
 
 export const FooterMenu = styled.nav`
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  @media(max-width:500px){
+    display:none;
+  }
+
 
   & a {
     color: ${colors.gray50};
     font-size: 0.875rem;
   }
+  
+    a{
+      margin:5px;
+    }
+  
+ 
+    
+  
 `;
 
 export const Copyright = styled.p`
+ position:absolute;
   margin-top: 30px;
   color: ${colors.gray50};
   font-size: 0.875rem;
+  
+  @media(max-width:500px){
+    text-align:center;
+    flex-wrap:wrap;
+
+  }
+ 
 `;
 
 
@@ -74,4 +134,5 @@ width: 100%;
 display: flex;
 align-items: center;
 justify-content: space-between;
+cursor:pointer;
 `

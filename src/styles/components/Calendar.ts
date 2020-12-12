@@ -7,7 +7,9 @@ export const CalendarContainer = styled.div`
   * {
     outline: none;
   }
+   @media(max-width:767px){
 
+   }
   .DayPicker {
     background: #ffffff;
     border-radius: 4px;
