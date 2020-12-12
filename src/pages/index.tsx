@@ -269,7 +269,7 @@ export default function HomePage({ }) {
               </Link>
             </Grid>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Link passHref href="/agendamento-por-horario">
+              <Link passHref href="/busca-profissionais">
                 <Box className="box-link">
                   <div className="avatar">
                     <CenteredImage src="/media/home/7.svg" alt="" />

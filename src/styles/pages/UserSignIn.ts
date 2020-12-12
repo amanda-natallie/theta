@@ -32,5 +32,8 @@ export const UserSignInWrapper = styled.section`
         font-size: 0.875rem
       }
     }
+    @media (max-width: 400px) {
+    text-align: center;
+  }
   }
 `;
