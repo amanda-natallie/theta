@@ -39,6 +39,7 @@ interface userDataProps {
 }
 
 export const userRegistration = async (userData: userDataProps) => {
+  console.log("hello")
   await api
     .post("users", { ...userData })
     .then(() => {

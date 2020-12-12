@@ -116,12 +116,12 @@ const UserSignInPage = () => {
                     <NavigationButton style={{ marginLeft: 5}}> Cadastre-se aqui</NavigationButton>
                   </Link>
                 </p>
-                <p>
+                <p style={{marginTop: 10}}>
                   
                   <Link  passHref href="/cadastro-terapeuta">
                     <NavigationButton style={{ marginRight: 5}}> Clique aqui </NavigationButton>
                   </Link>
-                  se você é um terapeuta e precisa se cadastrar
+                  se você é um terapeuta
                 </p>
               </footer>
             </Box>

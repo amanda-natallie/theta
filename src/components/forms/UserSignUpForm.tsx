@@ -18,10 +18,7 @@ import Link from "next/link";
 import {userRegistration} from "../../services/users"
 
 const UserSignUpForm = () => {
-
   const dispatch = useDispatch();
-
-
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -64,30 +61,31 @@ const UserSignUpForm = () => {
       
     }),
     onSubmit: (values: formConstants.UserProps) => {
-      userRegistration({
-        name: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        email_confirmation: values.emailConfirm,
-        dayBorn: values.birthDay.toString(),
-        monthBorn: values.birthMonth.toString(),
-        yearBorn: values.birthYear.toString(),
-        state: values.state,
-        city: values.city,
-        certificate: values.certificate,
-        phone: values.phone,
-        username: values.user,
-        password: values.password,
-        password_confirmation: values.passwordConfirm,
-      })
+      alert("Submit");
+      // userRegistration({
+      //   name: values.firstName,
+      //   lastName: values.lastName,
+      //   email: values.email,
+      //   email_confirmation: values.emailConfirm,
+      //   dayBorn: values.birthDay.toString(),
+      //   monthBorn: values.birthMonth.toString(),
+      //   yearBorn: values.birthYear.toString(),
+      //   state: values.state,
+      //   city: values.city,
+      //   certificate: values.certificate,
+      //   phone: values.phone,
+      //   username: values.user,
+      //   password: values.password,
+      //   password_confirmation: values.passwordConfirm,
+      // })
     },
   });
+
   return (
     
     <Container maxWidth="sm" className="form signup-form">
       <Title>Entre para a ThetaBrasil</Title>
-      <form onSubmit={formik.handleSubmit}>
-
+      <form onSubmit={(e) => e.preventDefault()}>
         <Grid container spacing={2}>
           <Grid item xs={12} lg={6}>
             <TextField
@@ -402,7 +400,7 @@ const UserSignUpForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-              <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
+           <ThetaButton as="button" onClick={() => formik.handleSubmit()} theme="purple" fullWidth >Cadastrar</ThetaButton>
           </Grid>
         </Grid>
         
