@@ -36,16 +36,17 @@ import { useRouter } from "next/router";
 import { Select, MenuItem } from "@material-ui/core";
 import { makeAppointment } from "../../services/appointments";
 import Loading from "../../components/layout/Loading";
+import CheckoutModal from "../../components/layout/CheckoutModal"
 
 const ProfessionalPublicProfilePage = () => {
   const today = new Date();
   /* const [tabActive, setTabActive] = useState("artigos"); */
-  const [currentDate] = useState<any>(today);
+  const [currentDate] = useState<any>();
+  const [checkout, setCheckout] = useState<any>(false);
   const [selectedDate, setSelectedDate] = useState(undefined);
-  const [, setOpen] = useState(false);
-  const [, setLocalLoading] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
-  const [, setAppointmentInformation] = useState({
+  const [appointmentInformation, setAppointmentInformation] = useState({
     providerName: "",
     providerPic: "",
     date: "",
@@ -56,39 +57,9 @@ const ProfessionalPublicProfilePage = () => {
       actionFunction: () => setLocalLoading(true),
     },
   });
-  const [thetaInformation, setThetaInformation] = useState({
-    id: "a74ce34d-d256-46aa-829a-25441c58bea7",
-    name: "Alan",
-    lastName: "Terapeuta",
-    email: "alan_camargo11@hotmail.com",
-    confirmed_email: "true",
-    dayBorn: "19",
-    monthBorn: "Junho",
-    yearBorn: "1993",
-    state: "São Paulo",
-    city: "Rio Claro",
-    phone: "19992754715",
-    username: "alanhrc",
-    typeUser: "therapist",
-    languages: [
-      { name: "English", language: "English" },
-      { name: "Portuguese", language: "Portuguese" },
-    ],
-    links: [
-      { name: "Facebook", link: "facebook.com" },
-      { name: "Youtube", link: "youtube.com" },
-    ],
-    certificates: ["DNA", "DNA3"],
-    bio: null,
-    consultations: null,
-    price: "107.00",
-    created_at: "2020-11-19T12:49:22.539Z",
-    updated_at: "2020-11-19T12:49:22.539Z",
-    avatar_url: null,
-    availability: [],
-  });
+  const [thetaInformation, setThetaInformation] = useState<any>({});
   const router = useRouter();
-  const userName: any = router.query.terapeuta;
+  let userName: any = router.query.terapeuta;
   const dateOptions = { weekday: "long", month: "long", day: "numeric" };
 
   const getInformation = async (bodyDate?: any) => {
@@ -115,6 +86,14 @@ const ProfessionalPublicProfilePage = () => {
   }, []);
 
   useEffect(() => {
+    if(!userName){
+      userName = router.query.terapeuta;
+    } else {
+      thetaInformation.id === undefined && getInformation();
+    }
+  });
+
+  useEffect(() => {
     if(selectedDate){
       const bodyDate = { 
         day: new Intl.DateTimeFormat('pt-BR', {day: '2-digit'}).format(selectedDate),
@@ -126,10 +105,9 @@ const ProfessionalPublicProfilePage = () => {
   }, [selectedDate]);
 
   const appointimentMaker = (hour: any) => {
-    console.log("appointment maker")
     const provider_id = thetaInformation.id;
     const info = {
-      date: currentDate.toLocaleString("pt-BR", dateOptions),
+      date: selectedDate.toLocaleString("pt-BR", dateOptions),
       time: hour,
       token: isLoggedIn,
     };
@@ -141,10 +119,12 @@ const ProfessionalPublicProfilePage = () => {
       price: thetaInformation.price,
       button: {
         title: "CONFIRMAR",
-        actionFunction: () => makeAppointment({ ...info, provider_id }),
-      },
+        actionFunction: () => {
+          setLocalLoading(true);
+          makeAppointment({ ...info, date: selectedDate, provider_id });
+      }},
     });
-    setOpen(true);
+    setCheckout(true);
   };
 
   return thetaInformation.id !== undefined ? (
@@ -223,54 +203,64 @@ const ProfessionalPublicProfilePage = () => {
                          <p>{thetaInformation.email}</p>
                       <Link href="">{`www.thetabrasil.com.br/${thetaInformation.username}`}</Link>
                         <ul>
-                          <li>
-                            <Link href="https://youtube.com">
-                              <img
-                                src="/media/icons/social-media/youtube.svg"
-                                alt="youtube"
-                              />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://facebook.com">
-                              <img
-                                src="/media/icons/social-media/facebook.svg"
-                                alt="facebook"
-                              />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://instagram.com">
-                              <img
-                                src="/media/icons/social-media/instagram.svg"
-                                alt="instagram"
-                              />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://spotify.com">
-                              <img
-                                src="/media/icons/social-media/spotify.svg"
-                                alt="spotify"
-                              />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://twitter.com">
-                              <img
-                                src="/media/icons/social-media/twitter.svg"
-                                alt="twitter"
-                              />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://linkedin.com">
-                              <img
-                                src="/media/icons/social-media/linkedin.svg"
-                                alt="linkedin"
-                              />
-                            </Link>
-                          </li>
+                          {thetaInformation.links.map((item) => {
+                            switch(item.name){
+                              case "Facebook":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                      src="/media/icons/social-media/facebook.svg"
+                                      alt="facebook"
+                                    />
+                                  </Link>
+                                </li>)
+                                case "Instagram":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                      src="/media/icons/social-media/instagram.svg"
+                                      alt="instagram"
+                                    />
+                                  </Link>
+                                </li>)
+                                case "Youtube":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                    src="/media/icons/social-media/youtube.svg"
+                                    alt="youtube"
+                                    />
+                                  </Link>
+                                </li>)
+                                case "Spotify":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                    src="/media/icons/social-media/spotify.svg"
+                                    alt="spotify"
+                                    />
+                                  </Link>
+                                </li>)
+                                case "Twitter":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                      src="/media/icons/social-media/twitter.svg"
+                                      alt="twitter"
+                                    />
+                                  </Link>
+                                </li>)
+                                case "Linkedin":
+                                  return (<li>
+                                  <Link href={item.link}>
+                                    <img
+                                      src="/media/icons/social-media/linkedin.svg"
+                                      alt="linkedin"
+                                    />
+                                  </Link>
+                                </li>)
+                            }
+                          })}
                         </ul>
                       </FlexBox>
                     </div>
@@ -314,27 +304,32 @@ const ProfessionalPublicProfilePage = () => {
                     <h2>Idiomas</h2>
                     <Divider height="30px" />
                     <LanguageList>
-                      <li>
-                        <img
-                          src="/media/icons/countries/brazil.svg"
-                          alt="brazil"
-                        />
-                        Português Brasileiro
-                      </li>
-                      <li>
-                        <img
-                          src="/media/icons/countries/germany.svg"
-                          alt="germany"
-                        />
-                        Alemão
-                      </li>
-                      <li>
-                        <img
-                          src="/media/icons/countries/italy.svg"
-                          alt="italy"
-                        />
-                        Italiano
-                      </li>
+                      {
+                        thetaInformation.languages.map((item) => {
+                          switch(item.name){
+                            case 'English':
+                              return (
+                                <li>
+                                  <img
+                                    src="/media/icons/countries/usa.svg"
+                                    alt="brazil"
+                                  />
+                                  {item.name}
+                                </li>
+                              )
+                              case 'Portuguese':
+                                return (
+                                  <li>
+                                  <img
+                                    src="/media/icons/countries/brazil.svg"
+                                    alt="brazil"
+                                  />
+                                  {item.name}
+                                </li>
+                                )
+                          }
+                        })
+                      }
                     </LanguageList>
                     <Divider height="30px" />
                   </Box>
@@ -399,8 +394,8 @@ const ProfessionalPublicProfilePage = () => {
                                   (newItem: any) =>
                                     newItem.available && (
                                       <MenuItem
-                                        onChange={(e: any) =>
-                                          appointimentMaker(e.target.value)
+                                        onClick={() =>
+                                          appointimentMaker(newItem.hour)
                                         }
                                       >
                                         {`${newItem.hour}:00`}
@@ -436,6 +431,12 @@ const ProfessionalPublicProfilePage = () => {
             </Container>
           </Content>
         </PublicProfilePageWrapper>
+        <CheckoutModal
+        info={appointmentInformation}
+        isLoading={localLoading}
+        isOpen={checkout}
+        onClose={() => setCheckout(false)}
+      />
       </PageWrapper>
     </>
   ) : (
