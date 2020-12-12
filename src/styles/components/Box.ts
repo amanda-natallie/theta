@@ -233,6 +233,7 @@ export const MidiaBox2 = styled(MidiaBox)`
 `;
 
 export const CardBox = styled(Box)`
+width:100%;
 justify-content:space-between;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.02),
     0px 8px 12px rgba(0, 0, 0, 0.14);
@@ -241,6 +242,10 @@ justify-content:space-between;
   margin: 20px 0 10px 0;
   padding: 20px;
   min-height: auto;
+  @media(max-width:767px){
+    display:flex;
+    flex-direction:column-reverse;
+    }
   .dateSchedule{
     @media(max-width:767px){
     display:flex;
@@ -271,8 +276,7 @@ justify-content:space-between;
     }
   }
 
-  & .content {
-    h5 {
+  & h5 {
       font-size: 1rem;
       color: ${theme.palette.primary.dark};
     }
@@ -288,7 +292,7 @@ justify-content:space-between;
         font-size: 0.8125rem;
       }
     }
-  }
+  
   & .pricing {
     p{
       font-size: 1.9rem;
