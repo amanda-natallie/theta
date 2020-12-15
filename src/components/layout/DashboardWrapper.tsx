@@ -2,7 +2,7 @@ import { Breadcrumbs, Typography } from "@material-ui/core";
 import Link from "next/link";
 import React, { memo, useEffect, useState  } from "react";
 import { useDispatch } from "react-redux"
-import { userLogout } from "../../services/users";
+import { deleteUserAccount, userLogout } from "../../services/users";
 import { MenuIconButton, ThetaButton } from "../../styles/components/Button";
 import {
   DashboardPage,
@@ -44,6 +44,11 @@ const DashboardWrapper = ({
   useEffect(() => {
     getInformation();
   }, []); 
+
+  const cancellAccount = () => {
+    const ask = window.confirm("Tem certeza que deseja cancelar sua conta?")
+    ask && deleteUserAccount(user.id)
+  }
   
   return (
     <DashboardPage>
@@ -86,7 +91,7 @@ const DashboardWrapper = ({
           </li>
           {user.typeUser === "client" && (
             <li style={{ position: "absolute", bottom: 10 }}>
-              <ThetaButton onClick={() => window.confirm("Tem certeza que deseja cancelar sua conta?")}>
+              <ThetaButton onClick={() => cancellAccount()}>
                 Cancelar Conta
               </ThetaButton>
             </li>

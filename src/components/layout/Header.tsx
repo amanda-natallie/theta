@@ -58,7 +58,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
               <button
                 style={{
                   position: "fixed",
-                  color: "#7643ff",
+                  color: "#7a52e7",
                   background: "white",
                   borderRadius: "50%",
                   width: "24px",
@@ -70,7 +70,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                 X
               </button>
 
-              <Nav color={color}>
+              <Nav style={{opacity: 0.8}} color={color}>
                 <li>
                   <Link href="/">Home</Link>
                 </li>
@@ -82,7 +82,7 @@ const Header = ({ color, elevation }: interfaceConstant.MenuProps) => {
                   <Link href="/">Social</Link>
                 </li>
                 <li>
-                  <Link href="/">Entrar</Link>
+                  <Link href="/login">Entrar</Link>
                 </li>
               </Nav>
             </>

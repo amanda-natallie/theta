@@ -1,5 +1,5 @@
-import React from "react";
-import { Formik, useFormik } from "formik";
+import React, { useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import formConstants from "../../utils/constant/formConstants";
 import {
@@ -9,20 +9,20 @@ import {
   FormLabel,
   Grid,
   TextField,
+  FormHelperText,
+  MenuItem,
 } from "@material-ui/core";
 import { Title } from "../../styles/components/Typography";
 import { useDispatch } from "react-redux";
-import { handleUserData } from "../../store/actions/UserActions";
 import { ThetaButton } from "../../styles/components/Button";
-import Link from "next/link";
 import {userRegistration} from "../../services/users"
+import { BarLoader } from "react-spinners";
 
 const UserSignUpForm = () => {
-
-  const dispatch = useDispatch();
-
-
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
+    validateOnChange: false,
+    validateOnBlur: false,
     initialValues: {
       firstName: "",
       lastName: "",
@@ -32,7 +32,6 @@ const UserSignUpForm = () => {
       birthYear: undefined,
       city: "",
       state: "",
-      certificate:"",
       phone: "",
       ddd: undefined,
       user: "",
@@ -49,21 +48,20 @@ const UserSignUpForm = () => {
         .required("Obrigatório")
         .oneOf([Yup.ref("email"), null], "Os e-mails não combinam"),
       birthDay: Yup.number().required("Obrigatório"),
-      birthMonth: Yup.number().required("Obrigatório"),
+      birthMonth: Yup.string().required("Obrigatório"),
       birthYear: Yup.number().required("Obrigatório"),
       city: Yup.string().required("Obrigatório"),
       state: Yup.string().required("Obrigatório"),
-      cetificate: Yup.string().required("Obrigatório"),
       phone: Yup.string().required("Obrigatório"),
       user: Yup.string().required("Obrigatório"),
       password: Yup.string().required("Obrigatório"),
       passwordConfirm: Yup.string()
         .required("Obrigatório")
         .oneOf([Yup.ref("password"), null], "As senhas não combinam"),
-      termsAccepted: Yup.boolean().required("Obrigatório"),
-      
+      termsAccepted: Yup.bool().oneOf([true], 'Obrigatório'), 
     }),
     onSubmit: (values: formConstants.UserProps) => {
+      setLoading(true)
       userRegistration({
         name: values.firstName,
         lastName: values.lastName,
@@ -74,8 +72,7 @@ const UserSignUpForm = () => {
         yearBorn: values.birthYear.toString(),
         state: values.state,
         city: values.city,
-        certificate: values.certificate,
-        phone: values.phone,
+        phone: values.ddd + values.phone,
         username: values.user,
         password: values.password,
         password_confirmation: values.passwordConfirm,
@@ -87,83 +84,58 @@ const UserSignUpForm = () => {
     <Container maxWidth="sm" className="form signup-form">
       <Title>Entre para a ThetaBrasil</Title>
       <form onSubmit={formik.handleSubmit}>
-
         <Grid container spacing={2}>
           <Grid item xs={12} lg={6}>
             <TextField
-              error={false}
               fullWidth
               label="Primeiro Nome"
               placeholder="Insira seu nome"
               value={formik.values.firstName}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("firstName", event.target.value, true);
-              }}
               variant="outlined"
-              helperText={
-                formik.touched.firstName && formik.errors.firstName
-                  ? formik.errors.firstName
-                  : null
-              }
+              id="firstName"
+              onChange={formik.handleChange}
+              error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+              helperText={formik.touched.firstName && formik.errors.firstName}
             />
           </Grid>
           <Grid item xs={12} lg={6}>
             <TextField
               fullWidth
-              error={false}
               label="Ultimo Nome"
               placeholder="Insira seu sobrenome"
               value={formik.values.lastName}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("lastName", event.target.value, true);
-              }}
               variant="outlined"
-              helperText={
-                formik.touched.lastName && formik.errors.lastName
-                  ? formik.errors.lastName
-                  : null
-              }
+              id="lastName"
+              onChange={formik.handleChange}
+              error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+              helperText={formik.touched.lastName && formik.errors.lastName}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              error={false}
               label="E-mail"
               placeholder="Insira seu e-mail"
               value={formik.values.email}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("email", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.email && formik.errors.email
-                  ? formik.errors.email
-                  : null
-              }
+              id="email"
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
 
           <Grid item xs={12}>
             <TextField
               fullWidth
-              error={false}
               label="Confirme seu E-mail"
               placeholder="Insira seu e-mail"
               value={formik.values.emailConfirm}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("emailConfirm", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.emailConfirm && formik.errors.emailConfirm
-                  ? formik.errors.emailConfirm
-                  : null
-              }
+              id="emailConfirm"
+              error={formik.touched.emailConfirm && Boolean(formik.errors.emailConfirm)}
+              helperText={formik.touched.emailConfirm && formik.errors.emailConfirm}
             />
           </Grid>
           <Grid item xs={12} className="divider">
@@ -172,58 +144,54 @@ const UserSignUpForm = () => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              error={false}
               label="Dia"
               placeholder="Dia"
               value={formik.values.birthDay}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthDay", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.birthDay && formik.errors.birthDay
-                  ? formik.errors.birthDay
-                  : null
-              }
+              id="birthDay"
+              error={formik.touched.birthDay && Boolean(formik.errors.birthDay)}
+              helperText={formik.touched.birthDay && formik.errors.birthDay}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              error={false}
+              select
               label="Mês"
               placeholder="Mês"
               value={formik.values.birthMonth}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthMonth", event.target.value, true);
-              }}
+              onChange={formik.handleChange("birthMonth")}
               variant="outlined"
-              helperText={
-                formik.touched.birthMonth && formik.errors.birthMonth
-                  ? formik.errors.birthMonth
-                  : null
-              }
-            />
+              id="birthMonth"
+              error={formik.touched.birthMonth && Boolean(formik.errors.birthMonth)}
+              helperText={formik.touched.birthMonth && formik.errors.birthMonth}
+            >
+              <MenuItem value="Janeiro">Janeiro</MenuItem>
+              <MenuItem value="Fevereiro">Fevereiro</MenuItem>
+              <MenuItem value="Março">Março</MenuItem>
+              <MenuItem value="Abril">Abril</MenuItem>
+              <MenuItem value="Maio">Maio</MenuItem>
+              <MenuItem value="Junho">Junho</MenuItem>
+              <MenuItem value="Julho">Julho</MenuItem>
+              <MenuItem value="Agosto">Agosto</MenuItem>
+              <MenuItem value="Setembro">Setembro</MenuItem>
+              <MenuItem value="Outubro">Outubro</MenuItem>
+              <MenuItem value="Novembro">Novembro</MenuItem>
+              <MenuItem value="Dezembro">Dezembro</MenuItem>
+            </TextField>
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              error={false}
               label="Ano"
               placeholder="Ano"
               value={formik.values.birthYear}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthYear", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.birthYear && formik.errors.birthYear
-                  ? formik.errors.birthYear
-                  : null
-              }
+              id="birthYear"
+              error={formik.touched.birthYear && Boolean(formik.errors.birthYear)}
+              helperText={formik.touched.birthYear && formik.errors.birthYear}
             />
           </Grid>
 
@@ -233,39 +201,27 @@ const UserSignUpForm = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              error={false}
               label="Cidade"
               placeholder="Digite sua cidade"
               value={formik.values.city}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("city", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.city && formik.errors.city
-                  ? formik.errors.city
-                  : null
-              }
+              id="city"
+              error={formik.touched.city && Boolean(formik.errors.city)}
+              helperText={formik.touched.city && formik.errors.city}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              error={false}
               label="Estado"
               placeholder="Digite seu estado"
               value={formik.values.state}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("state", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.state && formik.errors.state
-                  ? formik.errors.state
-                  : null
-              }
+              id="state"
+              error={formik.touched.state && Boolean(formik.errors.state)}
+              helperText={formik.touched.state && formik.errors.state}
             />
           </Grid>
          
@@ -275,39 +231,27 @@ const UserSignUpForm = () => {
           <Grid item xs={12} sm={4} md={3}>
             <TextField
               fullWidth
-              error={false}
               label="DDD"
               placeholder="Digite seu DDD"
               value={formik.values.ddd}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("ddd", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.ddd && formik.errors.ddd
-                  ? formik.errors.ddd
-                  : null
-              }
+              id="ddd"
+              error={formik.touched.ddd && Boolean(formik.errors.ddd)}
+              helperText={formik.touched.ddd && formik.errors.ddd}
             />
           </Grid>
           <Grid item xs={12} sm={8} md={9}>
             <TextField
               fullWidth
-              error={false}
               label="Telefone"
               placeholder="Digite seu telefone"
               value={formik.values.phone}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("phone", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.phone && formik.errors.phone
-                  ? formik.errors.phone
-                  : null
-              }
+              id="phone"
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              helperText={formik.touched.phone && formik.errors.phone}
             />
           </Grid>
           <Grid item xs={12} className="divider">
@@ -316,71 +260,52 @@ const UserSignUpForm = () => {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              error={false}
               label="Nome de usuário"
               placeholder="Escolha um nome de usuário"
               value={formik.values.user}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("user", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.user && formik.errors.user
-                  ? formik.errors.user
-                  : null
-              }
+              id="user"
+              error={formik.touched.user && Boolean(formik.errors.user)}
+              helperText={formik.touched.user && formik.errors.user}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              error={false}
               type="password"
               label="Senha"
               placeholder="Escolha uma senha"
               value={formik.values.password}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("password", event.target.value, true);
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.password && formik.errors.password
-                  ? formik.errors.password
-                  : null
-              }
+              id="password"
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
-              error={false}
               type="password"
               label="Confirme sua Senha"
               placeholder="Confirme sua senha"
               value={formik.values.passwordConfirm}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue(
-                  "passwordConfirm",
-                  event.target.value,
-                  true 
-                );
-              }}
+              onChange={formik.handleChange}
               variant="outlined"
-              helperText={
-                formik.touched.passwordConfirm && formik.errors.passwordConfirm
-                  ? formik.errors.passwordConfirm
-                  : null
-              }
+              id="passwordConfirm"
+              error={formik.touched.passwordConfirm && Boolean(formik.errors.passwordConfirm)}
+              helperText={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
             />
             <p>
               Use 8 ou mais caracteres com uma mistura de letras, números e
               símbolos.Não deve conter seu nome ou nome de usuário.
             </p>
           </Grid>
-
+          {/* <BoxForm>
+              <h1>Adicione aqui sua foto de perfil</h1>
+              <input type="file" accept="image/*" onChange={(event) => setProfilePic(event.target.files[0])}/>
+            </BoxForm> */}
           <Grid item xs={8}>
             <FormControlLabel
             className="accepterms"
@@ -399,10 +324,11 @@ const UserSignUpForm = () => {
               }
               label="Ao usar a plataforma ThetaBrasil concordo com os termos de uso"
             />
+            <FormHelperText error>{formik.errors.termsAccepted}</FormHelperText>
           </Grid>
 
           <Grid item xs={12}>
-              <ThetaButton as="button" onClick={() => formik.submitForm()} theme="purple" fullWidth >Cadastrar</ThetaButton>
+           <ThetaButton as="button" type="submit" theme="purple" fullWidth >{loading ? <BarLoader color="white"/> : 'Cadastrar'}</ThetaButton>
           </Grid>
         </Grid>
         

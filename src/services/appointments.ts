@@ -9,6 +9,7 @@ interface getAllProfessionalsProps {
 }
 
 export const makeAppointment = async (props: getAllProfessionalsProps) => {
+  console.log(props)
   const {provider_id, date, time, token} = props
   const formatDate = `${date.toLocaleString('en-US', { year: 'numeric'})}-${date.toLocaleString('en-US', 
   { month: '2-digit'})}-${date.toLocaleString('en-US', { day: '2-digit'})} ${time}:00:00`
@@ -69,8 +70,8 @@ export const appointmentUpdateStatus = async (id: string, status: string, order_
   }
   try{
     const response = await api.post(`/appointments/${id}`, requestBody, config);
-    return alert(response.data.message);
-    window.location.href = '/dashboard'
+    alert(response.data.message);
+    return window.location.href = '/dashboard';
   } catch(error) {
     alert(error.response.data.message);
   }

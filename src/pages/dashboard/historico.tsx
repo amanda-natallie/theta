@@ -1,75 +1,78 @@
-import { Container } from "@material-ui/core";
+import { Container, Grid, Box } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import DashboardWrapper from "../../components/layout/DashboardWrapper";
 import Schedule from "../../styles/components/Schedule";
 import { userPastAppointments } from "../../services/users";
 import { therapistPastAppointments } from "../../services/profissionals";
-import { AppointmentList } from "../../styles/pages/dashboard/Dashboard";
-import PaymentStatus from "../../components/general/PaymentStatus";
-import { FlexBox } from "../../styles/components/FlexBox";
-import { getDateDifference, renderDate } from "../../utils/helpers";
 
-
-const HistoricPage = () => {
-
+const HistoricPage = () =>{
     const [appointments, setAppointments] = useState([])
-    const [] = useState(false);
-    const [, setCurrentAppointment] = useState(undefined);
 
-
-    const getInfo = async () => {
-
-        if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
-            const userInfo = JSON.parse(
-                localStorage.getItem("userInformation") || "{}"
-            );
-            const response =
-                userInfo.typeUser === "client"
-                    ? await userPastAppointments(userInfo.id)
-                    : await therapistPastAppointments(userInfo.id);
-            setAppointments(response);
-        }
-    };
+    const getInfo = async ()=>{
+    if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
+        const userInfo = JSON.parse(
+            localStorage.getItem("userInformation") || "{}"
+        );
+        const response =
+            userInfo.typeUser === "client"
+            ? await userPastAppointments(userInfo.id)
+            : await therapistPastAppointments(userInfo.id);
+        setAppointments(response);
+    } };
 
     useEffect(() => {
         getInfo();
     }, [])
 
-    return (
-        <>
-            <Schedule>
-                <DashboardWrapper>
-                    <Container maxWidth="lg">
-                  
-                        <AppointmentList>
-                            {appointments && appointments.length > 0 ?
-                                appointments.map((appointmentItem: any, index: number) => (
-                                    <li key={index} onClick={() =>
-                                        setCurrentAppointment({ ...appointmentItem, closeToMetting: getDateDifference(appointmentItem.date) < 10, bankTransfer: getDateDifference(appointmentItem.date) > 4400 })
-                                    }>
-                                        <FlexBox justify="space-between" style={{
-                                            alignItems: "center",
-                                            height: "65px"
-                                        }}>
-                                            <h5>{appointmentItem.therapist ? appointmentItem.therapist.name : 'Priscilla Leite'}</h5>
-                                            <p className="time">
-                                                <img
-                                                    src="/media/icons/time.svg"
-                                                    alt="time"
-                                                />
-                                                {renderDate(appointmentItem.date)}
-                                            </p>
-                                            <PaymentStatus
-                                                status={appointmentItem.status}
-                                            />
-                                        </FlexBox>
-                                    </li>
-                                )
-                                ) : <li><h5 style={{ textAlign: 'center', marginTop: 10 }}>Você não tem agendamentos</h5></li>}
-                        </AppointmentList>
-                    </Container>
-                </DashboardWrapper>
-            </Schedule>
+    console.log(appointments)
+       
+    return(    
+    <>
+    <Schedule>
+    <DashboardWrapper>
+        <Container maxWidth="lg">
+            <Box>
+        <Grid>
+        <ul>
+            <header>
+                <Grid container  >
+                <Grid container style={{alignItems:"center"}}>
+                    <Grid item xs={1}> </Grid>
+                    <Grid item xs={2}><h1>ID</h1></Grid>
+                    <Grid item xs={2}><h1>Terapeuta / Usuário</h1></Grid>
+                    <Grid item xs={3}><h1>Data</h1></Grid>
+                    <Grid item xs={1}><h1>Horário</h1></Grid>
+                    <Grid item xs={1}><h1>Status</h1></Grid>
+                </Grid>
+                </Grid>
+            </header>
+            {appointments ? appointments.map((item, index) => (
+                <li key={item.id}><Grid container >
+                    <Grid container style={{alignItems:"center"}}>
+                        <Grid item xs={1}> <img src="/media/icons/dashboard/historic.svg" alt=""/></Grid>
+                        <Grid item xs={2}><b><h2>{index + 1}</h2></b></Grid>
+                        <Grid item xs={2}><h2>John Doe</h2></Grid>
+                        <Grid item xs={3}><h2>25 de Outubro de 2020</h2></Grid>
+                        <Grid item xs={1}><h2>15:30</h2></Grid>
+                        <Grid item xs={1}><h2>Confirmado</h2></Grid>
+                    </Grid>
+                </Grid>
+            </li>
+            )) : (
+            <li><Grid container >
+                <Grid container style={{alignItems:"center"}}>
+                    <Grid item xs={1}> <img src="/media/icons/dashboard/historic.svg" alt=""/></Grid>
+                    <Grid item xs={2}><b><h2>Sem agendamentos no histórico</h2></b></Grid>
+                </Grid>
+            </Grid>
+        </li>
+            )}
+        </ul>        
+        </Grid>
+    </Box>         
+    </Container>
+    </DashboardWrapper>
+    </Schedule>
 
         </>
     )

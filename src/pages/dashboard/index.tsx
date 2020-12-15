@@ -22,6 +22,8 @@ import { renderDate, getDateExtend, getDateTime, getDateDifference } from "../..
 import { useRouter } from "next/router";
 import { appointmentUpdateStatus, renderAppointmentText, renderAppointmentTexTherapist } from "../../services/appointments";
 import PaypalButton from "../../components/general/PaypalButton";
+import { appointmentMock, userInfoMock } from "../../mocks";
+import {BarLoader} from "react-spinners"
 
 interface userProps {
   avatar_url: string | undefined,
@@ -75,6 +77,7 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
   const [] = useState(false);
   const [user, setUser] = useState<userProps | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const getInformation = async () => {
     if (Object.prototype.hasOwnProperty.call(localStorage, "userInformation")) {
@@ -92,9 +95,10 @@ const Dashboard = () => {
           ? await userAppointments(userInfo.id)
           : await therapistAppointments(userInfo.id);
       setAppointments(response);
-
-      response && response.lenght > 0 && setCurrentAppointment({...response[0], closeToMetting: getDateDifference(response[0].date) < 10, bankTransfer: getDateDifference(response[0].date) > 4400})
-      
+      response && response.length > 0 && setCurrentAppointment(
+        {...response[0], 
+          closeToMetting: getDateDifference(response[0].date) < 10, 
+          bankTransfer: getDateDifference(response[0].date) > 4400})
       setLocalLoading(false)
     } else {
       router.push("/login");
@@ -163,7 +167,7 @@ const Dashboard = () => {
                                     alignItems: "center",
                                     height: "65px"
                                   }}>
-                                    <h5>{appointmentItem.therapist ? appointmentItem.therapist.name : 'Priscilla Leite'}</h5>
+                                    <h5>{appointmentItem && user.typeUser === "client" ? appointmentItem.therapist.name : `${appointmentItem.user.name} ${appointmentItem.user.lastName}`}</h5>
                                     <p className="time">
                                       <img
                                         src="/media/icons/time.svg"
@@ -306,8 +310,8 @@ const Dashboard = () => {
                         <FlexBox>
                           
                           
-                            <p style={{marginRight: 30}}> <strong style={{marginRight: 5}}>Cliente: </strong> {/* {currentAppointment.therapist.name} */} Amanda Natallie</p>
-                            <p> <strong style={{marginRight: 5}}>E-mail: </strong> amanda.natallie.2@gmail.com</p>                            
+                            <p style={{marginRight: 30}}> <strong style={{marginRight: 5}}>Cliente: </strong> {`${currentAppointment.user.name} ${currentAppointment.user.lastName}`}</p>
+                            {/* <p> <strong style={{marginRight: 5}}>E-mail: </strong> amanda.natallie.2@gmail.com</p>                             */}
                           
                         </FlexBox>
                         <FlexBox>
@@ -336,15 +340,18 @@ const Dashboard = () => {
                               style={{ alignSelf: "baseline", marginRight: 20 }}
                               onClick={() => appointmentUpdateStatus(currentAppointment.id, "Confirmado")}
                             >
-                              Aceitar solicitação
+                             {isLoading ? <BarLoader color="white"/> : "Aceitar solicitação"}  
                             </ThetaButton>
 
                             <ThetaButton
                               theme="purple"
                               style={{ alignSelf: "baseline" }}
-                              onClick={() => appointmentUpdateStatus(currentAppointment.id, "Cancelado")}
+                              onClick={() => {
+                                setIsLoading(true);
+                                appointmentUpdateStatus(currentAppointment.id, "Cancelado")}
+                              }
                             >
-                              Cancelar solicitação
+                              {isLoading ? <BarLoader color="white"/> : "Cancelar solicitação"} 
                             </ThetaButton>
                           </ FlexBox>
                         )}
