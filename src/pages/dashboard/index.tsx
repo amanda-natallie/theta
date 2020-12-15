@@ -95,7 +95,6 @@ const Dashboard = () => {
           ? await userAppointments(userInfo.id)
           : await therapistAppointments(userInfo.id);
       setAppointments(response);
-      console.log(getDateDifference(response[0].date));
       response && response.length > 0 && setCurrentAppointment(
         {...response[0], 
           closeToMetting: getDateDifference(response[0].date) < 10, 
@@ -109,8 +108,6 @@ const Dashboard = () => {
   useEffect(() => {
     getInformation();
   }, []); 
-
-  console.log(currentAppointment);
   
   return (
     <>

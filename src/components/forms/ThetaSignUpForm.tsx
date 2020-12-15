@@ -26,6 +26,8 @@ const ThetaSignUpForm = () => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
+    validateOnChange: false,
+    validateOnBlur: false,
     initialValues: {
       firstName: "",
       lastName: "",
@@ -64,25 +66,25 @@ const ThetaSignUpForm = () => {
       termsAccepted: Yup.boolean().required("Obrigatório"),
     }),
     onSubmit: (values: any) => {
-      userRegistration({
-        typeUser: "therapist",
-        name: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        email_confirmation: values.emailConfirm,
-        dayBorn: values.birthDay.toString(),
-        monthBorn: values.birthMonth.toString(),
-        yearBorn: values.birthYear.toString(),
-        state: values.state,
-        city: values.city,
-        phone: `(${values.ddd}) ${values.phone}`,
-        username: values.user,
-        password: values.password,
-        password_confirmation: values.passwordConfirm,
-        languages: [],
-        links: [],
-        certificates: [],
-      });
+      // userRegistration({
+      //   typeUser: "therapist",
+      //   name: values.firstName,
+      //   lastName: values.lastName,
+      //   email: values.email,
+      //   email_confirmation: values.emailConfirm,
+      //   dayBorn: values.birthDay.toString(),
+      //   monthBorn: values.birthMonth.toString(),
+      //   yearBorn: values.birthYear.toString(),
+      //   state: values.state,
+      //   city: values.city,
+      //   phone: `(${values.ddd}) ${values.phone}`,
+      //   username: values.user,
+      //   password: values.password,
+      //   password_confirmation: values.passwordConfirm,
+      //   languages: [],
+      //   links: [],
+      //   certificates: [],
+      // });
     },
   });
 
@@ -257,37 +259,30 @@ const ThetaSignUpForm = () => {
             /> 
           </Grid>
           <Grid item xs={12} sm={4}>
-            <TextField
-              select
+          <TextField
               fullWidth
-              error={false}
+              select
               label="Mês"
               placeholder="Mês"
               value={formik.values.birthMonth}
-              onBlur={formik.handleBlur}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue("birthMonth", event.target.value, true);
-              }}
+              onChange={formik.handleChange("birthMonth")}
               variant="outlined"
-              helperText={
-                formik.touched.birthMonth && formik.errors.birthMonth
-                  ? formik.errors.birthMonth
-                  : null
-              }
+              id="birthMonth"
+              error={formik.touched.birthMonth && Boolean(formik.errors.birthMonth)}
+              helperText={formik.touched.birthMonth && formik.errors.birthMonth}
             >
-            <MenuItem value="Janeiro">Janeiro</MenuItem>
-            <MenuItem value="Fevereiro">Fevereiro</MenuItem>
-            <MenuItem value="Março">Março</MenuItem>
-            <MenuItem value="Abril">Abril</MenuItem>
-            <MenuItem value="Maio">Maio</MenuItem>
-            <MenuItem value="Junho">Junho</MenuItem>
-            <MenuItem value="Julho">Julho</MenuItem>
-            <MenuItem value="Agosto">Agosto</MenuItem>
-            <MenuItem value="Setembro">Setembro</MenuItem>
-            <MenuItem value="outubro">Outubro</MenuItem>
-            <MenuItem value="Novembro">Novembro</MenuItem>
-            <MenuItem value="Dezembro">Dezembro</MenuItem>
-            
+              <MenuItem value="Janeiro">Janeiro</MenuItem>
+              <MenuItem value="Fevereiro">Fevereiro</MenuItem>
+              <MenuItem value="Março">Março</MenuItem>
+              <MenuItem value="Abril">Abril</MenuItem>
+              <MenuItem value="Maio">Maio</MenuItem>
+              <MenuItem value="Junho">Junho</MenuItem>
+              <MenuItem value="Julho">Julho</MenuItem>
+              <MenuItem value="Agosto">Agosto</MenuItem>
+              <MenuItem value="Setembro">Setembro</MenuItem>
+              <MenuItem value="Outubro">Outubro</MenuItem>
+              <MenuItem value="Novembro">Novembro</MenuItem>
+              <MenuItem value="Dezembro">Dezembro</MenuItem>
             </TextField>
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -411,7 +406,7 @@ const ThetaSignUpForm = () => {
               helperText={
                 formik.touched.certificate && formik.errors.certificate
                   ? formik.errors.certificate
-                  : null
+                  : "Separe os certificados por uma virgula."
               }
             />
           </Grid>
@@ -486,58 +481,43 @@ const ThetaSignUpForm = () => {
               símbolos. Não deve conter seu nome ou nome de usuário.
             </p>
           </Grid>
+          <Grid item xs={12} style={{margin:"12px 0 12px 0"}}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                multiline
+                rows={8}
+                label="Digite aqui sua biografia."
+              />
+            </Grid>
           <Grid item xs={12}>
             <h1>Sou fluente em:</h1>
             </Grid>
-          <Grid container xs={8}>
-            
-            <Grid item xs={4}>
+          <Grid container xs={12}>
+            <Grid item xs={12}>
             <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Inglês"
             />
              <FormControlLabel
               control={<Checkbox color="primary" />}
-              label="Mandarin"
+              label="Português"
             />
              <FormControlLabel
               control={<Checkbox color="primary" />}
               label="Espanhol"
             />
-            </Grid>
-            
-            <Grid item xs={4}>
             <FormControlLabel
               control={<Checkbox color="primary" />}
-              label="Hindi"
-            />
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Árabe"
-            />
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Português"
+              label="Alemão"
             />
             </Grid>
-            
-            <Grid item xs={4}>
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Bengali"
-            />
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Russo"
-            />
-            </Grid>
-           
             
           </Grid>
-          <Grid container xs={12} style={{ justifyContent: "flex-end", marginBottom:"10px" }}>
-              <ThetaButton type="button" theme="purple">
+          <Grid container xs={12} style={{ justifyContent: "flex-end", marginBottom:"20px" }}>
+              {/* <ThetaButton type="button" theme="purple">
                 Adicionar
-              </ThetaButton>
+              </ThetaButton> */}
             </Grid>
            <Grid container>   
          
@@ -617,31 +597,22 @@ const ThetaSignUpForm = () => {
                 />
               </Grid>
             </Grid>
-          <Grid container xs={12} style={{ justifyContent: "flex-end" }}>
+          {/* <Grid container xs={12} style={{ justifyContent: "flex-end" }}>
             <ThetaButton type="button" theme="purple">
               Adicionar
             </ThetaButton>
-          </Grid>
+          </Grid> */}
           </Grid>
           <Grid container xs={12}>
-            <BoxForm>
+            {/* <BoxForm>
               <h1>Faça upload dos seus diplomas</h1>
               <input type="file" />
-            </BoxForm>
-            <Grid item xs={12} style={{margin:"12px 0 12px 0"}}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                multiline
-                rows={8}
-                label="Quer acrescentar algo a mais? Digite aqui"
-              />
-            </Grid>
+            </BoxForm> */}
 
-            <BoxForm>
+            {/* <BoxForm>
               <h1>Adicione suas fotos aqui para seu perfil de terapeuta</h1>
               <input type="file" />
-            </BoxForm>
+            </BoxForm> */}
           </Grid>
 
           <Grid item xs={8}>
@@ -666,7 +637,7 @@ const ThetaSignUpForm = () => {
           <Grid item xs={12}>
             <ThetaButton
               as="button"
-              onClick={() => formik.submitForm()}
+              // onClick={() => formik.submitForm()}
               theme="purple"
               fullWidth
             >

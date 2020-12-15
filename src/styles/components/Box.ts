@@ -67,7 +67,6 @@ export const Box = styled.div`
 export const BoxForm = styled.div`
   width: 51vw;
   margin: 10px 0 10px 0;
-  height:100px;
   box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   padding: 15px;

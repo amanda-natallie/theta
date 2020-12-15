@@ -30,7 +30,6 @@ interface userDataProps {
   yearBorn: string;
   state: string;
   city: string;
-  certificate: string;
   phone: string;
   username: string;
   password: string;
@@ -66,6 +65,16 @@ export const userPastAppointments = async (id: string) => {
   try {
     const response = await api.get(`/appointments/clients/past/${id}`,);
     return response.data;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const deleteUserAccount = async (id: string) => {
+  try {
+    await api.delete(`/users/${id}`,);
+    alert("Conta encerrada. Você poderá realizar um novo cadastro quando quiser");
+    userLogout();
   } catch (error) {
     alert(error);
   }
