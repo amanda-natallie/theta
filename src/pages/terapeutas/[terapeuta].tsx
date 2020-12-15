@@ -236,7 +236,7 @@ const ProfessionalPublicProfilePage = () => {
                             }
                           })}
                         </ul>
-                      </FlexBox>
+                      </section>
                     </div>
                     <div>
                       <section>
@@ -410,7 +410,7 @@ const ProfessionalPublicProfilePage = () => {
               </Grid>
             </Container>
           </Content>
-        </PublicProfilePageWrapper>
+        </Container>
         <CheckoutModal
         info={appointmentInformation}
         isLoading={localLoading}
