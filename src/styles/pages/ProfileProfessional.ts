@@ -7,11 +7,13 @@ import theme from "../theme";
 export const PublicProfilePageWrapper = styled.main``;
 
 export const Header = styled.header`
-  position: relative;
+  display:flex;
+  align-items:flex-end;
+  padding-left:20px;
   width: 100%;
-  height: 300px;
+  height: 200px;
   z-index: 1;
-
+  background-color:blue;
   & > div {
     position: relative;
     z-index: 1;
@@ -37,20 +39,30 @@ export const Header = styled.header`
     z-index: 0;
   }
 `;
-export const Profile  =  styled.div`
-display:flex;
-@media(max-width:700px){
-  .buttonRecommend{
-  
-  }
-}
-`
+
 export const ProfileBlock = styled.div`
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  & .profile-avatar {
+  width:60%;
+  justify-content:space-between;
+  .buttonRecommend{
+    height:38px;
+    margin:20px;
+  }
+ @media(max-width:767px){
+   display:flex;
+   width:50%;
+   margin: 0 auto;
+   flex-direction:column-reverse;
+   .buttonRecommend{
+    height:38px;
+    margin:0;
+    }
+ }
+  `
+  export const Profile = styled.div`
+    margin-top:-50px;
+    justify-self:center;
+   .profile-avatar {
     width: 167px;
     height: 167px;
     box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
@@ -61,7 +73,7 @@ export const ProfileBlock = styled.div`
   }
   h1 {
     color: ${theme.palette.primary.dark};
-    font-size: 1.875rem;
+    font-size: 1rem;
   }
 
   p {
@@ -81,28 +93,21 @@ export const ProfileBlock = styled.div`
 `;
 
 export const Content = styled.section`
-  margin-top: 70px;
+display:flex;
+@media(max-width:767px){
+   display:flex;
+   flex-direction:column;
+}
 
-  table {
-    font-size: 0.75rem;
-    th {
-      color: ${colors.gray50};
-      text-align: left;
-    }
-    td {
-      color: ${colors.gray03};
-      padding-left: 30px;
-    }
-  }
 `;
 
 export const LanguageList = styled.ul`
-  width: 100%;
   display: flex;
   margin-left: 10px;
-
+  ul{
+    display:flex
+  }
   li {
-    display: flex;
     margin-right: 30px;
 
     img {

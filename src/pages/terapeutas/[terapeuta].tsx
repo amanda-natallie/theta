@@ -64,7 +64,7 @@ const ProfessionalPublicProfilePage = () => {
 
   const getInformation = async (bodyDate?: any) => {
     const response = await getProssionalInfo(userName);
-    if(bodyDate){
+    if (bodyDate) {
       const hours = await therapistAvailability(response[0].id, bodyDate);
       setThetaInformation({
         ...response[0],
@@ -133,64 +133,38 @@ const ProfessionalPublicProfilePage = () => {
         <title>Perfil Terapeuta</title>
       </Head>
       <PageWrapper>
-        <PublicProfilePageWrapper>
-          <Header bg="/media/profile/bg.jpg">
-            <Container maxWidth="lg">
-              <Profile>
-                <FlexBox column>
-                  <BackButton link="/busca-profissionais" bordered />
-                  <Divider height="20px" />
-                  <ThetaButton className="buttonRecommend" theme="purple">Recomendações</ThetaButton>
-                </FlexBox>
-                <Grid item xs={2} md={3}>
-                  <ProfileBlock>
-                    <Avatar
-                      src={thetaInformation.avatar_url}
-                      alt="avatar"
-                      className="profile-avatar"
-                    />
-                    <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
-                    <p>ThetaHealing certificado</p>
-                    {/* <p>
+        <Container maxWidth="lg">
+          <Header >
+            <BackButton link="/busca-profissionais" bordered />
+          </Header>
+
+          <ProfileBlock>
+            <ThetaButton className="buttonRecommend" theme="purple">Recomendações</ThetaButton>
+            <Profile>
+              <Avatar
+                src={thetaInformation.avatar_url}
+                alt="avatar"
+                className="profile-avatar"
+              />
+              <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
+              <p>ThetaHealing certificado</p>
+              {/* <p>
                       <strong>98</strong> consultas <span>•</span>{" "}
                       <strong>541</strong> postagens
                     </p> */}
-                  </ProfileBlock>
-                </Grid>
-                <FlexBox column>
-                  <Divider height="40px" />
-                  <ThetaButton
-                    theme="purple"
-                    style={{ opacity: 0, userSelect: "none", cursor: "unset" }}
-                  >
-                    Enviar Mensagem
-                  </ThetaButton>
-                </FlexBox>
-              </Profile>
-            </Container>
-          </Header>
-
-          <Content>
+            </Profile>
+          </ProfileBlock>
+          <Content style={{justifyContent:"center"}}>
             <Container maxWidth="lg">
               <Grid container spacing={2}>
                 <Grid item xs={12} md={8} lg={9}>
                   <CardBox>
-                    <div className="left">
-                      <table>
-                        <tr>
-                        </tr>
-                        <tr>
-                          <th>Localização</th>
-                         <td>{`${thetaInformation.city}, ${thetaInformation.state},Brasil`}</td>
-                        </tr>
-                        {/* <tr>
-                          <th>Membro desde</th>
-                          <td>Setembro de 2020</td>
-                        </tr> */}
-                      </table>
-                      <FlexBox column className="contacts">
+                    <div style={{display:"flex"}}>
+                      <section  style={{display:"flex", flexDirection:"column"}}>
+                        <h1>Localização</h1>
+                        <p>{thetaInformation.city}, {thetaInformation.state}, Brasil</p>
                         <p>
-                          <SvgIcon>
+                        <SvgIcon>
                             <path
                               fillRule="evenodd"
                               clipRule="evenodd"
@@ -200,7 +174,7 @@ const ProfessionalPublicProfilePage = () => {
                           </SvgIcon>
                           {renderPhone(thetaInformation.phone)}
                         </p>
-                         <p>{thetaInformation.email}</p>
+                        <p>{thetaInformation.email}</p>
                       <Link href="">{`www.thetabrasil.com.br/${thetaInformation.username}`}</Link>
                         <ul>
                           {thetaInformation.links.map((item) => {
@@ -262,21 +236,23 @@ const ProfessionalPublicProfilePage = () => {
                             }
                           })}
                         </ul>
-                      </FlexBox>
+                      </section>
                     </div>
-                    <div className="right">
-                      <h5>{`R$ ${thetaInformation.price}/h`}</h5>
-                      <p>
-                        Cada consulta dura em média de 40min à 1h. <br /> Preço
-                        fixo.
-                      </p>
-                      {/* <img
-                        src="/media/rating.png"
-                        style={{ maxHeight: 75, marginTop: 20 }}
-                      /> */}
+                    <div>
+                      <section>
+                        <h5>{`R$ ${thetaInformation.price}/h`}</h5>
+                        <p>
+                          Cada consulta dura em média de 40min à 1h. <br /> Preço
+                          fixo.
+                        </p>
+                        {/* <img
+                          src="/media/rating.png"
+                          style={{ maxHeight: 75, marginTop: 20 }}
+                        /> */}
+                        </section>
                     </div>
                   </CardBox>
-
+                  
                   <Box className="profile-therapist">
                     {thetaInformation.bio && (
                       <>
@@ -293,11 +269,14 @@ const ProfessionalPublicProfilePage = () => {
                       *clique nos botões abaixo para ver os certificados
                     </small>
                     <Divider height="40px" />
-                    <MiniChip>
+                    <div>
+                    <MiniChip style={{width:"100%"}}>
                       {thetaInformation.certificates.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </MiniChip>
+                    </div>
+                    
                     <Divider height="35px" />
                     <Divider bordered />
                     <Divider height="35px" />
@@ -355,10 +334,11 @@ const ProfessionalPublicProfilePage = () => {
                   {thetaInformation.availability.length > 0 && (
                     <>
                       <Divider height="10px" />
-                      <FlexBox className="" justify="flex-start">
-                        <img src="/media/icons/arrowDown.svg" alt="" />
+                     <div style={{display:"flex"}}>
+                     <img src="/media/icons/arrowDown.svg" alt="" />
                         <span>Escolha o dia desejado &nbsp;</span>
-                      </FlexBox>
+                     </div>
+                       
                       <Calendar
                         selectedDate={selectedDate}
                         setSelectedDate={setSelectedDate}
@@ -369,44 +349,44 @@ const ProfessionalPublicProfilePage = () => {
                           {thetaInformation.availability.some(
                             (e: any) => e.available === true
                           ) ? (
-                            <FormControl
-                              fullWidth
-                              variant="outlined"
-                              margin="normal"
-                            >
-                              <InputLabel disableAnimation shrink={false}>
-                                Escolha seu horário
-                              </InputLabel>
-                              <Select
-                                MenuProps={{
-                                  anchorOrigin: {
-                                    vertical: "bottom",
-                                    horizontal: "left",
-                                  },
-                                  transformOrigin: {
-                                    vertical: "top",
-                                    horizontal: "left",
-                                  },
-                                  getContentAnchorEl: null,
-                                }}
+                              <FormControl
+                                fullWidth
+                                variant="outlined"
+                                margin="normal"
                               >
-                                {thetaInformation.availability.map(
-                                  (newItem: any) =>
-                                    newItem.available && (
-                                      <MenuItem
-                                        onClick={() =>
-                                          appointimentMaker(newItem.hour)
-                                        }
-                                      >
-                                        {`${newItem.hour}:00`}
-                                      </MenuItem>
-                                    )
-                                )}
-                              </Select>
-                            </FormControl>
-                          ) : (
-                            "Desculpe, este terapeuta não tem horários disponíveis no dia escolhido!"
-                          )}
+                                <InputLabel disableAnimation shrink={false}>
+                                  Escolha seu horário
+                              </InputLabel>
+                                <Select
+                                  MenuProps={{
+                                    anchorOrigin: {
+                                      vertical: "bottom",
+                                      horizontal: "left",
+                                    },
+                                    transformOrigin: {
+                                      vertical: "top",
+                                      horizontal: "left",
+                                    },
+                                    getContentAnchorEl: null,
+                                  }}
+                                >
+                                  {thetaInformation.availability.map(
+                                    (newItem: any) =>
+                                      newItem.available && (
+                                        <MenuItem
+                                          onChange={(e: any) =>
+                                            appointimentMaker(e.target.value)
+                                          }
+                                        >
+                                          {`${newItem.hour}:00`}
+                                        </MenuItem>
+                                      )
+                                  )}
+                                </Select>
+                              </FormControl>
+                            ) : (
+                              "Desculpe, este terapeuta não tem horários disponíveis no dia escolhido!"
+                            )}
                         </FlexBox>
                       )}
                     </>
@@ -430,7 +410,7 @@ const ProfessionalPublicProfilePage = () => {
               </Grid>
             </Container>
           </Content>
-        </PublicProfilePageWrapper>
+        </Container>
         <CheckoutModal
         info={appointmentInformation}
         isLoading={localLoading}
@@ -440,8 +420,8 @@ const ProfessionalPublicProfilePage = () => {
       </PageWrapper>
     </>
   ) : (
-    <Loading />
-  );
+      <Loading />
+    );
 };
 
 export default ProfessionalPublicProfilePage;
