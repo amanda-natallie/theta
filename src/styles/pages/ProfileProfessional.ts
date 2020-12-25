@@ -3,17 +3,15 @@ import styled from "styled-components";
 import interfaceConstant from "../../utils/constant/interfaceConstant";
 import { colors } from "../colors";
 import theme from "../theme";
-
 export const PublicProfilePageWrapper = styled.main``;
 
 export const Header = styled.header`
   display:flex;
-  align-items:flex-end;
-  padding-left:20px;
-  width: 100%;
+  align-items:flex-star;
+  justify-content:center;
+  max-width: 100%;
   height: 200px;
   z-index: 1;
-  background-color:blue;
   & > div {
     position: relative;
     z-index: 1;
@@ -60,7 +58,6 @@ export const ProfileBlock = styled.div`
  }
   `
   export const Profile = styled.div`
-    margin-top:-50px;
     justify-self:center;
    .profile-avatar {
     width: 167px;
