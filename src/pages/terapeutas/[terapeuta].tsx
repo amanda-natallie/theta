@@ -77,7 +77,6 @@ const ProfessionalPublicProfilePage = () => {
         availability: hours,
       });
     }
-
   };
 
   useEffect(() => {
@@ -180,7 +179,7 @@ const ProfessionalPublicProfilePage = () => {
                           {thetaInformation.links.map((item) => {
                             switch(item.name){
                               case "Facebook":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/facebook.svg"
@@ -189,7 +188,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Instagram":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/instagram.svg"
@@ -198,7 +197,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Youtube":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                     src="/media/icons/social-media/youtube.svg"
@@ -207,7 +206,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Spotify":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                     src="/media/icons/social-media/spotify.svg"
@@ -216,7 +215,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Twitter":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/twitter.svg"
@@ -225,7 +224,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Linkedin":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/linkedin.svg"
@@ -266,13 +265,13 @@ const ProfessionalPublicProfilePage = () => {
                     )}
                     <h2>Certificados ThetaHealing®</h2>
                     <small>
-                      *clique nos botões abaixo para ver os certificados
+                      *este são os certificados que o profissional possue
                     </small>
                     <Divider height="40px" />
                     <div>
                     <MiniChip style={{width:"100%"}}>
                       {thetaInformation.certificates.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item.name}>{item.name}</li>
                       ))}
                     </MiniChip>
                     </div>
@@ -288,7 +287,7 @@ const ProfessionalPublicProfilePage = () => {
                           switch(item.name){
                             case 'English':
                               return (
-                                <li>
+                                <li key={item.name}>
                                   <img
                                     src="/media/icons/countries/usa.svg"
                                     alt="brazil"
@@ -298,7 +297,7 @@ const ProfessionalPublicProfilePage = () => {
                               )
                               case 'Portuguese':
                                 return (
-                                  <li>
+                                  <li key={item.name}>
                                   <img
                                     src="/media/icons/countries/brazil.svg"
                                     alt="brazil"
@@ -347,7 +346,7 @@ const ProfessionalPublicProfilePage = () => {
                       {selectedDate && (
                         <FlexBox>
                           {thetaInformation.availability.some(
-                            (e: any) => e.available === true
+                            (e: any) => e.available === false
                           ) ? (
                               <FormControl
                                 fullWidth
@@ -372,7 +371,7 @@ const ProfessionalPublicProfilePage = () => {
                                 >
                                   {thetaInformation.availability.map(
                                     (newItem: any) =>
-                                      newItem.available && (
+                                      !newItem.available && (
                                         <MenuItem
                                           onChange={(e: any) =>
                                             appointimentMaker(e.target.value)

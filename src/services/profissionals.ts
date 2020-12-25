@@ -50,6 +50,7 @@ export const therapistAvailability = async (id: string, dateBody?: any) => {
   if(dateBody){
     const { day, month, year } = dateBody;
     const requestBody: any = { date: `${year}-${("0" + month).slice(-2)}-${("0" + day).slice(-2)}T08:00` };
+    console.log(requestBody)
     const availability = await api.post(
       `appointments/therapist/${id}/available`, requestBody
     );

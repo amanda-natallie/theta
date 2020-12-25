@@ -7,7 +7,7 @@ export const userLogin = async (email: string, password: string) => {
     const response = await api.post("sessions", { email, password });
     localStorage.setItem("authToken", response.data.token);
     localStorage.setItem("userInformation", JSON.stringify(response.data.user));
-    window.location.href = "/dashboard";
+    window.location.href = "/busca-profissionais";
   } catch (error) {
     alert(error.response.data.message);
     window.location.href = "/login";
