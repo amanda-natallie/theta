@@ -133,11 +133,11 @@ const ProfessionalPublicProfilePage = () => {
       </Head>
       <PageWrapper>
         <Container maxWidth="lg">
-          <Header >
-            <BackButton link="/busca-profissionais" bordered />
+          <Header bg="/media/profile/bg.jpg">
           </Header>
+          <BackButton  link="/busca-profissionais"   />
+          <ProfileBlock style={{alignItems:'center'}}>
 
-          <ProfileBlock>
             <ThetaButton className="buttonRecommend" theme="purple">Recomendações</ThetaButton>
             <Profile>
               <Avatar
@@ -145,8 +145,8 @@ const ProfessionalPublicProfilePage = () => {
                 alt="avatar"
                 className="profile-avatar"
               />
-              <h1>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
-              <p>ThetaHealing certificado</p>
+              <h1 style={{textAlign:'center', margin:"10px"}}>{`${thetaInformation.name} ${thetaInformation.lastName}`}</h1>
+              <p  style={{textAlign:'center'}}>ThetaHealing certificado</p>
               {/* <p>
                       <strong>98</strong> consultas <span>•</span>{" "}
                       <strong>541</strong> postagens
@@ -157,12 +157,12 @@ const ProfessionalPublicProfilePage = () => {
             <Container maxWidth="lg">
               <Grid container spacing={2}>
                 <Grid item xs={12} md={8} lg={9}>
-                  <CardBox>
+                  <CardBox  style={{textAlign:"left"}}>
                     <div style={{display:"flex"}}>
                       <section  style={{display:"flex", flexDirection:"column"}}>
                         <h1>Localização</h1>
                         <p>{thetaInformation.city}, {thetaInformation.state}, Brasil</p>
-                        <p>
+                        <p style={{display:"flex"}}>
                         <SvgIcon>
                             <path
                               fillRule="evenodd"
@@ -175,7 +175,7 @@ const ProfessionalPublicProfilePage = () => {
                         </p>
                         <p>{thetaInformation.email}</p>
                       <Link href="">{`www.thetabrasil.com.br/${thetaInformation.username}`}</Link>
-                        <ul>
+                        <ul style={{display:"flex", alignItems:"center"}}>
                           {thetaInformation.links.map((item) => {
                             switch(item.name){
                               case "Facebook":

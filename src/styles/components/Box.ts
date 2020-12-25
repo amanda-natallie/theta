@@ -243,6 +243,7 @@ justify-content:space-between;
   min-height: auto;
   @media(max-width:767px){
     display:flex;
+    align-items:flex-start;
     flex-direction:column-reverse;
     }
   .dateSchedule{
