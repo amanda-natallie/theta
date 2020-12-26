@@ -31,7 +31,7 @@ import {
   getProssionalInfo,
   therapistAvailability,
 } from "../../services/profissionals";
-import { renderIdade, renderPhone, getDateTime } from "../../utils/helpers";
+import { renderIdade, renderPhone, getDateTime, getHour } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { Select, MenuItem } from "@material-ui/core";
 import { makeAppointment } from "../../services/appointments";
@@ -64,19 +64,11 @@ const ProfessionalPublicProfilePage = () => {
 
   const getInformation = async (bodyDate?: any) => {
     const response = await getProssionalInfo(userName);
-    if (bodyDate) {
-      const hours = await therapistAvailability(response[0].id, bodyDate);
-      setThetaInformation({
-        ...response[0],
-        availability: hours,
-      });
-    } else {
-      const hours = await therapistAvailability(response[0].id);
-      setThetaInformation({
-        ...response[0],
-        availability: hours,
-      });
-    }
+    const hours = await therapistAvailability(response[0].id, bodyDate);
+    setThetaInformation({
+      ...response[0],
+      availability: hours,
+    });
   };
 
   useEffect(() => {
@@ -124,6 +116,8 @@ const ProfessionalPublicProfilePage = () => {
       }},
     });
     setCheckout(true);
+    console.log("hour");
+    console.log(hour);
   };
 
   return thetaInformation.id !== undefined ? (
@@ -346,7 +340,7 @@ const ProfessionalPublicProfilePage = () => {
                       {selectedDate && (
                         <FlexBox>
                           {thetaInformation.availability.some(
-                            (e: any) => e.available === false
+                            (e: any) => e.available === true
                           ) ? (
                               <FormControl
                                 fullWidth
@@ -368,19 +362,19 @@ const ProfessionalPublicProfilePage = () => {
                                     },
                                     getContentAnchorEl: null,
                                   }}
+                                  onChange={(e: any) =>
+                                    appointimentMaker(e.target.value)
+                                  }
                                 >
-                                  {thetaInformation.availability.map(
-                                    (newItem: any) =>
-                                      !newItem.available && (
-                                        <MenuItem
-                                          onChange={(e: any) =>
-                                            appointimentMaker(e.target.value)
-                                          }
-                                        >
-                                          {`${newItem.hour}:00`}
-                                        </MenuItem>
-                                      )
-                                  )}
+                                <MenuItem />   
+                                {thetaInformation.availability.map(
+                                  (newItem: any) =>
+                                    newItem.available && (
+                                      <MenuItem value={getHour(newItem.hour)}>
+                                        {getHour(newItem.hour)}
+                                      </MenuItem>
+                                    )
+                                )}
                                 </Select>
                               </FormControl>
                             ) : (

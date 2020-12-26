@@ -39,3 +39,8 @@ export const getDateDifference = (date: string) => {
   const differenceMinutes = (appointmentDate.getTime() - todayDate.getTime()) / 1000
   return differenceMinutes / 60
 }
+
+export const getHour = (date: string) => {
+  let receivedDate = new Date(date)
+  return date && new Intl.DateTimeFormat('pt-BR', {hour: '2-digit', minute: '2-digit'}).format(receivedDate).toString()
+}

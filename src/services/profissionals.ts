@@ -48,23 +48,23 @@ export const getProssionalInfo = async (username: string) => {
 
 export const therapistAvailability = async (id: string, dateBody?: any) => {
   if(dateBody){
-    const { day, month, year } = dateBody;
-    const requestBody: any = { date: `${year}-${("0" + month).slice(-2)}-${("0" + day).slice(-2)}T08:00` };
-    console.log(requestBody)
+    const {day, year, month} = dateBody;
+    const requestBody: any = {date: `${year}-${month}-${day}T08:00`};
     const availability = await api.post(
       `appointments/therapist/${id}/available`, requestBody
     );
     return availability.data;
   } else {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = String(today.getFullYear());
+    const requestBody: any = {date: `${year}-${month}-${day}T08:00`};
     const availability = await api.post(
-      `appointments/therapist/${id}/available`
+      `appointments/therapist/${id}/available`, requestBody
     );
     return availability.data;
   }
-  
-  
-
-  
 };
 
 export const therapistAppointments = async (id: string) => {
