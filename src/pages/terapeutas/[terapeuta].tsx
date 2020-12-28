@@ -158,7 +158,7 @@ const ProfessionalPublicProfilePage = () => {
             <Container maxWidth="lg">
               <Grid container spacing={2}>
                 <Grid item xs={12} md={8} lg={9}>
-                  <CardBox  style={{textAlign:"left"}}>
+                  <CardBox className="CardTerapeuta"  style={{textAlign:"left"}}>
                     <div style={{display:"flex"}}>
                       <section  style={{display:"flex", flexDirection:"column"}}>
                         <h1>Localização</h1>

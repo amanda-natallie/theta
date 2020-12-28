@@ -46,7 +46,7 @@ export const ProfileBlock = styled.div`
     height:38px;
     margin:20px;
   }
- @media(max-width:767px){
+ @media(max-width:500px){
    display:flex;
    width:50%;
    margin: 0 auto;
@@ -94,6 +94,13 @@ display:flex;
 @media(max-width:767px){
    display:flex;
    flex-direction:column;
+}
+.CardTerapeuta{
+  @media(max-width:767px){
+    display:flex;
+    align-items:flex-start;
+    flex-direction:column-reverse;
+    }
 }
 
 `;
