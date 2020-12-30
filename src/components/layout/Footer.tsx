@@ -16,7 +16,7 @@ import { colors } from "../../styles/colors";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <Container className="newResponse" maxWidth="lg">
+      <div className="newResponse">
         <div className="brand">
           <ThetaIconSvgIcon width="47" height="49" />
           <p>
@@ -29,41 +29,43 @@ const Footer = () => {
           <h1>Assine nossa newsletter</h1>
           <form action="">
             <input type="text" placeholder="Insira seu e-mail" />
-            <Link  passHref href="/">
+            <Link passHref href="/">
               <NewsletterButton>Assinar</NewsletterButton>
             </Link>
           </form>
         </div>
-      </Container>
-      <Divider height="90px" />
-      <Container maxWidth="lg" >
-        <Grid container spacing={10} style={{flexDirection:"column"}}>
-        <Grid item xs={12} sm={12} md={6} lg={8}>
-        <FooterMenu>
-          <Link href="#" >Home</Link>
-          <Link href="#" >Contato</Link>
-          <Link href="/suporte" >Suporte</Link>
-          <Link href="#" >Notícias</Link>
-          <Link href="#" >Projetos Assistidos</Link>
-        </FooterMenu>
-        </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={4}>
-        <SocialMenu>
+      </div>
+      <div className="footer">
+      <div className="footerContact" >
+          <div className="menu">
+          <Link href="#" ><a>Home</a></Link>
+          <Link href="#" ><a>Contato</a></Link>
+          <Link href="/suporte" ><a>Suporte</a></Link>
+          <Link href="#" ><a>Notícias</a></Link>
+          <Link href="#" ><a>Projetos Assistidos</a></Link>
+          </div>
+          <div>
+          <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
 
-          <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube"/></Link>
-          <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook"/></Link>
-          <Link href="https://www.instagram.com/thetabrasilonline/" ><img src="/media/home/17.svg" alt="instagram"/></Link>
-          <Link href="#" ><img src="/media/home/16.svg" alt="spotify"/></Link>
-          <Link href="#" ><img src="/media/home/14.svg" alt="spotify"/></Link>
-          <Link href="#" ><img src="/media/home/15.svg" alt="spotify"/></Link>
-        </SocialMenu>
-        <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
+          </div>
+          </div>
 
 
-        </Grid>
-        </Grid>
+          
 
-      </Container>
+            <div className="social">
+              <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube" /></Link>
+              <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook" /></Link>
+              <Link href="https://www.instagram.com/thetabrasilonline/" ><img src="/media/home/17.svg" alt="instagram" /></Link>
+              <Link href="#" ><img src="/media/home/16.svg" alt="spotify" /></Link>
+              <Link href="#" ><img src="/media/home/14.svg" alt="spotify" /></Link>
+              <Link href="#" ><img src="/media/home/15.svg" alt="spotify" /></Link>
+            </div>
+
+
+      </div>
+     
+
     </FooterWrapper>
   );
 };

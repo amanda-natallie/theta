@@ -1,17 +1,17 @@
 import styled from "styled-components"
 
 export const Contact = styled.section`
-justify-content:center;
 width:100%;
-margin: 50px 0 50px 0;
+margin: 0 auto;
 display: flex;
 
-@media (max-width:1024px){
+@media (max-width:700px){
+    display:flex;
+    flex-direction:column;
 .contactInfo{
-    width:90%;
+    width:90vw;
 }
 display:flex;
-flex-direction:column-reverse;
 }
 h1{
 font-family: Nunito;

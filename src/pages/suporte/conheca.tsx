@@ -5,23 +5,23 @@ import KnowStyle  from "../../styles/components/KnowStyle";
 import { Title } from "../../styles/components/Typography"
 import { Grid, Container, Box, Link } from '@material-ui/core';
 import BackButton from "../../components/general/BackButton";
+import { Header } from '../../styles/pages/ProfileProfessional';
+import { HeaderWithBackButtonWrapper } from '../../styles/pages/Support';
  
  const know = () =>{
     return (
         <>
         <PageWrapper>
-        <Container maxWidth='lg' > 
-                <Grid container >
-                    <Grid item xs={2} md={4}>
-                         <BackButton link="/" />
-                    </Grid>
-                    <Grid item xs={10} md={8} >
-                        <Title>A cura como um propósito</Title>
-                    </Grid>
-                </Grid>
-                
+                    <Container maxWidth='lg'>
+                    <HeaderWithBackButtonWrapper>
+                        <BackButton link="/" />
+                        <Title >A cura como um propósito</Title>
+                        <div/>
+                    </HeaderWithBackButtonWrapper>
                     </Container>
+                   
                     <KnowStyle>
+                       
                     <Container maxWidth='lg'>
                           
                             <Box className="content" display="flex" justifyContent="center">

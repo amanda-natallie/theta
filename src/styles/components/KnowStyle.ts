@@ -2,6 +2,13 @@ import styled from "styled-components"
 
 const knowStyle = styled.section `
 display:flex;
+.header{
+    display:flex;
+    justify-content:flex-start;
+    .title{
+        margin:0 auto;
+    }
+}
 section{
     margin:40px;
 }

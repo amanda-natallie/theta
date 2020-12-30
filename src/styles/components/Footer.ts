@@ -7,8 +7,48 @@ import { colors } from "../colors";
 export const FooterWrapper = styled.footer`
   width: 100%;
   display: flex;
-  padding: 60px 0;
-  flex-direction: column;
+  padding:10px;
+  flex-direction:column;
+  @media(max-width:500px){
+        display:flex;
+        flex-direction:column;}
+  .footer{
+    display:flex;
+    .social{
+      display:flex;
+      padding:10px;
+      img{
+        margin:10px;
+      }
+    }
+    .footerContact{
+    display:flex;
+    flex-direction:column;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.466667px;
+    .menu {
+      display:flex;
+      width:500px;
+      justify-content:space-between;
+   a{
+    color: #706880;
+
+   }
+   
+    }
+   
+  }
+  }
+  .newResponse{
+    display:flex;
+    justify-content:space-between;
+
+  }
+  
 
   & > div {
     display: flex;
@@ -31,6 +71,7 @@ export const FooterWrapper = styled.footer`
   & .brand {
     display: flex;
     align-items: center;
+    justify-content:space-between;
     & h1 {
       max-width: 350px;
       margin-left: 20px;
@@ -43,8 +84,10 @@ export const FooterWrapper = styled.footer`
     }
   
   & .news {
-    width: 46%;
-
+    width: 100%;
+form{
+  display:flex;
+}
     & h1 {
       margin-bottom: 15px;
       font-size: 0.875rem;
@@ -62,6 +105,7 @@ export const FooterWrapper = styled.footer`
     }
      .newResponse{
        display:flex;
+       justify-content:center;
        flex-direction:column;
        text-align:center;
      }
@@ -78,7 +122,6 @@ export const FooterWrapper = styled.footer`
        display:flex;
        margin:20px;
        width:100%;
-       flex-direction:column;
        justify-content:center;
        @media(max-width:500px){
          width:90%;
@@ -90,32 +133,8 @@ export const FooterWrapper = styled.footer`
 
 `;
 
-export const FooterMenu = styled.nav`
-  width: 100%;
-  display: flex;
-  align-items: center;
-
-  @media(max-width:500px){
-    display:none;
-  }
-
-
-  & a {
-    color: ${colors.gray50};
-    font-size: 0.875rem;
-  }
-  
-    a{
-      margin:5px;
-    }
-  
- 
-    
-  
-`;
 
 export const Copyright = styled.p`
- position:absolute;
   margin-top: 30px;
   color: ${colors.gray50};
   font-size: 0.875rem;
@@ -129,10 +148,4 @@ export const Copyright = styled.p`
 `;
 
 
-export const SocialMenu = styled.nav`
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-cursor:pointer;
-`
+
