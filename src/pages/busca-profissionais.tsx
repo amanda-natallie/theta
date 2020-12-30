@@ -16,6 +16,7 @@ import Loading from "../components/layout/Loading";
 import { getAllProfessionals } from "../services/profissionals";
 import CheckoutModal from "../components/layout/CheckoutModal";
 import { makeAppointment } from "../services/appointments";
+import { getHour } from "../utils/helpers";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -46,8 +47,6 @@ const SearchProfessionalsPage = () => {
       actionFunction: () => setLocalLoading(true),
     },
   });
-
-  // const options = ["São Paulo", "Rio de Janeiro", "Paraiba", "Minas Gerais"];
 
   const getAll = async () => {
     setLoading(true);
@@ -246,12 +245,12 @@ const SearchProfessionalsPage = () => {
                                             "pt-BR",
                                             dateOptions
                                           ),
-                                          time: newItem.hour,
+                                          time: getHour(newItem.hour),
                                           price: item.price,
                                         })
                                       }
                                     >
-                                      <li>{`${newItem.hour}:00`}</li>
+                                      <li>{getHour(newItem.hour)}</li>
                                     </button>
                                   )
                               )}

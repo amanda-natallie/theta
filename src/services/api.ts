@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `https://thetaapi.herokuapp.com`,
+  baseURL: `https://thetaapidev.herokuapp.com`,
 });
 
 export default api;

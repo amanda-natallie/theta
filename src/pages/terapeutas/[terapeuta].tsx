@@ -31,7 +31,7 @@ import {
   getProssionalInfo,
   therapistAvailability,
 } from "../../services/profissionals";
-import { renderIdade, renderPhone, getDateTime } from "../../utils/helpers";
+import { renderIdade, renderPhone, getDateTime, getHour } from "../../utils/helpers";
 import { useRouter } from "next/router";
 import { Select, MenuItem } from "@material-ui/core";
 import { makeAppointment } from "../../services/appointments";
@@ -64,20 +64,11 @@ const ProfessionalPublicProfilePage = () => {
 
   const getInformation = async (bodyDate?: any) => {
     const response = await getProssionalInfo(userName);
-    if (bodyDate) {
-      const hours = await therapistAvailability(response[0].id, bodyDate);
-      setThetaInformation({
-        ...response[0],
-        availability: hours,
-      });
-    } else {
-      const hours = await therapistAvailability(response[0].id);
-      setThetaInformation({
-        ...response[0],
-        availability: hours,
-      });
-    }
-
+    const hours = await therapistAvailability(response[0].id, bodyDate);
+    setThetaInformation({
+      ...response[0],
+      availability: hours,
+    });
   };
 
   useEffect(() => {
@@ -125,6 +116,8 @@ const ProfessionalPublicProfilePage = () => {
       }},
     });
     setCheckout(true);
+    console.log("hour");
+    console.log(hour);
   };
 
   return thetaInformation.id !== undefined ? (
@@ -180,7 +173,7 @@ const ProfessionalPublicProfilePage = () => {
                           {thetaInformation.links.map((item) => {
                             switch(item.name){
                               case "Facebook":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/facebook.svg"
@@ -189,7 +182,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Instagram":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/instagram.svg"
@@ -198,7 +191,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Youtube":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                     src="/media/icons/social-media/youtube.svg"
@@ -207,7 +200,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Spotify":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                     src="/media/icons/social-media/spotify.svg"
@@ -216,7 +209,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Twitter":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/twitter.svg"
@@ -225,7 +218,7 @@ const ProfessionalPublicProfilePage = () => {
                                   </Link>
                                 </li>)
                                 case "Linkedin":
-                                  return (<li>
+                                  return (<li key={item.link}>
                                   <Link href={item.link}>
                                     <img
                                       src="/media/icons/social-media/linkedin.svg"
@@ -266,13 +259,13 @@ const ProfessionalPublicProfilePage = () => {
                     )}
                     <h2>Certificados ThetaHealing®</h2>
                     <small>
-                      *clique nos botões abaixo para ver os certificados
+                      *este são os certificados que o profissional possue
                     </small>
                     <Divider height="40px" />
                     <div>
                     <MiniChip style={{width:"100%"}}>
                       {thetaInformation.certificates.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item.name}>{item.name}</li>
                       ))}
                     </MiniChip>
                     </div>
@@ -288,7 +281,7 @@ const ProfessionalPublicProfilePage = () => {
                           switch(item.name){
                             case 'English':
                               return (
-                                <li>
+                                <li key={item.name}>
                                   <img
                                     src="/media/icons/countries/usa.svg"
                                     alt="brazil"
@@ -298,7 +291,7 @@ const ProfessionalPublicProfilePage = () => {
                               )
                               case 'Portuguese':
                                 return (
-                                  <li>
+                                  <li key={item.name}>
                                   <img
                                     src="/media/icons/countries/brazil.svg"
                                     alt="brazil"
@@ -369,19 +362,19 @@ const ProfessionalPublicProfilePage = () => {
                                     },
                                     getContentAnchorEl: null,
                                   }}
+                                  onChange={(e: any) =>
+                                    appointimentMaker(e.target.value)
+                                  }
                                 >
-                                  {thetaInformation.availability.map(
-                                    (newItem: any) =>
-                                      newItem.available && (
-                                        <MenuItem
-                                          onChange={(e: any) =>
-                                            appointimentMaker(e.target.value)
-                                          }
-                                        >
-                                          {`${newItem.hour}:00`}
-                                        </MenuItem>
-                                      )
-                                  )}
+                                <MenuItem />   
+                                {thetaInformation.availability.map(
+                                  (newItem: any) =>
+                                    newItem.available && (
+                                      <MenuItem value={getHour(newItem.hour)}>
+                                        {getHour(newItem.hour)}
+                                      </MenuItem>
+                                    )
+                                )}
                                 </Select>
                               </FormControl>
                             ) : (

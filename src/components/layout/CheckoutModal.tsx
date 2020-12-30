@@ -10,6 +10,7 @@ import { Checkout } from "../../styles/pages/dashboard/Checkout";
 import theme from "../../styles/theme";
 import ClientTherapistAvatar from "../general/ClientTherapistAvatar";
 import {BarLoader} from "react-spinners"
+import { getHour } from "../../utils/helpers";
 
 interface Iprops {
   isOpen: boolean;
@@ -57,7 +58,7 @@ const CheckoutModal = ({ isOpen, onClose, isLoading = false, info }: Iprops) => 
             </p>
             <span>•</span>
             <p>
-              <img src="/media/icons/time.svg" alt="time" /> {`${info.time}:00 - horário de
+              <img src="/media/icons/time.svg" alt="time" /> {`${info.time} - horário de
               Brasília`}
             </p>
           </FlexBox>
