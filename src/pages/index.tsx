@@ -35,6 +35,7 @@ import { useScroll } from "../utils/hooks/useScroll";
 import Footer from "../components/layout/Footer";
 import Link from "next/link";
 import ThetaLogoIconColored from "../components/icons/ThetaLogoIconColored";
+import { serverWakeUp } from "../services/serverWakeUp";
 
 export default function HomePage({ }) {
   const [showAboutUs, setShowAboutUs] = useState(false);
@@ -42,11 +43,9 @@ export default function HomePage({ }) {
 
   const { scrollY } = useScroll();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("authToken")) {
-  //     window.location.href = "/busca-profissionais";
-  //   }
-  // }, []);
+  useEffect(() => {
+    serverWakeUp()
+  }, []);
 
   return (
     <HomeWrapper>
@@ -345,7 +344,7 @@ export default function HomePage({ }) {
                 <span>RS</span>
                 <p>107,00</p>
               </PriceBlock>
-              <Link passHref href="/agendamento-por-horario">
+              <Link passHref href="/busca-profissionais">
                 <ThetaButton theme="purple">Agenda Online</ThetaButton>
               </Link>
             </div>
