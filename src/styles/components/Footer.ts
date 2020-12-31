@@ -96,7 +96,8 @@ export const FooterMenu = styled.nav`
   align-items: center;
 
   @media(max-width:500px){
-    display:none;
+    flex-direction: column;
+    margin-top: -50px;
   }
 
 
@@ -116,14 +117,18 @@ export const FooterMenu = styled.nav`
 
 export const Copyright = styled.p`
  position:absolute;
-  margin-top: 30px;
+  margin-top: 40px;
   color: ${colors.gray50};
   font-size: 0.875rem;
+  margin-left: -25%;
+  
   
   @media(max-width:500px){
     text-align:center;
-    flex-wrap:wrap;
-
+    font-size: 0.875rem;
+    margin: 20px;
+    padding-bottom: 10px;
+    align-self: center;
   }
  
 `;
