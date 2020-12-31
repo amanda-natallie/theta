@@ -18,10 +18,10 @@ const Footer = () => {
     <FooterWrapper>
       <Container className="newResponse" maxWidth="lg">
         <div className="brand">
-          <ThetaIconSvgIcon width="47" height="49" />
-          <p>
-            Você possui o livre arbítrio de escolha. Faça da sua caminhada uma
-            jornada de luz com a ajuda do Thetahealing®️
+          <ThetaIconSvgIcon width="55" height="50" />
+          <p style={{width: "50%"}}>
+            Você possui o livre arbítrio de escolha. Faça da 
+            sua caminhada uma jornada de luz com a ajuda do Thetahealing®️
           </p>
         </div>
 
@@ -49,7 +49,6 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={4}>
         <SocialMenu>
-
           <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube"/></Link>
           <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook"/></Link>
           <Link href="https://www.instagram.com/thetabrasilonline/" ><img src="/media/home/17.svg" alt="instagram"/></Link>
@@ -58,8 +57,6 @@ const Footer = () => {
           <Link href="#" ><img src="/media/home/15.svg" alt="spotify"/></Link>
         </SocialMenu>
         <Copyright>Copyright ©2020 Theta Brasil Terapia Online | CNPJ 38.166.672/0001-44. Todos os direitos reservados </Copyright>
-
-
         </Grid>
         </Grid>
 
