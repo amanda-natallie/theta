@@ -371,7 +371,7 @@ const ProfessionalPublicProfilePage = () => {
                                         </MenuItem>
                                       )
                                   )}
-                                </Select>
+x                                </Select>
                               </FormControl>
                             ) : (
                               "Desculpe, este terapeuta não tem horários disponíveis no dia escolhido!"
