@@ -241,10 +241,7 @@ justify-content:space-between;
   margin: 20px 0 10px 0;
   padding: 20px;
   min-height: auto;
-  @media(max-width:767px){
-    display:flex;
-    align-items:flex-start;
-    flex-direction:column-reverse;
+  
     }
   .dateSchedule{
     @media(max-width:767px){

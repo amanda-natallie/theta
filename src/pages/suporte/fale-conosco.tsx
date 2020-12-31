@@ -9,22 +9,23 @@ import Link from "next/link";
 import {TextField} from "@material-ui/core"
 import { Contact } from '../../styles/components/Contact';
 import { ThetaButton } from '../../styles/components/Button';
+import { HeaderWithBackButtonWrapper } from '../../styles/pages/Support';
  
 const ContactUs = () =>{
     return (
         <>
         <PageWrapper>
-        <Container maxWidth='lg' style={{marginTop:"50px"}}> 
-                <Grid container >
-                    <Grid item xs={2} md={4}>
+        <Container maxWidth='lg'> 
+        <HeaderWithBackButtonWrapper>
+
                          <BackButton link="/suporte" />
-                    </Grid>
-                    <Grid item xs={10} md={8} >
                         <Title>Estamos aqui para te ajudar :)</Title>
-                    </Grid>
-                </Grid> 
+                        <div/>
+
+                        </HeaderWithBackButtonWrapper>
+        </Container>
                 
-         
+         <Container maxWidth="lg">
         <FlexBox style={{justifyContent:"space-between"}}>
         <Contact>
         <div className="contentInfo">
