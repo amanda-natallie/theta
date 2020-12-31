@@ -7,52 +7,8 @@ import { colors } from "../colors";
 export const FooterWrapper = styled.footer`
   width: 100%;
   display: flex;
-  flex-direction:column;
-  margin-top:20px;
-  @media(max-width:500px){
-        display:flex;
-        flex-direction:column;}
-  .footer{
-    display:flex;
-    .social{
-      display:flex;
-      padding:10px;
-      img{
-        margin:10px;
-      }
-    }
-    .footerContact{
-    display:flex;
-    flex-direction:column;
-    font-family: Nunito;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: 0.466667px;
-    .menu {
-      display:flex;
-      width:500px;
-      justify-content:space-between;
-      @media(max-width:500px){
-        display:none;
-      }
-
-   a{
-    color: #706880;
-
-   }
-   
-    }
-   
-  }
-  }
-  .newResponse{
-    display:flex;
-    justify-content:space-between;
-
-  }
-  
+  padding: 60px 0;
+  flex-direction: column;
 
   & > div {
     display: flex;
@@ -75,7 +31,6 @@ export const FooterWrapper = styled.footer`
   & .brand {
     display: flex;
     align-items: center;
-    justify-content:space-between;
     & h1 {
       max-width: 350px;
       margin-left: 20px;
@@ -88,11 +43,8 @@ export const FooterWrapper = styled.footer`
     }
   
   & .news {
-    width: 100%;
-    justify-items:center;
-form{
-  display:flex;
-}
+    width: 46%;
+
     & h1 {
       margin-bottom: 15px;
       font-size: 0.875rem;
@@ -110,7 +62,6 @@ form{
     }
      .newResponse{
        display:flex;
-       justify-content:center;
        flex-direction:column;
        text-align:center;
      }
@@ -125,12 +76,13 @@ form{
      }
      .news{
        display:flex;
-margin:0 auto;
+       margin:20px;
+       width:100%;
+       flex-direction:column;
        justify-content:center;
        @media(max-width:500px){
          width:90%;
          margin:20px;
-         flex-direction:column;
        }
 
      }
@@ -182,4 +134,10 @@ export const Copyright = styled.p`
 `;
 
 
-
+export const SocialMenu = styled.nav`
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+cursor:pointer;
+`
