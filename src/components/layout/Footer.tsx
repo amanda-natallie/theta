@@ -16,7 +16,7 @@ import { colors } from "../../styles/colors";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <div className="newResponse">
+      <Container className="newResponse" maxWidth="lg">
         <div className="brand">
           <ThetaIconSvgIcon width="55" height="50" />
           <p style={{width: "50%"}}>
@@ -29,7 +29,7 @@ const Footer = () => {
           <h1>Assine nossa newsletter</h1>
           <form action="">
             <input type="text" placeholder="Insira seu e-mail" />
-            <Link passHref href="/">
+            <Link  passHref href="/">
               <NewsletterButton>Assinar</NewsletterButton>
             </Link>
           </form>
@@ -60,6 +60,7 @@ const Footer = () => {
         </Grid>
         </Grid>
 
+      </Container>
     </FooterWrapper>
   );
 };
