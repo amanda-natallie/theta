@@ -62,6 +62,7 @@ export default function HomePage({ }) {
           <Link passHref href="/suporte/conheca">
             <ThetaButton theme="rainbow">Conheça</ThetaButton>
           </Link>
+         
           <Navigation alt="Navigation" src="/media/home/arrow.svg" />
         </div>
       </Intro>

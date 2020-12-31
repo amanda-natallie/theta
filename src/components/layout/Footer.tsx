@@ -52,7 +52,7 @@ const Footer = () => {
 
 
           
-
+            
             <div className="social">
               <Link href="https://www.youtube.com/channel/UCfoneG8D-xP9dZyq2607D3w" ><img src="/media/home/19.svg" alt="youtube" /></Link>
               <Link href="https://www.facebook.com/ThetaBrasil.online" ><img src="/media/home/18.svg" alt="facebook" /></Link>

@@ -7,8 +7,8 @@ import { colors } from "../colors";
 export const FooterWrapper = styled.footer`
   width: 100%;
   display: flex;
-  padding:10px;
   flex-direction:column;
+  margin-top:20px;
   @media(max-width:500px){
         display:flex;
         flex-direction:column;}
@@ -34,6 +34,10 @@ export const FooterWrapper = styled.footer`
       display:flex;
       width:500px;
       justify-content:space-between;
+      @media(max-width:500px){
+        display:none;
+      }
+
    a{
     color: #706880;
 
@@ -85,6 +89,7 @@ export const FooterWrapper = styled.footer`
   
   & .news {
     width: 100%;
+    justify-items:center;
 form{
   display:flex;
 }
@@ -120,12 +125,12 @@ form{
      }
      .news{
        display:flex;
-       margin:20px;
-       width:100%;
+margin:0 auto;
        justify-content:center;
        @media(max-width:500px){
          width:90%;
          margin:20px;
+         flex-direction:column;
        }
 
      }
@@ -140,9 +145,7 @@ export const Copyright = styled.p`
   font-size: 0.875rem;
   
   @media(max-width:500px){
-    text-align:center;
-    flex-wrap:wrap;
-
+justify-items:center;
   }
  
 `;

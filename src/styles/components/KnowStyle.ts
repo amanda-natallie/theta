@@ -65,10 +65,17 @@ background-color: #7643FF;
 width:14px;
 height:14px;
 }
+@media(max-width: 500px) {
+    .ContainerButton{
+       justify-content:center;
+    }
+}
 
 @media(max-width: 1000px) {
     width:100%;
     justify-content:center;
+   
+    
     .Bluelogo{
         display:none;
     }
@@ -77,7 +84,7 @@ height:14px;
     }
     img{
         margin:0 auto;
-        width:40vw;
+        width:100vw;
     }
     p{
         width:100%;
